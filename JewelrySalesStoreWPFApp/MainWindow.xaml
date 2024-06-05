@@ -1,0 +1,19 @@
+﻿<Window x:Class="JewelrySalesStoreWPFApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:JewelrySalesStoreWPFApp"
+        mc:Ignorable="d"
+        Title="JewelrySalesStore" Height="450" Width="1000">
+    <Grid>
+        <Menu Height="30" Name="menu1" Margin="0,0,0,0" VerticalAlignment="Top" BorderThickness="2" FontSize="16" FontWeight="Bold">
+            <MenuItem Header="Menu" IsCheckable="False" FontSize="16">
+                <MenuItem Header="Category" IsCheckable="False" FontSize="12" Click="Open_wCategory_Click">
+
+                </MenuItem>
+            </MenuItem>
+
+        </Menu>
+    </Grid>
+</Window>

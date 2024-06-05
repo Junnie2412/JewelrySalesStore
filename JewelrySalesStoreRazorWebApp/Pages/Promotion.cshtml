@@ -1,0 +1,240 @@
+﻿@page
+@model JewelrySalesStoreRazorWebApp.Pages.PromotionModel
+@{
+    ViewData["Title"] = "Promotion Page";
+    var promotions = Model.Promotions;
+}
+
+<div class="text-center">
+    <h1 class="display-6">Promotion Management</h1>
+</div>
+
+<div class="row">
+    <div class="col-md-6 text-start">
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <span class="text-danger">@TempData["ErrorMessage"]</span>
+        }
+
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <span class="text-success">@TempData["SuccessMessage"]</span>
+        }
+    </div>
+
+    <div class="col-md-6 text-end">
+        <button type="button" class="btn btn-primary" onclick="add();">Add</button>
+    </div>
+</div>
+
+<div class="row mt-3">
+    <div class="col-md-12">
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr class="card-header">
+                    <th class="card-title text-center">ID</th>
+                    <th class="card-title text-center">Name</th>
+                    <th class="card-title text-center">Discount (%)</th>
+                    <th class="card-title text-center">Start Date</th>
+                    <th class="card-title text-center">End Date</th>
+                    <th class="card-title text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody class="tblpromotionList">
+                @if (promotions.Count > 0)
+                {
+                    foreach (var promotion in promotions)
+                    {
+                        <tr>
+                            <td class="text-center">@promotion.PromotionId</td>
+                            <td class="text-center">@promotion.PromotionName</td>
+                            <td class="text-center">@promotion.DiscountPercentage</td>
+                            <td>@Html.DisplayFor(model => promotion.StartDate)</td>
+                            <td>@Html.DisplayFor(model => promotion.EndDate)</td>
+                            <td class="text-center">
+                                <button type="button" class="btn btn-success" onclick="edit('@promotion.PromotionId')">Edit</button>
+                                <button type="button" class="btn btn-danger" onclick="deletePromotion('@promotion.PromotionId')">Delete</button>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="6" class="text-center">No promotions available</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Add Promotion Modal -->
+<div class="modal fade" id="addPromotionModal" tabindex="-1" aria-labelledby="promotionModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            @using (Html.BeginForm(null, null, FormMethod.Post, new { name = "frm", id = "frm" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="modal-header">
+                    <h5 class="modal-title" id="CustomerModalLabel">New Promotion</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="promotionModalContent"></div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <label for="PromotionName">Name</label>
+                                    <input asp-for="Promotion.PromotionName" class="form-control" />
+                                    <span asp-validation-for="Promotion.PromotionName" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="DiscountPercentage">Discount (%)</label>
+                                    <input asp-for="Promotion.DiscountPercentage" class="form-control" />
+                                    <span asp-validation-for="Promotion.DiscountPercentage" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <label for="StartDate">Start Date</label>
+                                    <input asp-for="Promotion.StartDate" class="form-control" />
+                                    <span asp-validation-for="Promotion.StartDate" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="EndDate">End Date</label>
+                                    <input asp-for="Promotion.EndDate" class="form-control" />
+                                    <span asp-validation-for="Promotion.EndDate" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="btSave" type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!-- Edit Promotion Modal -->
+<div class="modal fade" id="editPromotionModal" tabindex="-1" aria-labelledby="promotionModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post" asp-page-handler="Update">
+                @Html.AntiForgeryToken()
+                <input asp-for="Promotion.PromotionId" type="hidden" id="PromotionId" />
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="promotionModalLabel">Edit Promotion</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <label for="PromotionId">ID</label>
+                                    <input id="PromotionId" class="form-control" readonly />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <label for="PromotionName">Name</label>
+                                    <input id="PromotionName" asp-for="Promotion.PromotionName" class="form-control" />
+                                    <span asp-validation-for="Promotion.PromotionName" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="DiscountPercentage">Discount (%)</label>
+                                    <input id="DiscountPercentage" asp-for="Promotion.DiscountPercentage" class="form-control" />
+                                    <span asp-validation-for="Promotion.DiscountPercentage" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <label for="StartDate">Start Date</label>
+                                    <input id="StartDate" asp-for="Promotion.StartDate" class="form-control" />
+                                    <span asp-validation-for="Promotion.StartDate" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="EndDate">End Date</label>
+                                    <input id="EndDate" asp-for="Promotion.EndDate" class="form-control" />
+                                    <span asp-validation-for="Promotion.EndDate" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Promotion Modal -->
+<div class="modal fade" id="removePromotionModal" tabindex="-1" aria-labelledby="promotionModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post" asp-page-handler="Delete">
+                @Html.AntiForgeryToken()
+                <input type="hidden" asp-for="Promotion.PromotionId" id="promotionIdRemove" />
+
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="promotionModalLabel">Remove Confirm</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to remove this promotion?
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Yes</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script type="text/javascript">
+        function add() {
+            $('#addPromotionModal').modal('show');
+        }
+
+        function edit(promotionId) {
+            $.ajax({
+                url: '@Url.Page("/Promotion", "Update")',
+                type: 'GET',
+                data: { promotionId: promotionId },
+                success: function (data) {
+                    $('#editPromotionModal #PromotionId').val(data.promotionId);
+                    $('#editPromotionModal #PromotionName').val(data.promotionName);
+                    $('#editPromotionModal #DiscountPercentage').val(data.discountPercentage);
+                    $('#editPromotionModal #StartDate').val(data.startDate);
+                    $('#editPromotionModal #EndDate').val(data.endDate);
+
+                    $('#editPromotionModal').modal('show');
+                }
+            });
+        }
+
+        function deletePromotion(promotionId) {
+            document.getElementById('promotionIdRemove').value = promotionId;
+            $('#removePromotionModal').modal('show');
+        }
+    </script>
+}

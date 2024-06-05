@@ -1,0 +1,152 @@
+﻿@page
+@model JewelrySalesStoreRazorWebApp.Pages.ProductModel
+@{
+    ViewData["Title"] = "Product page";
+    var products = Model.Products;
+}
+
+<div class="text-center">
+    <h1 class="display-6"> Product management</h1>
+</div>
+
+<div class="row">
+    <div class="col-md-12 text-end">
+        <button type="button" class="btn btn-primary" onclick="add();">
+            Add
+        </button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr class="card-header">
+                    <th class="card-title text-center">Code</th>
+                    <th class="card-title text-center">Image</th>
+                    <th class="card-title text-center">Color</th>
+                    <th class="card-title text-center">Name</th>
+                    <th class="card-title text-center">Weight</th>
+                    <th class="card-title text-center">Price</th>
+                    <th class="card-title text-center">PromotionID</th>
+                    <th class="card-title text-center">Status</th>
+                    <th class="card-title text-center">CategoryID</th>
+                    <th class="card-title text-center">Edit</th>
+                    <th class="card-title text-center">Remove</th>
+                </tr>
+            </thead>
+            <tbody class="tblcurrencyList">
+                @if (products.Count > 0)
+                {
+                    foreach (var category in products)
+                    {
+                        <tr>
+                            <td>@category.ProductId</td>
+                            <td>@category.Name</td>
+                            <td><button type="button" class="btn btn-primary" onclick="add();">Edit</button></td>
+                            <td><button>Remove</button></td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="modal fade" id="currencyModal" tabindex="-1" aria-labelledby="currencyModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            @using (Html.BeginForm(null, null, FormMethod.Post, new { name = "frm", id = "frm" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="modal-header">
+                    <h5 class="modal-title" id="currencyModalLabel">Product Transaction</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="currencyModalContent"></div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <label for="1">Image</label>
+                                    <input asp-for="Product.Image" class="form-control" />
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="1">Color</label>
+                                    <input asp-for="Product.Color" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <label for="1">Name</label>
+                                    <input asp-for="Product.Name" class="form-control" />
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="1">Weight</label>
+                                    <input asp-for="Product.Weight" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <label for="1">Price</label>
+                                    <input asp-for="Product.Price" class="form-control" />
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="1">PromotionID</label>
+                                    <input asp-for="Product.PromotionId" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <label for="1">Status</label>
+                                    <input asp-for="Product.Status" class="form-control" />
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="1">PromotionID</label>
+                                    <input asp-for="Product.PromotionId" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group row">
+                                <div class="col-md-12">
+                                    <label for="1">CategoryID</label>
+                                    <input asp-for="Product.CategoryId" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="btSave" type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script type="text/javascript">
+        function add() {
+            $('#currencyModal').modal('show');
+        }
+    </script>
+}
+

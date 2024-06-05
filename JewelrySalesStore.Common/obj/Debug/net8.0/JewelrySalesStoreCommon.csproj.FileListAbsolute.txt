@@ -1,0 +1,11 @@
+F:\PRN221\Project\Net1702_221_4_JewelrySalesStore\Source\Net1702_221_4_JewelrySalesStore\JewelrySalesStore.Common\bin\Debug\net8.0\JewelrySalesStoreCommon.deps.json
+F:\PRN221\Project\Net1702_221_4_JewelrySalesStore\Source\Net1702_221_4_JewelrySalesStore\JewelrySalesStore.Common\bin\Debug\net8.0\JewelrySalesStoreCommon.dll
+F:\PRN221\Project\Net1702_221_4_JewelrySalesStore\Source\Net1702_221_4_JewelrySalesStore\JewelrySalesStore.Common\bin\Debug\net8.0\JewelrySalesStoreCommon.pdb
+F:\PRN221\Project\Net1702_221_4_JewelrySalesStore\Source\Net1702_221_4_JewelrySalesStore\JewelrySalesStore.Common\obj\Debug\net8.0\JewelrySalesStoreCommon.GeneratedMSBuildEditorConfig.editorconfig
+F:\PRN221\Project\Net1702_221_4_JewelrySalesStore\Source\Net1702_221_4_JewelrySalesStore\JewelrySalesStore.Common\obj\Debug\net8.0\JewelrySalesStoreCommon.AssemblyInfoInputs.cache
+F:\PRN221\Project\Net1702_221_4_JewelrySalesStore\Source\Net1702_221_4_JewelrySalesStore\JewelrySalesStore.Common\obj\Debug\net8.0\JewelrySalesStoreCommon.AssemblyInfo.cs
+F:\PRN221\Project\Net1702_221_4_JewelrySalesStore\Source\Net1702_221_4_JewelrySalesStore\JewelrySalesStore.Common\obj\Debug\net8.0\JewelrySalesStoreCommon.csproj.CoreCompileInputs.cache
+F:\PRN221\Project\Net1702_221_4_JewelrySalesStore\Source\Net1702_221_4_JewelrySalesStore\JewelrySalesStore.Common\obj\Debug\net8.0\JewelrySalesStoreCommon.dll
+F:\PRN221\Project\Net1702_221_4_JewelrySalesStore\Source\Net1702_221_4_JewelrySalesStore\JewelrySalesStore.Common\obj\Debug\net8.0\refint\JewelrySalesStoreCommon.dll
+F:\PRN221\Project\Net1702_221_4_JewelrySalesStore\Source\Net1702_221_4_JewelrySalesStore\JewelrySalesStore.Common\obj\Debug\net8.0\JewelrySalesStoreCommon.pdb
+F:\PRN221\Project\Net1702_221_4_JewelrySalesStore\Source\Net1702_221_4_JewelrySalesStore\JewelrySalesStore.Common\obj\Debug\net8.0\ref\JewelrySalesStoreCommon.dll

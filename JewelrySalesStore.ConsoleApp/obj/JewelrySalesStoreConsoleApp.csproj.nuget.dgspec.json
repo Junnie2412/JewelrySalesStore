@@ -1,0 +1,255 @@
+{
+  "format": 1,
+  "restore": {
+    "F:\\PRN221\\Project\\Net1702_221_4_JewelrySalesStore\\Source\\Net1702_221_4_JewelrySalesStore\\JewelrySalesStore.ConsoleApp\\JewelrySalesStoreConsoleApp.csproj": {}
+  },
+  "projects": {
+    "F:\\PRN221\\Project\\Net1702_221_4_JewelrySalesStore\\Source\\Net1702_221_4_JewelrySalesStore\\JewelrySalesStore.Common\\JewelrySalesStoreCommon.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "F:\\PRN221\\Project\\Net1702_221_4_JewelrySalesStore\\Source\\Net1702_221_4_JewelrySalesStore\\JewelrySalesStore.Common\\JewelrySalesStoreCommon.csproj",
+        "projectName": "JewelrySalesStoreCommon",
+        "projectPath": "F:\\PRN221\\Project\\Net1702_221_4_JewelrySalesStore\\Source\\Net1702_221_4_JewelrySalesStore\\JewelrySalesStore.Common\\JewelrySalesStoreCommon.csproj",
+        "packagesPath": "C:\\Users\\HOANG DUNG\\.nuget\\packages\\",
+        "outputPath": "F:\\PRN221\\Project\\Net1702_221_4_JewelrySalesStore\\Source\\Net1702_221_4_JewelrySalesStore\\JewelrySalesStore.Common\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\HOANG DUNG\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "F:\\PRN221\\Project\\Net1702_221_4_JewelrySalesStore\\Source\\Net1702_221_4_JewelrySalesStore\\JewelrySalesStore.ConsoleApp\\JewelrySalesStoreConsoleApp.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "F:\\PRN221\\Project\\Net1702_221_4_JewelrySalesStore\\Source\\Net1702_221_4_JewelrySalesStore\\JewelrySalesStore.ConsoleApp\\JewelrySalesStoreConsoleApp.csproj",
+        "projectName": "JewelrySalesStoreConsoleApp",
+        "projectPath": "F:\\PRN221\\Project\\Net1702_221_4_JewelrySalesStore\\Source\\Net1702_221_4_JewelrySalesStore\\JewelrySalesStore.ConsoleApp\\JewelrySalesStoreConsoleApp.csproj",
+        "packagesPath": "C:\\Users\\HOANG DUNG\\.nuget\\packages\\",
+        "outputPath": "F:\\PRN221\\Project\\Net1702_221_4_JewelrySalesStore\\Source\\Net1702_221_4_JewelrySalesStore\\JewelrySalesStore.ConsoleApp\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\HOANG DUNG\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "F:\\PRN221\\Project\\Net1702_221_4_JewelrySalesStore\\Source\\Net1702_221_4_JewelrySalesStore\\JewelrySalesStoreBusiness\\JewelrySalesStoreBusiness.csproj": {
+                "projectPath": "F:\\PRN221\\Project\\Net1702_221_4_JewelrySalesStore\\Source\\Net1702_221_4_JewelrySalesStore\\JewelrySalesStoreBusiness\\JewelrySalesStoreBusiness.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "F:\\PRN221\\Project\\Net1702_221_4_JewelrySalesStore\\Source\\Net1702_221_4_JewelrySalesStore\\JewelrySalesStoreBusiness\\JewelrySalesStoreBusiness.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "F:\\PRN221\\Project\\Net1702_221_4_JewelrySalesStore\\Source\\Net1702_221_4_JewelrySalesStore\\JewelrySalesStoreBusiness\\JewelrySalesStoreBusiness.csproj",
+        "projectName": "JewelrySalesStoreBusiness",
+        "projectPath": "F:\\PRN221\\Project\\Net1702_221_4_JewelrySalesStore\\Source\\Net1702_221_4_JewelrySalesStore\\JewelrySalesStoreBusiness\\JewelrySalesStoreBusiness.csproj",
+        "packagesPath": "C:\\Users\\HOANG DUNG\\.nuget\\packages\\",
+        "outputPath": "F:\\PRN221\\Project\\Net1702_221_4_JewelrySalesStore\\Source\\Net1702_221_4_JewelrySalesStore\\JewelrySalesStoreBusiness\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\HOANG DUNG\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "F:\\PRN221\\Project\\Net1702_221_4_JewelrySalesStore\\Source\\Net1702_221_4_JewelrySalesStore\\JewelrySalesStore.Common\\JewelrySalesStoreCommon.csproj": {
+                "projectPath": "F:\\PRN221\\Project\\Net1702_221_4_JewelrySalesStore\\Source\\Net1702_221_4_JewelrySalesStore\\JewelrySalesStore.Common\\JewelrySalesStoreCommon.csproj"
+              },
+              "F:\\PRN221\\Project\\Net1702_221_4_JewelrySalesStore\\Source\\Net1702_221_4_JewelrySalesStore\\JewelrySalesStoreData\\JewelrySalesStoreData.csproj": {
+                "projectPath": "F:\\PRN221\\Project\\Net1702_221_4_JewelrySalesStore\\Source\\Net1702_221_4_JewelrySalesStore\\JewelrySalesStoreData\\JewelrySalesStoreData.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "F:\\PRN221\\Project\\Net1702_221_4_JewelrySalesStore\\Source\\Net1702_221_4_JewelrySalesStore\\JewelrySalesStoreData\\JewelrySalesStoreData.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "F:\\PRN221\\Project\\Net1702_221_4_JewelrySalesStore\\Source\\Net1702_221_4_JewelrySalesStore\\JewelrySalesStoreData\\JewelrySalesStoreData.csproj",
+        "projectName": "JewelrySalesStoreData",
+        "projectPath": "F:\\PRN221\\Project\\Net1702_221_4_JewelrySalesStore\\Source\\Net1702_221_4_JewelrySalesStore\\JewelrySalesStoreData\\JewelrySalesStoreData.csproj",
+        "packagesPath": "C:\\Users\\HOANG DUNG\\.nuget\\packages\\",
+        "outputPath": "F:\\PRN221\\Project\\Net1702_221_4_JewelrySalesStore\\Source\\Net1702_221_4_JewelrySalesStore\\JewelrySalesStoreData\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\HOANG DUNG\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[8.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.5, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
