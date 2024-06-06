@@ -12,10 +12,12 @@
       }
     ],
     "additionalProbingPaths": [
-      "C:\\Users\\HOANG DUNG\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\HOANG DUNG\\.nuget\\packages"
+      "C:\\Users\\asus\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\asus\\.nuget\\packages",
+      "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
     ],
     "configProperties": {
+      "System.Reflection.NullabilityInfoContext.IsSupported": true,
       "System.Runtime.Serialization.EnableUnsafeBinaryFormatterSerialization": true,
       "Microsoft.NETCore.DotNetHostPolicy.SetAppPaths": true
     }

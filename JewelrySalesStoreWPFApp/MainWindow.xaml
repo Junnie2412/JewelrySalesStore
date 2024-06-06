@@ -12,7 +12,11 @@
                 <MenuItem Header="Category" IsCheckable="False" FontSize="12" Click="Open_wCategory_Click">
 
                 </MenuItem>
+                <MenuItem Header="Order" IsCheckable="False" FontSize="12" Click="Open_wOrder_Click">
+
+                </MenuItem>
             </MenuItem>
+            
 
         </Menu>
     </Grid>
