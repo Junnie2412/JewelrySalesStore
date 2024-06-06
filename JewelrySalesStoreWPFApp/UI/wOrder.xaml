@@ -28,8 +28,8 @@
                     <TextBox Grid.Column="1" Grid.Row="0" x:Name="txtCustomerId" Height="25" Text="{Binding Path=Order.CustomerId, Mode=TwoWay}" Margin="5" Width="200" HorizontalAlignment="Left"/>
 
                     <!-- Date -->
-                    <Label Grid.Column="2" Grid.Row="0" Content="Date" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
-                    <TextBox Grid.Column="3" Grid.Row="0" x:Name="txtDate" Height="25" Text="{Binding Path=Order.Date, Mode=TwoWay}" Margin="5" Width="200" HorizontalAlignment="Left"/>
+                    <Label Grid.Column="2" Grid.Row="0" Content="Id" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
+                    <TextBox Grid.Column="3" Grid.Row="0" x:Name="txtOrderId" Height="25" Text="{Binding Path=Order.OrderId, Mode=TwoWay}" Margin="5" Width="200" HorizontalAlignment="Left"/>
 
                     <!-- Payment Method -->
                     <Label Grid.Column="4" Grid.Row="0" Content="Payment Method" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
@@ -59,7 +59,7 @@
                     <DataGrid.Columns>
                         <!--<DataGridTextColumn Header="Code" Binding="{Binding Path=Id}" Visibility="Hidden"/>-->
                         <DataGridTextColumn Header="Id" Binding="{Binding Path=OrderId}" Width="250" Visibility="Visible"/>
-                        <DataGridTextColumn Header="Customer Name" Binding="{Binding Path=Order.Customer.CustomerName}" Width="120"  IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Customer Name" Binding="{Binding Path=CustomerId}" Width="200"  IsReadOnly="True"/>
                         <!--<DataGridTextColumn Header="BirthDate" Binding="{Binding Path=CustomerBirthDate}" Width="80"  IsReadOnly="True"/>-->
                         <DataGridTemplateColumn Header="Date" Width="80" IsReadOnly="True">
                             <DataGridTemplateColumn.CellTemplate>
@@ -68,8 +68,8 @@
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridTextColumn Header="Company Name" Binding="{Binding Path=Order.Company.Name}" Width="80"  IsReadOnly="True"/>
-                        <DataGridTextColumn Header="Status" Binding="{Binding Path=Order.Status}" Width="200"  IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Company Name" Binding="{Binding Path=CompanyId}" Width="200"  IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Status" Binding="{Binding Path=Status}" Width="80"  IsReadOnly="True"/>
                         <DataGridTextColumn Header="Total Price" Binding="{Binding Path=TotalPrice}" Width="40"  IsReadOnly="True"/>
 
                         <DataGridTemplateColumn Header="Actions" Width="110">
@@ -86,6 +86,5 @@
                 </DataGrid>
             </StackPanel>
         </StackPanel>
-
     </Grid>
 </Window>
