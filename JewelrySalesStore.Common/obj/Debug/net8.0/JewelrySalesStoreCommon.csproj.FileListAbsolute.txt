@@ -21,3 +21,15 @@ G:\Demo\JewelrySalesStore\JewelrySalesStore.Common\obj\Debug\net8.0\JewelrySales
 G:\Demo\JewelrySalesStore\JewelrySalesStore.Common\obj\Debug\net8.0\refint\JewelrySalesStoreCommon.dll
 G:\Demo\JewelrySalesStore\JewelrySalesStore.Common\obj\Debug\net8.0\JewelrySalesStoreCommon.pdb
 G:\Demo\JewelrySalesStore\JewelrySalesStore.Common\obj\Debug\net8.0\ref\JewelrySalesStoreCommon.dll
+D:\New folder\JewelrySalesStore\JewelrySalesStore.Common\bin\Debug\net8.0\JewelrySalesStoreCommon.deps.json
+D:\New folder\JewelrySalesStore\JewelrySalesStore.Common\bin\Debug\net8.0\JewelrySalesStoreCommon.dll
+D:\New folder\JewelrySalesStore\JewelrySalesStore.Common\bin\Debug\net8.0\JewelrySalesStoreCommon.pdb
+D:\New folder\JewelrySalesStore\JewelrySalesStore.Common\obj\Debug\net8.0\JewelrySalesStoreCommon.GeneratedMSBuildEditorConfig.editorconfig
+D:\New folder\JewelrySalesStore\JewelrySalesStore.Common\obj\Debug\net8.0\JewelrySalesStoreCommon.AssemblyInfoInputs.cache
+D:\New folder\JewelrySalesStore\JewelrySalesStore.Common\obj\Debug\net8.0\JewelrySalesStoreCommon.AssemblyInfo.cs
+D:\New folder\JewelrySalesStore\JewelrySalesStore.Common\obj\Debug\net8.0\JewelrySalesStoreCommon.csproj.CoreCompileInputs.cache
+D:\New folder\JewelrySalesStore\JewelrySalesStore.Common\obj\Debug\net8.0\JewelrySalesStoreCommon.sourcelink.json
+D:\New folder\JewelrySalesStore\JewelrySalesStore.Common\obj\Debug\net8.0\JewelrySalesStoreCommon.dll
+D:\New folder\JewelrySalesStore\JewelrySalesStore.Common\obj\Debug\net8.0\refint\JewelrySalesStoreCommon.dll
+D:\New folder\JewelrySalesStore\JewelrySalesStore.Common\obj\Debug\net8.0\JewelrySalesStoreCommon.pdb
+D:\New folder\JewelrySalesStore\JewelrySalesStore.Common\obj\Debug\net8.0\ref\JewelrySalesStoreCommon.dll

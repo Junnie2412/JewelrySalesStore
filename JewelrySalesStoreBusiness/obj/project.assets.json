@@ -2783,23 +2783,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\asus\\.nuget\\packages\\": {},
+    "C:\\Users\\GMT\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "G:\\Demo\\JewelrySalesStore\\JewelrySalesStoreBusiness\\JewelrySalesStoreBusiness.csproj",
+      "projectUniqueName": "D:\\New folder\\JewelrySalesStore\\JewelrySalesStoreBusiness\\JewelrySalesStoreBusiness.csproj",
       "projectName": "JewelrySalesStoreBusiness",
-      "projectPath": "G:\\Demo\\JewelrySalesStore\\JewelrySalesStoreBusiness\\JewelrySalesStoreBusiness.csproj",
-      "packagesPath": "C:\\Users\\asus\\.nuget\\packages\\",
-      "outputPath": "G:\\Demo\\JewelrySalesStore\\JewelrySalesStoreBusiness\\obj\\",
+      "projectPath": "D:\\New folder\\JewelrySalesStore\\JewelrySalesStoreBusiness\\JewelrySalesStoreBusiness.csproj",
+      "packagesPath": "C:\\Users\\GMT\\.nuget\\packages\\",
+      "outputPath": "D:\\New folder\\JewelrySalesStore\\JewelrySalesStoreBusiness\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\GMT\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -2815,11 +2815,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "G:\\Demo\\JewelrySalesStore\\JewelrySalesStore.Common\\JewelrySalesStoreCommon.csproj": {
-              "projectPath": "G:\\Demo\\JewelrySalesStore\\JewelrySalesStore.Common\\JewelrySalesStoreCommon.csproj"
+            "D:\\New folder\\JewelrySalesStore\\JewelrySalesStore.Common\\JewelrySalesStoreCommon.csproj": {
+              "projectPath": "D:\\New folder\\JewelrySalesStore\\JewelrySalesStore.Common\\JewelrySalesStoreCommon.csproj"
             },
-            "G:\\Demo\\JewelrySalesStore\\JewelrySalesStoreData\\JewelrySalesStoreData.csproj": {
-              "projectPath": "G:\\Demo\\JewelrySalesStore\\JewelrySalesStoreData\\JewelrySalesStoreData.csproj"
+            "D:\\New folder\\JewelrySalesStore\\JewelrySalesStoreData\\JewelrySalesStoreData.csproj": {
+              "projectPath": "D:\\New folder\\JewelrySalesStore\\JewelrySalesStoreData\\JewelrySalesStoreData.csproj"
             }
           }
         }
@@ -2854,7 +2854,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.205/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

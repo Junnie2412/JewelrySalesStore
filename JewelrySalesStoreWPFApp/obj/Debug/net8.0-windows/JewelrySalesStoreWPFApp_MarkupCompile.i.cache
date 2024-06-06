@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-G:\Demo\JewelrySalesStore\JewelrySalesStoreWPFApp\obj\Debug\net8.0-windows\
+D:\New folder\JewelrySalesStore\JewelrySalesStoreWPFApp\obj\Debug\net8.0-windows\
 JewelrySalesStoreWPFApp
 none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
-G:\Demo\JewelrySalesStore\JewelrySalesStoreWPFApp\App.xaml
-31080948281
+D:\New folder\JewelrySalesStore\JewelrySalesStoreWPFApp\App.xaml
+5316907625
 
-8516438362
-241-250602066
-MainWindow.xaml;UI\wCategory.xaml;UI\wOrder.xaml;
+101773153711
+241-2035310150
+MainWindow.xaml;UI\wCategory.xaml;UI\wCompany.xaml;UI\wOrder.xaml;UI\wOrderDetail.xaml;
 
 True
 

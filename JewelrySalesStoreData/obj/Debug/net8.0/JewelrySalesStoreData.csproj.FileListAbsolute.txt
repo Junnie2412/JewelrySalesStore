@@ -41,3 +41,18 @@ G:\Demo\JewelrySalesStore\JewelrySalesStoreData\obj\Debug\net8.0\refint\JewelryS
 G:\Demo\JewelrySalesStore\JewelrySalesStoreData\obj\Debug\net8.0\JewelrySalesStoreData.pdb
 G:\Demo\JewelrySalesStore\JewelrySalesStoreData\obj\Debug\net8.0\JewelrySalesStoreData.genruntimeconfig.cache
 G:\Demo\JewelrySalesStore\JewelrySalesStoreData\obj\Debug\net8.0\ref\JewelrySalesStoreData.dll
+D:\New folder\JewelrySalesStore\JewelrySalesStoreData\bin\Debug\net8.0\JewelrySalesStoreData.deps.json
+D:\New folder\JewelrySalesStore\JewelrySalesStoreData\bin\Debug\net8.0\JewelrySalesStoreData.runtimeconfig.json
+D:\New folder\JewelrySalesStore\JewelrySalesStoreData\bin\Debug\net8.0\JewelrySalesStoreData.dll
+D:\New folder\JewelrySalesStore\JewelrySalesStoreData\bin\Debug\net8.0\JewelrySalesStoreData.pdb
+D:\New folder\JewelrySalesStore\JewelrySalesStoreData\obj\Debug\net8.0\JewelrySalesStoreData.csproj.AssemblyReference.cache
+D:\New folder\JewelrySalesStore\JewelrySalesStoreData\obj\Debug\net8.0\JewelrySalesStoreData.GeneratedMSBuildEditorConfig.editorconfig
+D:\New folder\JewelrySalesStore\JewelrySalesStoreData\obj\Debug\net8.0\JewelrySalesStoreData.AssemblyInfoInputs.cache
+D:\New folder\JewelrySalesStore\JewelrySalesStoreData\obj\Debug\net8.0\JewelrySalesStoreData.AssemblyInfo.cs
+D:\New folder\JewelrySalesStore\JewelrySalesStoreData\obj\Debug\net8.0\JewelrySalesStoreData.csproj.CoreCompileInputs.cache
+D:\New folder\JewelrySalesStore\JewelrySalesStoreData\obj\Debug\net8.0\JewelrySalesStoreData.sourcelink.json
+D:\New folder\JewelrySalesStore\JewelrySalesStoreData\obj\Debug\net8.0\JewelrySalesStoreData.dll
+D:\New folder\JewelrySalesStore\JewelrySalesStoreData\obj\Debug\net8.0\refint\JewelrySalesStoreData.dll
+D:\New folder\JewelrySalesStore\JewelrySalesStoreData\obj\Debug\net8.0\JewelrySalesStoreData.pdb
+D:\New folder\JewelrySalesStore\JewelrySalesStoreData\obj\Debug\net8.0\JewelrySalesStoreData.genruntimeconfig.cache
+D:\New folder\JewelrySalesStore\JewelrySalesStoreData\obj\Debug\net8.0\ref\JewelrySalesStoreData.dll

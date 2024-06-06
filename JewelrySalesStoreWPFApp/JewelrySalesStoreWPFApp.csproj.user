@@ -10,7 +10,13 @@
     <Compile Update="UI\wCategory.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="UI\wCompany.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="UI\wOrder.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UI\wOrderDetail.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -21,7 +27,13 @@
     <Page Update="UI\wCategory.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="UI\wCompany.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="UI\wOrder.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\wOrderDetail.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
