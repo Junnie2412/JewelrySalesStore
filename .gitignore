@@ -1,4 +1,16 @@
+# Ignore all user-specific files and folders created by Visual Studio
 .vs/
+.vscode/
+*.user
+*.suo
+
+# Ignore build outputs and intermediate files
+**/obj/
+**/bin/
+**/Debug/
+**/Release/
+
+# Ignore specific project build and obj folders
 JewelrySalesStore.Common/obj
 JewelrySalesStore.ConsoleApp/obj
 JewelrySalesStoreBusiness/obj
@@ -13,11 +25,8 @@ JewelrySalesStoreData/bin
 JewelrySalesStoreRazorWebApp/bin
 JewelrySalesStoreWebApp/bin
 JewelrySalesStoreWPFApp/bin
-JewelrySalesStore.Common/obj
-JewelrySalesStoreBusiness/obj
-JewelrySalesStoreData/obj
-JewelrySalesStoreRazorWebApp/obj
-JewelrySalesStoreWebApp/obj
+
+# Ignore redundant entries
 JewelrySalesStoreWPFApp/obj
 JewelrySalesStoreWPFApp/bin
 JewelrySalesStoreData/bin
