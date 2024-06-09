@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("JewelrySalesStoreConsoleApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2900d00cf1ff7bce65ca61f7624c57bc1beffe64")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e3b155f7193b97ad8699aad8317d34bb69342937")]
 [assembly: System.Reflection.AssemblyProductAttribute("JewelrySalesStoreConsoleApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("JewelrySalesStoreConsoleApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
