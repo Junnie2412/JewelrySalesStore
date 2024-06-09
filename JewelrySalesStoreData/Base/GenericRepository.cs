@@ -1,6 +1,7 @@
 ﻿using JewelrySalesStoreData.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -65,7 +66,9 @@ namespace JewelrySalesStoreData.Base
 
         public async Task<int> CreateAsync(T entity)
         {
-            _dbSet.Add(entity);
+            _dbSet.Attach(entity);
+            _context.Entry(entity).State = EntityState.Added;
+
             return await _context.SaveChangesAsync();
         }
 
@@ -93,6 +96,7 @@ namespace JewelrySalesStoreData.Base
         public async Task<bool> RemoveAsync(T entity)
         {
             _dbSet.Remove(entity);
+            _context.Entry(entity).State = EntityState.Deleted;
             await _context.SaveChangesAsync();
             return true;
         }

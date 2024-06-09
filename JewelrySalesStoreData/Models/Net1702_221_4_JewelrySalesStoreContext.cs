@@ -16,6 +16,7 @@ public partial class Net1702_221_4_JewelrySalesStoreContext : DbContext
         : base(options)
     {
     }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseSqlServer("data source=JUNNIE-LAPTOP;initial catalog=Net1702_221_4_JewelrySalesStore;user id=sa;password=12345;Integrated Security=True;TrustServerCertificate=True");
@@ -69,7 +70,7 @@ public partial class Net1702_221_4_JewelrySalesStoreContext : DbContext
                 .HasMaxLength(50)
                 .IsFixedLength();
             entity.Property(e => e.CompanyPhone)
-                .HasMaxLength(50)
+                .HasMaxLength(10)
                 .IsFixedLength();
         });
 
@@ -91,7 +92,7 @@ public partial class Net1702_221_4_JewelrySalesStoreContext : DbContext
                 .IsFixedLength();
             entity.Property(e => e.CustomerPhone)
                 .IsRequired()
-                .HasMaxLength(50)
+                .HasMaxLength(10)
                 .IsFixedLength();
         });
 
