@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JewelrySalesStoreWPFApp.UI"
         mc:Ignorable="d"
-        Title="wProduct" Height="450" Width="800">
+        Title="wProduct" Height="450" Width="1000">
     <Grid>
         <StackPanel Orientation="Vertical">
             <GroupBox Header="Product Form" Margin="10">
@@ -34,8 +34,8 @@
                     <TextBox Grid.Column="5" Grid.Row="0" x:Name="txtProductName" Height="25" Text="{Binding Path=Product.Name, Mode=TwoWay}"  Margin="5"  Width="130" HorizontalAlignment="Left"/>
                     <Label Grid.Column="6" Grid.Row="0" Content="Weight" HorizontalAlignment="Left" VerticalContentAlignment="Center" />
                     <TextBox Grid.Column="7" Grid.Row="0" x:Name="txtProductWeight" Height="25" Text="{Binding Path=Product.Weight, Mode=TwoWay}"  Margin="5"  Width="130" HorizontalAlignment="Left"/>
-                    <Label Grid.Column="0" Content="Image" HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="0,36,0,4" Grid.RowSpan="2" RenderTransformOrigin="0.535,-0.297" />
-                    <TextBox Grid.Column="1" Grid.Row="1" x:Name="txtProductImage" Height="25" Text="{Binding Path=Product.Image, Mode=TwoWay}"  Margin="0,6,0,10"  Width="130" HorizontalAlignment="Center"/>
+                    <Label Grid.Column="0" Grid.Row="0" Content="Image" HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="0,36,0,4" Grid.RowSpan="2" RenderTransformOrigin="0.535,-0.297" />
+                    <Button Grid.Column="1" Grid.Row="1" x:Name="BtnUpload" Content="Upload Image" Height="20" Width="80" Click="ButtonUpload_Click"/>
                     <Label Grid.Column="2" Content="Price" HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="1,40,0,2" Grid.RowSpan="2" />
                     <TextBox Grid.Column="3" Grid.Row="1" x:Name="txtProductPrice" Height="25" Text="{Binding Path=Product.Price, Mode=TwoWay}"  Margin="0,6,0,10"  Width="130" HorizontalAlignment="Center"/>
                     <Label Grid.Column="4" Grid.Row="1" Content="PromotionID" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.ColumnSpan="2" Width="98" />
@@ -44,6 +44,7 @@
                     <TextBox Grid.Column="5" Grid.Row="2" x:Name="txtCategoryID" Height="25" Text="{Binding Path=Product.CategoryID, Mode=TwoWay}"  Margin="70,9,0,8"  Width="258" HorizontalAlignment="Left" Grid.ColumnSpan="3"/>
                     <Label Grid.Column="0" Grid.Row="3" Content="Status" HorizontalAlignment="Left" VerticalContentAlignment="Center" />
                     <CheckBox Grid.Column="1" Grid.Row="3" x:Name="chkIsActive" Height="25" IsChecked="{Binding ElementName=IsActive, Path=Product.Status}"  Margin="5"  Width="180" HorizontalAlignment="Left"/>
+                    <Image x:Name="imageProduct" Grid.Column="8" HorizontalAlignment="Left" Height="108" Margin="41,10,0,0" Grid.RowSpan="3" VerticalAlignment="Top" Width="121"/>
                 </Grid>
             </GroupBox>
             <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Right">

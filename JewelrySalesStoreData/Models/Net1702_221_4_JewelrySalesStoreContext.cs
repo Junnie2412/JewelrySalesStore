@@ -70,7 +70,7 @@ public partial class Net1702_221_4_JewelrySalesStoreContext : DbContext
                 .HasMaxLength(50)
                 .IsFixedLength();
             entity.Property(e => e.CompanyPhone)
-                .HasMaxLength(10)
+                .HasMaxLength(50)
                 .IsFixedLength();
         });
 
@@ -92,7 +92,7 @@ public partial class Net1702_221_4_JewelrySalesStoreContext : DbContext
                 .IsFixedLength();
             entity.Property(e => e.CustomerPhone)
                 .IsRequired()
-                .HasMaxLength(10)
+                .HasMaxLength(50)
                 .IsFixedLength();
         });
 

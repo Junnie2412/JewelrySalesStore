@@ -1,7 +1,9 @@
 ﻿using JewelrySalesStoreBusiness;
 using JewelrySalesStoreData.Models;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -55,12 +57,38 @@ namespace JewelrySalesStoreWPFApp.UI
             this.Hide();
         }
 
+        private void ButtonUpload_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openDialog = new OpenFileDialog();
+            openDialog.Filter = "Image files|*.bmp;*.jpg;*.png";
+            openDialog.FilterIndex = 1;
+            if(openDialog.ShowDialog() == true)
+            {
+                imageProduct.Source = new BitmapImage(new Uri(openDialog.FileName));
+            }
+        }
+
         private async void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 //int idTmp = -1;
                 //int.TryParse(txtproductCode.Text, out idTmp);
+
+                byte[] imageData = null;
+
+                // Nếu người dùng đã chọn hình ảnh
+                if (imageProduct.Source != null && imageProduct.Source is BitmapImage)
+                {
+                    BitmapImage bitmapImage = (BitmapImage)imageProduct.Source;
+                    JpegBitmapEncoder encoder = new JpegBitmapEncoder();
+                    encoder.Frames.Add(BitmapFrame.Create(bitmapImage));
+                    using (MemoryStream stream = new MemoryStream())
+                    {
+                        encoder.Save(stream);
+                        imageData = stream.ToArray();
+                    }
+                }
 
                 if (txtProductID.Text.Equals(""))
                 {
@@ -70,7 +98,7 @@ namespace JewelrySalesStoreWPFApp.UI
                         Color = txtProductColor.Text,
                         Name = txtProductName.Text,
                         Weight = Double.Parse(txtProductWeight.Text),
-                        Image = null,
+                        Image = imageData,
                         Price = Double.Parse(txtProductPrice.Text),
                         PromotionId = Guid.Parse(txtPromotionID.Text),
                         CategoryId = Guid.Parse(txtCategoryID.Text),
@@ -88,7 +116,7 @@ namespace JewelrySalesStoreWPFApp.UI
                     product.Name = txtProductName.Text;
                     product.Color = txtProductColor.Text;
                     product.Weight = Double.Parse(txtProductWeight.Text);
-                    product.Image = null;
+                    product.Image = imageData;
                     product.Price = Double.Parse(txtProductPrice.Text);
                     product.PromotionId = Guid.Parse(txtPromotionID.Text);
                     product.CategoryId = Guid.Parse(txtCategoryID.Text);
@@ -102,7 +130,7 @@ namespace JewelrySalesStoreWPFApp.UI
                 txtProductName.Text = string.Empty;
                 txtProductColor.Text = string.Empty;
                 txtProductWeight.Text = string.Empty;
-                txtProductImage.Text = string.Empty;
+                imageProduct.Source = null;
                 txtProductPrice.Text = string.Empty;
                 txtPromotionID.Text = string.Empty;
                 txtCategoryID.Text = string.Empty;
@@ -140,9 +168,25 @@ namespace JewelrySalesStoreWPFApp.UI
                             txtProductName.Text = item.Name;
                             txtProductColor.Text = item.Color;
                             txtProductWeight.Text = item.Weight.ToString();
-                            txtProductImage.Text = string.Empty;
+                            if (item.Image != null && item.Image.Length > 0)
+                            {
+                                using (MemoryStream memoryStream = new MemoryStream(item.Image))
+                                {
+                                    BitmapImage bitmapImage = new BitmapImage();
+                                    bitmapImage.BeginInit();
+                                    bitmapImage.StreamSource = memoryStream;
+                                    bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                                    bitmapImage.EndInit();
+                                    imageProduct.Source = bitmapImage;
+                                }
+                            }
+                            else
+                            {
+                                // Xóa hình ảnh nếu không có dữ liệu hình ảnh
+                                imageProduct.Source = null;
+                            }
                             txtProductPrice.Text = item.Price.ToString();
-                            txtPromotionID.Text = item.ProductId.ToString();
+                            txtPromotionID.Text = item.PromotionId.ToString();
                             txtCategoryID.Text = item.CategoryId.ToString();
                             chkIsActive.IsChecked = item.Status;
                         }
