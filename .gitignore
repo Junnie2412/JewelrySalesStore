@@ -1,1 +1,15 @@
 .vs/
+JewelrySalesStore.Common/obj
+JewelrySalesStore.ConsoleApp/obj
+JewelrySalesStoreBusiness/obj
+JewelrySalesStoreData/obj
+JewelrySalesStoreRazorWebApp/obj
+JewelrySalesStoreWebApp/obj
+JewelrySalesStoreWPFApp/obj
+JewelrySalesStore.Common/bin
+JewelrySalesStore.ConsoleApp/bin
+JewelrySalesStoreBusiness/bin
+JewelrySalesStoreData/bin
+JewelrySalesStoreRazorWebApp/bin
+JewelrySalesStoreWebApp/bin
+JewelrySalesStoreWPFApp/bin
