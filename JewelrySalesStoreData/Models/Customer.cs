@@ -11,7 +11,7 @@ public partial class Customer
     public Guid CustomerId { get; set; }
     public Customer()
     {
-       CustomerId = Guid.NewGuid();
+        CustomerId = Guid.NewGuid();
     }
     [Required]
     public string CustomerName { get; set; }

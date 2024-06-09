@@ -24,7 +24,7 @@
                         <ColumnDefinition Width="200"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0" Grid.Row="0" Content="Code" HorizontalAlignment="Left" VerticalContentAlignment="Center" />
+                    <Label Grid.Column="0" Grid.Row="0" Content="CategoryID" HorizontalAlignment="Left" VerticalContentAlignment="Center" />
                     <TextBox IsReadOnly ="true" Grid.Column="1" Grid.Row="0" x:Name="txtCategoryCode" Height="25" Text="{Binding Path=Category.CategoryId, Mode=TwoWay}"  Margin="5"  Width="180" HorizontalAlignment="Left"/>
                     <Label Grid.Column="2" Grid.Row="0" Content="Name" HorizontalAlignment="Left" VerticalContentAlignment="Center" />
                     <TextBox Grid.Row="0" Grid.Column="3" x:Name="txtCategoryName" Height="25" Text="{Binding Path=Category.Name, Mode=TwoWay}"  Margin="5"  Width="180" HorizontalAlignment="Left"/>

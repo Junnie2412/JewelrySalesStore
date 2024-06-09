@@ -7,10 +7,7 @@ namespace JewelrySalesStoreData.Models;
 
 public partial class Product
 {
-    public Product()
-    {
-        ProductId = Guid.NewGuid();
-    }
+
     public Guid ProductId { get; set; }
 
     public string Color { get; set; }

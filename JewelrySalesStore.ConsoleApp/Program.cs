@@ -1,4 +1,5 @@
 ﻿using JewelrySalesStoreBusiness;
+using JewelrySalesStoreBusiness.BusinessOrder;
 using JewelrySalesStoreData.Models;
 
 namespace JewelrySalesStore.ConsoleApp
@@ -30,7 +31,7 @@ namespace JewelrySalesStore.ConsoleApp
             }
 
             Console.WriteLine("DAO.GetById(code)");
-            var categoryResult = categoryBusiness.GetById("00cc640c-1dc4-42d6-9349-04df92cef402");
+            var categoryResult = categoryBusiness.GetById(Guid.Parse("00cc640c-1dc4-42d6-9349-04df92cef402"));
 
             if (categoryResult.Status > 0 && categoryResult.Result.Data != null)
             {
@@ -39,7 +40,7 @@ namespace JewelrySalesStore.ConsoleApp
             }
 
             Console.WriteLine("DAO.Save(code)");
-            categoryResult = categoryBusiness.GetById("00cc640c-1dc4-42d6-9349-04df92cef402");
+            categoryResult = categoryBusiness.GetById(Guid.Parse("00cc640c-1dc4-42d6-9349-04df92cef402"));
             if (categoryResult.Status > 0 && categoryResult.Result.Data != null)
             {
                 Console.WriteLine("This category is exist");
@@ -78,7 +79,7 @@ namespace JewelrySalesStore.ConsoleApp
             }
 
             Console.WriteLine("DAO.GetById(code)");
-            var productResult = productBusiness.GetById("040d52a4-c728-40d3-b6d6-286c8a1057cf");
+            var productResult = productBusiness.GetById(Guid.Parse("040d52a4-c728-40d3-b6d6-286c8a1057cf"));
 
             if (productResult.Status > 0 && productResult.Result.Data != null)
             {
@@ -86,32 +87,34 @@ namespace JewelrySalesStore.ConsoleApp
                 Console.WriteLine(product.Name);
             }
 
-            Console.WriteLine("DAO.Save(code)");
-            productResult = productBusiness.GetById("6c0424ef-7d98-4dea-85d0-8ba97db4f13d");
-            if (productResult.Status > 0 && productResult.Result.Data != null)
-            {
-                Console.WriteLine("This product is exist");
-            }
-            else
-            {
-                var item = new Product()
-                {
-                    ProductId = Guid.Parse("6c0424ef-7d98-4dea-85d0-8ba97db4f13d"),
-                    Color = "Yellow",
-                    Name = "VictoriaII",
-                    BarCode = Guid.Parse("e6088a60-ae2f-48c1-9ffa-b99217c850b3"),
-                    Wage = 65.599,
-                    Weight = 23.5,
-                    Image = null,
-                    Price = 45.600,
-                    PromotionId = Guid.Parse("02febe4a-47aa-46d0-a5df-e041eceabde4"),
-                    Status = true,
-                    CategoryId = Guid.Parse("3aa6753c-8ee5-4926-a6fb-741b4df051cd")
-                };
+            //Console.WriteLine("DAO.Save(code)");
+            //productResult = productBusiness.GetById(Guid.Parse("B274683B-040F-4C20-97C5-2093589D8E34"));
+            //if (productResult.Status > 0 && productResult.Result.Data != null)
+            //{
+            //    Console.WriteLine("This product is exist");
+            //}
+            //else
+            //{
+            //    var item = new Product()
+            //    {
+            //        ProductId = Guid.Parse("B274683B-040F-4C20-97C5-2093589D8E34"),
+            //        PromotionId = Guid.Parse("A57B0140-4EE3-4623-8876-0ACBACE995D5"),
+            //        CategoryId = Guid.Parse("00CC640C-1DC4-42D6-9349-04DF92CEF402")
+                
+            //    };
 
-                var result = productBusiness.Save(item);
+            //    var result = productBusiness.Save(item);
+            //    Console.WriteLine(result.Result.Message);
+            //}
+
+            Console.WriteLine("DAO.Remove(code)");
+
+
+
+
+                var result = productBusiness.DeleteById(Guid.Parse("19179C62-7721-440C-96B4-36FBCFD2C6F6"));
                 Console.WriteLine(result.Result.Message);
-            }
+            
 
         }
     }
