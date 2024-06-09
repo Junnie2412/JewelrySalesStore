@@ -13,3 +13,9 @@ JewelrySalesStoreData/bin
 JewelrySalesStoreRazorWebApp/bin
 JewelrySalesStoreWebApp/bin
 JewelrySalesStoreWPFApp/bin
+JewelrySalesStore.Common/obj
+JewelrySalesStoreBusiness/obj
+JewelrySalesStoreData/obj
+JewelrySalesStoreRazorWebApp/obj
+JewelrySalesStoreWebApp/obj
+JewelrySalesStoreWPFApp/obj
