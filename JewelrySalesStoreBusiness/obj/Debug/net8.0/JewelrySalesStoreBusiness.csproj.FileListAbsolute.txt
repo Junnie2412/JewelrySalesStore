@@ -32,3 +32,39 @@ F:\PRN221\Project\Net1702_221_4_JewelrySalesStore\Source\Net1702_221_4_JewelrySa
 F:\PRN221\Project\Net1702_221_4_JewelrySalesStore\Source\Net1702_221_4_JewelrySalesStore\JewelrySalesStoreBusiness\obj\Debug\net8.0\ref\JewelrySalesStoreBusiness.dll
 F:\PRN221\Project\Net1702_221_4_JewelrySalesStore\Source\Net1702_221_4_JewelrySalesStore\JewelrySalesStoreBusiness\bin\Debug\net8.0\JewelrySalesStoreCommon.dll
 F:\PRN221\Project\Net1702_221_4_JewelrySalesStore\Source\Net1702_221_4_JewelrySalesStore\JewelrySalesStoreBusiness\bin\Debug\net8.0\JewelrySalesStoreCommon.pdb
+G:\Demo\JewelrySalesStore\JewelrySalesStoreBusiness\bin\Debug\net8.0\JewelrySalesStoreBusiness.deps.json
+G:\Demo\JewelrySalesStore\JewelrySalesStoreBusiness\bin\Debug\net8.0\JewelrySalesStoreBusiness.dll
+G:\Demo\JewelrySalesStore\JewelrySalesStoreBusiness\bin\Debug\net8.0\JewelrySalesStoreBusiness.pdb
+G:\Demo\JewelrySalesStore\JewelrySalesStoreBusiness\bin\Debug\net8.0\JewelrySalesStoreCommon.dll
+G:\Demo\JewelrySalesStore\JewelrySalesStoreBusiness\bin\Debug\net8.0\JewelrySalesStoreData.dll
+G:\Demo\JewelrySalesStore\JewelrySalesStoreBusiness\bin\Debug\net8.0\JewelrySalesStoreCommon.pdb
+G:\Demo\JewelrySalesStore\JewelrySalesStoreBusiness\bin\Debug\net8.0\JewelrySalesStoreData.pdb
+G:\Demo\JewelrySalesStore\JewelrySalesStoreBusiness\obj\Debug\net8.0\JewelrySalesStoreBusiness.csproj.AssemblyReference.cache
+G:\Demo\JewelrySalesStore\JewelrySalesStoreBusiness\obj\Debug\net8.0\JewelrySalesStoreBusiness.GeneratedMSBuildEditorConfig.editorconfig
+G:\Demo\JewelrySalesStore\JewelrySalesStoreBusiness\obj\Debug\net8.0\JewelrySalesStoreBusiness.AssemblyInfoInputs.cache
+G:\Demo\JewelrySalesStore\JewelrySalesStoreBusiness\obj\Debug\net8.0\JewelrySalesStoreBusiness.AssemblyInfo.cs
+G:\Demo\JewelrySalesStore\JewelrySalesStoreBusiness\obj\Debug\net8.0\JewelrySalesStoreBusiness.csproj.CoreCompileInputs.cache
+G:\Demo\JewelrySalesStore\JewelrySalesStoreBusiness\obj\Debug\net8.0\JewelrySalesStoreBusiness.sourcelink.json
+G:\Demo\JewelrySalesStore\JewelrySalesStoreBusiness\obj\Debug\net8.0\JewelryS.2C0AC5AD.Up2Date
+G:\Demo\JewelrySalesStore\JewelrySalesStoreBusiness\obj\Debug\net8.0\JewelrySalesStoreBusiness.dll
+G:\Demo\JewelrySalesStore\JewelrySalesStoreBusiness\obj\Debug\net8.0\refint\JewelrySalesStoreBusiness.dll
+G:\Demo\JewelrySalesStore\JewelrySalesStoreBusiness\obj\Debug\net8.0\JewelrySalesStoreBusiness.pdb
+G:\Demo\JewelrySalesStore\JewelrySalesStoreBusiness\obj\Debug\net8.0\ref\JewelrySalesStoreBusiness.dll
+D:\New folder\JewelrySalesStore\JewelrySalesStoreBusiness\bin\Debug\net8.0\JewelrySalesStoreBusiness.deps.json
+D:\New folder\JewelrySalesStore\JewelrySalesStoreBusiness\bin\Debug\net8.0\JewelrySalesStoreBusiness.dll
+D:\New folder\JewelrySalesStore\JewelrySalesStoreBusiness\bin\Debug\net8.0\JewelrySalesStoreBusiness.pdb
+D:\New folder\JewelrySalesStore\JewelrySalesStoreBusiness\bin\Debug\net8.0\JewelrySalesStoreCommon.dll
+D:\New folder\JewelrySalesStore\JewelrySalesStoreBusiness\bin\Debug\net8.0\JewelrySalesStoreData.dll
+D:\New folder\JewelrySalesStore\JewelrySalesStoreBusiness\bin\Debug\net8.0\JewelrySalesStoreCommon.pdb
+D:\New folder\JewelrySalesStore\JewelrySalesStoreBusiness\bin\Debug\net8.0\JewelrySalesStoreData.pdb
+D:\New folder\JewelrySalesStore\JewelrySalesStoreBusiness\obj\Debug\net8.0\JewelrySalesStoreBusiness.csproj.AssemblyReference.cache
+D:\New folder\JewelrySalesStore\JewelrySalesStoreBusiness\obj\Debug\net8.0\JewelrySalesStoreBusiness.GeneratedMSBuildEditorConfig.editorconfig
+D:\New folder\JewelrySalesStore\JewelrySalesStoreBusiness\obj\Debug\net8.0\JewelrySalesStoreBusiness.AssemblyInfoInputs.cache
+D:\New folder\JewelrySalesStore\JewelrySalesStoreBusiness\obj\Debug\net8.0\JewelrySalesStoreBusiness.AssemblyInfo.cs
+D:\New folder\JewelrySalesStore\JewelrySalesStoreBusiness\obj\Debug\net8.0\JewelrySalesStoreBusiness.csproj.CoreCompileInputs.cache
+D:\New folder\JewelrySalesStore\JewelrySalesStoreBusiness\obj\Debug\net8.0\JewelrySalesStoreBusiness.sourcelink.json
+D:\New folder\JewelrySalesStore\JewelrySalesStoreBusiness\obj\Debug\net8.0\JewelryS.2C0AC5AD.Up2Date
+D:\New folder\JewelrySalesStore\JewelrySalesStoreBusiness\obj\Debug\net8.0\JewelrySalesStoreBusiness.dll
+D:\New folder\JewelrySalesStore\JewelrySalesStoreBusiness\obj\Debug\net8.0\refint\JewelrySalesStoreBusiness.dll
+D:\New folder\JewelrySalesStore\JewelrySalesStoreBusiness\obj\Debug\net8.0\JewelrySalesStoreBusiness.pdb
+D:\New folder\JewelrySalesStore\JewelrySalesStoreBusiness\obj\Debug\net8.0\ref\JewelrySalesStoreBusiness.dll

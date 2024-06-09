@@ -22,9 +22,30 @@ namespace JewelrySalesStoreWPFApp
             InitializeComponent();
         }
 
+        private void Open_wCompany_Click(object sender, RoutedEventArgs e)
+        {
+            var p = new wCompany();
+            p.Owner = this;
+            p.Show();
+        }
+
         private void Open_wCategory_Click(object sender, RoutedEventArgs e)
         {
             var p = new wCategory();
+            p.Owner = this;
+            p.Show();
+        }
+
+        private void Open_wOrder_Click(object sender, RoutedEventArgs e)
+        {
+            var p = new wOrder();
+            p.Owner = this;
+            p.Show();
+        }
+        
+        private void Open_wOrderDetail_Click(object sender, RoutedEventArgs e)
+        {
+            var p = new wOrderDetail();
             p.Owner = this;
             p.Show();
         }
