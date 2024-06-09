@@ -8,11 +8,8 @@ namespace JewelrySalesStoreData.Models;
 public partial class Category
 {
     public Guid CategoryId { get; set; }
-    public Category()
-    {
-        CategoryId = Guid.NewGuid();
-    }
-    
+
+
 
     public string Name { get; set; }
 
