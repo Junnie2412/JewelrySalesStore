@@ -9,6 +9,10 @@ public partial class Category
 {
     public Guid CategoryId { get; set; }
 
+    public Category()
+    {
+        this.CategoryId = Guid.NewGuid();
+    }
 
 
     public string Name { get; set; }
