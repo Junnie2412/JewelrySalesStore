@@ -10,6 +10,6 @@ namespace JewelrySalesStoreData.Repository
 {
     public class ProductRepository : GenericRepository<Product>
     {
-        public ProductRepository(Net1702_221_4_JewelrySalesStoreContext context) => _context = context;
+        public ProductRepository(Net1702_221_4_JewelrySalesStoreContext context) => _context ??= context;
     }
 }

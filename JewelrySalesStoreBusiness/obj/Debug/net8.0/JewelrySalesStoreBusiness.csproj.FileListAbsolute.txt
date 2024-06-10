@@ -68,3 +68,21 @@ D:\New folder\JewelrySalesStore\JewelrySalesStoreBusiness\obj\Debug\net8.0\Jewel
 D:\New folder\JewelrySalesStore\JewelrySalesStoreBusiness\obj\Debug\net8.0\refint\JewelrySalesStoreBusiness.dll
 D:\New folder\JewelrySalesStore\JewelrySalesStoreBusiness\obj\Debug\net8.0\JewelrySalesStoreBusiness.pdb
 D:\New folder\JewelrySalesStore\JewelrySalesStoreBusiness\obj\Debug\net8.0\ref\JewelrySalesStoreBusiness.dll
+D:\FPTUniversity\Ky7\JunnieClone\PRN221\JewelrySalesStoreBusiness\bin\Debug\net8.0\JewelrySalesStoreBusiness.deps.json
+D:\FPTUniversity\Ky7\JunnieClone\PRN221\JewelrySalesStoreBusiness\bin\Debug\net8.0\JewelrySalesStoreBusiness.dll
+D:\FPTUniversity\Ky7\JunnieClone\PRN221\JewelrySalesStoreBusiness\bin\Debug\net8.0\JewelrySalesStoreBusiness.pdb
+D:\FPTUniversity\Ky7\JunnieClone\PRN221\JewelrySalesStoreBusiness\bin\Debug\net8.0\JewelrySalesStoreCommon.dll
+D:\FPTUniversity\Ky7\JunnieClone\PRN221\JewelrySalesStoreBusiness\bin\Debug\net8.0\JewelrySalesStoreData.dll
+D:\FPTUniversity\Ky7\JunnieClone\PRN221\JewelrySalesStoreBusiness\bin\Debug\net8.0\JewelrySalesStoreCommon.pdb
+D:\FPTUniversity\Ky7\JunnieClone\PRN221\JewelrySalesStoreBusiness\bin\Debug\net8.0\JewelrySalesStoreData.pdb
+D:\FPTUniversity\Ky7\JunnieClone\PRN221\JewelrySalesStoreBusiness\obj\Debug\net8.0\JewelrySalesStoreBusiness.csproj.AssemblyReference.cache
+D:\FPTUniversity\Ky7\JunnieClone\PRN221\JewelrySalesStoreBusiness\obj\Debug\net8.0\JewelrySalesStoreBusiness.GeneratedMSBuildEditorConfig.editorconfig
+D:\FPTUniversity\Ky7\JunnieClone\PRN221\JewelrySalesStoreBusiness\obj\Debug\net8.0\JewelrySalesStoreBusiness.AssemblyInfoInputs.cache
+D:\FPTUniversity\Ky7\JunnieClone\PRN221\JewelrySalesStoreBusiness\obj\Debug\net8.0\JewelrySalesStoreBusiness.AssemblyInfo.cs
+D:\FPTUniversity\Ky7\JunnieClone\PRN221\JewelrySalesStoreBusiness\obj\Debug\net8.0\JewelrySalesStoreBusiness.csproj.CoreCompileInputs.cache
+D:\FPTUniversity\Ky7\JunnieClone\PRN221\JewelrySalesStoreBusiness\obj\Debug\net8.0\JewelrySalesStoreBusiness.sourcelink.json
+D:\FPTUniversity\Ky7\JunnieClone\PRN221\JewelrySalesStoreBusiness\obj\Debug\net8.0\JewelryS.2C0AC5AD.Up2Date
+D:\FPTUniversity\Ky7\JunnieClone\PRN221\JewelrySalesStoreBusiness\obj\Debug\net8.0\JewelrySalesStoreBusiness.dll
+D:\FPTUniversity\Ky7\JunnieClone\PRN221\JewelrySalesStoreBusiness\obj\Debug\net8.0\refint\JewelrySalesStoreBusiness.dll
+D:\FPTUniversity\Ky7\JunnieClone\PRN221\JewelrySalesStoreBusiness\obj\Debug\net8.0\JewelrySalesStoreBusiness.pdb
+D:\FPTUniversity\Ky7\JunnieClone\PRN221\JewelrySalesStoreBusiness\obj\Debug\net8.0\ref\JewelrySalesStoreBusiness.dll

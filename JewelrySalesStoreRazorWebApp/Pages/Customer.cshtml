@@ -256,35 +256,5 @@
             $('#RemoveModal').modal('show');
         }
     </script>
-    <script type="text/javascript">
-        function add() {
-            $('#AddModal').modal('show');
-        }
-
-        function edit(customerId) {
-            // Gui yeu cau Ajax de lay thong tin Customer
-            $.ajax({
-                url: '@Url.Page("Customer", "Update")',
-                type: 'GET',
-                data: { customerId: customerId },
-                success: function (data) {
-                    // Hien thi cac gia tri cua Customer trong Modal
-                    $('#EditModal #CustomerId').val(data.customerId);
-                    $('#EditModal #CustomerName').val(data.customerName);
-                    $('#EditModal #CustomerBirthDate').val(data.customerBirthDate);
-                    $('#EditModal #CustomerPhone').val(data.customerPhone);
-                    $('#EditModal #CustomerAddress').val(data.customerAddress);
-                    $('#EditModal #CustomerPoint').val(data.customerPoint);
-
-                    // Open Modal
-                    $('#EditModal').modal('show');
-                }
-            });
-        }
-
-        function remove(customerId) {
-            document.getElementById('CustomerIdRemove').value = customerId;
-            $('#RemoveModal').modal('show');
-        }
-    </script>
+   
 }

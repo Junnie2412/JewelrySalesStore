@@ -56,3 +56,18 @@ D:\New folder\JewelrySalesStore\JewelrySalesStoreData\obj\Debug\net8.0\refint\Je
 D:\New folder\JewelrySalesStore\JewelrySalesStoreData\obj\Debug\net8.0\JewelrySalesStoreData.pdb
 D:\New folder\JewelrySalesStore\JewelrySalesStoreData\obj\Debug\net8.0\JewelrySalesStoreData.genruntimeconfig.cache
 D:\New folder\JewelrySalesStore\JewelrySalesStoreData\obj\Debug\net8.0\ref\JewelrySalesStoreData.dll
+D:\FPTUniversity\Ky7\JunnieClone\PRN221\JewelrySalesStoreData\bin\Debug\net8.0\JewelrySalesStoreData.deps.json
+D:\FPTUniversity\Ky7\JunnieClone\PRN221\JewelrySalesStoreData\bin\Debug\net8.0\JewelrySalesStoreData.runtimeconfig.json
+D:\FPTUniversity\Ky7\JunnieClone\PRN221\JewelrySalesStoreData\bin\Debug\net8.0\JewelrySalesStoreData.dll
+D:\FPTUniversity\Ky7\JunnieClone\PRN221\JewelrySalesStoreData\bin\Debug\net8.0\JewelrySalesStoreData.pdb
+D:\FPTUniversity\Ky7\JunnieClone\PRN221\JewelrySalesStoreData\obj\Debug\net8.0\JewelrySalesStoreData.csproj.AssemblyReference.cache
+D:\FPTUniversity\Ky7\JunnieClone\PRN221\JewelrySalesStoreData\obj\Debug\net8.0\JewelrySalesStoreData.GeneratedMSBuildEditorConfig.editorconfig
+D:\FPTUniversity\Ky7\JunnieClone\PRN221\JewelrySalesStoreData\obj\Debug\net8.0\JewelrySalesStoreData.AssemblyInfoInputs.cache
+D:\FPTUniversity\Ky7\JunnieClone\PRN221\JewelrySalesStoreData\obj\Debug\net8.0\JewelrySalesStoreData.AssemblyInfo.cs
+D:\FPTUniversity\Ky7\JunnieClone\PRN221\JewelrySalesStoreData\obj\Debug\net8.0\JewelrySalesStoreData.csproj.CoreCompileInputs.cache
+D:\FPTUniversity\Ky7\JunnieClone\PRN221\JewelrySalesStoreData\obj\Debug\net8.0\JewelrySalesStoreData.sourcelink.json
+D:\FPTUniversity\Ky7\JunnieClone\PRN221\JewelrySalesStoreData\obj\Debug\net8.0\JewelrySalesStoreData.dll
+D:\FPTUniversity\Ky7\JunnieClone\PRN221\JewelrySalesStoreData\obj\Debug\net8.0\refint\JewelrySalesStoreData.dll
+D:\FPTUniversity\Ky7\JunnieClone\PRN221\JewelrySalesStoreData\obj\Debug\net8.0\JewelrySalesStoreData.pdb
+D:\FPTUniversity\Ky7\JunnieClone\PRN221\JewelrySalesStoreData\obj\Debug\net8.0\JewelrySalesStoreData.genruntimeconfig.cache
+D:\FPTUniversity\Ky7\JunnieClone\PRN221\JewelrySalesStoreData\obj\Debug\net8.0\ref\JewelrySalesStoreData.dll

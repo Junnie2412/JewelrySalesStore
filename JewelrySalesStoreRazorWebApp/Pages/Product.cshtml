@@ -28,23 +28,36 @@
                     <th class="card-title text-center">Name</th>
                     <th class="card-title text-center">Weight</th>
                     <th class="card-title text-center">Price</th>
-                    <th class="card-title text-center">PromotionID</th>
+                    <th class="card-title text-center">Discount(%)</th>
                     <th class="card-title text-center">Status</th>
-                    <th class="card-title text-center">CategoryID</th>
-                    <th class="card-title text-center">Edit</th>
-                    <th class="card-title text-center">Remove</th>
+                    <th class="card-title text-center">CategoryName</th>
+                    <th class="card-title text-center">Action</th>
+                    
                 </tr>
             </thead>
             <tbody class="tblcurrencyList">
                 @if (products.Count > 0)
                 {
-                    foreach (var category in products)
+                    foreach (var product in products)
                     {
                         <tr>
-                            <td>@category.ProductId</td>
-                            <td>@category.Name</td>
-                            <td><button type="button" class="btn btn-primary" onclick="add();">Edit</button></td>
-                            <td><button>Remove</button></td>
+                            <td>@product.ProductId</td>
+                            <td>@product.Image</td>
+                            <td>@product.Color </td>
+                            <td>@product.Name</td>
+                            <td>@product.Weight</td>
+                            <td>@product.Price</td>
+                            <td>@product.Promotion.DiscountPercentage</td>
+                            <td>@(product.Status.Value ? "Còn hàng" : "Hết hàng")</td>
+                            <td>@product.Category.Name</td>
+
+                            <td>
+                                <button type="button" class="btn btn-light" onclick="addOrderDetail('@product.ProductId')">
+                                    <i class="fa-solid fa-cart-shopping"></i> 
+                                </button>
+                                <button type="button" class="btn btn-success" onclick=" edit('@product.ProductId')">Edit</button>
+                                <button type="button" class="btn btn-danger" onclick="  remove('@product.ProductId')">Remove</button>
+                            </td>
                         </tr>
                     }
                 }
@@ -53,14 +66,14 @@
     </div>
 </div>
 
-<div class="modal fade" id="currencyModal" tabindex="-1" aria-labelledby="currencyModalLabel" aria-hidden="true">
+<div class="modal fade" id="AddProduct" tabindex="-1" aria-labelledby="currencyModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             @using (Html.BeginForm(null, null, FormMethod.Post, new { name = "frm", id = "frm" }))
             {
                 @Html.AntiForgeryToken()
                 <div class="modal-header">
-                    <h5 class="modal-title" id="currencyModalLabel">Product Transaction</h5>
+                    <h5 class="modal-title" id="currencyModalLabel">Add Product</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -112,25 +125,19 @@
                             <div class="form-group row">
                                 <div class="col-md-6">
                                     <label for="1">Status</label>
-                                    <input asp-for="Product.Status" class="form-control" />
+                                <select id="ProductStatus" class="form-control" asp-for="Product.Status">
+                                    <option value="true">Còn hàng</option>
+                                    <option value="false">Hết hàng</option>
+                                </select>
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="1">PromotionID</label>
-                                    <input asp-for="Product.PromotionId" class="form-control" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group row">
-                                <div class="col-md-12">
-                                    <label for="1">CategoryID</label>
+                                    <label for="1">CategoryId</label>
                                     <input asp-for="Product.CategoryId" class="form-control" />
                                 </div>
                             </div>
                         </div>
                     </div>
+                    
                 </div>
                 <div class="modal-footer">
                     <button id="btSave" type="submit" class="btn btn-primary">Save</button>
@@ -141,12 +148,260 @@
     </div>
 </div>
 
+<div class="modal fade" id="AddOrderDetail" tabindex="-1" aria-labelledby="ProductModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post" asp-page-handler="OrderDetail">
+                @Html.AntiForgeryToken()
+                <input asp-for="Product.ProductId" type="hidden" id="ProductId" />
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ProductModalLabel">OrderDetail</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group row">                              
+                                <div class="col-md-6">
+                                    <label for="ProductName">ProductName</label>
+                                    <input id="ProductName" asp-for="Product.Name" class="form-control" />    
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="OrderDetailQuantity">Quantity</label>
+                                    <input id="OrderDetailQuantity" asp-for="OrderDetail.Quantity" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <label for="ProductPrice">UnitPrice</label>
+                                    <input id="ProductPrice" asp-for="OrderDetail.UnitPrice" class="form-control" />
+                                    
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="OrderDetailTotalPrice">TotalPrice</label>
+                                    <input id="OrderDetailTotalPrice" asp-for="OrderDetail.TotalPrice" class="form-control" />
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <label for="OrderId">OrderId</label>
+                                    <input id="OrderId" asp-for="OrderDetail.OrderId" class="form-control" />
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="OrderId">ProductId</label>
+                                    <input id="OrderDetailProductId" asp-for="OrderDetail.ProductId" class="form-control" readonly />
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Add</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="EditProduct" tabindex="-1" aria-labelledby="ProductModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post" asp-page-handler="Update">
+                @Html.AntiForgeryToken()
+                <input asp-for="Product.ProductId" type="hidden" id="ProductId" />
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ProductModalLabel">Edit Product</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <label for="ProductId">ProductId</label>
+                                    <input id="ProductId" class="form-control" readonly />
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="ProductName">ProductName</label>
+                                    <input id="ProductName" asp-for="Product.Name" class="form-control" />
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <label for="ProductImage">Image</label>
+                                    <input id="ProductImage" asp-for="Product.Image" class="form-control" />
+                                    
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="ProductWeight">Weight</label>
+                                    <input id="ProductWeight" asp-for="Product.Weight" class="form-control" />
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <label for="ProductColor">Color</label>
+                                    <input id="ProductColor" asp-for="Product.Color" class="form-control" />
+                                    
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="ProductPrice">Price</label>
+                                    <input id="ProductPrice" asp-for="Product.Price" class="form-control" />   
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group row">
+                                    <div class="col-md-6">
+                                        <label for="1">Status</label>
+                                        <select id="ProductStatus" class="form-control" asp-for="Product.Status">
+                                            <option value="true">Còn hàng</option>
+                                            <option value="false">Hết hàng</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="1">PromotionID</label>
+                                        <input id="PromotionId" asp-for="Product.PromotionId" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-6">
+                                    <label for="1">CategoryId</label>
+                                    <input id="CategoryId" asp-for="Product.CategoryId" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="RemoveModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post" asp-page-handler="Delete">
+                @Html.AntiForgeryToken()
+                <input type="hidden" asp-for="Product.ProductId" id="ProductIdRemove" />
+
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Remove Confirm</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete this Product?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Yes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 @section scripts
 {
     <script type="text/javascript">
         function add() {
-            $('#currencyModal').modal('show');
+            $('#AddProduct').modal('show');
         }
+
+
+        // AddOrderDetail -----------------
+        function addOrderDetail(productId){
+            $.ajax({
+                url: '@Url.Page("Product", "OrderDetail")',
+                type: 'GET',
+                data: { productId: productId },
+                success: function (data) {
+                    $('#AddOrderDetail #ProductName').val(data.name);
+                    $('#AddOrderDetail #OrderDetailProductId').val(data.productId);
+                    $('#AddOrderDetail #ProductPrice').val(parseFloat(data.price).toFixed(2));
+                    $('#AddOrderDetail #OrderDetailQuantity').val(1);
+                    $('#AddOrderDetail #OrderDetailTotalPrice').val(parseFloat(data.price).toFixed(2));
+                    // Open Modal
+                    $('#AddOrderDetail').modal('show');
+     
+                }
+            });
+
+            $(document).on('input', '#OrderDetailQuantity', function () {
+                var unitPrice = parseFloat($('#ProductPrice').val());
+                var quantity = parseInt($(this).val());
+
+                // Check if unitPrice and quantity are valid numbers
+                if (!isNaN(unitPrice) && !isNaN(quantity) && quantity > 0) {
+                    var totalPrice = unitPrice * quantity;
+                    $('#OrderDetailTotalPrice').val(totalPrice.toFixed(2)); // Update total price with 2 decimal places
+                } else {
+                    // If quantity is invalid, reset total price to 0
+                    $('#OrderDetailTotalPrice').val((unitPrice * 1).toFixed(2)); // Reset to unit price if invalid quantity
+                }
+            });
+        }
+        //------------------------------
+
+        //EditProduct
+        function edit(productId) {
+            $.ajax({
+                url: '@Url.Page("Product", "Update")',
+                type: 'GET',
+                data: { productId: productId },
+                success: function (data) {
+                    $('#EditProduct #ProductId').val(data.productId);
+                    $('#EditProduct #ProductName').val(data.name);
+                    $('#EditProduct #ProductImage').val(data.image);
+                    $('#EditProduct #ProductWeight').val(data.weight);
+                    $('#EditProduct #ProductColor').val(data.color);
+                    $('#EditProduct #ProductPrice').val(data.price);
+                    $('#EditProduct #ProductStatus option').each(function () {
+                        if ($(this).val() == data.status.toString()) {
+                            $(this).prop('selected', true);
+                        }
+                    });
+                    $('#EditProduct #PromotionId').val(data.promotionId);
+                    $('#EditProduct #CategoryId').val(data.categoryId);
+
+                    // Open Modal
+                    $('#EditProduct').modal('show');
+                }
+            });
+        }
+        //
+
+        function remove(productId) {
+            document.getElementById('ProductIdRemove').value = productId;
+            $('#RemoveModal').modal('show');
+        }
+
     </script>
 }
 

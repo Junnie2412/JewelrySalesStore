@@ -37,7 +37,7 @@ namespace JewelrySalesStoreRazorWebApp.Pages
             return RedirectToPage();
         }
 
-        public IActionResult OnGetUpdate(string orderDetailId)
+        public IActionResult OnGetUpdate(Guid orderDetailId)
         {
             var result = _orderDetailBusiness.GetById(orderDetailId);
             if (result.Result.Data != null)
@@ -120,17 +120,19 @@ namespace JewelrySalesStoreRazorWebApp.Pages
             return RedirectToPage();
         }
 
-        public List<OrderDetail> GetOrderDetails()
+        private List<OrderDetail> GetOrderDetails()
         {
-            var result = _orderDetailBusiness.GetAll();
-            if (result.Status > 0 && result.Result.Data != null)
+            var ProductResult = _orderDetailBusiness.GetAll();
+
+            if (ProductResult.Status > 0 && ProductResult.Result.Data != null)
             {
-                return ((List<OrderDetail>)result.Result.Data).OrderByDescending(c => c.OrderDetailId).ToList();
+                var currencies = (List<OrderDetail>)ProductResult.Result.Data;
+                return currencies;
             }
             return new List<OrderDetail>();
         }
 
-        public OrderDetail GetById(string orderDetailId)
+        public OrderDetail GetById(Guid orderDetailId)
         {
             var result = _orderDetailBusiness.GetById(orderDetailId);
             if (result.Status > 0 && result.Result.Data != null)

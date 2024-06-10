@@ -14,10 +14,10 @@ namespace JewelrySalesStoreBusiness
     public interface IOrderDetailBusiness
     {
         Task<IBusinessResult> GetAll();
-        Task<IBusinessResult> GetById(string code);
+        Task<IBusinessResult> GetById(Guid code);
         Task<IBusinessResult> Save(OrderDetail orderDetail);
         Task<IBusinessResult> Update(OrderDetail orderDetail);
-        Task<IBusinessResult> DeleteById(string code);
+        Task<IBusinessResult> DeleteById(Guid code);
     }
 
     public class OrderDetailBusiness : IOrderDetailBusiness
@@ -50,7 +50,7 @@ namespace JewelrySalesStoreBusiness
             }
         }
 
-        public async Task<IBusinessResult> GetById(string code)
+        public async Task<IBusinessResult> GetById(Guid code)
         {
             try
             {
@@ -112,7 +112,7 @@ namespace JewelrySalesStoreBusiness
             }
         }
 
-        public async Task<IBusinessResult> DeleteById(string code)
+        public async Task<IBusinessResult> DeleteById(Guid code)
         {
             try
             {

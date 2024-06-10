@@ -13,10 +13,10 @@ namespace JewelrySalesStoreBusiness
     public interface IProductBusiness
     {
         Task<IBusinessResult> GetAll();
-        Task<IBusinessResult> GetById(string code);
+        Task<IBusinessResult> GetById(Guid code);
         Task<IBusinessResult> Save(Product product);
         Task<IBusinessResult> Update(Product product);
-        Task<IBusinessResult> DeleteById(string code);
+        Task<IBusinessResult> DeleteById(Guid code);
     }
     public class ProductBusiness : IProductBusiness
     {
@@ -39,7 +39,7 @@ namespace JewelrySalesStoreBusiness
 
                 //var currencies = _DAO.GetAll();
                 //var currencies = await _currencyRepository.GetAllAsync();
-                var currencies = await _unitOfWork.ProductRepository.GetAllAsync();
+                var currencies = await _unitOfWork.ProductRepository.GetAllAsync("Category", "Promotion");
 
 
                 if (currencies == null)
@@ -57,7 +57,7 @@ namespace JewelrySalesStoreBusiness
             }
         }
 
-        public async Task<IBusinessResult> GetById(string code)
+        public async Task<IBusinessResult> GetById(Guid code)
         {
             try
             {
@@ -125,7 +125,7 @@ namespace JewelrySalesStoreBusiness
             }
         }
 
-        public async Task<IBusinessResult> DeleteById(string code)
+        public async Task<IBusinessResult> DeleteById(Guid code)
         {
             try
             {

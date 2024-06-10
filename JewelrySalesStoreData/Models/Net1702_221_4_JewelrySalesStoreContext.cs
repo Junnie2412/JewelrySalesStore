@@ -18,7 +18,8 @@ public partial class Net1702_221_4_JewelrySalesStoreContext : DbContext
     }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlServer("data source=JUNNIE-LAPTOP;initial catalog=Net1702_221_4_JewelrySalesStore;user id=sa;password=12345;Integrated Security=True;TrustServerCertificate=True");
+        //optionsBuilder.UseSqlServer("data source=JUNNIE-LAPTOP;initial catalog=Net1702_221_4_JewelrySalesStore;user id=sa;password=12345;Integrated Security=True;TrustServerCertificate=True");
+        optionsBuilder.UseSqlServer("data source=ACER\\DUNGNEE;initial catalog=Net1702_221_4_JewelrySalesStore;user id=sa;password=123;Integrated Security=True;TrustServerCertificate=True");
         base.OnConfiguring(optionsBuilder);
         //optionsBuilder.UseSqlServer("data source=localhost;initial catalog=Net1702_221_4_JewelrySalesStore;user id=sa;password=12345;Integrated Security=True;TrustServerCertificate=True");
         //base.OnConfiguring(optionsBuilder);
@@ -158,6 +159,7 @@ public partial class Net1702_221_4_JewelrySalesStoreContext : DbContext
             entity.HasOne(d => d.Category).WithMany(p => p.Products)
                 .HasForeignKey(d => d.CategoryId)
                 .HasConstraintName("FK_Product_Category");
+
 
             entity.HasOne(d => d.Promotion).WithMany(p => p.Products)
                 .HasForeignKey(d => d.PromotionId)

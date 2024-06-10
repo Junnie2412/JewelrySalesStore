@@ -7,7 +7,12 @@ namespace JewelrySalesStoreData.Models;
 
 public partial class OrderDetail
 {
-    public string OrderDetailId { get; set; }
+    
+    public Guid OrderDetailId { get; set; }
+    public OrderDetail()
+    {
+        OrderDetailId = Guid.NewGuid();
+    }
 
     public Guid? OrderId { get; set; }
 

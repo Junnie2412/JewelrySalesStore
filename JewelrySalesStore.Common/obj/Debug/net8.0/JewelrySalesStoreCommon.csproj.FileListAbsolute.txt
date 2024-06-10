@@ -33,3 +33,15 @@ D:\New folder\JewelrySalesStore\JewelrySalesStore.Common\obj\Debug\net8.0\Jewelr
 D:\New folder\JewelrySalesStore\JewelrySalesStore.Common\obj\Debug\net8.0\refint\JewelrySalesStoreCommon.dll
 D:\New folder\JewelrySalesStore\JewelrySalesStore.Common\obj\Debug\net8.0\JewelrySalesStoreCommon.pdb
 D:\New folder\JewelrySalesStore\JewelrySalesStore.Common\obj\Debug\net8.0\ref\JewelrySalesStoreCommon.dll
+D:\FPTUniversity\Ky7\JunnieClone\PRN221\JewelrySalesStore.Common\bin\Debug\net8.0\JewelrySalesStoreCommon.deps.json
+D:\FPTUniversity\Ky7\JunnieClone\PRN221\JewelrySalesStore.Common\bin\Debug\net8.0\JewelrySalesStoreCommon.dll
+D:\FPTUniversity\Ky7\JunnieClone\PRN221\JewelrySalesStore.Common\bin\Debug\net8.0\JewelrySalesStoreCommon.pdb
+D:\FPTUniversity\Ky7\JunnieClone\PRN221\JewelrySalesStore.Common\obj\Debug\net8.0\JewelrySalesStoreCommon.GeneratedMSBuildEditorConfig.editorconfig
+D:\FPTUniversity\Ky7\JunnieClone\PRN221\JewelrySalesStore.Common\obj\Debug\net8.0\JewelrySalesStoreCommon.AssemblyInfoInputs.cache
+D:\FPTUniversity\Ky7\JunnieClone\PRN221\JewelrySalesStore.Common\obj\Debug\net8.0\JewelrySalesStoreCommon.AssemblyInfo.cs
+D:\FPTUniversity\Ky7\JunnieClone\PRN221\JewelrySalesStore.Common\obj\Debug\net8.0\JewelrySalesStoreCommon.csproj.CoreCompileInputs.cache
+D:\FPTUniversity\Ky7\JunnieClone\PRN221\JewelrySalesStore.Common\obj\Debug\net8.0\JewelrySalesStoreCommon.sourcelink.json
+D:\FPTUniversity\Ky7\JunnieClone\PRN221\JewelrySalesStore.Common\obj\Debug\net8.0\JewelrySalesStoreCommon.dll
+D:\FPTUniversity\Ky7\JunnieClone\PRN221\JewelrySalesStore.Common\obj\Debug\net8.0\refint\JewelrySalesStoreCommon.dll
+D:\FPTUniversity\Ky7\JunnieClone\PRN221\JewelrySalesStore.Common\obj\Debug\net8.0\JewelrySalesStoreCommon.pdb
+D:\FPTUniversity\Ky7\JunnieClone\PRN221\JewelrySalesStore.Common\obj\Debug\net8.0\ref\JewelrySalesStoreCommon.dll
