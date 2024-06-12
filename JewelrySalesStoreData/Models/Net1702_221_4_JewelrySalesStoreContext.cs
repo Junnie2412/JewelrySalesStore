@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace JewelrySalesStoreData.Models;
 
@@ -17,13 +18,26 @@ public partial class Net1702_221_4_JewelrySalesStoreContext : DbContext
     {
     }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    //{
+    //    optionsBuilder.UseSqlServer("data source=JUNNIE-LAPTOP;initial catalog=Net1702_221_4_JewelrySalesStore;user id=sa;password=12345;Integrated Security=True;TrustServerCertificate=True");
+    //    base.OnConfiguring(optionsBuilder);
+    //    //optionsBuilder.UseSqlServer("data source=localhost;initial catalog=Net1702_221_4_JewelrySalesStore;user id=sa;password=12345;Integrated Security=True;TrustServerCertificate=True");
+    //    //base.OnConfiguring(optionsBuilder);
+    //}
+
+    public static string GetConnectionString(string connectionStringName)
     {
-        optionsBuilder.UseSqlServer("data source=JUNNIE-LAPTOP;initial catalog=Net1702_221_4_JewelrySalesStore;user id=sa;password=12345;Integrated Security=True;TrustServerCertificate=True");
-        base.OnConfiguring(optionsBuilder);
-        //optionsBuilder.UseSqlServer("data source=localhost;initial catalog=Net1702_221_4_JewelrySalesStore;user id=sa;password=12345;Integrated Security=True;TrustServerCertificate=True");
-        //base.OnConfiguring(optionsBuilder);
+        var config = new ConfigurationBuilder()
+            .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+            .AddJsonFile("appsettings.json")
+            .Build();
+
+        string connectionString = config.GetConnectionString(connectionStringName);
+        return connectionString;
     }
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        => optionsBuilder.UseSqlServer(GetConnectionString("DefaultConnection"));
 
     public virtual DbSet<Category> Categories { get; set; }
 

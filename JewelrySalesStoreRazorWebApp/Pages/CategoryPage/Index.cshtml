@@ -1,0 +1,36 @@
+﻿@page
+@model JewelrySalesStoreRazorWebApp.Pages.CategoryPage.IndexModel
+
+@{
+    ViewData["Title"] = "Category";
+}
+
+<h1>Category</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Category[0].Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Category) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.CategoryId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.CategoryId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.CategoryId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
