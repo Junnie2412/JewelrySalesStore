@@ -8,17 +8,24 @@ namespace JewelrySalesStoreData.Models;
 public partial class Promotion
 {
     public Guid PromotionId { get; set; }
-    public Promotion()
-    {
-        PromotionId = Guid.NewGuid();
-    }
+
     public string PromotionName { get; set; }
+
+    public string PromotionCode { get; set; }
 
     public double? DiscountPercentage { get; set; }
 
     public DateTime? StartDate { get; set; }
 
     public DateTime? EndDate { get; set; }
+
+    public string Condition { get; set; }
+
+    public string Description { get; set; }
+
+    public bool? IsActive { get; set; }
+
+    public string Notes { get; set; }
 
     public virtual ICollection<Product> Products { get; set; } = new List<Product>();
 }

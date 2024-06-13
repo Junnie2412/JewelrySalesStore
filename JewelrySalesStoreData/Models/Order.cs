@@ -11,15 +11,23 @@ public partial class Order
 
     public Guid? CustomerId { get; set; }
 
+    public Guid? CompanyId { get; set; }
+
     public DateTime? Date { get; set; }
 
     public double? TotalPrice { get; set; }
 
-    public Guid? CompanyId { get; set; }
+    public string PaymentMethod { get; set; }
+
+    public string ShippingMethod { get; set; }
+
+    public string CustomerAddress { get; set; }
+
+    public string CustomerBankAccount { get; set; }
 
     public bool? Status { get; set; }
 
-    public string PaymentMethod { get; set; }
+    public string Notes { get; set; }
 
     public virtual Company Company { get; set; }
 

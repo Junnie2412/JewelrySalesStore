@@ -54,9 +54,16 @@ namespace JewelrySalesStoreData.Base
         {
             return _dbSet.ToList();
         }
-        public async Task<List<T>> GetAllAsync()
+        public async Task<List<T>> GetAllAsync(params string[] includeProperties)
         {
-            return await _dbSet.ToListAsync();
+            IQueryable<T> query = _dbSet;
+
+            foreach (var includeProperty in includeProperties)
+            {
+                query = query.Include(includeProperty);
+            }
+
+            return await query.ToListAsync();
         }
         public void Create(T entity)
         {

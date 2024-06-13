@@ -2,30 +2,32 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace JewelrySalesStoreData.Models;
 
 public partial class Customer
 {
     public Guid CustomerId { get; set; }
-    public Customer()
-    {
-        CustomerId = Guid.NewGuid();
-    }
-    [Required]
-    public string CustomerName { get; set; }
-    [Required]
-    [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = false)]
-    public DateTime CustomerBirthDate { get; set; }
-    [Required]
-    [StringLength(10)]
+
+    public string CustomerFirstName { get; set; }
+
+    public string CustomerLastName { get; set; }
+
+    public bool? CustomerGender { get; set; }
+
+    public DateTime? CustomerBirthDate { get; set; }
+
     public string CustomerPhone { get; set; }
 
-    [Required]
+    public string CustomerEmail { get; set; }
+
     public string CustomerAddress { get; set; }
-    [Range(0, double.MaxValue)]
+
     public double? CustomerPoint { get; set; }
+
+    public bool? CustomerVipStatus { get; set; }
+
+    public string Notes { get; set; }
 
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
 }

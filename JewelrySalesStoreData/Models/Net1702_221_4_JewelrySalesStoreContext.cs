@@ -9,12 +9,12 @@ namespace JewelrySalesStoreData.Models;
 
 public partial class Net1702_221_4_JewelrySalesStoreContext : DbContext
 {
-    public Net1702_221_4_JewelrySalesStoreContext()
-    {
-        
-    }
     public Net1702_221_4_JewelrySalesStoreContext(DbContextOptions<Net1702_221_4_JewelrySalesStoreContext> options)
         : base(options)
+    {
+    }
+
+    public Net1702_221_4_JewelrySalesStoreContext()
     {
     }
 
@@ -62,9 +62,15 @@ public partial class Net1702_221_4_JewelrySalesStoreContext : DbContext
             entity.Property(e => e.CategoryId)
                 .ValueGeneratedNever()
                 .HasColumnName("CategoryID");
-            entity.Property(e => e.Name)
-                .HasMaxLength(50)
-                .IsFixedLength();
+            entity.Property(e => e.Collection).HasMaxLength(50);
+            entity.Property(e => e.FengShui).HasMaxLength(50);
+            entity.Property(e => e.Gender).HasMaxLength(50);
+            entity.Property(e => e.IsActive).HasColumnName("isActive");
+            entity.Property(e => e.Material).HasMaxLength(50);
+            entity.Property(e => e.Name).HasMaxLength(50);
+            entity.Property(e => e.Notes).HasMaxLength(4000);
+            entity.Property(e => e.ProductLine).HasMaxLength(50);
+            entity.Property(e => e.Purpose).HasMaxLength(50);
         });
 
         modelBuilder.Entity<Company>(entity =>
@@ -86,6 +92,17 @@ public partial class Net1702_221_4_JewelrySalesStoreContext : DbContext
             entity.Property(e => e.CompanyPhone)
                 .HasMaxLength(50)
                 .IsFixedLength();
+            entity.Property(e => e.Email)
+                .HasMaxLength(10)
+                .IsFixedLength();
+            entity.Property(e => e.FoundationDate).HasColumnType("datetime");
+            entity.Property(e => e.IsActive).HasColumnName("isActive");
+            entity.Property(e => e.Notes)
+                .HasMaxLength(10)
+                .IsFixedLength();
+            entity.Property(e => e.Website)
+                .HasMaxLength(10)
+                .IsFixedLength();
         });
 
         modelBuilder.Entity<Customer>(entity =>
@@ -95,19 +112,13 @@ public partial class Net1702_221_4_JewelrySalesStoreContext : DbContext
             entity.Property(e => e.CustomerId)
                 .ValueGeneratedNever()
                 .HasColumnName("CustomerID");
-            entity.Property(e => e.CustomerAddress)
-                .IsRequired()
-                .HasMaxLength(50)
-                .IsFixedLength();
+            entity.Property(e => e.CustomerAddress).HasMaxLength(50);
             entity.Property(e => e.CustomerBirthDate).HasColumnType("datetime");
-            entity.Property(e => e.CustomerName)
-                .IsRequired()
-                .HasMaxLength(50)
-                .IsFixedLength();
-            entity.Property(e => e.CustomerPhone)
-                .IsRequired()
-                .HasMaxLength(50)
-                .IsFixedLength();
+            entity.Property(e => e.CustomerEmail).HasMaxLength(50);
+            entity.Property(e => e.CustomerFirstName).HasMaxLength(50);
+            entity.Property(e => e.CustomerLastName).HasMaxLength(50);
+            entity.Property(e => e.CustomerPhone).HasMaxLength(50);
+            entity.Property(e => e.Notes).HasMaxLength(4000);
         });
 
         modelBuilder.Entity<Order>(entity =>
@@ -118,11 +129,13 @@ public partial class Net1702_221_4_JewelrySalesStoreContext : DbContext
                 .ValueGeneratedNever()
                 .HasColumnName("OrderID");
             entity.Property(e => e.CompanyId).HasColumnName("CompanyID");
+            entity.Property(e => e.CustomerAddress).HasMaxLength(100);
+            entity.Property(e => e.CustomerBankAccount).HasMaxLength(50);
             entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
             entity.Property(e => e.Date).HasColumnType("datetime");
-            entity.Property(e => e.PaymentMethod)
-                .HasMaxLength(50)
-                .IsFixedLength();
+            entity.Property(e => e.Notes).HasMaxLength(4000);
+            entity.Property(e => e.PaymentMethod).HasMaxLength(50);
+            entity.Property(e => e.ShippingMethod).HasMaxLength(50);
 
             entity.HasOne(d => d.Company).WithMany(p => p.Orders)
                 .HasForeignKey(d => d.CompanyId)
@@ -138,9 +151,10 @@ public partial class Net1702_221_4_JewelrySalesStoreContext : DbContext
             entity.ToTable("OrderDetail");
 
             entity.Property(e => e.OrderDetailId)
-                .HasMaxLength(10)
-                .IsFixedLength()
+                .ValueGeneratedNever()
                 .HasColumnName("OrderDetailID");
+            entity.Property(e => e.IsActive).HasColumnName("isActive");
+            entity.Property(e => e.Notes).HasMaxLength(4000);
             entity.Property(e => e.OrderId).HasColumnName("OrderID");
             entity.Property(e => e.ProductId).HasColumnName("ProductID");
 
@@ -161,13 +175,11 @@ public partial class Net1702_221_4_JewelrySalesStoreContext : DbContext
                 .ValueGeneratedNever()
                 .HasColumnName("ProductID");
             entity.Property(e => e.CategoryId).HasColumnName("CategoryID");
-            entity.Property(e => e.Color)
-                .HasMaxLength(50)
-                .IsFixedLength();
+            entity.Property(e => e.Color).HasMaxLength(50);
             entity.Property(e => e.Image).HasColumnType("image");
-            entity.Property(e => e.Name)
-                .HasMaxLength(50)
-                .IsFixedLength();
+            entity.Property(e => e.IsActive).HasColumnName("isActive");
+            entity.Property(e => e.Name).HasMaxLength(50);
+            entity.Property(e => e.Notes).HasMaxLength(4000);
             entity.Property(e => e.PromotionId).HasColumnName("PromotionID");
 
             entity.HasOne(d => d.Category).WithMany(p => p.Products)
@@ -186,10 +198,13 @@ public partial class Net1702_221_4_JewelrySalesStoreContext : DbContext
             entity.Property(e => e.PromotionId)
                 .ValueGeneratedNever()
                 .HasColumnName("PromotionID");
+            entity.Property(e => e.Condition).HasMaxLength(50);
+            entity.Property(e => e.Description).HasMaxLength(50);
             entity.Property(e => e.EndDate).HasColumnType("datetime");
-            entity.Property(e => e.PromotionName)
-                .HasMaxLength(50)
-                .IsFixedLength();
+            entity.Property(e => e.IsActive).HasColumnName("isActive");
+            entity.Property(e => e.Notes).HasMaxLength(4000);
+            entity.Property(e => e.PromotionCode).HasMaxLength(50);
+            entity.Property(e => e.PromotionName).HasMaxLength(50);
             entity.Property(e => e.StartDate).HasColumnType("datetime");
         });
 

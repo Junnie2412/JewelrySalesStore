@@ -17,5 +17,15 @@ public partial class Company
 
     public string CompanyPhone { get; set; }
 
+    public string Website { get; set; }
+
+    public DateTime? FoundationDate { get; set; }
+
+    public string Email { get; set; }
+
+    public bool? IsActive { get; set; }
+
+    public string Notes { get; set; }
+
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
 }

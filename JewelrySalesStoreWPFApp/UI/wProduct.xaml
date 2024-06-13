@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JewelrySalesStoreWPFApp.UI"
         mc:Ignorable="d"
-        Title="wProduct" Height="450" Width="1000">
+        Title="wProduct" Height="450" Width="1200
+        ">
     <Grid>
         <StackPanel Orientation="Vertical">
             <GroupBox Header="Product Form" Margin="10">
@@ -44,7 +45,7 @@
                     <TextBox Grid.Column="5" Grid.Row="2" x:Name="txtCategoryID" Height="25" Text="{Binding Path=Product.CategoryID, Mode=TwoWay}"  Margin="70,9,0,8"  Width="258" HorizontalAlignment="Left" Grid.ColumnSpan="3"/>
                     <Label Grid.Column="0" Grid.Row="3" Content="Status" HorizontalAlignment="Left" VerticalContentAlignment="Center" />
                     <CheckBox Grid.Column="1" Grid.Row="3" x:Name="chkIsActive" Height="25" IsChecked="{Binding ElementName=IsActive, Path=Product.Status}"  Margin="5"  Width="180" HorizontalAlignment="Left"/>
-                    <Image x:Name="imageProduct" Grid.Column="8" HorizontalAlignment="Left" Height="108" Margin="41,10,0,0" Grid.RowSpan="3" VerticalAlignment="Top" Width="121"/>
+                    <Image x:Name="imageProduct" Grid.Column="8" HorizontalAlignment="Left" Height="108" Margin="267,10,0,0" VerticalAlignment="Top" Width="120" Grid.RowSpan="3"/>
                 </Grid>
             </GroupBox>
             <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Right">
