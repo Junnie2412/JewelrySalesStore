@@ -9,13 +9,23 @@ public partial class Category
 {
     public Guid CategoryId { get; set; }
 
-    public Category()
-    {
-        this.CategoryId = Guid.NewGuid();
-    }
-
-
     public string Name { get; set; }
+
+    public string Material { get; set; }
+
+    public string ProductLine { get; set; }
+
+    public string Collection { get; set; }
+
+    public string FengShui { get; set; }
+
+    public string Purpose { get; set; }
+
+    public string Gender { get; set; }
+
+    public bool? IsActive { get; set; }
+
+    public string Notes { get; set; }
 
     public virtual ICollection<Product> Products { get; set; } = new List<Product>();
 }

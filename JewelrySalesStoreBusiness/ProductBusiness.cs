@@ -41,7 +41,7 @@ namespace JewelrySalesStoreBusiness
 
                 //var currencies = _DAO.GetAll();
                 //var currencies = await _currencyRepository.GetAllAsync();
-                var currencies = await _unitOfWork.ProductRepository.GetAllAsync();
+                var currencies = await _unitOfWork.ProductRepository.GetAllAsync("Category","Promotion");
 
 
                 if (currencies == null)

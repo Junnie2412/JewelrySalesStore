@@ -7,7 +7,6 @@ namespace JewelrySalesStoreData.Models;
 
 public partial class Product
 {
-
     public Guid ProductId { get; set; }
 
     public string Color { get; set; }
@@ -20,11 +19,13 @@ public partial class Product
 
     public double? Price { get; set; }
 
+    public Guid? CategoryId { get; set; }
+
     public Guid? PromotionId { get; set; }
 
-    public bool? Status { get; set; }
+    public bool? IsActive { get; set; }
 
-    public Guid? CategoryId { get; set; }
+    public string Notes { get; set; }
 
     public virtual Category Category { get; set; }
 

@@ -6,29 +6,31 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using JewelrySalesStoreData.Models;
+using JewelrySalesStoreBusiness.BusinessOrder;
+using JewelrySalesStoreBusiness;
 
 namespace JewelrySalesStoreRazorWebApp.Pages.CategoryPage
 {
     public class DeleteModel : PageModel
     {
-        private readonly JewelrySalesStoreData.Models.Net1702_221_4_JewelrySalesStoreContext _context;
+        private readonly ICategoryBusiness _business;
 
-        public DeleteModel(JewelrySalesStoreData.Models.Net1702_221_4_JewelrySalesStoreContext context)
+        public DeleteModel()
         {
-            _context = context;
+            _business ??= new CategoryBusiness();
         }
 
         [BindProperty]
         public Category Category { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(Guid? id)
+        public async Task<IActionResult> OnGetAsync(Guid id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var category = await _context.Categories.FirstOrDefaultAsync(m => m.CategoryId == id);
+            var category = await _business.GetById(id);
 
             if (category == null)
             {
@@ -36,25 +38,19 @@ namespace JewelrySalesStoreRazorWebApp.Pages.CategoryPage
             }
             else
             {
-                Category = category;
+                Category = category.Data as Category;
             }
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(Guid? id)
+        public async Task<IActionResult> OnPostAsync(Guid id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var category = await _context.Categories.FindAsync(id);
-            if (category != null)
-            {
-                Category = category;
-                _context.Categories.Remove(Category);
-                await _context.SaveChangesAsync();
-            }
+            var category = await _business.DeleteById(id);
 
             return RedirectToPage("./Index");
         }
