@@ -102,7 +102,7 @@ namespace JewelrySalesStoreWPFApp.UI
                         Price = Double.Parse(txtProductPrice.Text),
                         PromotionId = Guid.Parse(txtPromotionID.Text),
                         CategoryId = Guid.Parse(txtCategoryID.Text),
-                        Status = chkIsActive.IsChecked
+                        IsActive = chkIsActive.IsChecked
                     };
 
                     var result = await _business.Save(product);
@@ -120,7 +120,7 @@ namespace JewelrySalesStoreWPFApp.UI
                     product.Price = Double.Parse(txtProductPrice.Text);
                     product.PromotionId = Guid.Parse(txtPromotionID.Text);
                     product.CategoryId = Guid.Parse(txtCategoryID.Text);
-                    product.Status = chkIsActive.IsChecked;
+                    product.IsActive = chkIsActive.IsChecked;
 
                     var result = await _business.Update(product);
                     MessageBox.Show(result.Message, "Update");
@@ -188,7 +188,7 @@ namespace JewelrySalesStoreWPFApp.UI
                             txtProductPrice.Text = item.Price.ToString();
                             txtPromotionID.Text = item.PromotionId.ToString();
                             txtCategoryID.Text = item.CategoryId.ToString();
-                            chkIsActive.IsChecked = item.Status;
+                            chkIsActive.IsChecked = item.IsActive;
                         }
                     }
                 }

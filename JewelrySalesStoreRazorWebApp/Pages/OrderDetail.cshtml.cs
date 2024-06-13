@@ -37,7 +37,7 @@ namespace JewelrySalesStoreRazorWebApp.Pages
             return RedirectToPage();
         }
 
-        public IActionResult OnGetUpdate(string orderDetailId)
+        public IActionResult OnGetUpdate(Guid orderDetailId)
         {
             var result = _orderDetailBusiness.GetById(orderDetailId);
             if (result.Result.Data != null)
@@ -130,7 +130,7 @@ namespace JewelrySalesStoreRazorWebApp.Pages
             return new List<OrderDetail>();
         }
 
-        public OrderDetail GetById(string orderDetailId)
+        public OrderDetail GetById(Guid orderDetailId)
         {
             var result = _orderDetailBusiness.GetById(orderDetailId);
             if (result.Status > 0 && result.Result.Data != null)

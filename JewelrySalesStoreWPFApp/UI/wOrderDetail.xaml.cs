@@ -44,14 +44,14 @@ namespace JewelrySalesStoreWPFApp.UI
                 }
 
                 //var item = await _business.GetById(Guid.Parse(txtCompanyId.Text.Trim()));
-                var item = await _business.GetById(orderDetailId);
+                var item = await _business.GetById(Guid.Parse(orderDetailId));
 
                 if (item.Data == null)
                 {
                     var orderDetail = new OrderDetail()
                     {
                         // OrderDetailId = Guid.NewGuid().ToString("N"),
-                        OrderDetailId = GenerateOrderDetailId(10),
+                        OrderDetailId = Guid.NewGuid(),
                         OrderId = Guid.Parse(txtOrderId.Text.Trim()),
                         ProductId = Guid.Parse(txtProductId.Text.Trim()),
                         Quantity = int.Parse(txtQuantity.Text.Trim()),
@@ -107,7 +107,7 @@ namespace JewelrySalesStoreWPFApp.UI
             {
                 if (MessageBox.Show("Do you want to delete this item?", "Delete", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
-                    var result = await _business.DeleteById(orderDetailId);
+                    var result = await _business.DeleteById(Guid.Parse(orderDetailId));
                     MessageBox.Show($"{result.Message}", "Delete");
                     this.LoadGridOrderDetails();
                 }
@@ -134,7 +134,7 @@ namespace JewelrySalesStoreWPFApp.UI
                         {
                             item = currencyResult.Data as OrderDetail;
 
-                            txtOrderDetailId.Text = item.OrderDetailId;
+                            txtOrderDetailId.Text = item.OrderDetailId.ToString();
                             txtOrderId.Text = item.OrderId.ToString();
                             txtProductId.Text = item.ProductId.ToString();
                             txtQuantity.Text = item.Quantity.ToString();
