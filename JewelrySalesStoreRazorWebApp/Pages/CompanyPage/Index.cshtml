@@ -1,0 +1,84 @@
+﻿@page
+@model JewelrySalesStoreRazorWebApp.Pages.CompanyPage.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Company[0].CompanyName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Company[0].CompanyAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Company[0].CompanyDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Company[0].CompanyPhone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Company[0].Website)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Company[0].FoundationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Company[0].Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Company[0].IsActive)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Company[0].Notes)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Company) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyPhone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Website)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FoundationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Notes)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.CompanyId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.CompanyId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.CompanyId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

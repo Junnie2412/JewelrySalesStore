@@ -18,14 +18,6 @@ public partial class Net1702_221_4_JewelrySalesStoreContext : DbContext
     {
     }
 
-    //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    //{
-    //    optionsBuilder.UseSqlServer("data source=JUNNIE-LAPTOP;initial catalog=Net1702_221_4_JewelrySalesStore;user id=sa;password=12345;Integrated Security=True;TrustServerCertificate=True");
-    //    base.OnConfiguring(optionsBuilder);
-    //    //optionsBuilder.UseSqlServer("data source=localhost;initial catalog=Net1702_221_4_JewelrySalesStore;user id=sa;password=12345;Integrated Security=True;TrustServerCertificate=True");
-    //    //base.OnConfiguring(optionsBuilder);
-    //}
-
     public static string GetConnectionString(string connectionStringName)
     {
         var config = new ConfigurationBuilder()

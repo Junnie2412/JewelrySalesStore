@@ -15,7 +15,7 @@ namespace JewelrySalesStoreData.Repository
 
         }
 
-        public CustomerRepository(Net1702_221_4_JewelrySalesStoreContext context) : base(context) => _context = context;
+        public CustomerRepository(Net1702_221_4_JewelrySalesStoreContext context) : base(context) => _context ??= context;
 
     }
 }

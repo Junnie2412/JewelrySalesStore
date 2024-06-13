@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace JewelrySalesStoreWPFApp.UI
 {
@@ -29,34 +30,39 @@ namespace JewelrySalesStoreWPFApp.UI
             _business = new OrderDetailBusiness();
             LoadGridOrderDetails();
 
-            txtQuantity.TextChanged += CalculateTotalPrice;
-            txtUnitPrice.TextChanged += CalculateTotalPrice;
+            txtQuantity.TextChanged += (sender, e) => { CalculateTotalPrice(); CalculateFinalPrice(); };
+            txtUnitPrice.TextChanged += (sender, e) => { CalculateTotalPrice(); CalculateFinalPrice(); };
+            txtDiscountPrice.TextChanged += (sender, e) => { CalculateDiscountPrice(); CalculateFinalPrice(); };
         }
+
 
         private async void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                string orderDetailId = string.Empty;
+                Guid orderDetailId = Guid.Empty;
                 if (!string.IsNullOrWhiteSpace(txtOrderDetailId.Text.Trim()))
                 {
-                    orderDetailId = txtOrderDetailId.Text.Trim();
+                    orderDetailId = Guid.Parse(txtOrderDetailId.Text.Trim());
                 }
 
                 //var item = await _business.GetById(Guid.Parse(txtCompanyId.Text.Trim()));
-                var item = await _business.GetById(Guid.Parse(orderDetailId));
+                var item = await _business.GetById(orderDetailId);
 
                 if (item.Data == null)
                 {
                     var orderDetail = new OrderDetail()
                     {
-                        // OrderDetailId = Guid.NewGuid().ToString("N"),
                         OrderDetailId = Guid.NewGuid(),
                         OrderId = Guid.Parse(txtOrderId.Text.Trim()),
                         ProductId = Guid.Parse(txtProductId.Text.Trim()),
                         Quantity = int.Parse(txtQuantity.Text.Trim()),
                         UnitPrice = double.Parse(txtUnitPrice.Text.Trim()),
                         TotalPrice = double.Parse(txtTotalPrice.Text.Trim()),
+                        DiscountPrice = double.Parse(txtDiscountPrice.Text.Trim()),
+                        FinalPrice = double.Parse(txtFinalPrice.Text.Trim()),
+                        IsActive = chkIsActive.IsChecked,
+                        Notes = txtNotes.Text.Trim(),
                     };
 
                     var result = await _business.Save(orderDetail);
@@ -66,12 +72,15 @@ namespace JewelrySalesStoreWPFApp.UI
                 {
                     var orderDetail = item.Data as OrderDetail;
 
-                    //company.CompanyId = Guid.Parse(txtCompanyId.Text.Trim());
                     orderDetail.OrderId = Guid.Parse(txtOrderId.Text.Trim());
                     orderDetail.ProductId = Guid.Parse(txtProductId.Text.Trim());
                     orderDetail.Quantity = int.Parse(txtQuantity.Text.Trim());
                     orderDetail.UnitPrice = double.Parse(txtUnitPrice.Text.Trim());
                     orderDetail.TotalPrice = double.Parse(txtTotalPrice.Text.Trim());
+                    orderDetail.DiscountPrice = double.Parse(txtDiscountPrice.Text.Trim());
+                    orderDetail.FinalPrice = double.Parse(txtFinalPrice.Text.Trim());
+                    orderDetail.IsActive = chkIsActive.IsChecked;
+                    orderDetail.Notes = txtNotes.Text.Trim();
 
                     var result = await _business.Update(orderDetail);
                     MessageBox.Show(result.Message, "Update");
@@ -83,6 +92,10 @@ namespace JewelrySalesStoreWPFApp.UI
                 txtQuantity.Text = string.Empty;
                 txtUnitPrice.Text = string.Empty;
                 txtTotalPrice.Text = string.Empty;
+                txtDiscountPrice.Text = string.Empty;
+                txtFinalPrice.Text = string.Empty;
+                chkIsActive.IsChecked = false;
+                txtNotes.Text = string.Empty;
 
                 this.LoadGridOrderDetails();
             }
@@ -140,6 +153,10 @@ namespace JewelrySalesStoreWPFApp.UI
                             txtQuantity.Text = item.Quantity.ToString();
                             txtUnitPrice.Text = item.UnitPrice.ToString();
                             txtTotalPrice.Text = item.TotalPrice.ToString();
+                            txtDiscountPrice.Text = item.DiscountPrice.ToString();
+                            txtFinalPrice.Text = item.FinalPrice.ToString();
+                            chkIsActive.IsChecked = item.IsActive;
+                            txtNotes.Text = item.Notes;
                         }
                     }
                 }
@@ -162,11 +179,12 @@ namespace JewelrySalesStoreWPFApp.UI
 
         }
 
-        private void CalculateTotalPrice(object sender, TextChangedEventArgs e)
+        private void CalculateTotalPrice()
         {
             if (int.TryParse(txtQuantity.Text.Trim(), out int quantity) && double.TryParse(txtUnitPrice.Text.Trim(), out double unitPrice))
             {
-                txtTotalPrice.Text = (quantity * unitPrice).ToString("F2");
+                double totalPrice = quantity * unitPrice;
+                txtTotalPrice.Text = totalPrice.ToString("F2");
             }
             else
             {
@@ -174,14 +192,32 @@ namespace JewelrySalesStoreWPFApp.UI
             }
         }
 
-        // Hàm để tạo chuỗi ngẫu nhiên với độ dài cho trước
-        private string GenerateOrderDetailId(int length)
+        private void CalculateFinalPrice()
         {
-            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            var random = new Random();
-            return new string(Enumerable.Repeat(chars, length)
-              .Select(s => s[random.Next(s.Length)]).ToArray());
+            if (double.TryParse(txtTotalPrice.Text.Trim(), out double totalPrice) && double.TryParse(txtDiscountPrice.Text.Trim(), out double discountPrice))
+            {
+                double finalPrice = totalPrice - discountPrice;
+                txtFinalPrice.Text = finalPrice.ToString("F2");
+            }
+            else
+            {
+                txtFinalPrice.Text = "0.00";
+            }
         }
+
+        private void CalculateDiscountPrice()
+        {
+            if (double.TryParse(txtTotalPrice.Text.Trim(), out double totalPrice) && double.TryParse(txtDiscountPrice.Text.Trim(), out double discountPrice))
+            {
+                double discountAmount = totalPrice * (discountPrice / 100);
+                txtTotalPrice.Text = (totalPrice - discountAmount).ToString("F2");
+            }
+            else
+            {
+                txtDiscountPrice.Text = "0.00";
+            }
+        }
+
     }
 
 }
