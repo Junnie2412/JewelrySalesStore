@@ -69,7 +69,7 @@ namespace JewelrySalesStoreRazorWebApp.Pages
             }
 
 
-            customer.CustomerName = Customer.CustomerName;
+            customer.CustomerFirstName = Customer.CustomerFirstName;
             customer.CustomerPhone = Customer.CustomerPhone;
             customer.CustomerBirthDate = Customer.CustomerBirthDate;
             customer.CustomerAddress = Customer.CustomerAddress;

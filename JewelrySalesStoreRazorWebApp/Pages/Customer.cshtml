@@ -53,7 +53,7 @@
                     {
                         <tr>
                             <td>@customer.CustomerId</td>
-                            <td>@customer.CustomerName</td>
+                            <td>@customer.CustomerFirstName</td>
                             <td>@Html.DisplayFor(model => customer.CustomerBirthDate)</td>
                             <td>@customer.CustomerPhone</td>
                             <td>@customer.CustomerAddress</td>
@@ -89,8 +89,8 @@
                             <div class="form-group row">
                                 <div class="col-md-6">
                                     <label for="1">CustomerName</label>
-                                    <input asp-for="Customer.CustomerName" class="form-control" />
-                                    <span asp-validation-for="Customer.CustomerName" class="text-danger"></span>
+                                    <input asp-for="Customer.CustomerFirstName" class="form-control" />
+                                    <span asp-validation-for="Customer.CustomerFirstName" class="text-danger"></span>
                                 </div>
 
                             </div>
@@ -156,8 +156,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="CustomerName">CustomerName</label>
-                                    <input id="CustomerName" asp-for="Customer.CustomerName" class="form-control" />
-                                    <span asp-validation-for="Customer.CustomerName" class="text-danger"></span>
+                                    <input id="CustomerName" asp-for="Customer.CustomerFirstName" class="form-control" />
+                                    <span asp-validation-for="Customer.CustomerFirstName" class="text-danger"></span>
                                 </div>
                             </div>
                         </div>
