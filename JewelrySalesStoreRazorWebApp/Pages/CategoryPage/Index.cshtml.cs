@@ -19,12 +19,12 @@ namespace JewelrySalesStoreRazorWebApp.Pages.CategoryPage
             _business ??= new CategoryBusiness();
         }
 
-        public IList<Category> Category { get;set; } = default!;
+        public IList<Category> Category { get; set; } = default!;
 
         public async Task OnGetAsync()
         {
             var resultl = await _business.GetAll();
-            if(resultl != null && resultl.Status > 0 && resultl.Data != null)
+            if (resultl != null && resultl.Status > 0 && resultl.Data != null)
             {
                 Category = resultl.Data as List<Category>;
             }

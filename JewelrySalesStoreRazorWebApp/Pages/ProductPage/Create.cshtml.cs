@@ -6,27 +6,51 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using JewelrySalesStoreData.Models;
+using JewelrySalesStoreBusiness;
+using Microsoft.EntityFrameworkCore;
 
 namespace JewelrySalesStoreRazorWebApp.Pages.ProductPage
 {
     public class CreateModel : PageModel
     {
-        private readonly JewelrySalesStoreData.Models.Net1702_221_4_JewelrySalesStoreContext _context;
+        private readonly ProductBusiness _business;
+        private readonly CategoryBusiness _category;
+        private readonly PromotionBusiness _promotion;
 
-        public CreateModel(JewelrySalesStoreData.Models.Net1702_221_4_JewelrySalesStoreContext context)
+        public CreateModel()
         {
-            _context = context;
+            _business ??= new ProductBusiness();
+            _category ??= new CategoryBusiness();
+            _promotion ??= new PromotionBusiness();
         }
 
-        public IActionResult OnGet()
+        public async Task<IActionResult> OnGet()
         {
-        ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId");
-        ViewData["PromotionId"] = new SelectList(_context.Promotions, "PromotionId", "PromotionId");
+            var listCategory = await _category.GetAll();
+            if (listCategory != null && listCategory.Status > 0 && listCategory.Data != null)
+            {
+                Category = listCategory.Data as List<Category>;
+            }
+
+            var promotionList = await _promotion.GetAll();
+            if (promotionList != null && promotionList.Status > 0 && promotionList.Data != null)
+            {
+                Promotion = promotionList.Data as List<Promotion>;
+            }
+
+            ViewData["CategoryId"] = new SelectList(Category, "CategoryId", "CategoryId");
+            ViewData["PromotionId"] = new SelectList(Promotion, "PromotionId", "PromotionId");
+
             return Page();
         }
 
         [BindProperty]
         public Product Product { get; set; } = default!;
+        [BindProperty]
+        public IFormFile ImageFile { get; set; } = default!;
+
+        public IList<Category> Category { get; set; } = default!;
+        public IList<Promotion> Promotion { get; set; } = default!;
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
@@ -36,8 +60,16 @@ namespace JewelrySalesStoreRazorWebApp.Pages.ProductPage
                 return Page();
             }
 
-            _context.Products.Add(Product);
-            await _context.SaveChangesAsync();
+            if (ImageFile != null && ImageFile.Length > 0)
+            {
+                using (var memoryStream = new MemoryStream())
+                {
+                    await ImageFile.CopyToAsync(memoryStream);
+                    Product.Image = memoryStream.ToArray();
+                }
+            }
+
+            await _business.Save(Product);
 
             return RedirectToPage("./Index");
         }

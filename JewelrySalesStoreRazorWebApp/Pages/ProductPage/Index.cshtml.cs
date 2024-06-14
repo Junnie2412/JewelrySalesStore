@@ -6,25 +6,41 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using JewelrySalesStoreData.Models;
+using JewelrySalesStoreBusiness;
 
 namespace JewelrySalesStoreRazorWebApp.Pages.ProductPage
 {
     public class IndexModel : PageModel
     {
-        private readonly JewelrySalesStoreData.Models.Net1702_221_4_JewelrySalesStoreContext _context;
+        private readonly IProductBusiness _business;
 
-        public IndexModel(JewelrySalesStoreData.Models.Net1702_221_4_JewelrySalesStoreContext context)
+        public IndexModel()
         {
-            _context = context;
+            _business ??= new ProductBusiness();
         }
 
-        public IList<Product> Product { get;set; } = default!;
+        public IList<Product> ProductList { get; set; } = default!;
+        [BindProperty]
+        public Product Product { get; set; } = default!;
 
         public async Task OnGetAsync()
         {
-            Product = await _context.Products
-                .Include(p => p.Category)
-                .Include(p => p.Promotion).ToListAsync();
+            var resultl = await _business.GetAll();
+            if (resultl != null && resultl.Status > 0 && resultl.Data != null)
+            {
+                ProductList = resultl.Data as List<Product>;
+            }
+        }
+
+        public async Task<IActionResult> OnGetImageAsync(Guid id)
+        {
+            var product = await _business.GetById(id);
+            if (product != null && product.Status > 0 && product.Data != null)
+            {
+                Product = product.Data as Product;
+            }
+
+            return File(Product.Image, "image/jpeg");
         }
     }
 }

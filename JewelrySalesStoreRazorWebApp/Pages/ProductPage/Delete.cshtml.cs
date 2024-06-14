@@ -6,55 +6,50 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using JewelrySalesStoreData.Models;
+using JewelrySalesStoreBusiness;
 
 namespace JewelrySalesStoreRazorWebApp.Pages.ProductPage
 {
     public class DeleteModel : PageModel
     {
-        private readonly JewelrySalesStoreData.Models.Net1702_221_4_JewelrySalesStoreContext _context;
+        private readonly IProductBusiness _business;
 
-        public DeleteModel(JewelrySalesStoreData.Models.Net1702_221_4_JewelrySalesStoreContext context)
+        public DeleteModel()
         {
-            _context = context;
+            _business ??= new ProductBusiness();
         }
 
         [BindProperty]
         public Product Product { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(Guid? id)
+        public async Task<IActionResult> OnGetAsync(Guid id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var product = await _context.Products.FirstOrDefaultAsync(m => m.ProductId == id);
+            var category = await _business.GetById(id);
 
-            if (product == null)
+            if (category == null)
             {
                 return NotFound();
             }
             else
             {
-                Product = product;
+                Product = category.Data as Product;
             }
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(Guid? id)
+        public async Task<IActionResult> OnPostAsync(Guid id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var product = await _context.Products.FindAsync(id);
-            if (product != null)
-            {
-                Product = product;
-                _context.Products.Remove(Product);
-                await _context.SaveChangesAsync();
-            }
+            var category = await _business.DeleteById(id);
 
             return RedirectToPage("./Index");
         }
