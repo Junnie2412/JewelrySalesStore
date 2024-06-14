@@ -9,6 +9,11 @@ public partial class Company
 {
     public Guid CompanyId { get; set; }
 
+    public Company()
+    {
+        CompanyId = Guid.NewGuid();
+    }
+
     public string CompanyName { get; set; }
 
     public string CompanyAddress { get; set; }

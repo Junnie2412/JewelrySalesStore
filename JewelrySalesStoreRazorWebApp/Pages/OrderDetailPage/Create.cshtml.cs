@@ -21,6 +21,7 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderDetailPage
 
         public IActionResult OnGet()
         {
+            OrderDetail = new OrderDetail();
             return Page();
         }
 
@@ -34,6 +35,9 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderDetailPage
             {
                 return Page();
             }
+
+            OrderDetail.OrderDetailId = Guid.NewGuid();
+
             await _business.Save(OrderDetail);
 
             return RedirectToPage("./Index");

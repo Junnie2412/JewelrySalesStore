@@ -21,7 +21,7 @@ public partial class Category
 
     public string Purpose { get; set; }
 
-    public string Gender { get; set; }
+    public bool? Gender { get; set; }
 
     public bool? IsActive { get; set; }
 

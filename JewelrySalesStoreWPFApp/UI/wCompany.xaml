@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JewelrySalesStoreWPFApp.UI"
         mc:Ignorable="d"
-        Title="wCompany" Height="450" Width="1300">
+        Title="wCompany" Height="450" Width="1500">
     <Grid>
         <StackPanel Orientation="Vertical">
             <GroupBox Header="Company Form" Margin="10">
@@ -17,48 +17,48 @@
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="220"/>
+                        <ColumnDefinition Width="270"/>
                         <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="220"/>
+                        <ColumnDefinition Width="270"/>
                         <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="220"/>
+                        <ColumnDefinition Width="270"/>
                         <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="220"/>
+                        <ColumnDefinition Width="270"/>
                         <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="220"/>
+                        <ColumnDefinition Width="270"/>
                     </Grid.ColumnDefinitions>
 
                     <!-- Id -->
                     <Label Grid.Column="0" Grid.Row="0" Content="ID" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
-                    <TextBox Grid.Column="1" Grid.Row="0" x:Name="txtCompanyId" Height="25" Text="{Binding Path=Company.CompanyId, Mode=TwoWay}" Margin="5" Width="200" HorizontalAlignment="Left" IsReadOnly="True"/>
+                    <TextBox Grid.Column="1" Grid.Row="0" x:Name="txtCompanyId" Height="25" Text="{Binding Path=Company.CompanyId, Mode=TwoWay}" Margin="5" Width="250" HorizontalAlignment="Left" IsReadOnly="True"/>
 
                     <!-- Name -->
                     <Label Grid.Column="2" Grid.Row="0" Content="Name" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
-                    <TextBox Grid.Column="3" Grid.Row="0" x:Name="txtCompanyName" Height="25" Text="{Binding Path=Company.CompanyName, Mode=TwoWay}" Margin="5" Width="200" HorizontalAlignment="Left"/>
+                    <TextBox Grid.Column="3" Grid.Row="0" x:Name="txtCompanyName" Height="25" Text="{Binding Path=Company.CompanyName, Mode=TwoWay}" Margin="5" Width="250" HorizontalAlignment="Left"/>
 
                     <!-- Phone -->
                     <Label Grid.Column="4" Grid.Row="0" Content="Phone" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
-                    <TextBox Grid.Column="5" Grid.Row="0" x:Name="txtCompanyPhone" Height="25" Text="{Binding Path=Company.CompanyPhone, Mode=TwoWay}" Margin="5" Width="200" HorizontalAlignment="Left"/>
+                    <TextBox Grid.Column="5" Grid.Row="0" x:Name="txtCompanyPhone" Height="25" Text="{Binding Path=Company.CompanyPhone, Mode=TwoWay}" Margin="5" Width="250" HorizontalAlignment="Left"/>
 
                     <!-- Address -->
                     <Label Grid.Column="6" Grid.Row="0" Content="Address" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
-                    <TextBox Grid.Column="7" Grid.Row="0" x:Name="txtCompanyAddress" Height="25" Text="{Binding Path=Company.CompanyAddress, Mode=TwoWay}" Margin="5" Width="200" HorizontalAlignment="Left"/>
+                    <TextBox Grid.Column="7" Grid.Row="0" x:Name="txtCompanyAddress" Height="25" Text="{Binding Path=Company.CompanyAddress, Mode=TwoWay}" Margin="5" Width="250" HorizontalAlignment="Left"/>
                     
                     <!-- Email -->
                     <Label Grid.Column="0" Grid.Row="1" Content="Email" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
-                    <TextBox Grid.Column="1" Grid.Row="1" x:Name="txtCompanyEmail" Height="25" Text="{Binding Path=Company.Email, Mode=TwoWay}" Margin="5" Width="200" HorizontalAlignment="Left"/>
+                    <TextBox Grid.Column="1" Grid.Row="1" x:Name="txtCompanyEmail" Height="25" Text="{Binding Path=Company.Email, Mode=TwoWay}" Margin="5" Width="250" HorizontalAlignment="Left"/>
 
                     <!-- Website -->
                     <Label Grid.Column="2" Grid.Row="1" Content="Website" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
-                    <TextBox Grid.Column="3" Grid.Row="1" x:Name="txtCompanyWebsite" Height="25" Text="{Binding Path=Company.Website, Mode=TwoWay}" Margin="5" Width="200" HorizontalAlignment="Left"/>
+                    <TextBox Grid.Column="3" Grid.Row="1" x:Name="txtCompanyWebsite" Height="25" Text="{Binding Path=Company.Website, Mode=TwoWay}" Margin="5" Width="250" HorizontalAlignment="Left"/>
 
                     <!-- Foundation Date -->
                     <Label Grid.Column="4" Grid.Row="1" Content="Foundation Date" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
-                    <TextBox Grid.Column="5" Grid.Row="1" x:Name="txtCompanyFoundationDate" Height="25" Text="{Binding Path=Company.FoundationDate, Mode=TwoWay}" Margin="5" Width="200" HorizontalAlignment="Left"/>
+                    <TextBox Grid.Column="5" Grid.Row="1" x:Name="txtCompanyFoundationDate" Height="25" Text="{Binding Path=Company.FoundationDate, Mode=TwoWay}" Margin="5" Width="250" HorizontalAlignment="Left"/>
                     
                     <!-- Description -->
                     <Label Grid.Column="6" Grid.Row="1" Content="Description" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
-                    <TextBox Grid.Column="7" Grid.Row="1" x:Name="txtCompanyDescription" Height="25" Text="{Binding Path=Company.CompanyDescription, Mode=TwoWay}" Margin="5" Width="200" HorizontalAlignment="Left"/>
+                    <TextBox Grid.Column="7" Grid.Row="1" x:Name="txtCompanyDescription" Height="25" Text="{Binding Path=Company.CompanyDescription, Mode=TwoWay}" Margin="5" Width="250" HorizontalAlignment="Left"/>
                    
                     <!-- Is Active -->
                     <Label Grid.Column="0" Grid.Row="2" Content="Is Active" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
@@ -66,7 +66,7 @@
 
                     <!-- Notes -->
                     <Label Grid.Column="2" Grid.Row="2" Content="Notes" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
-                    <TextBox Grid.Column="3" Grid.Row="2" x:Name="txtCompanyNotes" Height="25" Text="{Binding Path=Company.Notes, Mode=TwoWay}" Margin="5" Width="200" HorizontalAlignment="Left"/>
+                    <TextBox Grid.Column="3" Grid.Row="2" x:Name="txtCompanyNotes" Height="25" Text="{Binding Path=Company.Notes, Mode=TwoWay}" Margin="5" Width="250" HorizontalAlignment="Left"/>
                 </Grid>
             </GroupBox>
             <StackPanel Margin="0,0,15,0" Height="40" Orientation="Horizontal" HorizontalAlignment="Right">
@@ -82,10 +82,10 @@
                         <DataGridTextColumn Header="Phone" Binding="{Binding Path=CompanyPhone}" Width="90" IsReadOnly="True"/>
                         <DataGridTextColumn Header="Address" Binding="{Binding Path=CompanyAddress}" Width="190" IsReadOnly="True"/>
                         <DataGridTextColumn Header="Description" Binding="{Binding Path=CompanyDescription}" Width="190" IsReadOnly="True"/>
-                        <DataGridTextColumn Header="Website" Binding="{Binding Path=Website}" Width="120" IsReadOnly="True"/>
-                        <DataGridTextColumn Header="Foundation Date" Binding="{Binding Path=FoundationDate}" Width="120" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Website" Binding="{Binding Path=Website}" Width="140" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Foundation Date" Binding="{Binding Path=FoundationDate}" Width="140" IsReadOnly="True"/>
                         <DataGridTextColumn Header="Email" Binding="{Binding Path=Email}" Width="120" IsReadOnly="True"/>
-                        <DataGridCheckBoxColumn Header="Is Active" Binding="{Binding Path=IsActive}" Width="100" Visibility="Visible"/>
+                        <DataGridCheckBoxColumn Header="Is Active" Binding="{Binding Path=IsActive}" Width="60" Visibility="Visible"/>
                         <DataGridTextColumn Header="Notes" Binding="{Binding Path=Notes}" Width="120" IsReadOnly="True"/>
                         <DataGridTemplateColumn Header="Actions" Width="110">
                             <DataGridTemplateColumn.CellTemplate>

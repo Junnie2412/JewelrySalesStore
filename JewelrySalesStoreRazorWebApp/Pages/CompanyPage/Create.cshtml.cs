@@ -21,6 +21,7 @@ namespace JewelrySalesStoreRazorWebApp.Pages.CompanyPage
 
         public IActionResult OnGet()
         {
+            Company = new Company();
             return Page();
         }
 
@@ -34,6 +35,9 @@ namespace JewelrySalesStoreRazorWebApp.Pages.CompanyPage
             {
                 return Page();
             }
+
+            Company.CompanyId = Guid.NewGuid();
+
             await _business.Save(Company);
 
             return RedirectToPage("./Index");

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JewelrySalesStoreWPFApp.UI"
         mc:Ignorable="d"
-        Title="wOrderDetail" Height="450" Width="1350">
+        Title="wOrderDetail" Height="450" Width="1430">
     <Grid>
         <StackPanel Orientation="Vertical">
             <GroupBox Header="OrderDetail Form" Margin="10">
@@ -17,48 +17,48 @@
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="220"/>
+                        <ColumnDefinition Width="250"/>
                         <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="220"/>
+                        <ColumnDefinition Width="250"/>
                         <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="220"/>
+                        <ColumnDefinition Width="250"/>
                         <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="220"/>
+                        <ColumnDefinition Width="250"/>
                         <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="220"/>
+                        <ColumnDefinition Width="250"/>
                     </Grid.ColumnDefinitions>
 
                     <!-- OrderDetail Id -->
                     <Label Grid.Column="0" Grid.Row="0" Content="Id" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
-                    <TextBox Grid.Column="1" Grid.Row="0" x:Name="txtOrderDetailId" Height="25" Text="{Binding Path=OrderDetail.OrderId, Mode=TwoWay}" Margin="5" Width="200" HorizontalAlignment="Left" IsReadOnly="True"/>
+                    <TextBox Grid.Column="1" Grid.Row="0" x:Name="txtOrderDetailId" Height="25" Text="{Binding Path=OrderDetail.OrderDetailId, Mode=TwoWay}" Margin="5" Width="230" HorizontalAlignment="Left" IsReadOnly="True"/>
 
                     <!-- Order Id -->
                     <Label Grid.Column="2" Grid.Row="0" Content="Order Id" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
-                    <TextBox Grid.Column="3" Grid.Row="0" x:Name="txtOrderId" Height="25" Text="{Binding Path=OrderDetail.OrderId, Mode=TwoWay}" Margin="5" Width="200" HorizontalAlignment="Left"/>
+                    <TextBox Grid.Column="3" Grid.Row="0" x:Name="txtOrderId" Height="25" Text="{Binding Path=OrderDetail.OrderId, Mode=TwoWay}" Margin="5" Width="230" HorizontalAlignment="Left"/>
 
                     <!-- Product Id -->
                     <Label Grid.Column="4" Grid.Row="0" Content="Product Id" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
-                    <TextBox Grid.Column="5" Grid.Row="0" x:Name="txtProductId" Height="25" Text="{Binding Path=OrderDetail.ProductId, Mode=TwoWay}" Margin="5" Width="200" HorizontalAlignment="Left"/>
+                    <TextBox Grid.Column="5" Grid.Row="0" x:Name="txtProductId" Height="25" Text="{Binding Path=OrderDetail.ProductId, Mode=TwoWay}" Margin="5" Width="230" HorizontalAlignment="Left"/>
 
                     <!-- Discount Price -->
                     <Label Grid.Column="6" Grid.Row="0" Content="Discount Price" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
-                    <TextBox Grid.Column="7" Grid.Row="0" x:Name="txtDiscountPrice" Height="25" Text="{Binding Path=OrderDetail.DiscountPrice, Mode=TwoWay}" Margin="5" Width="200" HorizontalAlignment="Left"/>
+                    <TextBox Grid.Column="7" Grid.Row="0" x:Name="txtDiscountPrice" Height="25" Text="{Binding Path=OrderDetail.DiscountPrice, Mode=TwoWay}" Margin="5" Width="230" HorizontalAlignment="Left"/>
                     
                     <!-- Quantity -->
                     <Label Grid.Column="0" Grid.Row="1" Content="Quantity" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
-                    <TextBox Grid.Column="1" Grid.Row="1" x:Name="txtQuantity" Height="25" Text="{Binding Path=OrderDetail.Quantity, Mode=TwoWay}" Margin="5" Width="200" HorizontalAlignment="Left"/>
+                    <TextBox Grid.Column="1" Grid.Row="1" x:Name="txtQuantity" Height="25" Text="{Binding Path=OrderDetail.Quantity, Mode=TwoWay}" Margin="5" Width="230" HorizontalAlignment="Left"/>
 
                     <!-- Unit Price -->
                     <Label Grid.Column="2" Grid.Row="1" Content="Unit Price" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
-                    <TextBox Grid.Column="3" Grid.Row="1" x:Name="txtUnitPrice" Height="25" Text="{Binding Path=OrderDetail.UnitPrice, Mode=TwoWay}" Margin="5" Width="200" HorizontalAlignment="Left"/>
+                    <TextBox Grid.Column="3" Grid.Row="1" x:Name="txtUnitPrice" Height="25" Text="{Binding Path=OrderDetail.UnitPrice, Mode=TwoWay}" Margin="5" Width="230" HorizontalAlignment="Left"/>
 
                     <!-- Total Price -->
                     <Label Grid.Column="4" Grid.Row="1" Content="Total Price" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
-                    <TextBox Grid.Column="5" Grid.Row="1" x:Name="txtTotalPrice" Height="25" Text="{Binding Path=OrderDetail.TotalPrice, Mode=TwoWay}" Margin="5" Width="200" HorizontalAlignment="Left" IsReadOnly="True"/>
+                    <TextBox Grid.Column="5" Grid.Row="1" x:Name="txtTotalPrice" Height="25" Text="{Binding Path=OrderDetail.TotalPrice, Mode=TwoWay}" Margin="5" Width="230" HorizontalAlignment="Left" IsReadOnly="True"/>
                     
                     <!-- Final Price -->
                     <Label Grid.Column="6" Grid.Row="1" Content="Final Price" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
-                    <TextBox Grid.Column="7" Grid.Row="1" x:Name="txtFinalPrice" Height="25" Text="{Binding Path=OrderDetail.FinalPrice, Mode=TwoWay}" Margin="5" Width="200" HorizontalAlignment="Left"/>
+                    <TextBox Grid.Column="7" Grid.Row="1" x:Name="txtFinalPrice" Height="25" Text="{Binding Path=OrderDetail.FinalPrice, Mode=TwoWay}" Margin="5" Width="230" HorizontalAlignment="Left"/>
 
                     <!-- IsActive -->
                     <Label Grid.Column="0" Grid.Row="2" Content="Is Active" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
@@ -66,7 +66,7 @@
 
                     <!-- Notes -->
                     <Label Grid.Column="2" Grid.Row="2" Content="Notes" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
-                    <TextBox Grid.Column="3" Grid.Row="2" x:Name="txtNotes" Height="25" Text="{Binding Path=OrderDetail.Notes, Mode=TwoWay}" Margin="5" Width="200" HorizontalAlignment="Left"/>
+                    <TextBox Grid.Column="3" Grid.Row="2" x:Name="txtNotes" Height="25" Text="{Binding Path=OrderDetail.Notes, Mode=TwoWay}" Margin="5" Width="230" HorizontalAlignment="Left"/>
                 </Grid>
             </GroupBox>
             <StackPanel Margin="0,0,15,0"  Height="40" Orientation="Horizontal" HorizontalAlignment="Right">
@@ -86,8 +86,8 @@
                         <DataGridTextColumn Header="Total Price" Binding="{Binding Path=TotalPrice}" Width="110"  IsReadOnly="True"/>
                         <DataGridTextColumn Header="Discount Price" Binding="{Binding Path=DiscountPrice}" Width="110"  IsReadOnly="True"/>
                         <DataGridTextColumn Header="Final Price" Binding="{Binding Path=FinalPrice}" Width="110"  IsReadOnly="True"/>
-                        <DataGridCheckBoxColumn Header="Is Active" Binding="{Binding Path=IsActive}" Width="100" Visibility="Visible"/>
-                        <DataGridTextColumn Header="Notes" Binding="{Binding Path=Notes}" Width="120" IsReadOnly="True"/>
+                        <DataGridCheckBoxColumn Header="Is Active" Binding="{Binding Path=IsActive}" Width="60" Visibility="Visible"/>
+                        <DataGridTextColumn Header="Notes" Binding="{Binding Path=Notes}" Width="200" IsReadOnly="True"/>
                         <DataGridTemplateColumn Header="Actions" Width="110">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>

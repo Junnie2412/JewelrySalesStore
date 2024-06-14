@@ -23,16 +23,18 @@ namespace JewelrySalesStoreWPFApp.UI
     public partial class wOrderDetail : Window
     {
         private readonly OrderDetailBusiness _business;
+        private readonly ProductBusiness _product;
 
         public wOrderDetail()
         {
             InitializeComponent();
             _business = new OrderDetailBusiness();
+            _product = new ProductBusiness();
             LoadGridOrderDetails();
 
             txtQuantity.TextChanged += (sender, e) => { CalculateTotalPrice(); CalculateFinalPrice(); };
             txtUnitPrice.TextChanged += (sender, e) => { CalculateTotalPrice(); CalculateFinalPrice(); };
-            txtDiscountPrice.TextChanged += (sender, e) => { CalculateDiscountPrice(); CalculateFinalPrice(); };
+            txtDiscountPrice.TextChanged += (sender, e) => { CalculateFinalPrice(); };
         }
 
 
@@ -205,19 +207,19 @@ namespace JewelrySalesStoreWPFApp.UI
             }
         }
 
-        private void CalculateDiscountPrice()
-        {
-            if (double.TryParse(txtTotalPrice.Text.Trim(), out double totalPrice) && double.TryParse(txtDiscountPrice.Text.Trim(), out double discountPrice))
-            {
-                double discountAmount = totalPrice * (discountPrice / 100);
-                txtTotalPrice.Text = (totalPrice - discountAmount).ToString("F2");
-            }
-            else
-            {
-                txtDiscountPrice.Text = "0.00";
-            }
-        }
-
+        //private void CalculateDiscountPrice()
+        //{
+        //    if (double.TryParse(txtTotalPrice.Text.Trim(), out double totalPrice) && double.TryParse(txtDiscountPrice.Text.Trim(), out double discountPrice))
+        //    {
+        //        //double discountAmount = totalPrice * (discountPrice / 100);
+        //        //txtTotalPrice.Text = (totalPrice - discountAmount).ToString("F2");
+        //        txtTotalPrice.Text = (totalPrice - discountPrice).ToString("F2");
+        //    }
+        //    else
+        //    {
+        //        txtDiscountPrice.Text = "0.00";
+        //    }
+        //}
     }
 
 }
