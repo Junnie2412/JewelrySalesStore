@@ -10,7 +10,7 @@ namespace JewelrySalesStoreData.Models;
 public partial class Net1702_221_4_JewelrySalesStoreContext : DbContext
 {
     public Net1702_221_4_JewelrySalesStoreContext(DbContextOptions<Net1702_221_4_JewelrySalesStoreContext> options)
-        : base(options)
+    : base(options)
     {
     }
 
@@ -64,7 +64,7 @@ public partial class Net1702_221_4_JewelrySalesStoreContext : DbContext
                 .HasColumnName("CategoryID");
             entity.Property(e => e.Collection).HasMaxLength(50);
             entity.Property(e => e.FengShui).HasMaxLength(50);
-            entity.Property(e => e.Gender).HasMaxLength(50);
+
             entity.Property(e => e.IsActive).HasColumnName("isActive");
             entity.Property(e => e.Material).HasMaxLength(50);
             entity.Property(e => e.Name).HasMaxLength(50);
@@ -98,7 +98,7 @@ public partial class Net1702_221_4_JewelrySalesStoreContext : DbContext
             entity.Property(e => e.FoundationDate).HasColumnType("datetime");
             entity.Property(e => e.IsActive).HasColumnName("isActive");
             entity.Property(e => e.Notes)
-                .HasMaxLength(10)
+                .HasMaxLength(3000)
                 .IsFixedLength();
             entity.Property(e => e.Website)
                 .HasMaxLength(10)

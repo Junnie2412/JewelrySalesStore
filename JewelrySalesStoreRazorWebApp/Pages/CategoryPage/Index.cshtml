@@ -2,7 +2,7 @@
 @model JewelrySalesStoreRazorWebApp.Pages.CategoryPage.IndexModel
 
 @{
-    ViewData["Title"] = "Category";
+    ViewData["Title"] = "Index";
 }
 
 <h1>Category</h1>
@@ -16,6 +16,30 @@
             <th>
                 @Html.DisplayNameFor(model => model.Category[0].Name)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category[0].Material)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category[0].ProductLine)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category[0].Collection)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category[0].FengShui)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category[0].Purpose)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category[0].Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category[0].IsActive)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category[0].Notes)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -24,6 +48,40 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Material)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductLine)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Collection)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FengShui)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Purpose)
+            </td>
+            <td>
+                    @if (item.Gender == true)
+                    {
+                        @Html.Raw("Male")
+                    }else{ @Html.Raw("Female") }
+            </td>
+            <td>
+                    @if (item.IsActive == true)
+                    {
+                        @Html.Raw("Đã Có")
+                    }
+                    else
+                    {
+                        @Html.Raw("Chưa Có")
+                    }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Notes)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.CategoryId">Edit</a> |
