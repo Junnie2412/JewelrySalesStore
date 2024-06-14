@@ -5,12 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JewelrySalesStoreWPFApp.UI"
         mc:Ignorable="d"
-        Title="wOrder" Height="450" Width="800">
+        Title="wOrder" Height="300" Width="950">
     <Grid>
         <StackPanel Orientation="Vertical">
             <GroupBox Header="OrderForm" Margin="10">
                 <Grid Height="Auto">
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
@@ -21,8 +23,16 @@
                         <ColumnDefinition Width="220"/>
                         <ColumnDefinition Width="80"/>
                         <ColumnDefinition Width="220"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="220"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="220"/>
+                        <ColumnDefinition Width="220"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="220"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="220"/>
                     </Grid.ColumnDefinitions>
-
                     <!--CustomerId -->
                     <Label Grid.Column="0" Grid.Row="0" Content="Customer ID" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
                     <TextBox Grid.Column="1" Grid.Row="0" x:Name="txtCustomerId" Height="25" Text="{Binding Path=Order.CustomerId, Mode=TwoWay}" Margin="5" Width="200" HorizontalAlignment="Left"/>
@@ -46,6 +56,16 @@
                     <!-- Total Price-->
                     <Label Grid.Column="4" Grid.Row="1" Content="Total Price" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
                     <TextBox Grid.Column="5" Grid.Row="1" x:Name="txtTotalPrice" Height="25" Text="{Binding Path=Order.RotalPrice, Mode=TwoWay}" Margin="5" Width="200" HorizontalAlignment="Left"/>
+                    <!-- ProductId-->
+                    <Label Grid.Column="2" Grid.Row="2" Content="Product Id" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
+                    <TextBox Grid.Column="3" Grid.Row="2" x:Name="txtProduct" Height="25" Text="{Binding Path=OrderDetail.ProductId, Mode=TwoWay}" Margin="5" Width="200" HorizontalAlignment="Left"/>
+                    <Label Grid.Column="2" Grid.Row="3" Content="Quantity" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
+                    <TextBox Grid.Column="3" Grid.Row="3" x:Name="txtQuantity" Height="25" Text="{Binding Path=OrderDetail.Quantity, Mode=TwoWay}" Margin="5" Width="200" HorizontalAlignment="Left"/>
+
+                    <Label Grid.Column="0" Grid.Row="2" Content="Customer Bank Account" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
+                    <TextBox Grid.Column="1" Grid.Row="2" x:Name="txtCustomerBankAccount" Height="25" Text="{Binding Path=OrderDetail.CustomerBankAccount, Mode=TwoWay}" Margin="5" Width="200" HorizontalAlignment="Left"/>
+                    <Label Grid.Column="0" Grid.Row="3" Content="Shipping Method" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
+                    <TextBox Grid.Column="1" Grid.Row="3" x:Name="txtShippingMethod" Height="25" Text="{Binding Path=OrderDetail.ShippingMethod, Mode=TwoWay}" Margin="5" Width="200" HorizontalAlignment="Left"/>
 
                 </Grid>
             </GroupBox>
