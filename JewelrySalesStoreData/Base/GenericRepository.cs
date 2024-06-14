@@ -118,6 +118,18 @@ namespace JewelrySalesStoreData.Base
             return await _dbSet.FindAsync(id);
         }
 
+        public async Task<T> GetByIdAsync(Guid id, params string[] includeProperties)
+        {
+            IQueryable<T> query = _dbSet;
+
+            foreach (var includeProperty in includeProperties)
+            {
+                query = query.Include(includeProperty);
+            }
+
+            return await query.FirstOrDefaultAsync(e => (e as Product).ProductId == id);
+        }
+
         public T GetById(string code)
         {
             return _dbSet.Find(code);

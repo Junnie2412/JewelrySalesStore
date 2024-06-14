@@ -14,6 +14,9 @@ namespace JewelrySalesStoreRazorWebApp.Pages.CategoryPage
     {
         private readonly ICategoryBusiness _business;
 
+        [BindProperty(SupportsGet = true)]  
+        public string? SearchString { get; set; }
+
         public IndexModel()
         {
             _business ??= new CategoryBusiness();
@@ -26,7 +29,13 @@ namespace JewelrySalesStoreRazorWebApp.Pages.CategoryPage
             var resultl = await _business.GetAll();
             if (resultl != null && resultl.Status > 0 && resultl.Data != null)
             {
-                Category = resultl.Data as List<Category>;
+                var newCategories = resultl.Data as List<Category>;
+                if (!string.IsNullOrEmpty(SearchString))
+                {
+                    newCategories = newCategories.Where(c => c.Name != null && c.Name.Contains(SearchString, StringComparison.OrdinalIgnoreCase)).ToList();
+                }
+
+                Category = newCategories;
             }
         }
     }
