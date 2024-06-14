@@ -67,7 +67,7 @@ namespace JewelrySalesStoreBusiness
                 #endregion
 
                 //var  Product = await _ ProductRepository.GetByIdAsync(code);
-                var Product = await _unitOfWork.ProductRepository.GetByIdAsync(code);
+                var Product = await _unitOfWork.ProductRepository.GetByIdAsync(code, "Category","Promotion");
 
                 if (Product == null)
                 {

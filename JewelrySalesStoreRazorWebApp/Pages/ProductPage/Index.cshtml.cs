@@ -22,13 +22,21 @@ namespace JewelrySalesStoreRazorWebApp.Pages.ProductPage
         public IList<Product> ProductList { get; set; } = default!;
         [BindProperty]
         public Product Product { get; set; } = default!;
+        [BindProperty(SupportsGet = true)]
+        public string? SearchString { get; set; }
 
         public async Task OnGetAsync()
         {
             var resultl = await _business.GetAll();
             if (resultl != null && resultl.Status > 0 && resultl.Data != null)
             {
-                ProductList = resultl.Data as List<Product>;
+                var newProductList = resultl.Data as List<Product>;
+                if (!string.IsNullOrEmpty(SearchString))
+                {
+                    newProductList = newProductList.Where(c => c.Name != null && c.Name.Contains(SearchString, StringComparison.OrdinalIgnoreCase)).ToList();
+                }
+
+                ProductList = newProductList;
             }
         }
 

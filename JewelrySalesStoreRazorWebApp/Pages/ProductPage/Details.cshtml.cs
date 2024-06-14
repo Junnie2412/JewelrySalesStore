@@ -6,36 +6,40 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using JewelrySalesStoreData.Models;
+using JewelrySalesStoreBusiness;
 
 namespace JewelrySalesStoreRazorWebApp.Pages.ProductPage
 {
     public class DetailsModel : PageModel
     {
-        private readonly JewelrySalesStoreData.Models.Net1702_221_4_JewelrySalesStoreContext _context;
+        private readonly IProductBusiness _business;
 
-        public DetailsModel(JewelrySalesStoreData.Models.Net1702_221_4_JewelrySalesStoreContext context)
+        public DetailsModel()
         {
-            _context = context;
+            _business = new ProductBusiness();
         }
 
+        [BindProperty]
         public Product Product { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(Guid? id)
+        public async Task<IActionResult> OnGetAsync(Guid id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var product = await _context.Products.FirstOrDefaultAsync(m => m.ProductId == id);
+            var product = await _business.GetById(id);
             if (product == null)
             {
                 return NotFound();
             }
             else
             {
-                Product = product;
+                Product = product.Data as Product;
+                var promotionID = Product.PromotionId;
             }
+
             return Page();
         }
     }

@@ -10,6 +10,11 @@
 <p>
     <a asp-page="Create">Create New</a>
 </p>
+<form>
+    Search By Name: <input type="text" asp-for="SearchString" />
+    <input type="submit" value="Filter"/>
+</form>
+<br />
 <table class="table">
     <thead>
         <tr>
@@ -32,16 +37,14 @@
             <th>
                 @Html.DisplayNameFor(model => model.ProductList[0].IsActive)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductList[0].Notes)
-            </th>
+
             <th>
                 @Html.DisplayNameFor(model => model.ProductList[0].Category)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ProductList[0].Promotion)
             </th>
-            <th></th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -75,14 +78,12 @@
                         @Html.Raw("Hết Hàng")
                     }
                 </td>
+
                 <td>
-                    @Html.DisplayFor(modelItem => item.Notes)
+                    @Html.DisplayFor(modelItem => item.Category.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Category.CategoryId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Promotion.PromotionId)
+                    @Html.DisplayFor(modelItem => item.Promotion.PromotionName)
                 </td>
                 <td>
                     <a asp-page="./Edit" asp-route-id="@item.ProductId">Edit</a> |
