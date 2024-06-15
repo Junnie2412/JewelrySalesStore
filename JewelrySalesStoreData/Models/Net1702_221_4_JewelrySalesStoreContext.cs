@@ -10,34 +10,13 @@ namespace JewelrySalesStoreData.Models;
 public partial class Net1702_221_4_JewelrySalesStoreContext : DbContext
 {
     public Net1702_221_4_JewelrySalesStoreContext(DbContextOptions<Net1702_221_4_JewelrySalesStoreContext> options)
-    : base(options)
+        : base(options)
     {
     }
-
     public Net1702_221_4_JewelrySalesStoreContext()
     {
     }
 
-    //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    //{
-    //    optionsBuilder.UseSqlServer("data source=JUNNIE-LAPTOP;initial catalog=Net1702_221_4_JewelrySalesStore;user id=sa;password=12345;Integrated Security=True;TrustServerCertificate=True");
-    //    base.OnConfiguring(optionsBuilder);
-    //    //optionsBuilder.UseSqlServer("data source=localhost;initial catalog=Net1702_221_4_JewelrySalesStore;user id=sa;password=12345;Integrated Security=True;TrustServerCertificate=True");
-    //    //base.OnConfiguring(optionsBuilder);
-    //}
-
-    public static string GetConnectionString(string connectionStringName)
-    {
-        var config = new ConfigurationBuilder()
-            .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-            .AddJsonFile("appsettings.json")
-            .Build();
-
-        string connectionString = config.GetConnectionString(connectionStringName);
-        return connectionString;
-    }
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer(GetConnectionString("DefaultConnection"));
 
     public virtual DbSet<Category> Categories { get; set; }
 
@@ -52,6 +31,18 @@ public partial class Net1702_221_4_JewelrySalesStoreContext : DbContext
     public virtual DbSet<Product> Products { get; set; }
 
     public virtual DbSet<Promotion> Promotions { get; set; }
+    public static string GetConnectionString(string connectionStringName)
+    {
+        var config = new ConfigurationBuilder()
+            .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+            .AddJsonFile("appsettings.json")
+            .Build();
+
+        string connectionString = config.GetConnectionString(connectionStringName);
+        return connectionString;
+    }
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        => optionsBuilder.UseSqlServer(GetConnectionString("DefaultConnection"));
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -64,7 +55,6 @@ public partial class Net1702_221_4_JewelrySalesStoreContext : DbContext
                 .HasColumnName("CategoryID");
             entity.Property(e => e.Collection).HasMaxLength(50);
             entity.Property(e => e.FengShui).HasMaxLength(50);
-
             entity.Property(e => e.IsActive).HasColumnName("isActive");
             entity.Property(e => e.Material).HasMaxLength(50);
             entity.Property(e => e.Name).HasMaxLength(50);
@@ -80,29 +70,17 @@ public partial class Net1702_221_4_JewelrySalesStoreContext : DbContext
             entity.Property(e => e.CompanyId)
                 .ValueGeneratedNever()
                 .HasColumnName("CompanyID");
-            entity.Property(e => e.CompanyAddress)
-                .HasMaxLength(50)
-                .IsFixedLength();
-            entity.Property(e => e.CompanyDescription)
-                .HasMaxLength(50)
-                .IsFixedLength();
-            entity.Property(e => e.CompanyName)
-                .HasMaxLength(50)
-                .IsFixedLength();
-            entity.Property(e => e.CompanyPhone)
-                .HasMaxLength(50)
-                .IsFixedLength();
-            entity.Property(e => e.Email)
-                .HasMaxLength(10)
-                .IsFixedLength();
+            entity.Property(e => e.CompanyAddress).HasMaxLength(50);
+            entity.Property(e => e.CompanyDescription).HasMaxLength(50);
+            entity.Property(e => e.CompanyName).HasMaxLength(50);
+            entity.Property(e => e.CompanyPhone).HasMaxLength(50);
+            entity.Property(e => e.Email).HasMaxLength(50);
             entity.Property(e => e.FoundationDate).HasColumnType("datetime");
             entity.Property(e => e.IsActive).HasColumnName("isActive");
             entity.Property(e => e.Notes)
                 .HasMaxLength(3000)
                 .IsFixedLength();
-            entity.Property(e => e.Website)
-                .HasMaxLength(10)
-                .IsFixedLength();
+            entity.Property(e => e.Website).HasMaxLength(50);
         });
 
         modelBuilder.Entity<Customer>(entity =>
@@ -112,12 +90,12 @@ public partial class Net1702_221_4_JewelrySalesStoreContext : DbContext
             entity.Property(e => e.CustomerId)
                 .ValueGeneratedNever()
                 .HasColumnName("CustomerID");
-            entity.Property(e => e.CustomerAddress).HasMaxLength(50);
+            entity.Property(e => e.CustomerAddress).HasMaxLength(100);
             entity.Property(e => e.CustomerBirthDate).HasColumnType("datetime");
-            entity.Property(e => e.CustomerEmail).HasMaxLength(50);
+            entity.Property(e => e.CustomerEmail).HasMaxLength(100);
             entity.Property(e => e.CustomerFirstName).HasMaxLength(50);
             entity.Property(e => e.CustomerLastName).HasMaxLength(50);
-            entity.Property(e => e.CustomerPhone).HasMaxLength(50);
+            entity.Property(e => e.CustomerPhone).HasMaxLength(10);
             entity.Property(e => e.Notes).HasMaxLength(4000);
         });
 

@@ -1,1 +1,0 @@
-# Jewelry Sales Store

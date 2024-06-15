@@ -2,11 +2,16 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace JewelrySalesStoreData.Models;
 
 public partial class Promotion
 {
+    public Promotion()
+    {
+        PromotionId = Guid.NewGuid();
+    }
     public Guid PromotionId { get; set; }
 
     public string PromotionName { get; set; }
@@ -15,8 +20,12 @@ public partial class Promotion
 
     public double? DiscountPercentage { get; set; }
 
+    [Required]
+    [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = false)]
     public DateTime? StartDate { get; set; }
 
+    [Required]
+    [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = false)]
     public DateTime? EndDate { get; set; }
 
     public string Condition { get; set; }
@@ -24,7 +33,7 @@ public partial class Promotion
     public string Description { get; set; }
 
     public bool? IsActive { get; set; }
-
+    [Display(Name = "Notes")]
     public string Notes { get; set; }
 
     public virtual ICollection<Product> Products { get; set; } = new List<Product>();
