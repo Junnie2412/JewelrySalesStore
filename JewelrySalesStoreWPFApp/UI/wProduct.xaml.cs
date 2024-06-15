@@ -54,7 +54,16 @@ namespace JewelrySalesStoreWPFApp.UI
 
         private void ButtonCancel_Click(object sender, RoutedEventArgs e)
         {
-            this.Hide();
+            txtProductID.Text = string.Empty;
+            txtProductName.Text = string.Empty;
+            txtProductColor.Text = string.Empty;
+            txtProductWeight.Text = string.Empty;
+            imageProduct.Source = null;
+            txtProductPrice.Text = string.Empty;
+            txtPromotionID.Text = string.Empty;
+            txtCategoryID.Text = string.Empty;
+            chkIsActive.IsChecked = false;
+            txtProductNotes.Text = string.Empty;
         }
 
         private void ButtonUpload_Click(object sender, RoutedEventArgs e)
@@ -102,7 +111,8 @@ namespace JewelrySalesStoreWPFApp.UI
                         Price = Double.Parse(txtProductPrice.Text),
                         PromotionId = Guid.Parse(txtPromotionID.Text),
                         CategoryId = Guid.Parse(txtCategoryID.Text),
-                        IsActive = chkIsActive.IsChecked
+                        IsActive = chkIsActive.IsChecked,
+                        Notes = txtProductNotes.Text,
                     };
 
                     var result = await _business.Save(product);
@@ -121,6 +131,7 @@ namespace JewelrySalesStoreWPFApp.UI
                     product.PromotionId = Guid.Parse(txtPromotionID.Text);
                     product.CategoryId = Guid.Parse(txtCategoryID.Text);
                     product.IsActive = chkIsActive.IsChecked;
+                    product.Notes = txtProductNotes.Text;
 
                     var result = await _business.Update(product);
                     MessageBox.Show(result.Message, "Update");
@@ -135,6 +146,7 @@ namespace JewelrySalesStoreWPFApp.UI
                 txtPromotionID.Text = string.Empty;
                 txtCategoryID.Text = string.Empty;
                 chkIsActive.IsChecked = false;
+                txtProductNotes.Text = string.Empty;
 
                 this.LoadGrdProducts();
 
@@ -189,6 +201,7 @@ namespace JewelrySalesStoreWPFApp.UI
                             txtPromotionID.Text = item.PromotionId.ToString();
                             txtCategoryID.Text = item.CategoryId.ToString();
                             chkIsActive.IsChecked = item.IsActive;
+                            txtProductNotes.Text = item.Notes;
                         }
                     }
                 }

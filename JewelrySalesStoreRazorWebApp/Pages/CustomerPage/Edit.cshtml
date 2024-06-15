@@ -1,0 +1,105 @@
+﻿@page
+@model JewelrySalesStoreRazorWebApp.Pages.CustomerPage.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h3>Edit Customer</h3>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Customer.CustomerId" />
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <label asp-for="Customer.CustomerFirstName" class="control-label"></label>
+                    <input asp-for="Customer.CustomerFirstName" class="form-control" />
+                    <span asp-validation-for="Customer.CustomerFirstName" class="text-danger"></span>
+                </div>
+                <div class="col-md-4">
+                    <label asp-for="Customer.CustomerLastName" class="control-label"></label>
+                    <input asp-for="Customer.CustomerLastName" class="form-control" />
+                    <span asp-validation-for="Customer.CustomerLastName" class="text-danger"></span>
+                </div>
+
+                <div class="col-md-4">
+                    <label asp-for="Customer.CustomerGender" class="control-label"></label>
+                    <select asp-for="Customer.CustomerGender" class="form-select" aria-label="Default select example">
+                        <option value="true">Nam</option>
+                        <option value="false">Nữ</option>
+                    </select>
+                    <span asp-validation-for="Customer.CustomerGender" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-6">
+                    <label asp-for="Customer.CustomerBirthDate" class="control-label"></label>
+                    <input asp-for="Customer.CustomerBirthDate" class="form-control" />
+                    <span asp-validation-for="Customer.CustomerBirthDate" class="text-danger"></span>
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="Customer.CustomerPhone" class="control-label"></label>
+                    <input asp-for="Customer.CustomerPhone" class="form-control" />
+                    <span asp-validation-for="Customer.CustomerPhone" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-6">
+                    <label asp-for="Customer.CustomerEmail" class="control-label"></label>
+                    <input asp-for="Customer.CustomerEmail" class="form-control" />
+                    <span asp-validation-for="Customer.CustomerEmail" class="text-danger"></span>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="Customer.CustomerAddress" class="control-label"></label>
+                    <input asp-for="Customer.CustomerAddress" class="form-control" />
+                    <span asp-validation-for="Customer.CustomerAddress" class="text-danger"></span>
+                </div>
+            </div>
+
+
+
+            <div class="form-group row">
+
+                <div class="col-md-3">
+                    <label asp-for="Customer.CustomerPoint" class="control-label"></label>
+                    <input asp-for="Customer.CustomerPoint" class="form-control" />
+                    <span asp-validation-for="Customer.CustomerPoint" class="text-danger"></span>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-check pt-4">
+                        <input class="form-check-input" type="checkbox" id="flexCheckDefault" asp-for="Customer.CustomerVipStatus">
+                        <label class="form-check-label" for="flexCheckDefault" asp-for="Customer.CustomerVipStatus">
+                            IsVip
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="Customer.Notes" class="control-label"></label>
+                    <input asp-for="Customer.Notes" class="form-control" />
+                    <span asp-validation-for="Customer.Notes" class="text-danger"></span>
+                </div>
+
+            </div>
+
+            <div class="form-group mt-2">
+                <input type="submit" value="Save" class="btn btn-success" />
+
+                <a style="text-decoration: none;" class="btn btn-secondary text-white" asp-page="./Index">Back</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

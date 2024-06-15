@@ -8,19 +8,19 @@ using Microsoft.EntityFrameworkCore;
 using JewelrySalesStoreData.Models;
 using JewelrySalesStoreBusiness;
 
-namespace JewelrySalesStoreRazorWebApp.Pages.ProductPage
+namespace JewelrySalesStoreRazorWebApp.Pages.CustomerPage
 {
     public class DeleteModel : PageModel
     {
-        private readonly IProductBusiness _business;
+        private readonly ICustomerBusiness business;
 
         public DeleteModel()
         {
-            _business ??= new ProductBusiness();
+            business ??= new CustomerBusiness();
         }
 
         [BindProperty]
-        public Product Product { get; set; } = default!;
+        public Customer Customer { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(Guid id)
         {
@@ -29,15 +29,15 @@ namespace JewelrySalesStoreRazorWebApp.Pages.ProductPage
                 return NotFound();
             }
 
-            var product = await _business.GetById(id);
+            var customer = await business.GetById(id);
 
-            if (product == null)
+            if (customer == null)
             {
                 return NotFound();
             }
             else
             {
-                Product = product.Data as Product;
+                Customer = customer.Data as Customer;
             }
             return Page();
         }
@@ -49,7 +49,8 @@ namespace JewelrySalesStoreRazorWebApp.Pages.ProductPage
                 return NotFound();
             }
 
-            var product = await _business.DeleteById(id);
+            var customer = await business.DeleteById(id);
+
 
             return RedirectToPage("./Index");
         }
