@@ -1,0 +1,150 @@
+﻿@page
+@model JewelrySalesStoreRazorWebApp.Pages.CustomerPage.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+
+<form class="row mt-5">
+    <p class="col-md-2">
+        <a class="btn btn-primary text-white" style="text-decoration:none;" asp-page="Create">Create New</a>
+    </p>
+
+
+    <p class="col-md-4">
+        Search by Name: <input type="text" asp-for="SearchString" />
+        <input type="submit" value="Filter" />
+
+
+    </p>
+
+    <div class="form-check col-md-1 pt-1">
+        <input class="form-check-input" type="checkbox" id="isVipCheckbox" asp-for="CustomerVipStatus" />
+        <label class="form-check-label" for="isVipCheckbox">
+            Filter VIP
+        </label>
+    </div>
+
+    <div class="form-check col-md-4 pt-1">
+        <input class="form-check-input" type="checkbox" id="isNonVipCheckbox" asp-for="CustomerNonVipStatus" />
+        <label class="form-check-label" for="isNonVipCheckbox">
+            Filter Non-VIP
+        </label>
+    </div>
+</form>
+
+<table class="table">
+    <thead class="table-dark">
+        <tr>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Customer[0].CustomerFirstName)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Customer[0].CustomerLastName)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Customer[0].CustomerGender)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Customer[0].CustomerBirthDate)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Customer[0].CustomerPhone)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Customer[0].CustomerEmail)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Customer[0].CustomerAddress)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Customer[0].CustomerPoint)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Customer[0].CustomerVipStatus)
+            </th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Customer != null)
+        {       
+            @foreach (var item in Model.Customer)
+            {
+                <tr>
+                    <td scope="row">
+                        @Html.DisplayFor(modelItem => item.CustomerFirstName)
+                    </td>
+                    <td scope="row">
+                        @Html.DisplayFor(modelItem => item.CustomerLastName)
+                    </td>
+                    <td scope="row">
+                        @(item.CustomerGender ? "Nam" : "Nữ")
+                    </td>
+                    <td scope="row">
+                        @Html.DisplayFor(modelItem => item.CustomerBirthDate)
+                    </td>
+                    <td scope="row">
+                        @Html.DisplayFor(modelItem => item.CustomerPhone)
+                    </td>
+                    <td scope="row">
+                        @Html.DisplayFor(modelItem => item.CustomerEmail)
+                    </td>
+                    <td scope="row">
+                        @Html.DisplayFor(modelItem => item.CustomerAddress)
+                    </td>
+                    <td scope="row">
+                        @Html.DisplayFor(modelItem => item.CustomerPoint)
+                    </td>
+                    <td scope="row">
+                        @Html.DisplayFor(modelItem => item.CustomerVipStatus)
+                    </td>
+                    <td scope="row">
+                        <a class="btn btn-success text-white" style="text-decoration: none;" asp-page="./Edit" asp-route-id="@item.CustomerId">Edit</a> |
+                        <a class="btn btn-secondary text-white" style="text-decoration: none;" asp-page="./Details" asp-route-id="@item.CustomerId">Details</a> |
+                        <a class="btn btn-danger text-white" style="text-decoration: none;" asp-page="./Delete" asp-route-id="@item.CustomerId">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<nav aria-label="Page navigation example" class="d-flex justify-content-end">
+    <ul class="pagination">
+        <li class="page-item @(Model.PageIndex == 1 ? "disabled" : "")">
+            <a class="page-link" asp-page="./Index" asp-route-PageIndex="@(Model.PageIndex - 1)" asp-route-SearchString="@Model.SearchString" asp-route-CustomerVipStatus="@Model.CustomerVipStatus" asp-route-CustomerNonVipStatus="@Model.CustomerNonVipStatus" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        @for (int i = 1; i <= Model.TotalPages; i++)
+        {
+            <li class="page-item @(Model.PageIndex == i ? "active" : "")">
+                <a class="page-link" asp-page="./Index" asp-route-PageIndex="@i" asp-route-SearchString="@Model.SearchString" asp-route-CustomerVipStatus="@Model.CustomerVipStatus" asp-route-CustomerNonVipStatus="@Model.CustomerNonVipStatus">@i</a>
+            </li>
+        }
+        <li class="page-item @(Model.PageIndex == Model.TotalPages ? "disabled" : "")">
+            <a class="page-link" asp-page="./Index" asp-route-PageIndex="@(Model.PageIndex + 1)" asp-route-SearchString="@Model.SearchString" asp-route-CustomerVipStatus="@Model.CustomerVipStatus" asp-route-CustomerNonVipStatus="@Model.CustomerNonVipStatus" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+
+<script>
+    $(document).ready(function() {
+        $('#isVipCheckbox').change(function() {
+            $('form').submit();
+        });
+    });
+
+    $(document).ready(function () {
+        $('#isNonVipCheckbox').change(function () {
+            $('form').submit();
+        });
+    });
+</script>
