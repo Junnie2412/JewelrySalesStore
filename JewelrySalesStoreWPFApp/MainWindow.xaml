@@ -5,27 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JewelrySalesStoreWPFApp"
         mc:Ignorable="d"
-        Title="JewelrySalesStore" Height="450" Width="1000">
+        Title="JewelrySalesStoreWPFApp" Height="450" Width="1000">
     <Grid>
         <Menu Height="30" Name="menu1" Margin="0,0,0,0" VerticalAlignment="Top" BorderThickness="2" FontSize="16" FontWeight="Bold">
             <MenuItem Header="Menu" IsCheckable="False" FontSize="16">
-                <MenuItem Header="Company" IsCheckable="False" FontSize="12" Click="Open_wCompany_Click">
+                <MenuItem Header="Promotion" IsCheckable="False" FontSize="12" Click="Open_wPromotion_Click">
 
                 </MenuItem>
-                <MenuItem Header="Category" IsCheckable="False" FontSize="12" Click="Open_wCategory_Click">
 
-                </MenuItem>
-                <MenuItem Header="Product" IsCheckable="False" FontSize="12" Click="Open_wProduct_Click">
-
-                </MenuItem>
-                <MenuItem Header="Order" IsCheckable="False" FontSize="12" Click="Open_wOrder_Click">
-
-                </MenuItem>
-                <MenuItem Header="OrderDetail" IsCheckable="False" FontSize="12" Click="Open_wOrderDetail_Click">
-
-                </MenuItem>
             </MenuItem>
-            
+
 
         </Menu>
     </Grid>

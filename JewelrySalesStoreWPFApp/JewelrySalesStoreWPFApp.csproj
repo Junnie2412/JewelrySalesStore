@@ -10,7 +10,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\JewelrySalesStoreBusiness\JewelrySalesStoreBusiness.csproj" />
-    <ProjectReference Include="..\JewelrySalesStoreData\JewelrySalesStoreData.csproj" />
   </ItemGroup>
 
 </Project>

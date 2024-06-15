@@ -1,0 +1,198 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\PRN221\\Project\\Net1702_221_4_JewelrySalesStore\\Source\\Net1702_221_4_JewelrySalesStore\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{7DBC6BD9-994F-4F09-A929-33BF4B38E74B}|JewelrySalesStoreWPFApp\\JewelrySalesStoreWPFApp.csproj|d:\\prn221\\project\\net1702_221_4_jewelrysalesstore\\source\\net1702_221_4_jewelrysalesstore\\jewelrysalesstorewpfapp\\ui\\wpromotion.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7DBC6BD9-994F-4F09-A929-33BF4B38E74B}|JewelrySalesStoreWPFApp\\JewelrySalesStoreWPFApp.csproj|solutionrelative:jewelrysalesstorewpfapp\\ui\\wpromotion.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7DBC6BD9-994F-4F09-A929-33BF4B38E74B}|JewelrySalesStoreWPFApp\\JewelrySalesStoreWPFApp.csproj|d:\\prn221\\project\\net1702_221_4_jewelrysalesstore\\source\\net1702_221_4_jewelrysalesstore\\jewelrysalesstorewpfapp\\ui\\wpromotion.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{7DBC6BD9-994F-4F09-A929-33BF4B38E74B}|JewelrySalesStoreWPFApp\\JewelrySalesStoreWPFApp.csproj|solutionrelative:jewelrysalesstorewpfapp\\ui\\wpromotion.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{320BDF77-AB40-4117-A412-739571FC2480}|JewelrySalesStoreRazorWebApp\\JewelrySalesStoreRazorWebApp.csproj|d:\\prn221\\project\\net1702_221_4_jewelrysalesstore\\source\\net1702_221_4_jewelrysalesstore\\jewelrysalesstorerazorwebapp\\pages\\promotionpage\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{320BDF77-AB40-4117-A412-739571FC2480}|JewelrySalesStoreRazorWebApp\\JewelrySalesStoreRazorWebApp.csproj|solutionrelative:jewelrysalesstorerazorwebapp\\pages\\promotionpage\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{320BDF77-AB40-4117-A412-739571FC2480}|JewelrySalesStoreRazorWebApp\\JewelrySalesStoreRazorWebApp.csproj|d:\\prn221\\project\\net1702_221_4_jewelrysalesstore\\source\\net1702_221_4_jewelrysalesstore\\jewelrysalesstorerazorwebapp\\pages\\promotionpage\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{320BDF77-AB40-4117-A412-739571FC2480}|JewelrySalesStoreRazorWebApp\\JewelrySalesStoreRazorWebApp.csproj|solutionrelative:jewelrysalesstorerazorwebapp\\pages\\promotionpage\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{320BDF77-AB40-4117-A412-739571FC2480}|JewelrySalesStoreRazorWebApp\\JewelrySalesStoreRazorWebApp.csproj|d:\\prn221\\project\\net1702_221_4_jewelrysalesstore\\source\\net1702_221_4_jewelrysalesstore\\jewelrysalesstorerazorwebapp\\pages\\promotionpage\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{320BDF77-AB40-4117-A412-739571FC2480}|JewelrySalesStoreRazorWebApp\\JewelrySalesStoreRazorWebApp.csproj|solutionrelative:jewelrysalesstorerazorwebapp\\pages\\promotionpage\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{320BDF77-AB40-4117-A412-739571FC2480}|JewelrySalesStoreRazorWebApp\\JewelrySalesStoreRazorWebApp.csproj|d:\\prn221\\project\\net1702_221_4_jewelrysalesstore\\source\\net1702_221_4_jewelrysalesstore\\jewelrysalesstorerazorwebapp\\pages\\promotionpage\\details.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{320BDF77-AB40-4117-A412-739571FC2480}|JewelrySalesStoreRazorWebApp\\JewelrySalesStoreRazorWebApp.csproj|solutionrelative:jewelrysalesstorerazorwebapp\\pages\\promotionpage\\details.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{320BDF77-AB40-4117-A412-739571FC2480}|JewelrySalesStoreRazorWebApp\\JewelrySalesStoreRazorWebApp.csproj|d:\\prn221\\project\\net1702_221_4_jewelrysalesstore\\source\\net1702_221_4_jewelrysalesstore\\jewelrysalesstorerazorwebapp\\pages\\promotionpage\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{320BDF77-AB40-4117-A412-739571FC2480}|JewelrySalesStoreRazorWebApp\\JewelrySalesStoreRazorWebApp.csproj|solutionrelative:jewelrysalesstorerazorwebapp\\pages\\promotionpage\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{320BDF77-AB40-4117-A412-739571FC2480}|JewelrySalesStoreRazorWebApp\\JewelrySalesStoreRazorWebApp.csproj|d:\\prn221\\project\\net1702_221_4_jewelrysalesstore\\source\\net1702_221_4_jewelrysalesstore\\jewelrysalesstorerazorwebapp\\pages\\promotionpage\\delete.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{320BDF77-AB40-4117-A412-739571FC2480}|JewelrySalesStoreRazorWebApp\\JewelrySalesStoreRazorWebApp.csproj|solutionrelative:jewelrysalesstorerazorwebapp\\pages\\promotionpage\\delete.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{320BDF77-AB40-4117-A412-739571FC2480}|JewelrySalesStoreRazorWebApp\\JewelrySalesStoreRazorWebApp.csproj|d:\\prn221\\project\\net1702_221_4_jewelrysalesstore\\source\\net1702_221_4_jewelrysalesstore\\jewelrysalesstorerazorwebapp\\pages\\promotionpage\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{320BDF77-AB40-4117-A412-739571FC2480}|JewelrySalesStoreRazorWebApp\\JewelrySalesStoreRazorWebApp.csproj|solutionrelative:jewelrysalesstorerazorwebapp\\pages\\promotionpage\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{320BDF77-AB40-4117-A412-739571FC2480}|JewelrySalesStoreRazorWebApp\\JewelrySalesStoreRazorWebApp.csproj|d:\\prn221\\project\\net1702_221_4_jewelrysalesstore\\source\\net1702_221_4_jewelrysalesstore\\jewelrysalesstorerazorwebapp\\pages\\promotionpage\\edit.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{320BDF77-AB40-4117-A412-739571FC2480}|JewelrySalesStoreRazorWebApp\\JewelrySalesStoreRazorWebApp.csproj|solutionrelative:jewelrysalesstorerazorwebapp\\pages\\promotionpage\\edit.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{320BDF77-AB40-4117-A412-739571FC2480}|JewelrySalesStoreRazorWebApp\\JewelrySalesStoreRazorWebApp.csproj|d:\\prn221\\project\\net1702_221_4_jewelrysalesstore\\source\\net1702_221_4_jewelrysalesstore\\jewelrysalesstorerazorwebapp\\pages\\promotionpage\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{320BDF77-AB40-4117-A412-739571FC2480}|JewelrySalesStoreRazorWebApp\\JewelrySalesStoreRazorWebApp.csproj|solutionrelative:jewelrysalesstorerazorwebapp\\pages\\promotionpage\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "wPromotion.xaml",
+              "DocumentMoniker": "D:\\PRN221\\Project\\Net1702_221_4_JewelrySalesStore\\Source\\Net1702_221_4_JewelrySalesStore\\JewelrySalesStoreWPFApp\\UI\\wPromotion.xaml",
+              "RelativeDocumentMoniker": "JewelrySalesStoreWPFApp\\UI\\wPromotion.xaml",
+              "ToolTip": "D:\\PRN221\\Project\\Net1702_221_4_JewelrySalesStore\\Source\\Net1702_221_4_JewelrySalesStore\\JewelrySalesStoreWPFApp\\UI\\wPromotion.xaml",
+              "RelativeToolTip": "JewelrySalesStoreWPFApp\\UI\\wPromotion.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-06-15T09:31:57.385Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "wPromotion.xaml.cs",
+              "DocumentMoniker": "D:\\PRN221\\Project\\Net1702_221_4_JewelrySalesStore\\Source\\Net1702_221_4_JewelrySalesStore\\JewelrySalesStoreWPFApp\\UI\\wPromotion.xaml.cs",
+              "RelativeDocumentMoniker": "JewelrySalesStoreWPFApp\\UI\\wPromotion.xaml.cs",
+              "ToolTip": "D:\\PRN221\\Project\\Net1702_221_4_JewelrySalesStore\\Source\\Net1702_221_4_JewelrySalesStore\\JewelrySalesStoreWPFApp\\UI\\wPromotion.xaml.cs",
+              "RelativeToolTip": "JewelrySalesStoreWPFApp\\UI\\wPromotion.xaml.cs",
+              "ViewState": "AQIAABQAAAAAAAAAAAAgwDIAAAAyAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-15T13:37:20.641Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\PRN221\\Project\\Net1702_221_4_JewelrySalesStore\\Source\\Net1702_221_4_JewelrySalesStore\\JewelrySalesStoreRazorWebApp\\Pages\\PromotionPage\\Index.cshtml",
+              "RelativeDocumentMoniker": "JewelrySalesStoreRazorWebApp\\Pages\\PromotionPage\\Index.cshtml",
+              "ToolTip": "D:\\PRN221\\Project\\Net1702_221_4_JewelrySalesStore\\Source\\Net1702_221_4_JewelrySalesStore\\JewelrySalesStoreRazorWebApp\\Pages\\PromotionPage\\Index.cshtml",
+              "RelativeToolTip": "JewelrySalesStoreRazorWebApp\\Pages\\PromotionPage\\Index.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-15T09:30:48.301Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Index.cshtml.cs",
+              "DocumentMoniker": "D:\\PRN221\\Project\\Net1702_221_4_JewelrySalesStore\\Source\\Net1702_221_4_JewelrySalesStore\\JewelrySalesStoreRazorWebApp\\Pages\\PromotionPage\\Index.cshtml.cs",
+              "RelativeDocumentMoniker": "JewelrySalesStoreRazorWebApp\\Pages\\PromotionPage\\Index.cshtml.cs",
+              "ToolTip": "D:\\PRN221\\Project\\Net1702_221_4_JewelrySalesStore\\Source\\Net1702_221_4_JewelrySalesStore\\JewelrySalesStoreRazorWebApp\\Pages\\PromotionPage\\Index.cshtml.cs",
+              "RelativeToolTip": "JewelrySalesStoreRazorWebApp\\Pages\\PromotionPage\\Index.cshtml.cs",
+              "ViewState": "AQIAAB0AAAAAAAAAAAAIwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-15T09:30:46.085Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "D:\\PRN221\\Project\\Net1702_221_4_JewelrySalesStore\\Source\\Net1702_221_4_JewelrySalesStore\\JewelrySalesStoreRazorWebApp\\Pages\\PromotionPage\\Details.cshtml",
+              "RelativeDocumentMoniker": "JewelrySalesStoreRazorWebApp\\Pages\\PromotionPage\\Details.cshtml",
+              "ToolTip": "D:\\PRN221\\Project\\Net1702_221_4_JewelrySalesStore\\Source\\Net1702_221_4_JewelrySalesStore\\JewelrySalesStoreRazorWebApp\\Pages\\PromotionPage\\Details.cshtml",
+              "RelativeToolTip": "JewelrySalesStoreRazorWebApp\\Pages\\PromotionPage\\Details.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAwEIAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-15T09:28:35.228Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Details.cshtml.cs",
+              "DocumentMoniker": "D:\\PRN221\\Project\\Net1702_221_4_JewelrySalesStore\\Source\\Net1702_221_4_JewelrySalesStore\\JewelrySalesStoreRazorWebApp\\Pages\\PromotionPage\\Details.cshtml.cs",
+              "RelativeDocumentMoniker": "JewelrySalesStoreRazorWebApp\\Pages\\PromotionPage\\Details.cshtml.cs",
+              "ToolTip": "D:\\PRN221\\Project\\Net1702_221_4_JewelrySalesStore\\Source\\Net1702_221_4_JewelrySalesStore\\JewelrySalesStoreRazorWebApp\\Pages\\PromotionPage\\Details.cshtml.cs",
+              "RelativeToolTip": "JewelrySalesStoreRazorWebApp\\Pages\\PromotionPage\\Details.cshtml.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-15T09:28:29.869Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Delete.cshtml.cs",
+              "DocumentMoniker": "D:\\PRN221\\Project\\Net1702_221_4_JewelrySalesStore\\Source\\Net1702_221_4_JewelrySalesStore\\JewelrySalesStoreRazorWebApp\\Pages\\PromotionPage\\Delete.cshtml.cs",
+              "RelativeDocumentMoniker": "JewelrySalesStoreRazorWebApp\\Pages\\PromotionPage\\Delete.cshtml.cs",
+              "ToolTip": "D:\\PRN221\\Project\\Net1702_221_4_JewelrySalesStore\\Source\\Net1702_221_4_JewelrySalesStore\\JewelrySalesStoreRazorWebApp\\Pages\\PromotionPage\\Delete.cshtml.cs",
+              "RelativeToolTip": "JewelrySalesStoreRazorWebApp\\Pages\\PromotionPage\\Delete.cshtml.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-15T09:24:47.895Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Delete.cshtml",
+              "DocumentMoniker": "D:\\PRN221\\Project\\Net1702_221_4_JewelrySalesStore\\Source\\Net1702_221_4_JewelrySalesStore\\JewelrySalesStoreRazorWebApp\\Pages\\PromotionPage\\Delete.cshtml",
+              "RelativeDocumentMoniker": "JewelrySalesStoreRazorWebApp\\Pages\\PromotionPage\\Delete.cshtml",
+              "ToolTip": "D:\\PRN221\\Project\\Net1702_221_4_JewelrySalesStore\\Source\\Net1702_221_4_JewelrySalesStore\\JewelrySalesStoreRazorWebApp\\Pages\\PromotionPage\\Delete.cshtml",
+              "RelativeToolTip": "JewelrySalesStoreRazorWebApp\\Pages\\PromotionPage\\Delete.cshtml",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAwA4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-15T09:23:32.228Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Edit.cshtml.cs",
+              "DocumentMoniker": "D:\\PRN221\\Project\\Net1702_221_4_JewelrySalesStore\\Source\\Net1702_221_4_JewelrySalesStore\\JewelrySalesStoreRazorWebApp\\Pages\\PromotionPage\\Edit.cshtml.cs",
+              "RelativeDocumentMoniker": "JewelrySalesStoreRazorWebApp\\Pages\\PromotionPage\\Edit.cshtml.cs",
+              "ToolTip": "D:\\PRN221\\Project\\Net1702_221_4_JewelrySalesStore\\Source\\Net1702_221_4_JewelrySalesStore\\JewelrySalesStoreRazorWebApp\\Pages\\PromotionPage\\Edit.cshtml.cs",
+              "RelativeToolTip": "JewelrySalesStoreRazorWebApp\\Pages\\PromotionPage\\Edit.cshtml.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-15T09:20:47.145Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "D:\\PRN221\\Project\\Net1702_221_4_JewelrySalesStore\\Source\\Net1702_221_4_JewelrySalesStore\\JewelrySalesStoreRazorWebApp\\Pages\\PromotionPage\\Create.cshtml",
+              "RelativeDocumentMoniker": "JewelrySalesStoreRazorWebApp\\Pages\\PromotionPage\\Create.cshtml",
+              "ToolTip": "D:\\PRN221\\Project\\Net1702_221_4_JewelrySalesStore\\Source\\Net1702_221_4_JewelrySalesStore\\JewelrySalesStoreRazorWebApp\\Pages\\PromotionPage\\Create.cshtml",
+              "RelativeToolTip": "JewelrySalesStoreRazorWebApp\\Pages\\PromotionPage\\Create.cshtml",
+              "ViewState": "AQIAAB4AAAAAAAAAAAAAAD8AAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-15T09:20:15.634Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "D:\\PRN221\\Project\\Net1702_221_4_JewelrySalesStore\\Source\\Net1702_221_4_JewelrySalesStore\\JewelrySalesStoreRazorWebApp\\Pages\\PromotionPage\\Edit.cshtml",
+              "RelativeDocumentMoniker": "JewelrySalesStoreRazorWebApp\\Pages\\PromotionPage\\Edit.cshtml",
+              "ToolTip": "D:\\PRN221\\Project\\Net1702_221_4_JewelrySalesStore\\Source\\Net1702_221_4_JewelrySalesStore\\JewelrySalesStoreRazorWebApp\\Pages\\PromotionPage\\Edit.cshtml",
+              "RelativeToolTip": "JewelrySalesStoreRazorWebApp\\Pages\\PromotionPage\\Edit.cshtml",
+              "ViewState": "AQIAACMAAAAAAAAAAAAqwC4AAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-15T09:20:11.321Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

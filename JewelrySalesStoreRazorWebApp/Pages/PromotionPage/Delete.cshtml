@@ -1,0 +1,76 @@
+﻿@page
+@model JewelrySalesStoreRazorWebApp.Pages.PromotionPage.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Promotion</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Promotion.PromotionName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Promotion.PromotionName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Promotion.PromotionCode)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Promotion.PromotionCode)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Promotion.DiscountPercentage)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Promotion.DiscountPercentage)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Promotion.StartDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Promotion.StartDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Promotion.EndDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Promotion.EndDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Promotion.Condition)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Promotion.Condition)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Promotion.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Promotion.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Promotion.IsActive)
+        </dt>
+        <dd class="col-sm-10">
+            @((Model.Promotion.IsActive ?? false) ? "On" : "Off")
+        </dd>
+        <dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.Promotion.Notes)
+        </dt>
+        <dd class="col-sm-10">
+			@Html.DisplayFor(model => model.Promotion.Notes)    
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Promotion.PromotionId" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

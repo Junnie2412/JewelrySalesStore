@@ -1,0 +1,103 @@
+﻿@page
+@model JewelrySalesStoreRazorWebApp.Pages.PromotionPage.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<form class="row mt-5">
+    <p class="col-md-2">
+        <a class="btn btn-primary text-white" style="text-decoration:none;" asp-page="Create">Create New</a>
+    </p>
+
+
+    <p class="col-md-4">
+        Search by Name: <input type="text" asp-for="SearchString" />
+        <input type="submit" value="Filter" />
+
+
+    </p>
+
+    <div class="form-check col-md-1 pt-1">
+        <input class="form-check-input" type="checkbox" id="isVipCheckbox" asp-for="Promotionisative" />
+        <label class="form-check-label" for="isVipCheckbox">
+            Filter active
+        </label>
+    </div>
+
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Promotion[0].PromotionName)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Promotion[0].PromotionCode)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Promotion[0].DiscountPercentage)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Promotion[0].StartDate)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Promotion[0].EndDate)
+            </th>
+            <th scope="col">
+				@Html.DisplayNameFor(model => model.Promotion[0].Condition)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Promotion[0].Description)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Promotion[0].IsActive)
+            </th>   
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Promotion[0].Notes)
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Promotion) {
+    <tr>
+        <td scope="row">
+            @Html.DisplayFor(modelItem => item.PromotionName)
+        </td>
+        <td scope="row">
+            @Html.DisplayFor(modelItem => item.PromotionCode)
+        </td>
+        <td scope="row">
+            @Html.DisplayFor(modelItem => item.DiscountPercentage)
+        </td>
+        <td scope="row">
+            @Html.DisplayFor(modelItem => item.StartDate)
+        </td>
+        <td scope="row">
+            @Html.DisplayFor(modelItem => item.EndDate)
+        </td>
+        <td scope="row">
+            @Html.DisplayFor(modelItem => item.Condition)
+        </td>
+        <td scope="row">
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td scope="row">
+            @(item.IsActive.HasValue && item.IsActive.Value ? "On" : "Off")
+        </td>
+        <td scope="row">
+            @Html.DisplayFor(modelItem => item.Notes)
+        </td>
+        <td>
+            <a asp-page="./Edit" asp-route-id="@item.PromotionId">Edit</a> 
+            <a asp-page="./Details" asp-route-id="@item.PromotionId">Details</a> 
+            <a asp-page="./Delete" asp-route-id="@item.PromotionId">Delete</a>
+        </td>
+    </tr>
+}
+
+
+    </tbody>
+</table>

@@ -1,22 +1,25 @@
 ﻿using JewelrySalesStoreData.Models;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
-namespace JewelrySalesStoreData.Base
+namespace JewelrySalesStoreData.DAO
 {
     public class GenericRepository<T> where T : class
     {
         protected Net1702_221_4_JewelrySalesStoreContext _context;
-        protected DbSet<T> _dbSet;
+        protected readonly DbSet<T> _dbSet;
 
         public GenericRepository()
         {
             _context = new Net1702_221_4_JewelrySalesStoreContext();
             _dbSet = _context.Set<T>();
         }
+
+        #region Separating asign entity and save operators
 
         public GenericRepository(Net1702_221_4_JewelrySalesStoreContext context)
         {
@@ -50,20 +53,15 @@ namespace JewelrySalesStoreData.Base
             return await _context.SaveChangesAsync();
         }
 
+        #endregion Separating asign entity and save operators
+
         public List<T> GetAll()
         {
             return _dbSet.ToList();
         }
-        public async Task<List<T>> GetAllAsync(params string[] includeProperties)
+        public async Task<List<T>> GetAllAsync()
         {
-            IQueryable<T> query = _dbSet;
-
-            foreach (var includeProperty in includeProperties)
-            {
-                query = query.Include(includeProperty);
-            }
-
-            return await query.ToListAsync();
+            return await _dbSet.ToListAsync();
         }
         public void Create(T entity)
         {
@@ -73,9 +71,7 @@ namespace JewelrySalesStoreData.Base
 
         public async Task<int> CreateAsync(T entity)
         {
-            _dbSet.Attach(entity);
-            _context.Entry(entity).State = EntityState.Added;
-
+            _dbSet.Add(entity);
             return await _context.SaveChangesAsync();
         }
 
@@ -103,12 +99,11 @@ namespace JewelrySalesStoreData.Base
         public async Task<bool> RemoveAsync(T entity)
         {
             _dbSet.Remove(entity);
-            _context.Entry(entity).State = EntityState.Deleted;
             await _context.SaveChangesAsync();
             return true;
         }
 
-        public T GetById(Guid id)
+        public T GetById(int id)
         {
             return _dbSet.Find(id);
         }
@@ -116,18 +111,6 @@ namespace JewelrySalesStoreData.Base
         public async Task<T> GetByIdAsync(Guid id)
         {
             return await _dbSet.FindAsync(id);
-        }
-
-        public async Task<T> GetByIdAsync(Guid id, params string[] includeProperties)
-        {
-            IQueryable<T> query = _dbSet;
-
-            foreach (var includeProperty in includeProperties)
-            {
-                query = query.Include(includeProperty);
-            }
-
-            return await query.FirstOrDefaultAsync(e => (e as Product).ProductId == id);
         }
 
         public T GetById(string code)

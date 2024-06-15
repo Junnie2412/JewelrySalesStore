@@ -2,7 +2,6 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace JewelrySalesStoreData.Models;
 
@@ -10,50 +9,25 @@ public partial class Customer
 {
     public Guid CustomerId { get; set; }
 
-    public Customer()
-    {
-        CustomerId = Guid.NewGuid();
-    }
-
-    [Required]
-    [Display(Name = "First Name")]
     public string CustomerFirstName { get; set; }
 
-    [Required]
-    [Display(Name = "Last Name")]
     public string CustomerLastName { get; set; }
 
-    [Required]
-    [Display(Name = "Gender")]
-    public bool CustomerGender { get; set; }
+    public bool? CustomerGender { get; set; }
 
-    [Required]
-    [Display(Name = "Birth Date")]
-    [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = false)]
-    public DateTime CustomerBirthDate { get; set; }
+    public DateTime? CustomerBirthDate { get; set; }
 
-    [Required]
-    [Display(Name = "Phone")]
-    [RegularExpression(@"^\d{10}$", ErrorMessage = "Phone number must be 10 digits.")]
     public string CustomerPhone { get; set; }
 
-    [Required]
-    [Display(Name = "Email")]
     public string CustomerEmail { get; set; }
 
-    [Required]
-    [Display(Name = "Address")]
     public string CustomerAddress { get; set; }
 
-    [Display(Name = "Points")]
-    [Range(0, double.MaxValue)]
     public double? CustomerPoint { get; set; }
 
-    [Required]
-    [Display(Name = "VIP Status")]
-    public bool CustomerVipStatus { get; set; }
+    public bool? CustomerVipStatus { get; set; }
 
-    [Display(Name = "Notes")]
     public string Notes { get; set; }
+
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
 }
