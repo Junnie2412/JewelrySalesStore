@@ -29,15 +29,15 @@ namespace JewelrySalesStoreRazorWebApp.Pages.ProductPage
                 return NotFound();
             }
 
-            var category = await _business.GetById(id);
+            var product = await _business.GetById(id);
 
-            if (category == null)
+            if (product == null)
             {
                 return NotFound();
             }
             else
             {
-                Product = category.Data as Product;
+                Product = product.Data as Product;
             }
             return Page();
         }
@@ -49,7 +49,7 @@ namespace JewelrySalesStoreRazorWebApp.Pages.ProductPage
                 return NotFound();
             }
 
-            var category = await _business.DeleteById(id);
+            var product = await _business.DeleteById(id);
 
             return RedirectToPage("./Index");
         }

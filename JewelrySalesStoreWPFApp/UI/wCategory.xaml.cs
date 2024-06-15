@@ -51,7 +51,17 @@ namespace JewelrySalesStoreWPFApp.UI
         }
 
         private void ButtonCancel_Click(object sender, RoutedEventArgs e) {
-            this.Hide();
+            txtCategoryCode.Text = string.Empty;
+            txtCategoryCode.Text = string.Empty;
+            txtCategoryMaterial.Text = string.Empty;
+            txtCategoryName.Text = string.Empty;
+            txtCategoryProductLine.Text = string.Empty;
+            txtCategoryCollection.Text = string.Empty;
+            txtCategoryFengShui.Text = string.Empty;
+            txtCategoryPurpose.Text = string.Empty;
+            chkGender.IsChecked = false;
+            chkIsActive.IsChecked = false;
+            txtCategoryNotes.Text = string.Empty;
         }
 
         private async void ButtonSave_Click(object sender, RoutedEventArgs e)
@@ -66,7 +76,15 @@ namespace JewelrySalesStoreWPFApp.UI
                     var category = new Category()
                     {
                         CategoryId = Guid.NewGuid(),
-                        Name = txtCategoryName.Text
+                        Name = txtCategoryName.Text,
+                        Material = txtCategoryMaterial.Text,
+                        ProductLine = txtCategoryProductLine.Text,
+                        Collection = txtCategoryCollection.Text,
+                        FengShui = txtCategoryFengShui.Text,
+                        Purpose = txtCategoryPurpose.Text,
+                        Gender = chkGender.IsChecked,
+                        IsActive = chkIsActive.IsChecked,
+                        Notes = txtCategoryNotes.Text
                     };
 
                     var result = await _business.Save(category);
@@ -78,6 +96,14 @@ namespace JewelrySalesStoreWPFApp.UI
                     var category = item.Data as Category;
                     //category.categoryCode = txtcategoryCode.Text;
                     category.Name = txtCategoryName.Text;
+                    category.Material = txtCategoryMaterial.Text;
+                    category.ProductLine = txtCategoryProductLine.Text;
+                    category.Collection = txtCategoryCollection.Text;
+                    category.Purpose = txtCategoryPurpose.Text;
+                    category.FengShui = txtCategoryFengShui.Text;
+                    category.Gender = chkGender.IsChecked;
+                    category.IsActive = chkIsActive.IsChecked;
+                    category.Notes = txtCategoryNotes.Text;
 
                     var result = await _business.Update(category);
                     MessageBox.Show(result.Message, "Update");
@@ -85,6 +111,15 @@ namespace JewelrySalesStoreWPFApp.UI
 
                 txtCategoryCode.Text = string.Empty;
                 txtCategoryName.Text = string.Empty;
+                txtCategoryMaterial.Text = string.Empty;
+                txtCategoryProductLine.Text = string.Empty;
+                txtCategoryCollection.Text = string.Empty;
+                txtCategoryFengShui.Text = string.Empty;
+                txtCategoryPurpose.Text = string.Empty;
+                chkGender.IsChecked = false;
+                chkIsActive.IsChecked = false;
+                txtCategoryNotes.Text = string.Empty;
+
                 this.LoadGrdCategories();
 
               
@@ -115,6 +150,14 @@ namespace JewelrySalesStoreWPFApp.UI
                             item = currencyResult.Data as Category;
                             txtCategoryCode.Text = item.CategoryId.ToString();
                             txtCategoryName.Text = item.Name;
+                            txtCategoryMaterial.Text = item.Material;
+                            txtCategoryProductLine.Text = item.ProductLine;
+                            txtCategoryCollection.Text = item.Collection;
+                            txtCategoryFengShui.Text = item.FengShui;
+                            txtCategoryPurpose.Text = item.Purpose;
+                            chkGender.IsChecked = item.Gender;
+                            chkIsActive.IsChecked = item.IsActive;
+                            txtCategoryNotes.Text = item.Notes;
                         }
                     }
                 }
