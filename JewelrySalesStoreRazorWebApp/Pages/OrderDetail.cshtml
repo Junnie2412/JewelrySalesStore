@@ -1,0 +1,224 @@
+﻿@page
+@model JewelrySalesStoreRazorWebApp.Pages.OrderDetailModel
+@{
+    ViewData["Title"] = "Order Detail Page";
+    var orderDetails = Model.OrderDetails;
+}
+
+<div class="text-center">
+    <h1 class="display-6">Order Detail Management</h1>
+</div>
+
+<div class="row">
+    <div class="col-md-6 text-start">
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <span class="text-danger">@TempData["ErrorMessage"]</span>
+        }
+
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <span class="text-success">@TempData["SuccessMessage"]</span>
+        }
+    </div>
+
+    <div class="col-md-6 text-end">
+        <button type="button" class="btn btn-primary" onclick="add();">Add</button>
+    </div>
+</div>
+
+<div class="row mt-3">
+    <div class="col-md-12">
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr class="card-header">
+                    <th class="card-title text-center">Code</th>
+                    <th class="card-title text-center">Order Code</th>
+                    <th class="card-title text-center">Quantity</th>
+                    <th class="card-title text-center">Product Code</th>
+                    <th class="card-title text-center">Unit Price</th>
+                    <th class="card-title text-center">Total Price</th>
+                    <th class="card-title text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody class="tblorderDetailList">
+                @if (orderDetails.Count > 0)
+                {
+                    foreach (var orderDetail in orderDetails)
+                    {
+                        <tr>
+                            <td>@orderDetail.OrderDetailId</td>
+                            <td>@orderDetail.OrderId</td>
+                            <td>@orderDetail.Quantity</td>
+                            <td>@orderDetail.ProductId</td>
+                            <td>@orderDetail.UnitPrice</td>
+                            <td>@orderDetail.TotalPrice</td>
+                            <td class="text-center">
+                                <button type="button" class="btn btn-success" onclick="edit('@orderDetail.OrderDetailId')">Edit</button>
+                                <button type="button" class="btn btn-danger" onclick="remove('@orderDetail.OrderDetailId')">Delete</button>
+                            </td>
+                        </tr>
+                    }
+                }
+
+                else
+                {
+                    <tr>
+                        <td colspan="6" class="text-center">No Order Details available</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Add OrderDetail Modal -->
+<div class="modal fade" id="addOrderDetailModal" tabindex="-1" aria-labelledby="orderDetailModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "addOrderDetailForm" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="modal-header">
+                    <h5 class="modal-title" id="orderDetailModalLabel">Add Order Detail</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="OrderId">Order ID</label>
+                        <input asp-for="OrderDetail.OrderId" class="form-control" />
+                        <span asp-validation-for="OrderDetail.OrderId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="Quantity">Quantity</label>
+                        <input asp-for="OrderDetail.Quantity" class="form-control" />
+                        <span asp-validation-for="OrderDetail.Quantity" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="ProductId">Product ID</label>
+                        <input asp-for="OrderDetail.ProductId" class="form-control" />
+                        <span asp-validation-for="OrderDetail.ProductId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="UnitPrice">Unit Price</label>
+                        <input asp-for="OrderDetail.UnitPrice" class="form-control" />
+                        <span asp-validation-for="OrderDetail.UnitPrice" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="TotalPrice">Total Price</label>
+                        <input asp-for="OrderDetail.TotalPrice" class="form-control" />
+                        <span asp-validation-for="OrderDetail.TotalPrice" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="btSave" type="button" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!-- Edit OrderDetail Modal -->
+<div class="modal fade" id="editOrderDetailModal" tabindex="-1" aria-labelledby="orderDetailModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post" asp-page-handler="Update" id="editOrderDetailForm">
+                @Html.AntiForgeryToken()
+                <input asp-for="OrderDetail.OrderDetailId" type="hidden" id="editOrderDetailId" />
+
+                <div class="modal-header">
+                    <h5 class="modal-title=" orderDetailModalLabel">Edit Order Detail</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="editOrderDetailId">Order Detail ID</label>
+                        <input id="editOrderDetailId" class="form-control" readonly />
+                    </div>
+                    <div class="form-group">
+                        <label for="editOrderId">Order ID</label>
+                        <input asp-for="OrderDetail.OrderId" class="form-control" id="editOrderId" />
+                    </div>
+                    <div class="form-group">
+                        <label for="editQuantity">Quantity</label>
+                        <input asp-for="OrderDetail.Quantity" class="form-control" id="editQuantity" />
+                    </div>
+                    <div class="form-group">
+                        <label for="editProductId">Product ID</label>
+                        <input asp-for="OrderDetail.ProductId" class="form-control" id="editProductId" />
+                    </div>
+                    <div class="form-group">
+                        <label for="editUnitPrice">Unit Price</label>
+                        <input asp-for="OrderDetail.UnitPrice" class="form-control" id="editUnitPrice" />
+                    </div>
+                    <div class="form-group">
+                        <label for="editTotalPrice">Total Price</label>
+                        <input asp-for="OrderDetail.TotalPrice" class="form-control" id="editTotalPrice" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Delete OrderDetail Modal -->
+<div class="modal fade" id="removeOrderDetailModal" tabindex="-1" aria-labelledby="orderDetailModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post" asp-page-handler="Delete">
+                @Html.AntiForgeryToken()
+                <input type="hidden" asp-for="OrderDetail.OrderDetailId" id="OrderDetailIdRemove" />
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="orderDetailModalLabel">Confirm Delete</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete this order detail?
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Yes</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script type="text/javascript">
+        function add() {
+            $('#addOrderDetailModal').modal('show');
+        }
+
+        function edit(orderDetailId) {
+            $.ajax({
+                url: '@Url.Page("/OrderDetail", "Update")',
+                type: 'GET',
+                data: { orderDetailId: orderDetailId },
+                success: function (data) {
+                    $('#editOrderDetailModal #editOrderDetailId').val(data.orderDetailId);
+                    $('#editOrderDetailModal #editOrderId').val(data.orderId);
+                    $('#editOrderDetailModal #editQuantity').val(data.quantity);
+                    $('#editOrderDetailModal #editProductId').val(data.productId);
+                    $('#editOrderDetailModal #editUnitPrice').val(data.unitPrice);
+                    $('#editOrderDetailModal #editTotalPrice').val(data.totalPrice);
+
+                    $('#editOrderDetailModal').modal('show');
+                }
+            });
+        }
+
+        function remove(orderDetailId) {
+            document.getElementById('OrderDetailIdRemove').value = orderDetailId;
+            $('#removeOrderDetailModal').modal('show');
+        }
+    </script>
+}
+

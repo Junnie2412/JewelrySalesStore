@@ -1,21 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.9.34728.123
+VisualStudioVersion = 17.8.34408.163
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JewelrySalesStoreData", "JewelrySalesStoreData\JewelrySalesStoreData.csproj", "{0E7B3921-D4C3-4340-AB82-EDCB4B030DA7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JewelrySalesStoreData", "JewelrySalesStoreData\JewelrySalesStoreData.csproj", "{06699C18-0B64-4588-B4FF-26D2981F771B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JewelrySalesStoreBusiness", "JewelrySalesStoreBusiness\JewelrySalesStoreBusiness.csproj", "{E483F758-B4E4-4365-BE12-536FEE82BCDD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JewelrySalesStoreBusiness", "JewelrySalesStoreBusiness\JewelrySalesStoreBusiness.csproj", "{4C761039-AF91-4197-B490-DC403FE0CAC6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JewelrySalesStoreWebApp", "JewelrySalesStoreWebApp\JewelrySalesStoreWebApp.csproj", "{1B927A62-87E1-4606-946C-7230D654DB80}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JewelrySalesStoreMVCWebApp", "JewelrySalesStoreWebApp\JewelrySalesStoreMVCWebApp.csproj", "{347902B7-A5B1-48D8-82E2-55DDF67FD84F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JewelrySalesStoreRazorWebApp", "JewelrySalesStoreRazorWebApp\JewelrySalesStoreRazorWebApp.csproj", "{320BDF77-AB40-4117-A412-739571FC2480}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JewelrySalesStoreRazorWebApp", "JewelrySalesStoreRazorWebApp\JewelrySalesStoreRazorWebApp.csproj", "{31C3EB36-2121-4305-ADC9-007E94F13776}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JewelrySalesStoreConsoleApp", "JewelrySalesStoreConsoleApp\JewelrySalesStoreConsoleApp.csproj", "{122FD037-48A7-4FF9-9801-163854C14D69}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JewelrySalesStoreConsoleApp", "JewelrySalesStore.ConsoleApp\JewelrySalesStoreConsoleApp.csproj", "{CCCB397B-0804-4E84-8389-AA119D36F2C5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JewelrySalesStoreCommon", "JewelrySalesStoreCommon\JewelrySalesStoreCommon.csproj", "{771A7144-1C45-418B-996B-F6092AEC0F38}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JewelrySalesStoreCommon", "JewelrySalesStore.Common\JewelrySalesStoreCommon.csproj", "{E08F13BA-A9D3-4F6A-96E0-5B1C824E4DFB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JewelrySalesStoreWPFApp", "JewelrySalesStoreWPFApp\JewelrySalesStoreWPFApp.csproj", "{7DBC6BD9-994F-4F09-A929-33BF4B38E74B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JewelrySalesStoreWPFApp", "JewelrySalesStoreWPFApp\JewelrySalesStoreWPFApp.csproj", "{7777C43F-7353-46E4-87A3-A1694707101E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,39 +23,39 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0E7B3921-D4C3-4340-AB82-EDCB4B030DA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0E7B3921-D4C3-4340-AB82-EDCB4B030DA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0E7B3921-D4C3-4340-AB82-EDCB4B030DA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0E7B3921-D4C3-4340-AB82-EDCB4B030DA7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E483F758-B4E4-4365-BE12-536FEE82BCDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E483F758-B4E4-4365-BE12-536FEE82BCDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E483F758-B4E4-4365-BE12-536FEE82BCDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E483F758-B4E4-4365-BE12-536FEE82BCDD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1B927A62-87E1-4606-946C-7230D654DB80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1B927A62-87E1-4606-946C-7230D654DB80}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1B927A62-87E1-4606-946C-7230D654DB80}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1B927A62-87E1-4606-946C-7230D654DB80}.Release|Any CPU.Build.0 = Release|Any CPU
-		{320BDF77-AB40-4117-A412-739571FC2480}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{320BDF77-AB40-4117-A412-739571FC2480}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{320BDF77-AB40-4117-A412-739571FC2480}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{320BDF77-AB40-4117-A412-739571FC2480}.Release|Any CPU.Build.0 = Release|Any CPU
-		{122FD037-48A7-4FF9-9801-163854C14D69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{122FD037-48A7-4FF9-9801-163854C14D69}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{122FD037-48A7-4FF9-9801-163854C14D69}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{122FD037-48A7-4FF9-9801-163854C14D69}.Release|Any CPU.Build.0 = Release|Any CPU
-		{771A7144-1C45-418B-996B-F6092AEC0F38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{771A7144-1C45-418B-996B-F6092AEC0F38}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{771A7144-1C45-418B-996B-F6092AEC0F38}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{771A7144-1C45-418B-996B-F6092AEC0F38}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7DBC6BD9-994F-4F09-A929-33BF4B38E74B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7DBC6BD9-994F-4F09-A929-33BF4B38E74B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7DBC6BD9-994F-4F09-A929-33BF4B38E74B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7DBC6BD9-994F-4F09-A929-33BF4B38E74B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06699C18-0B64-4588-B4FF-26D2981F771B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06699C18-0B64-4588-B4FF-26D2981F771B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06699C18-0B64-4588-B4FF-26D2981F771B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06699C18-0B64-4588-B4FF-26D2981F771B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C761039-AF91-4197-B490-DC403FE0CAC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C761039-AF91-4197-B490-DC403FE0CAC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C761039-AF91-4197-B490-DC403FE0CAC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C761039-AF91-4197-B490-DC403FE0CAC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{347902B7-A5B1-48D8-82E2-55DDF67FD84F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{347902B7-A5B1-48D8-82E2-55DDF67FD84F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{347902B7-A5B1-48D8-82E2-55DDF67FD84F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{347902B7-A5B1-48D8-82E2-55DDF67FD84F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31C3EB36-2121-4305-ADC9-007E94F13776}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31C3EB36-2121-4305-ADC9-007E94F13776}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31C3EB36-2121-4305-ADC9-007E94F13776}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31C3EB36-2121-4305-ADC9-007E94F13776}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCCB397B-0804-4E84-8389-AA119D36F2C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCCB397B-0804-4E84-8389-AA119D36F2C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCCB397B-0804-4E84-8389-AA119D36F2C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCCB397B-0804-4E84-8389-AA119D36F2C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E08F13BA-A9D3-4F6A-96E0-5B1C824E4DFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E08F13BA-A9D3-4F6A-96E0-5B1C824E4DFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E08F13BA-A9D3-4F6A-96E0-5B1C824E4DFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E08F13BA-A9D3-4F6A-96E0-5B1C824E4DFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7777C43F-7353-46E4-87A3-A1694707101E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7777C43F-7353-46E4-87A3-A1694707101E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7777C43F-7353-46E4-87A3-A1694707101E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7777C43F-7353-46E4-87A3-A1694707101E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {93AA8578-77CD-4157-B431-7CDB4C35A413}
+		SolutionGuid = {748C92CF-4A3F-4E63-AEB3-378AA70F7EF5}
 	EndGlobalSection
 EndGlobal

@@ -1,4 +1,5 @@
-﻿using JewelrySalesStoreData.Models;
+﻿using JewelrySalesStoreData.Base;
+using JewelrySalesStoreData.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,5 @@ namespace JewelrySalesStoreData.DAO
 {
     public class PromotionDAO : GenericRepository<Promotion>
     {
-        //public object GetAll()
-        //{
-        //    throw new NotImplementedException();
-        //}
     }
 }
