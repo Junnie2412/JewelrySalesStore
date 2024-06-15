@@ -1,4 +1,5 @@
-﻿using JewelrySalesStoreBusiness.BusinessOrder;
+﻿using JewelrySalesStoreBusiness;
+using JewelrySalesStoreBusiness.BusinessOrder;
 using JewelrySalesStoreData.Models;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace JewelrySalesStoreWPFApp.UI
 {
@@ -22,6 +24,8 @@ namespace JewelrySalesStoreWPFApp.UI
     public partial class wOrder : Window
     {
         private readonly OrderBusiness _business;
+        private readonly ProductBusiness _product;
+        private readonly OrderDetailBusiness _detail;
         public wOrder()
         {
             InitializeComponent();
@@ -37,9 +41,13 @@ namespace JewelrySalesStoreWPFApp.UI
                 //int.TryParse(txtCurrencyCode.Text, out idTmp);
 
                 var item = await _business.GetById(Guid.Parse(txtOrderId.Text));
-
-                if (item.Data == null)
+                var product = await _product.GetById(Guid.Parse(txtProduct.Text));
+                var product2 = product.Data as Product;
+                var test = product2.Price;
+                var test2 = product2.ProductId;
+                if (item.Data == null && product != null)
                 {
+
                     var currency = new Order()
                     {
                         OrderId = Guid.NewGuid(),
@@ -48,10 +56,27 @@ namespace JewelrySalesStoreWPFApp.UI
                         CustomerId = (Guid.Parse(txtCustomerId.Text)),
                         Date = DateTime.Now,
                         Status = bool.Parse(txtStatus.Text),
-                        TotalPrice = double.Parse(txtTotalPrice.Text),
+                        ShippingMethod = txtShippingMethod.Text,
+                        CustomerBankAccount = txtCustomerBankAccount.Text,
+
                     };
 
-                    var result = await _business.Save(currency);
+
+                    var orderDetail = new OrderDetail()
+                    {
+                        OrderDetailId = Guid.NewGuid(),
+                        OrderId = currency.OrderId,
+                        ProductId = Guid.Parse(txtProduct.Text),
+                        Quantity = int.Parse(txtQuantity.Text),
+                        UnitPrice = product2.Price,
+                        TotalPrice = product2.Price * int.Parse(txtQuantity.Text),
+                    };
+                    var result1 = await _business.Save(currency);
+                    var result = await _detail.Save(orderDetail);
+                    currency.TotalPrice = orderDetail.TotalPrice;
+
+                    await _business.Update(currency);
+
                     MessageBox.Show(result.Message, "Save");
                 }
                 else
@@ -64,6 +89,8 @@ namespace JewelrySalesStoreWPFApp.UI
                     currency.CompanyId = Guid.Parse(txtComapanyId.Text);
                     currency.PaymentMethod = txtPaymentMethod.Text;
                     currency.Date = DateTime.Now;
+                    currency.ShippingMethod = txtShippingMethod.Text;
+                    currency.CustomerBankAccount = txtCustomerBankAccount.Text;
                     var result = await _business.Update(currency);
                     MessageBox.Show(result.Message, "Update");
                 }
@@ -74,6 +101,8 @@ namespace JewelrySalesStoreWPFApp.UI
                 txtCustomerId.Text = string.Empty;
                 txtStatus.Text = string.Empty;
                 txtOrderId.Text = string.Empty;
+                txtShippingMethod.Text= string.Empty;
+                txtCustomerBankAccount.Text = string.Empty;
 
                 this.LoadGridOrders();
             }
@@ -149,6 +178,13 @@ namespace JewelrySalesStoreWPFApp.UI
                 gridOrder.ItemsSource = new List<Order>();
             }
 
+        }
+        private string GenerateOrderDetailId(int length)
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            var random = new Random();
+            return new string(Enumerable.Repeat(chars, length)
+              .Select(s => s[random.Next(s.Length)]).ToArray());
         }
     }
 }
