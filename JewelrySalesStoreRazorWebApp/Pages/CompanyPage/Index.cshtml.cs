@@ -22,7 +22,7 @@ namespace JewelrySalesStoreRazorWebApp.Pages.CompanyPage
 
         public string CurrentFilter { get; set; }
         public string CurrentSort { get; set; }
-        public int CurrentPage { get; set; } = 1;
+        public int CurrentPage { get; set; } = 3;
         public int PageSize { get; set; } = 7;
         public int TotalPages { get; set; }
         public int TotalRecords { get; set; }
