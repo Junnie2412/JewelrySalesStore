@@ -2,6 +2,7 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace JewelrySalesStoreData.Models;
 
@@ -14,22 +15,37 @@ public partial class Company
         CompanyId = Guid.NewGuid();
     }
 
+    [Required(ErrorMessage = "Company name is required.")]
+    [StringLength(100, ErrorMessage = "Company name must not exceed 100 characters.")]
     public string CompanyName { get; set; }
 
+    [Required(ErrorMessage = "Company address is required.")]
+    [StringLength(250, ErrorMessage = "Company address must not exceed 250 characters.")]
     public string CompanyAddress { get; set; }
 
+    [StringLength(500, ErrorMessage = "Company description must not exceed 500 characters.")]
     public string CompanyDescription { get; set; }
 
+    [Phone(ErrorMessage = "Invalid phone number format.")]
+    [StringLength(20, ErrorMessage = "Company phone must not exceed 20 characters.")]
     public string CompanyPhone { get; set; }
 
+    [Url(ErrorMessage = "Invalid website URL format.")]
+    [StringLength(100, ErrorMessage = "Website URL must not exceed 100 characters.")]
     public string Website { get; set; }
 
+    [Display(Name = "Foundation Date")]
+    [DataType(DataType.Date)]
     public DateTime? FoundationDate { get; set; }
 
+    [EmailAddress(ErrorMessage = "Invalid email address format.")]
+    [StringLength(100, ErrorMessage = "Email must not exceed 100 characters.")]
     public string Email { get; set; }
 
+    [Display(Name = "Is Active")]
     public bool? IsActive { get; set; }
 
+    [StringLength(500, ErrorMessage = "Notes must not exceed 500 characters.")]
     public string Notes { get; set; }
 
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();

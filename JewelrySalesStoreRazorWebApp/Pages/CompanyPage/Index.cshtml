@@ -1,6 +1,5 @@
 ﻿@page
 @model JewelrySalesStoreRazorWebApp.Pages.CompanyPage.IndexModel
-
 @{
     ViewData["Title"] = "Index";
 }
@@ -10,75 +9,118 @@
 <p>
     <a asp-page="Create">Create New</a>
 </p>
+
+<form method="get">
+    <div class="form-group">
+        <input type="text" name="CurrentFilter" placeholder="Search..." value="@Model.CurrentFilter">
+        <button type="submit" class="btn btn-primary">Search</button> ||
+        <a asp-page="./Index">Back to full List</a>
+    </div>
+</form>
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Company[0].CompanyName)
+                <a asp-page="./Index" asp-route-currentFilter="@Model.CurrentFilter" asp-route-currentSort="@Model.CurrentSort" asp-route-page="1">Name</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Company[0].CompanyAddress)
+                <a asp-page="./Index" asp-route-currentFilter="@Model.CurrentFilter" asp-route-currentSort="@Model.CurrentSort" asp-route-page="1">Address</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Company[0].CompanyDescription)
+                <a asp-page="./Index" asp-route-currentFilter="@Model.CurrentFilter" asp-route-currentSort="@Model.CurrentSort" asp-route-page="1">Description</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Company[0].CompanyPhone)
+                <a asp-page="./Index" asp-route-currentFilter="@Model.CurrentFilter" asp-route-currentSort="@Model.CurrentSort" asp-route-page="1">Phone</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Company[0].Website)
+                <a asp-page="./Index" asp-route-currentFilter="@Model.CurrentFilter" asp-route-currentSort="@Model.CurrentSort" asp-route-page="1">Website</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Company[0].FoundationDate)
+                <a asp-page="./Index" asp-route-currentFilter="@Model.CurrentFilter" asp-route-currentSort="@Model.CurrentSort" asp-route-page="1">Foundation</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Company[0].Email)
+                <a asp-page="./Index" asp-route-currentFilter="@Model.CurrentFilter" asp-route-currentSort="@Model.CurrentSort" asp-route-page="1">Email</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Company[0].IsActive)
+                <a asp-page="./Index" asp-route-currentFilter="@Model.CurrentFilter" asp-route-currentSort="@Model.CurrentSort" asp-route-page="1">Is Active</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Company[0].Notes)
+                <a asp-page="./Index" asp-route-currentFilter="@Model.CurrentFilter" asp-route-currentSort="@Model.CurrentSort" asp-route-page="1">Notes</a>
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Company) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CompanyName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CompanyAddress)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CompanyDescription)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CompanyPhone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Website)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FoundationDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsActive)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Notes)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.CompanyId">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.CompanyId">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.CompanyId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Company)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CompanyName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CompanyAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CompanyDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CompanyPhone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Website)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FoundationDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsActive)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Notes)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.CompanyId">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.CompanyId">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.CompanyId">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+<nav aria-label="Page navigation">
+    <ul class="pagination">
+        @if (Model.CurrentPage > 1)
+        {
+            <li class="page-item">
+                <a class="page-link" asp-page="./Index" asp-route-page="1" asp-route-currentFilter="@Model.CurrentFilter" asp-route-currentSort="@Model.CurrentSort">First</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" asp-page="./Index" asp-route-page="@(Model.CurrentPage - 1)" asp-route-currentFilter="@Model.CurrentFilter" asp-route-currentSort="@Model.CurrentSort">Previous</a>
+            </li>
+        }
+
+        @for (int i = 1; i <= Model.TotalPages; i++)
+        {
+            <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                <a class="page-link" asp-page="./Index" asp-route-page="@i" asp-route-currentFilter="@Model.CurrentFilter" asp-route-currentSort="@Model.CurrentSort">@i</a>
+            </li>
+        }
+
+        @if (Model.CurrentPage < Model.TotalPages)
+        {
+            <li class="page-item">
+                <a class="page-link" asp-page="./Index" asp-route-page="@(Model.CurrentPage + 1)" asp-route-currentFilter="@Model.CurrentFilter" asp-route-currentSort="@Model.CurrentSort">Next</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" asp-page="./Index" asp-route-page="@Model.TotalPages" asp-route-currentFilter="@Model.CurrentFilter" asp-route-currentSort="@Model.CurrentSort">Last</a>
+            </li>
+        }
+    </ul>
+    <p>Page @(Model.CurrentPage) of @Model.TotalPages</p>
+</nav>
+
