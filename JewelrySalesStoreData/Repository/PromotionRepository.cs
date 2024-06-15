@@ -1,4 +1,4 @@
-﻿using JewelrySalesStoreData.DAO;
+﻿using JewelrySalesStoreData.Base;
 using JewelrySalesStoreData.Models;
 using System;
 using System.Collections.Generic;

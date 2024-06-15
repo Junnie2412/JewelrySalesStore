@@ -1,0 +1,89 @@
+﻿@page
+@model JewelrySalesStoreRazorWebApp.Pages.ProductPage.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Product</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @* <div class="form-group">
+                <label asp-for="Product.Image" class="control-label"></label>
+                <input asp-for="Product.Image" class="form-control" />
+                <span asp-validation-for="Product.Image" class="text-danger"></span>
+            </div> *@
+
+            <div class="form-group">
+                <label asp-for="ImageFile" class="control-label"></label>
+                <input asp-for="ImageFile" type="file" class="form-control" />
+                <span asp-validation-for="ImageFile" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+
+                <label asp-for="Product.Name" class="control-label"></label>
+                <input asp-for="Product.Name" class="form-control" />
+                <span asp-validation-for="Product.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+
+                <label asp-for="Product.Color" class="control-label"></label>
+                <input asp-for="Product.Color" class="form-control" />
+                <span asp-validation-for="Product.Color" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Product.Weight" class="control-label"></label>
+                <input asp-for="Product.Weight" class="form-control" />
+                <span asp-validation-for="Product.Weight" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="Product.Price" class="control-label"></label>
+                <input asp-for="Product.Price" class="form-control" />
+                <span asp-validation-for="Product.Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Product.CategoryId" class="control-label"></label>
+                <select asp-for="Product.CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Product.PromotionId" class="control-label"></label>
+                <select asp-for="Product.PromotionId" class="form-control" asp-items="ViewBag.PromotionId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Product.IsActive" class="control-label"></label>
+                <select id="ProductIsActive" class="form-control" asp-for="Product.IsActive">
+                    <option value="true">Còn Hàng</option>
+                    <option value="false">Hết Hàng</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Product.Notes" class="control-label"></label>
+                <input asp-for="Product.Notes" class="form-control" />
+                <span asp-validation-for="Product.Notes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

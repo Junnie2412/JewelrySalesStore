@@ -1,0 +1,96 @@
+﻿@page
+@model JewelrySalesStoreRazorWebApp.Pages.ProductPage.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Product</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<form>
+    Search By Name: <input type="text" asp-for="SearchString" />
+    <input type="submit" value="Filter"/>
+</form>
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductList[0].Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductList[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductList[0].Color)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.ProductList[0].Weight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductList[0].Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductList[0].IsActive)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.ProductList[0].Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductList[0].Promotion)
+            </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.ProductList)
+        {
+            <tr>
+                <td>
+                    <img src="@Url.Page("/ProductPage/Index", "Image", new { id = item.ProductId })" alt="Product Image" style="width:100px;height:auto;" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Color)
+                </td>
+                
+                <td>
+                    @Html.DisplayFor(modelItem => item.Weight)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @if (item.IsActive == true)
+                    {
+                        @Html.Raw("Còn Hàng")
+                    }
+                    else
+                    {
+                        @Html.Raw("Hết Hàng")
+                    }
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Promotion.PromotionName)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.ProductId">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.ProductId">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.ProductId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
