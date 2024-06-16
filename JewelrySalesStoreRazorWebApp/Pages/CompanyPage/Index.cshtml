@@ -1,0 +1,130 @@
+﻿@page
+@model JewelrySalesStoreRazorWebApp.Pages.CompanyPage.IndexModel
+
+@{
+    ViewData["Title"] = "Company";
+}
+
+<h1>Company</h1>
+
+<form class="row mt-5">
+    <p class="col-md-2">
+        <a class="btn btn-primary text-white" style="text-decoration:none;" asp-page="Create">Create New</a>
+    </p>
+
+
+    <p class="col-md-5">
+        Search by Name: <input type="text" asp-for="SearchString" />
+        <input type="submit" value="Filter" /> |
+        <a asp-page="./Index">Back to full List</a>
+    </p>
+
+    <div class="form-check col-md-1 pt-1">
+        <input class="form-check-input" type="checkbox" id="isActiveCheckbox" asp-for="IsActive" />
+        <label class="form-check-label" for="isActiveCheckbox">
+            Filter Active
+        </label>
+    </div>
+
+    <div class="form-check col-md-4 pt-1">
+        <input class="form-check-input" type="checkbox" id="isInactiveCheckbox" asp-for="IsInactive" />
+        <label class="form-check-label" for="isInactiveCheckbox">
+            Filter Inactive
+        </label>
+    </div>
+</form>
+
+<table class="table">
+    <thead class="table-dark">
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Email</th>
+            <th scope="col">Address</th>
+            <th scope="col">Description</th>
+            <th scope="col">Website</th>
+            <th scope="col">Foundation</th>
+            <th scope="col">Active</th>
+            <td scope="col">Notes</td>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Company != null)
+        {
+            @foreach (var item in Model.Company)
+            {
+                <tr>
+                    <td scope="row">
+                        @Html.DisplayFor(modelItem => item.CompanyName)
+                    </td>
+                    <td scope="row">
+                        @Html.DisplayFor(modelItem => item.CompanyPhone)
+                    </td>
+                    <td scope="row">
+                        @Html.DisplayFor(modelItem => item.CompanyAddress)
+                    </td>
+                    <td scope="row">
+                        @Html.DisplayFor(modelItem => item.CompanyDescription)
+                    </td>
+                    <td scope="row">
+                        @Html.DisplayFor(modelItem => item.Website)
+                    </td>
+                    <td scope="row">
+                        @Html.DisplayFor(modelItem => item.FoundationDate)
+                    </td>
+                    <td scope="row">
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td scope="row">
+                        @Html.DisplayFor(modelItem => item.IsActive)
+                    </td>
+                    <td scope="row">
+                        @Html.DisplayFor(modelItem => item.Notes)
+                    </td>
+                    <td scope="row">
+                        <a class="btn btn-success text-white" style="text-decoration: none;" asp-page="./Edit" asp-route-id="@item.CompanyId">Edit</a> |
+                        <a class="btn btn-secondary text-white" style="text-decoration: none;" asp-page="./Details" asp-route-id="@item.CompanyId">Details</a> |
+                        <a class="btn btn-danger text-white" style="text-decoration: none;" asp-page="./Delete" asp-route-id="@item.CompanyId">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<nav aria-label="Page navigation example" class="d-flex justify-content-end">
+    <ul class="pagination">
+        <li class="page-item @(Model.PageIndex == 1 ? "disabled" : "")">
+            <a class="page-link" asp-page="./Index" asp-route-PageIndex="@(Model.PageIndex - 1)" asp-route-SearchString="@Model.SearchString" asp-route-CompanyVipStatus="@Model.IsActive" asp-route-CompanyNonVipStatus="@Model.IsInactive" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        @for (int i = 1; i <= Model.TotalPages; i++)
+        {
+            <li class="page-item @(Model.PageIndex == i ? "active" : "")">
+                <a class="page-link" asp-page="./Index" asp-route-PageIndex="@i" asp-route-SearchString="@Model.SearchString" asp-route-CompanyVipStatus="@Model.IsActive" asp-route-CompanyNonVipStatus="@Model.IsInactive">@i</a>
+            </li>
+        }
+        <li class="page-item @(Model.PageIndex == Model.TotalPages ? "disabled" : "")">
+            <a class="page-link" asp-page="./Index" asp-route-PageIndex="@(Model.PageIndex + 1)" asp-route-SearchString="@Model.SearchString" asp-route-CompanyVipStatus="@Model.IsActive" asp-route-CompanyNonVipStatus="@Model.IsInactive" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+
+<script>
+    $(document).ready(function () {
+        $('#isActiveCheckbox').change(function () {
+            $('form').submit();
+        });
+    });
+
+    $(document).ready(function () {
+        $('#isInactiveCheckbox').change(function () {
+            $('form').submit();
+        });
+    });
+</script>

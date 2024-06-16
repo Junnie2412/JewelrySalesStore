@@ -52,6 +52,11 @@ namespace JewelrySalesStoreWPFApp.UI
                         CompanyPhone = txtCompanyPhone.Text.Trim(),
                         CompanyAddress = txtCompanyAddress.Text.Trim(),
                         CompanyDescription = txtCompanyDescription.Text.Trim(),
+                        Website = txtCompanyWebsite.Text.Trim(),
+                        FoundationDate = DateTime.Now,
+                        Email = txtCompanyEmail.Text.Trim(),
+                        IsActive = chkIsActive.IsChecked,
+                        Notes = txtCompanyNotes.Text.Trim(),
                     };
 
                     var result = await _business.Save(company);
@@ -65,8 +70,12 @@ namespace JewelrySalesStoreWPFApp.UI
                     company.CompanyName = txtCompanyName.Text.Trim();
                     company.CompanyPhone = txtCompanyPhone.Text.Trim();
                     company.CompanyAddress = txtCompanyAddress.Text.Trim();
-                    company.CompanyDescription = txtCompanyDescription.Text.Trim()
-                        ;
+                    company.CompanyDescription = txtCompanyDescription.Text.Trim();
+                    company.Website = txtCompanyWebsite.Text.Trim();
+                    company.FoundationDate = DateTime.Now;
+                    company.Email = txtCompanyEmail.Text.Trim();
+                    company.IsActive = chkIsActive.IsChecked;
+                    company.Notes = txtCompanyNotes.Text.Trim();
 
                     var result = await _business.Update(company);
                     MessageBox.Show(result.Message, "Update");
@@ -77,6 +86,11 @@ namespace JewelrySalesStoreWPFApp.UI
                 txtCompanyPhone.Text = string.Empty;
                 txtCompanyAddress.Text = string.Empty;
                 txtCompanyDescription.Text = string.Empty;
+                txtCompanyWebsite.Text = string.Empty;
+                txtCompanyFoundationDate.Text = string.Empty;
+                txtCompanyEmail.Text = string.Empty;
+                chkIsActive.IsChecked = false;
+                txtCompanyNotes.Text = string.Empty;
 
                 this.LoadGrdCompanies();
             }
@@ -133,6 +147,11 @@ namespace JewelrySalesStoreWPFApp.UI
                             txtCompanyPhone.Text = item.CompanyPhone;
                             txtCompanyAddress.Text = item.CompanyAddress;
                             txtCompanyDescription.Text = item.CompanyDescription;
+                            txtCompanyWebsite.Text = item.Website;
+                            txtCompanyFoundationDate.Text = item.FoundationDate?.ToString("yyyy-MM-dd"); ;
+                            txtCompanyEmail.Text = item.Email;
+                            chkIsActive.IsChecked = item.IsActive;
+                            txtCompanyNotes.Text = item.Notes;
                         }
                     }
                 }

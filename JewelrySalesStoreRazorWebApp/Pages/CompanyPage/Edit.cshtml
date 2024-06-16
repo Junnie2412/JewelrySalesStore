@@ -1,0 +1,86 @@
+﻿@page
+@model JewelrySalesStoreRazorWebApp.Pages.CompanyPage.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Company</h4>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Company.CompanyId" />
+
+            <div class="form-group">
+                <label asp-for="Company.CompanyName" class="control-label"></label>
+                <input asp-for="Company.CompanyName" class="form-control" />
+                <span asp-validation-for="Company.CompanyName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Company.CompanyPhone" class="control-label"></label>
+                <input asp-for="Company.CompanyPhone" class="form-control" />
+                <span asp-validation-for="Company.CompanyPhone" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Company.CompanyAddress" class="control-label"></label>
+                <input asp-for="Company.CompanyAddress" class="form-control" />
+                <span asp-validation-for="Company.CompanyAddress" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Company.CompanyDescription" class="control-label"></label>
+                <input asp-for="Company.CompanyDescription" class="form-control" />
+                <span asp-validation-for="Company.CompanyDescription" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Company.Website" class="control-label"></label>
+                <input asp-for="Company.Website" class="form-control" />
+                <span asp-validation-for="Company.Website" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Company.FoundationDate" class="control-label"></label>
+                <input asp-for="Company.FoundationDate" class="form-control" />
+                <span asp-validation-for="Company.FoundationDate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Company.Email" class="control-label"></label>
+                <input asp-for="Company.Email" class="form-control" />
+                <span asp-validation-for="Company.Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <div class="form-check">
+                    <label class="form-check-label" for="flexCheckDefault">Is Active</label>
+                    <input class="form-check-input" type="checkbox" id="flexCheckDefault" asp-for="Company.IsActive">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Company.Notes" class="control-label"></label>
+                <input asp-for="Company.Notes" class="form-control" />
+                <span asp-validation-for="Company.Notes" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-2">
+                <input type="submit" value="Save" class="btn btn-success" />
+                <a style="text-decoration: none;" class="btn btn-secondary text-white" asp-page="./Index">Back</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

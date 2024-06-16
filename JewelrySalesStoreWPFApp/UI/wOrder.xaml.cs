@@ -30,6 +30,8 @@ namespace JewelrySalesStoreWPFApp.UI
         {
             InitializeComponent();
             _business = new OrderBusiness();
+            _product = new ProductBusiness();
+            _detail = new OrderDetailBusiness();
             LoadGridOrders();
         }
 
@@ -146,7 +148,7 @@ namespace JewelrySalesStoreWPFApp.UI
                     if (item != null)
                     {
                         var currencyResult = await _business.GetById(item.OrderId);
-
+                        //var currencyOrderDetail = await _detail.GetById(currencyResult.)
                         if (currencyResult.Data != null)
                         {
                             item = currencyResult.Data as Order;
@@ -157,6 +159,8 @@ namespace JewelrySalesStoreWPFApp.UI
                             txtStatus.Text = item.Status.ToString();
                             txtTotalPrice.Text = item.TotalPrice.ToString();
                             txtOrderId.Text = item.OrderId.ToString();
+                            txtCustomerBankAccount.Text = item.CustomerBankAccount;
+                            txtShippingMethod.Text = item.ShippingMethod;
                         }
                     }
                 }

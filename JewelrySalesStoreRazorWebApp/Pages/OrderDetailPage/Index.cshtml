@@ -1,0 +1,128 @@
+﻿@page
+@model JewelrySalesStoreRazorWebApp.Pages.OrderDetailPage.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Order Detail</h1>
+
+<form class="row mt-5">
+    <p class="col-md-2">
+        <a class="btn btn-primary text-white" style="text-decoration:none;" asp-page="Create">Create New</a>
+    </p>
+
+
+    <p class="col-md-5">
+        Search by Name: <input type="text" asp-for="SearchString" />
+        <input type="submit" value="Filter" /> |
+        <a asp-page="./Index">Back to full List</a>
+    </p>
+
+    <div class="form-check col-md-1 pt-1">
+        <input class="form-check-input" type="checkbox" id="isActiveCheckbox" asp-for="IsActive" />
+        <label class="form-check-label" for="isActiveCheckbox">
+            Filter Active
+        </label>
+    </div>
+
+    <div class="form-check col-md-4 pt-1">
+        <input class="form-check-input" type="checkbox" id="isInactiveCheckbox" asp-for="IsInactive" />
+        <label class="form-check-label" for="isInactiveCheckbox">
+            Filter Inactive
+        </label>
+    </div>
+</form>
+
+<table class="table">
+    <thead class="table-dark">
+        <tr>
+            <th scope="col">Order ID</th>
+            <th scope="col">Product ID</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Unit Price</th>
+            <th scope="col">Total Price</th>
+            <th scope="col">Discount Price</th>
+            <th scope="col">Final Price</th>
+            <th scope="col">Active</th>
+            <td scope="col">Notes</td>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.OrderDetail)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnitPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiscountPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FinalPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsActive)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Notes)
+                </td>
+                <td>
+                    <a class="btn btn-success text-white" style="text-decoration: none;" asp-page="./Edit" asp-route-id="@item.OrderDetailId">Edit</a> |
+                    <a class="btn btn-secondary text-white" style="text-decoration: none;" asp-page="./Details" asp-route-id="@item.OrderDetailId">Details</a> |
+                    <a class="btn btn-danger text-white" style="text-decoration: none;" asp-page="./Delete" asp-route-id="@item.OrderDetailId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<nav aria-label="Page navigation example" class="d-flex justify-content-end">
+<ul class="pagination">
+    <li class="page-item @(Model.PageIndex == 1 ? "disabled" : "")">
+        <a class="page-link" asp-page="./Index" asp-route-PageIndex="@(Model.PageIndex - 1)" asp-route-SearchString="@Model.SearchString" asp-route-CompanyVipStatus="@Model.IsActive" asp-route-CompanyNonVipStatus="@Model.IsInactive" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+        </a>
+    </li>
+    @for (int i = 1; i <= Model.TotalPages; i++)
+    {
+        <li class="page-item @(Model.PageIndex == i ? "active" : "")">
+            <a class="page-link" asp-page="./Index" asp-route-PageIndex="@i" asp-route-SearchString="@Model.SearchString" asp-route-CompanyVipStatus="@Model.IsActive" asp-route-CompanyNonVipStatus="@Model.IsInactive">@i</a>
+        </li>
+    }
+    <li class="page-item @(Model.PageIndex == Model.TotalPages ? "disabled" : "")">
+        <a class="page-link" asp-page="./Index" asp-route-PageIndex="@(Model.PageIndex + 1)" asp-route-SearchString="@Model.SearchString" asp-route-CompanyVipStatus="@Model.IsActive" asp-route-CompanyNonVipStatus="@Model.IsInactive" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+        </a>
+    </li>
+</ul>
+</nav>
+
+
+<script>
+    $(document).ready(function () {
+        $('#isActiveCheckbox').change(function () {
+            $('form').submit();
+        });
+    });
+
+    $(document).ready(function () {
+        $('#isInactiveCheckbox').change(function () {
+            $('form').submit();
+        });
+    });
+</script>
+
