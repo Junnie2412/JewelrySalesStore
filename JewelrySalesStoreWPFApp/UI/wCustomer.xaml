@@ -1,0 +1,143 @@
+﻿<Window x:Class="JewelrySalesStoreWPFApp.UI.wCustomer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:JewelrySalesStoreWPFApp.UI"
+        mc:Ignorable="d"
+        Title="wCustomer" Height="450" Width="940">
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <GroupBox Header="Customer Form" Margin="10">
+                <Grid Height="Auto">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="220"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="220"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="220"/>
+
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Id -->
+                    <TextBox Visibility="Collapsed" x:Name="txtCustomerId"  Text="{Binding Path=Customer.CustomerId, Mode=TwoWay}"/>
+
+                    <!-- FirstName -->
+                    <Label Grid.Column="0" Grid.Row="0" Content="FirstName" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
+                    <TextBox Grid.Column="1" Grid.Row="0" x:Name="txtFirstName" Height="25" Text="{Binding Path=Customer.FirstName, Mode=TwoWay}" Margin="5" Width="200" HorizontalAlignment="Left"/>
+
+                    <!--LastName-->
+                    <Label Grid.Column="2" Grid.Row="0" Content="LastName" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
+                    <TextBox Grid.Column="3" Grid.Row="0" x:Name="txtLastName" Height="25" Text="{Binding Path=Customer.LastName, Mode=TwoWay}" Margin="5" Width="200" HorizontalAlignment="Left"/>
+
+                    <!-- BirthDate -->
+                    <Label Grid.Column="4" Grid.Row="0" Content="BirthDate" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
+                    <DatePicker Grid.Column="5" Grid.Row="0" x:Name="dpBirthDate" Height="25" SelectedDate="{Binding Path=Customer.BirthDate, Mode=TwoWay}" Margin="5" Width="200" HorizontalAlignment="Left"/>
+
+                    <!--Gender-->
+                    <Label Grid.Column="0" Grid.Row="1" Content="Gender" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
+                    <ComboBox Grid.Column="1" Grid.Row="1" x:Name="cbGender" Height="25" Width="200" HorizontalAlignment="Left" Margin="5"
+                 SelectedValue="{Binding Path=Customer.Gender, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                        <ComboBoxItem Content="Nam" Tag="true"/>
+                        <ComboBoxItem Content="Nữ" Tag="false"/>
+                    </ComboBox>
+
+                    <!--Phone-->
+                    <Label Grid.Column="2" Grid.Row="1" Content="Phone" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
+                    <TextBox Grid.Column="3" Grid.Row="1" x:Name="txtPhone" Height="25" Text="{Binding Path=Customer.Phone, Mode=TwoWay}" Margin="5" Width="200" HorizontalAlignment="Left"/>
+
+                    <!--Email-->
+                    <Label Grid.Column="4" Grid.Row="1" Content="Email" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
+                    <TextBox Grid.Column="5" Grid.Row="1" x:Name="txtEmail" Height="25" Text="{Binding Path=Customer.Email, Mode=TwoWay}" Margin="5" Width="200" HorizontalAlignment="Left"/>
+
+                    <!--Address-->
+                    <Label Grid.Column="0" Grid.Row="2" Content="Address" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
+                    <TextBox Grid.Column="1" Grid.Row="2" x:Name="txtAddress" Height="25" Text="{Binding Path=Customer.Address, Mode=TwoWay}" Margin="5" Width="200" HorizontalAlignment="Left"/>
+
+                    <!-- Point -->
+                    <Label Grid.Column="2" Grid.Row="2" Content="Point" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
+                    <TextBox Grid.Column="3" Grid.Row="2" x:Name="txtPoint" Height="25" Text="{Binding Path=Customer.Point, Mode=TwoWay}" Margin="5" Width="200" HorizontalAlignment="Left"/>
+
+                    <!--VipStatus-->
+                    <Label Grid.Column="4" Grid.Row="2" Content="VipStatus" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
+                    <CheckBox Grid.Column="5" Grid.Row="2" x:Name="chkVipStatus" Height="25" Margin="5" Width="200" HorizontalAlignment="Left"
+                 IsChecked="{Binding Path=Customer.VipStatus, Mode=TwoWay}"/>
+
+                    <!--Notes-->
+                    <Label Grid.Column="0" Grid.Row="3" Content="Notes" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
+                    <TextBox Grid.Column="1" Grid.ColumnSpan="5" Grid.Row="3"  x:Name="txtNotes" Height="60" Text="{Binding Path=Customer.Point, Mode=TwoWay}" Margin="5" Width="800" HorizontalAlignment="Left"/>
+                </Grid>
+            </GroupBox>
+            <StackPanel Margin="0,0,15,0"  Height="40" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Margin="0,0,5,0" x:Name="ButtonSave" Content="Save" Height="30" Width="80" Click="ButtonSave_Click"/>
+                <Button  x:Name="ButtonCancel" Content="Cancel" Height="30" Width="80" Click="ButtonCancel_Click"/>
+            </StackPanel>
+
+            <StackPanel Height="210">
+                <DataGrid SelectionChanged="gridCustomer_SelectionChanged" x:Name="gridCustomer" AutoGenerateColumns="False" ItemsSource="{Binding Customer}" CanUserAddRows="False" Height="200" Margin="10" MouseDoubleClick="grdCustomer_MouseDouble_Click" SelectionMode="Single" SelectionUnit="FullRow">
+                    <DataGrid.Columns>
+                        <!--<DataGridTextColumn Header="Code" Binding="{Binding Path=Id}" Visibility="Hidden"/>-->
+                        <DataGridTextColumn Header="Id" Binding="{Binding Path=CustomerId}" Width="150" Visibility="Visible"/>
+                        <DataGridTextColumn Header="FirstName" Binding="{Binding Path=CustomerFirstName}" Width="80" IsReadOnly="True" />
+                        <DataGridTextColumn Header="LastName" Binding="{Binding Path=CustomerLastName}" Width="80" IsReadOnly="True" />
+                        <!--<DataGridTextColumn Header="BirthDate" Binding="{Binding Path=CustomerBirthDate}" Width="80"  IsReadOnly="True"/>-->
+                        <DataGridTemplateColumn Header="BirthDate" Width="80" IsReadOnly="True">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=CustomerBirthDate, StringFormat={}{0:dd/MM/yyyy}}" Padding="4,0,0,0"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn Header="Gender" Width="80" IsReadOnly="True">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Padding="4,0,0,0">
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="Text" Value="{Binding Path=CustomerGender}"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Path=CustomerGender}" Value="True">
+                                                        <Setter Property="Text" Value="Nam"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding Path=CustomerGender}" Value="False">
+                                                        <Setter Property="Text" Value="Nữ"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTextColumn Header="Phone" Binding="{Binding Path=CustomerPhone}" Width="80" IsReadOnly="True" />
+                        <DataGridTextColumn Header="Email" Binding="{Binding Path=CustomerEmail}" Width="80" IsReadOnly="True" />
+                        <DataGridTextColumn Header="Address" Binding="{Binding Path=CustomerAddress}" Width="100" IsReadOnly="True" />
+                        <DataGridTextColumn Header="Point" Binding="{Binding Path=CustomerPoint}" Width="40" IsReadOnly="True" />
+                        <DataGridTextColumn Header="IsVip" Binding="{Binding Path=CustomerVipStatus}" Width="40" IsReadOnly="True" />
+
+                        <DataGridTemplateColumn Header="Actions" Width="110">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <Button Content="Edit" x:Name="ButtonEdit" Width="50" CommandParameter="{Binding Path=CustomerId}" Click="grdCustomer_ButtonEdit_Click" Padding="4"/>
+                                        <Button Content="Remove" x:Name="ButtonDelete" Width="60" CommandParameter="{Binding Path=CustomerId}" Click="grdCustomer_ButtonDelete_Click" Padding="4"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
