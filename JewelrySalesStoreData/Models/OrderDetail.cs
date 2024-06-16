@@ -2,12 +2,18 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 
 namespace JewelrySalesStoreData.Models;
 
 public partial class OrderDetail
 {
     public Guid OrderDetailId { get; set; }
+
+    public OrderDetail()
+    {
+        OrderDetailId = Guid.NewGuid();
+    }
 
     public Guid? OrderId { get; set; }
 

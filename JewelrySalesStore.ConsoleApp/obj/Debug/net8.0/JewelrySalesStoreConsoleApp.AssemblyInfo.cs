@@ -14,11 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("JewelrySalesStoreConsoleApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-<<<<<<< Updated upstream
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+89d62bc21414bcf1544a8df0994ec6855c8897b5")]
-=======
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8d0a9b8fa8aea6a93e661652e7ac45ff394f425f")]
->>>>>>> Stashed changes
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dbe5562fe1ed64eb6c23fddf4758365297c368a1")]
 [assembly: System.Reflection.AssemblyProductAttribute("JewelrySalesStoreConsoleApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("JewelrySalesStoreConsoleApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
