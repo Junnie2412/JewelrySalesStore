@@ -13,7 +13,7 @@ namespace JewelrySalesStoreData.Repository
         public PromotionRepository()
         {
         }
-        public PromotionRepository(Net1702_221_4_JewelrySalesStoreContext context) : base(context) => _context = context;
+        public PromotionRepository(Net1702_221_4_JewelrySalesStoreContext context) : base(context) => _context ??= context;
 
     }
 }

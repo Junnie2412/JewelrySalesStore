@@ -37,6 +37,11 @@
                     <th class="card-title text-center">Phone</th>
                     <th class="card-title text-center">Address</th>
                     <th class="card-title text-center">Description</th>
+                    <th class="card-title text-center">Website</th>
+                    <th class="card-title text-center">Foundation Date</th>
+                    <th class="card-title text-center">Email</th>
+                    <th class="card-title text-center">Is Active</th>
+                    <th class="card-title text-center">Notes</th>
                     <th class="card-title text-center">Actions</th>
                 </tr>
             </thead>
@@ -51,6 +56,11 @@
                             <td class="text-center">@company.CompanyPhone</td>
                             <td class="text-center">@company.CompanyAddress</td>
                             <td class="text-center">@company.CompanyDescription</td>
+                            <td class="text-center">@company.Website</td>
+                            <td class="text-center">@company.FoundationDate</td>
+                            <td class="text-center">@company.Email</td>
+                            <td class="text-center">@company.IsActive</td>
+                            <td class="text-center">@company.Notes</td>
                             <td class="text-center">
                                 <button type="button" class="btn btn-success" onclick="edit('@company.CompanyId')">Edit</button>
                                 <button type="button" class="btn btn-danger" onclick="deleteCompany('@company.CompanyId')">Delete</button>
@@ -102,6 +112,33 @@
                         <input asp-for="Company.CompanyDescription" class="form-control" />
                         <span asp-validation-for="Company.CompanyDescription" class="text-danger"></span>
                     </div>
+                    <div class="form-group">
+                        <label for="CompanyWebsite">Website</label>
+                        <input asp-for="Company.Website" class="form-control" />
+                        <span asp-validation-for="Company.Website" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="CompanyFoundationDate">Foundation Date</label>
+                        <input asp-for="Company.FoundationDate" class="form-control" />
+                        <span asp-validation-for="Company.FoundationDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="CompanyEmail">Email</label>
+                        <input asp-for="Company.Email" class="form-control" />
+                        <span asp-validation-for="Company.Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="IsActive">Is Active</label>
+                        <div class="form-check">
+                            <input asp-for="Company.IsActive" type="checkbox" class="form-check-input" />
+                            <label class="form-check-label" for="IsActive">Active</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="CompanyNotes">Notes</label>
+                        <input asp-for="Company.Notes" class="form-control" />
+                        <span asp-validation-for="Company.Notes" class="text-danger"></span>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button id="btSave" type="submit" class="btn btn-primary">Save</button>
@@ -111,6 +148,7 @@
         </div>
     </div>
 </div>
+
 
 <!-- Edit Company Modal -->
 <div class="modal fade" id="editCompanyModal" tabindex="-1" aria-labelledby="companyModalLabel" aria-hidden="true">
@@ -125,29 +163,66 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group">
-                        <label for="editCompanyId">Company ID</label>
-                        <input id="editCompanyId" class="form-control" readonly />
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label class="card-title text-center" for="editCompanyId">Code</label>
+                            <input id="editCompanyId" class="form-control" readonly />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="card-title text-center" for="editCompanyName">Name</label>
+                            <input asp-for="Company.CompanyName" class="form-control" id="editCompanyName" />
+                            <span asp-validation-for="Company.CompanyName" class="text-danger"></span>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="editCompanyName">Name</label>
-                        <input asp-for="Company.CompanyName" class="form-control" id="editCompanyName" />
-                        <span asp-validation-for="Company.CompanyName" class="text-danger"></span>
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label class="card-title text-center" for="editCompanyPhone">Phone</label>
+                            <input asp-for="Company.CompanyPhone" class="form-control" id="editCompanyPhone" />
+                            <span asp-validation-for="Company.CompanyPhone" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="card-title text-center" for="editCompanyAddress">Address</label>
+                            <input asp-for="Company.CompanyAddress" class="form-control" id="editCompanyAddress" />
+                            <span asp-validation-for="Company.CompanyAddress" class="text-danger"></span>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="editCompanyPhone">Phone</label>
-                        <input asp-for="Company.CompanyPhone" class="form-control" id="editCompanyPhone" />
-                        <span asp-validation-for="Company.CompanyPhone" class="text-danger"></span>
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label class="card-title text-center" for="editCompanyDescription">Description</label>
+                            <input asp-for="Company.CompanyDescription" class="form-control" id="editCompanyDescription" />
+                            <span asp-validation-for="Company.CompanyDescription" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="card-title text-center" for="editCompanyWebsite">Website</label>
+                            <input asp-for="Company.Website" class="form-control" id="editCompanyWebsite" />
+                            <span asp-validation-for="Company.Website" class="text-danger"></span>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="editCompanyAddress">Address</label>
-                        <input asp-for="Company.CompanyAddress" class="form-control" id="editCompanyAddress" />
-                        <span asp-validation-for="Company.CompanyAddress" class="text-danger"></span>
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label class="card-title text-center" for="editCompanyFoundationDate">Foundation Date</label>
+                            <input asp-for="Company.FoundationDate" class="form-control" id="editCompanyFoundationDate" />
+                            <span asp-validation-for="Company.FoundationDate" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="card-title text-center" for="editCompanyEmail">Email</label>
+                            <input asp-for="Company.Email" class="form-control" id="editCompanyEmail" />
+                            <span asp-validation-for="Company.Email" class="text-danger"></span>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="editCompanyDescription">Description</label>
-                        <input asp-for="Company.CompanyDescription" class="form-control" id="editCompanyDescription" />
-                        <span asp-validation-for="Company.CompanyDescription" class="text-danger"></span>
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label class="card-title text-center" for="editCompanyIsActive">Is Active</label>
+                            <div class="form-check">
+                                <input asp-for="Company.IsActive" type="checkbox" class="form-check-input" id="editCompanyIsActive" />
+                                <label class="form-check-label" for="editCompanyIsActive">Active</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="card-title text-center" for="editCompanyNotes">Notes</label>
+                            <input asp-for="Company.Notes" class="form-control" id="editCompanyNotes" />
+                            <span asp-validation-for="Company.Notes" class="text-danger"></span>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -158,6 +233,7 @@
         </div>
     </div>
 </div>
+
 
 <!-- Delete Company Modal -->
 <div class="modal fade" id="removeCompanyModal" tabindex="-1" aria-labelledby="companyModalLabel" aria-hidden="true">
@@ -201,6 +277,11 @@
                     $('#editCompanyModal #editCompanyPhone').val(data.companyPhone);
                     $('#editCompanyModal #editCompanyAddress').val(data.companyAddress);
                     $('#editCompanyModal #editCompanyDescription').val(data.companyDescription);
+                    $('#editCompanyModal #editCompanyWebsite').val(data.website);
+                    $('#editCompanyModal #editCompanyFoundationDate').val(data.foundationDate);
+                    $('#editCompanyModal #editCompanyEmail').val(data.email);
+                    $('#editCompanyModal #editCompanyIsActive').val(data.isActive);
+                    $('#editCompanyModal #editCompanyNotes').val(data.notes);
 
                     $('#editCompanyModal').modal('show');
                 }

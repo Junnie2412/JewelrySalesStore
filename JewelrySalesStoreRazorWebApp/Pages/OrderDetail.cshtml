@@ -34,10 +34,14 @@
                 <tr class="card-header">
                     <th class="card-title text-center">Code</th>
                     <th class="card-title text-center">Order Code</th>
-                    <th class="card-title text-center">Quantity</th>
                     <th class="card-title text-center">Product Code</th>
+                    <th class="card-title text-center">Quantity</th>
                     <th class="card-title text-center">Unit Price</th>
                     <th class="card-title text-center">Total Price</th>
+                    <th class="card-title text-center">Discount Price</th>
+                    <th class="card-title text-center">Final Price</th>
+                    <th class="card-title text-center">IsActive</th>
+                    <th class="card-title text-center">Notes</th>
                     <th class="card-title text-center">Actions</th>
                 </tr>
             </thead>
@@ -53,6 +57,10 @@
                             <td>@orderDetail.ProductId</td>
                             <td>@orderDetail.UnitPrice</td>
                             <td>@orderDetail.TotalPrice</td>
+                            <td>@orderDetail.DiscountPrice</td>
+                            <td>@orderDetail.FinalPrice</td>
+                            <td>@orderDetail.IsActive</td>
+                            <td>@orderDetail.Notes</td>
                             <td class="text-center">
                                 <button type="button" class="btn btn-success" onclick="edit('@orderDetail.OrderDetailId')">Edit</button>
                                 <button type="button" class="btn btn-danger" onclick="remove('@orderDetail.OrderDetailId')">Delete</button>
@@ -84,30 +92,62 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group">
-                        <label for="OrderId">Order ID</label>
-                        <input asp-for="OrderDetail.OrderId" class="form-control" />
-                        <span asp-validation-for="OrderDetail.OrderId" class="text-danger"></span>
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label for="OrderId">Order ID</label>
+                            <input asp-for="OrderDetail.OrderId" class="form-control" />
+                            <span asp-validation-for="OrderDetail.OrderId" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="ProductId">Product ID</label>
+                            <input asp-for="OrderDetail.ProductId" class="form-control" />
+                            <span asp-validation-for="OrderDetail.ProductId" class="text-danger"></span>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="Quantity">Quantity</label>
-                        <input asp-for="OrderDetail.Quantity" class="form-control" />
-                        <span asp-validation-for="OrderDetail.Quantity" class="text-danger"></span>
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label for="Quantity">Quantity</label>
+                            <input asp-for="OrderDetail.Quantity" class="form-control" />
+                            <span asp-validation-for="OrderDetail.Quantity" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="UnitPrice">Unit Price</label>
+                            <input asp-for="OrderDetail.UnitPrice" class="form-control" />
+                            <span asp-validation-for="OrderDetail.UnitPrice" class="text-danger"></span>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="ProductId">Product ID</label>
-                        <input asp-for="OrderDetail.ProductId" class="form-control" />
-                        <span asp-validation-for="OrderDetail.ProductId" class="text-danger"></span>
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label for="TotalPrice">Total Price</label>
+                            <input asp-for="OrderDetail.TotalPrice" class="form-control" />
+                            <span asp-validation-for="OrderDetail.TotalPrice" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="DiscountPrice">Discount Price</label>
+                            <input asp-for="OrderDetail.DiscountPrice" class="form-control" />
+                            <span asp-validation-for="OrderDetail.DiscountPrice" class="text-danger"></span>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="UnitPrice">Unit Price</label>
-                        <input asp-for="OrderDetail.UnitPrice" class="form-control" />
-                        <span asp-validation-for="OrderDetail.UnitPrice" class="text-danger"></span>
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label for="FinalPrice">Final Price</label>
+                            <input asp-for="OrderDetail.FinalPrice" class="form-control" />
+                            <span asp-validation-for="OrderDetail.FinalPrice" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="IsActive">Is Active</label>
+                            <div class="form-check">
+                                <input asp-for="OrderDetail.IsActive" type="checkbox" class="form-check-input" />
+                                <label class="form-check-label" for="IsActive">Active</label>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="TotalPrice">Total Price</label>
-                        <input asp-for="OrderDetail.TotalPrice" class="form-control" />
-                        <span asp-validation-for="OrderDetail.TotalPrice" class="text-danger"></span>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <label for="Notes">Notes</label>
+                            <input asp-for="OrderDetail.Notes" class="form-control" />
+                            <span asp-validation-for="OrderDetail.Notes" class="text-danger"></span>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -128,33 +168,62 @@
                 <input asp-for="OrderDetail.OrderDetailId" type="hidden" id="editOrderDetailId" />
 
                 <div class="modal-header">
-                    <h5 class="modal-title=" orderDetailModalLabel">Edit Order Detail</h5>
+                    <h5 class="modal-title" id="orderDetailModalLabel">Edit Order Detail</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group">
-                        <label for="editOrderDetailId">Order Detail ID</label>
-                        <input id="editOrderDetailId" class="form-control" readonly />
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label class="card-title text-center" for="editOrderDetailId">Code</label>
+                            <input id="editOrderDetailId" class="form-control" readonly />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="card-title text-center" for="editOrderId">Order Code</label>
+                            <input asp-for="OrderDetail.OrderId" class="form-control" id="editOrderId" />
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="editOrderId">Order ID</label>
-                        <input asp-for="OrderDetail.OrderId" class="form-control" id="editOrderId" />
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label class="card-title text-center" for="editProductId">Product Code</label>
+                            <input asp-for="OrderDetail.ProductId" class="form-control" id="editProductId" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="card-title text-center" for="editQuantity">Quantity</label>
+                            <input asp-for="OrderDetail.Quantity" class="form-control" id="editQuantity" />
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="editQuantity">Quantity</label>
-                        <input asp-for="OrderDetail.Quantity" class="form-control" id="editQuantity" />
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label class="card-title text-center" for="editUnitPrice">Unit Price</label>
+                            <input asp-for="OrderDetail.UnitPrice" class="form-control" id="editUnitPrice" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="card-title text-center" for="editTotalPrice">Total Price</label>
+                            <input asp-for="OrderDetail.TotalPrice" class="form-control" id="editTotalPrice" />
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="editProductId">Product ID</label>
-                        <input asp-for="OrderDetail.ProductId" class="form-control" id="editProductId" />
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label class="card-title text-center" for="editDiscountPrice">Discount Price</label>
+                            <input asp-for="OrderDetail.DiscountPrice" class="form-control" id="editDiscountPrice" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="card-title text-center" for="editFinalPrice">Final Price</label>
+                            <input asp-for="OrderDetail.FinalPrice" class="form-control" id="editFinalPrice" />
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="editUnitPrice">Unit Price</label>
-                        <input asp-for="OrderDetail.UnitPrice" class="form-control" id="editUnitPrice" />
-                    </div>
-                    <div class="form-group">
-                        <label for="editTotalPrice">Total Price</label>
-                        <input asp-for="OrderDetail.TotalPrice" class="form-control" id="editTotalPrice" />
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label class="card-title text-center" for="editIsActive">IsActive</label>
+                            <div class="form-check">
+                                <input asp-for="OrderDetail.IsActive" type="checkbox" class="form-check-input" />
+                                <label class="form-check-label" for="editIsActive">Active</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="card-title text-center" for="editNotes">Notes</label>
+                            <input asp-for="OrderDetail.Notes" class="form-control" id="editNotes" />
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -165,6 +234,7 @@
         </div>
     </div>
 </div>
+
 
 <!-- Delete OrderDetail Modal -->
 <div class="modal fade" id="removeOrderDetailModal" tabindex="-1" aria-labelledby="orderDetailModalLabel" aria-hidden="true">
@@ -205,10 +275,14 @@
                 success: function (data) {
                     $('#editOrderDetailModal #editOrderDetailId').val(data.orderDetailId);
                     $('#editOrderDetailModal #editOrderId').val(data.orderId);
-                    $('#editOrderDetailModal #editQuantity').val(data.quantity);
                     $('#editOrderDetailModal #editProductId').val(data.productId);
+                    $('#editOrderDetailModal #editQuantity').val(data.quantity);
                     $('#editOrderDetailModal #editUnitPrice').val(data.unitPrice);
                     $('#editOrderDetailModal #editTotalPrice').val(data.totalPrice);
+                    $('#editOrderDetailModal #editDiscountPrice').val(data.discountPrice);
+                    $('#editOrderDetailModal #editFinalPrice').val(data.finalPrice);
+                    $('#editOrderDetailModal #editIsActive').val(data.isActive);
+                    $('#editOrderDetailModal #editNotes').val(data.notes);
 
                     $('#editOrderDetailModal').modal('show');
                 }

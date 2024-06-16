@@ -1,0 +1,78 @@
+﻿@page
+@model JewelrySalesStoreRazorWebApp.Pages.PromotionPage.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Promotion</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Promotion.PromotionId" />
+            <div class="form-group">
+                <label asp-for="Promotion.PromotionName" class="control-label"></label>
+                <input asp-for="Promotion.PromotionName" class="form-control" />
+                <span asp-validation-for="Promotion.PromotionName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Promotion.PromotionCode" class="control-label"></label>
+                <input asp-for="Promotion.PromotionCode" class="form-control" />
+                <span asp-validation-for="Promotion.PromotionCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Promotion.DiscountPercentage" class="control-label"></label>
+                <input asp-for="Promotion.DiscountPercentage" class="form-control" />
+                <span asp-validation-for="Promotion.DiscountPercentage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Promotion.StartDate" class="control-label"></label>
+                <input asp-for="Promotion.StartDate" class="form-control" />
+                <span asp-validation-for="Promotion.StartDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Promotion.EndDate" class="control-label"></label>
+                <input asp-for="Promotion.EndDate" class="form-control" />
+                <span asp-validation-for="Promotion.EndDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Promotion.Condition" class="control-label"></label>
+                <input asp-for="Promotion.Condition" class="form-control" />
+                <span asp-validation-for="Promotion.Condition" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Promotion.Description" class="control-label"></label>
+                <input asp-for="Promotion.Description" class="form-control" />
+                <span asp-validation-for="Promotion.Description" class="text-danger"></span>
+            </div>
+            <div class="col-md-4">
+                <label asp-for="Promotion.IsActive" class="control-label"></label>
+                <select asp-for="Promotion.IsActive" class="form-select" aria-label="Default select example">
+                    <option value="true">On</option>
+                    <option value="false">Off</option>
+                </select>
+                <span asp-validation-for="Promotion.IsActive" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Promotion.Notes" class="control-label"></label>
+                <input asp-for="Promotion.Notes" class="form-control" />
+                <span asp-validation-for="Promotion.Notes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
