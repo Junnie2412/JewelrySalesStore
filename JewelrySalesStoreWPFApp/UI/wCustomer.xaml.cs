@@ -34,7 +34,10 @@ namespace JewelrySalesStoreWPFApp.UI
         {
             try
             {
-                if (txtCustomerId.Text.Equals(""))
+                Guid.TryParse(txtCustomerId.Text, out Guid customerid);
+
+                var item = await _business.GetById(customerid);
+                if (item.Data == null)
                 {
                     var customer = new Customer()
                     {
@@ -55,7 +58,6 @@ namespace JewelrySalesStoreWPFApp.UI
                 }
                 else
                 {
-                    var item = await _business.GetById(Guid.Parse(txtCustomerId.Text));
                     var customer = item.Data as Customer;
                     customer.CustomerFirstName = txtFirstName.Text;
                     customer.CustomerLastName = txtLastName.Text;
@@ -71,16 +73,8 @@ namespace JewelrySalesStoreWPFApp.UI
                     var result = await _business.Update(customer);
                     MessageBox.Show(result.Message, "Update");
                 }
-                txtFirstName.Text = string.Empty;
-                txtLastName.Text = string.Empty;
-                dpBirthDate.Text = string.Empty;
-                cbGender.SelectedIndex = 0;
-                txtPhone.Text = string.Empty;
-                txtEmail.Text = string.Empty;
-                txtAddress.Text = string.Empty;
-                txtPoint.Text = string.Empty;
-                chkVipStatus.IsChecked = false;
-                txtNotes.Text = string.Empty;
+
+                clearForm();
                 this.LoadGridCustomers();
 
             }
@@ -93,30 +87,8 @@ namespace JewelrySalesStoreWPFApp.UI
 
         private async void grdCustomer_ButtonEdit_Click(object sender, RoutedEventArgs e) { }
 
-        private void gridCustomer_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (gridCustomer.SelectedItem != null)
-            {
-                var selectedCustomer = gridCustomer.SelectedItem as Customer;
-                if (selectedCustomer != null)
-                {
-                    // Hiển thị dữ liệu của khách hàng được chọn lên các trường nhập liệu
-                    txtCustomerId.Text = selectedCustomer.CustomerId.ToString();
-                    txtFirstName.Text = selectedCustomer.CustomerFirstName;
-                    txtLastName.Text = selectedCustomer.CustomerLastName;
-                    dpBirthDate.SelectedDate = selectedCustomer.CustomerBirthDate;
-                    cbGender.SelectedItem = cbGender.Items
-                        .Cast<ComboBoxItem>()
-                        .FirstOrDefault(item => (bool)item.Tag == selectedCustomer.CustomerGender);
-                    txtPhone.Text = selectedCustomer.CustomerPhone;
-                    txtEmail.Text = selectedCustomer.CustomerEmail;
-                    txtAddress.Text = selectedCustomer.CustomerAddress;
-                    txtPoint.Text = selectedCustomer.CustomerPoint.ToString();
-                    chkVipStatus.IsChecked = selectedCustomer.CustomerVipStatus;
-                }
-            }
-        }
-        private void ButtonCancel_Click(object sender, RoutedEventArgs e) { }
+
+
         private async void grdCustomer_ButtonDelete_Click(object sender, RoutedEventArgs e)
         {
             Button btn = (Button)sender;
@@ -138,7 +110,28 @@ namespace JewelrySalesStoreWPFApp.UI
         }
 
 
-        private async void grdCustomer_MouseDouble_Click(object sender, RoutedEventArgs e) { }
+        private async void grdCustomer_MouseDouble_Click(object sender, RoutedEventArgs e)
+        {
+            if (gridCustomer.SelectedItem != null)
+            {
+                var selectedCustomer = gridCustomer.SelectedItem as Customer;
+                if (selectedCustomer != null)
+                {
+                    // Hiển thị dữ liệu của khách hàng được chọn lên các trường nhập liệu
+                    txtCustomerId.Text = selectedCustomer.CustomerId.ToString();
+                    txtFirstName.Text = selectedCustomer.CustomerFirstName;
+                    txtLastName.Text = selectedCustomer.CustomerLastName;
+                    dpBirthDate.SelectedDate = selectedCustomer.CustomerBirthDate;
+                    cbGender.SelectedValue = selectedCustomer.CustomerGender.ToString().ToLower();
+                    txtPhone.Text = selectedCustomer.CustomerPhone;
+                    txtEmail.Text = selectedCustomer.CustomerEmail;
+                    txtAddress.Text = selectedCustomer.CustomerAddress;
+                    txtPoint.Text = selectedCustomer.CustomerPoint.ToString();
+                    chkVipStatus.IsChecked = selectedCustomer.CustomerVipStatus;
+                    txtNotes.Text = selectedCustomer.Notes;
+                }
+            }
+        }
 
         private async void LoadGridCustomers()
         {
@@ -154,6 +147,29 @@ namespace JewelrySalesStoreWPFApp.UI
                 gridCustomer.ItemsSource = new List<Customer>();
             }
 
+        }
+        private void ButtonCancel_Click(object sender, RoutedEventArgs e)
+        {
+            clearForm();
+        }
+        private void clearForm()
+        {
+            if (!string.IsNullOrEmpty(txtCustomerId.Text))
+            {
+                // Xóa CustomerId để chuyển sang chế độ thêm mới
+                txtCustomerId.Text = string.Empty;
+            }
+
+            txtFirstName.Text = string.Empty;
+            txtLastName.Text = string.Empty;
+            dpBirthDate.Text = string.Empty;
+            cbGender.SelectedIndex = 0;
+            txtPhone.Text = string.Empty;
+            txtEmail.Text = string.Empty;
+            txtAddress.Text = string.Empty;
+            txtPoint.Text = string.Empty;
+            chkVipStatus.IsChecked = false;
+            txtNotes.Text = string.Empty;
         }
     }
 }
