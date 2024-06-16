@@ -12,6 +12,14 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderDetailPage
 {
     public class IndexModel : PageModel
     {
+
+        private readonly IOrderDetailBusiness _business;
+
+        public IndexModel()
+        {
+            _business ??= new OrderDetailBusiness();
+        }
+
         [BindProperty(SupportsGet = true)]
         public string? SearchString { get; set; }
 
@@ -27,18 +35,12 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderDetailPage
         public int TotalPages { get; set; }
         private readonly int PageSize = 4;
 
-        private readonly IOrderDetailBusiness _business;
-
-        public IndexModel()
-        {
-            _business ??= new OrderDetailBusiness();
-        }
-
         public IList<OrderDetail> OrderDetail { get; set; } = new List<OrderDetail>()!;
 
         public async Task OnGetAsync()
         {
             var result = await _business.GetAll();
+
             if (result != null && result.Status > 0 && result.Data != null)
             {
                 var orderDetails = result.Data as List<OrderDetail>;
@@ -48,6 +50,12 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderDetailPage
                 //        (o.OrderId != null && o.OrderId.Contains(SearchString, StringComparison.OrdinalIgnoreCase))
                 //    ).ToList();
                 //}
+                if (!string.IsNullOrEmpty(SearchString))
+                {
+                    orderDetails = orderDetails.Where(o =>
+                        (o.Product.Name != null && o.Product.Name.Contains(SearchString, StringComparison.OrdinalIgnoreCase))
+                    ).ToList();
+                }
 
                 if (IsActive)
                 {

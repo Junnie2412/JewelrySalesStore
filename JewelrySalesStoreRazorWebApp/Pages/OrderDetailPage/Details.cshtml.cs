@@ -24,18 +24,21 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderDetailPage
 
         public async Task<IActionResult> OnGetAsync(Guid id)
         {
-            if (id == null)
+            if (id == Guid.Empty)
             {
                 return NotFound();
             }
 
-            var orderDetail = await _business.GetById(id);
-            if (orderDetail == null)
+            var result = await _business.GetById(id);
+            if (result.Status > 0 && result.Data != null)
+            {
+                OrderDetail = result.Data as OrderDetail;
+            }
+            else
             {
                 return NotFound();
             }
 
-            OrderDetail = orderDetail.Data as OrderDetail;
             return Page();
         }
     }
