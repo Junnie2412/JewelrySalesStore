@@ -1,0 +1,93 @@
+﻿<Window x:Class="JewelrySalesStoreWPFApp.wPromotion"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:JewelrySalesStoreWPFApp"
+        mc:Ignorable="d"
+        Title="wPromtion" Height="450" Width="900">
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <GroupBox Header="Promotion Form" Margin="10">
+                <Grid Height="140">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="191"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="239"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="0*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Grid.Row="0" Content="ID" HorizontalAlignment="Left" VerticalContentAlignment="Center" Width="70" />
+                    <TextBox IsReadOnly ="true" Grid.Column="1" Grid.Row="0" x:Name="txtPromotionId" Text="{Binding Path=Promotion.PromotionId, Mode=TwoWay}"  Margin="0,8,0,8"  Width="180" HorizontalAlignment="Left"/>
+                    <Label Grid.Column="2" Grid.Row="0" Content="Name" HorizontalAlignment="Left" VerticalContentAlignment="Center" Width="42" />
+                    <TextBox Grid.Row="0" Grid.Column="3" x:Name="txtPromotionName" Text="{Binding Path=Promotion.PromotionName, Mode=TwoWay}"  Margin="29,10,0,6"  Width="180" HorizontalAlignment="Left" Grid.ColumnSpan="2"/>
+                    <Label Grid.Column="4" Grid.Row="0" Content="Code" HorizontalAlignment="Left" VerticalContentAlignment="Center" Width="82" Grid.ColumnSpan="2" Margin="39,0,0,0" />
+                    <TextBox Grid.Row="0" Grid.Column="5" x:Name="txtPromotionCode" Text="{Binding Path=Promotion.PromotionCode, Mode=TwoWay}"  Margin="0,10,0,6"  Width="180" HorizontalAlignment="Center"/>
+                    <Label Grid.Row="1" Content="StartDate" HorizontalAlignment="Center" VerticalContentAlignment="Center" Width="82" />
+                    <TextBox Grid.Row="1" Grid.Column="1" x:Name="txtPromotionStartDate" Text="{Binding Path=Promotion.StartDate, Mode=TwoWay}"  Margin="0,8,0,8"  Width="180" HorizontalAlignment="Left"/>
+                    <Label Grid.Column="2" Grid.Row="1" Content="EndDate" HorizontalAlignment="Left" VerticalContentAlignment="Center" Width="82" Grid.ColumnSpan="2" />
+                    <TextBox Grid.Row="1" Grid.Column="3" x:Name="txtPromotionEndDate" Text="{Binding Path=Promotion.EndDate, Mode=TwoWay}"  Margin="29,10,0,6"  Width="180" HorizontalAlignment="Left" Grid.ColumnSpan="2"/>
+                    <Label Grid.Column="4" Grid.Row="1" Content="Condition" HorizontalAlignment="Left" VerticalContentAlignment="Center" Width="82" Grid.ColumnSpan="2" Margin="39,0,0,0" />
+                    <TextBox Grid.Row="1" Grid.Column="5" x:Name="txtPromotionCondition" Text="{Binding Path=Promotion.Condition, Mode=TwoWay}"  Margin="29,10,0,6"  Width="180" HorizontalAlignment="Left" Grid.ColumnSpan="2"/>
+                    <Label Grid.Row="2" Content="Description" HorizontalAlignment="Center" VerticalContentAlignment="Center" Width="82" />
+                    <TextBox Grid.Row="2" Grid.Column="1" x:Name="txtPromotionDescription" Text="{Binding Path=Promotion.Description, Mode=TwoWay}"  Margin="0,10,0,6"  Width="180" HorizontalAlignment="Left"/>
+                    <Label Grid.Column="2" Grid.Row="2" Content="Discount" HorizontalAlignment="Left" VerticalContentAlignment="Center" Width="82" Grid.ColumnSpan="2" />
+                    <TextBox Grid.Column="3" Grid.Row="2" x:Name="txtDiscountPercentage"  Text="{Binding Path=Promotion.DiscountPercentage, Mode=TwoWay}"   Margin="29,10,0,0"  Width="180" HorizontalAlignment="Left" Grid.ColumnSpan="2" />
+                    <Label Grid.Column="4" Grid.Row="1" Content="Active" HorizontalAlignment="Left" VerticalContentAlignment="Center" Width="82" Grid.ColumnSpan="2" Margin="39,39,0,1" Grid.RowSpan="2" />
+                    <CheckBox Grid.Column="5" Grid.Row="2" x:Name="txtIsActive" Height="18" IsChecked="{Binding ElementName=IsActive, Path=Promotion.IsActive}"  Margin="29,11,0,0"  Width="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <Label Grid.Row="3" Content="Notes" HorizontalAlignment="Center" VerticalContentAlignment="Center" Width="82" Margin="0,5,0,0" />
+                    <TextBox Grid.Row="3" Grid.Column="1" x:Name="txtPromotionNotes" Text="{Binding Path=Promotion.Notes, Mode=TwoWay}"  Margin="0,10,0,6"  Width="459" HorizontalAlignment="Left" Grid.ColumnSpan="4"/>
+                </Grid>
+            </GroupBox>
+            <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button x:Name="ButtonSave" Content="Save" Height="30" Width="80" Click="ButtonSave_Click"/>
+                <Button x:Name="ButtonCancel" Content="Cancel" Height="30" Width="80" Click="ButtonCancel_Click"/>
+            </StackPanel>
+            <StackPanel Height="210">
+                <DataGrid x:Name="grdPromotion" AutoGenerateColumns="False" ItemsSource="{Binding Promotion}" CanUserAddRows="False" Height="200" Margin="10" MouseDoubleClick="grdPromotion_MouseDouble_Click" SelectionMode="Single" SelectionUnit="FullRow" >
+                    <DataGrid.Columns>
+                        <!--<DataGridTextColumn Header="Code" Binding="{Binding Path=Id}" Visibility="Hidden"/>-->
+                        <DataGridTextColumn Header="Id" Binding="{Binding Path=PromotionId}" Visibility="Visible"/>
+                        <DataGridTextColumn Header="Name" Binding="{Binding Path=Name}" Width="100"  IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Code" Binding="{Binding Path=Code}" Width="100"  IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Discount" Binding="{Binding Path=Discount}" Width="100"  IsReadOnly="True"/>
+                        <DataGridTextColumn Header="StartDate" Binding="{Binding Path=StartDate}" Width="100"  IsReadOnly="True"/>
+                        <DataGridTextColumn Header="EndDate" Binding="{Binding Path=EndDate}" Width="100"  IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Condition" Binding="{Binding Path=Condition}" Width="100"  IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Description" Binding="{Binding Path=Description}" Width="100"  IsReadOnly="True"/>
+                        <DataGridTextColumn Header="IsActive" Binding="{Binding Path=IsActive}" Width="100"  IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Notes" Binding="{Binding Path=Notes}" Width="100"  IsReadOnly="True"/>
+                        <DataGridTemplateColumn Width="50">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="X" x:Name="ButtonDelete" CommandParameter="{Binding Path=PromotionId}" Click="grdPromotion_ButtonDelete_Click"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <!--<DataGridTemplateColumn Width="50">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Delete" x:Name="ButtonDelete" CommandParameter="{Binding Path=Id}"
+                                Command="{Binding Path=DataContext.DeleteCommand, RelativeSource={RelativeSource FindAncestor,
+                                        AncestorType=Window}}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>-->
+
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
