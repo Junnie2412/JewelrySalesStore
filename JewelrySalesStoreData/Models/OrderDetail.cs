@@ -29,7 +29,7 @@ public partial class OrderDetail
 
     public double? FinalPrice { get; set; }
 
-    public bool? IsActive { get; set; }
+    public bool IsActive { get; set; }
 
     public string Notes { get; set; }
 

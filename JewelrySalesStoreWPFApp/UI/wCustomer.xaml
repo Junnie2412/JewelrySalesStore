@@ -45,7 +45,7 @@
                     <!--Gender-->
                     <Label Grid.Column="0" Grid.Row="1" Content="Gender" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
                     <ComboBox Grid.Column="1" Grid.Row="1" x:Name="cbGender" Height="25" Width="200" HorizontalAlignment="Left" Margin="5"
-                 SelectedValue="{Binding Path=Customer.Gender, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                         SelectedValuePath="Tag" SelectedValue="{Binding Path=Customer.Gender, Mode=TwoWay}">
                         <ComboBoxItem Content="Nam" Tag="true"/>
                         <ComboBoxItem Content="Nữ" Tag="false"/>
                     </ComboBox>

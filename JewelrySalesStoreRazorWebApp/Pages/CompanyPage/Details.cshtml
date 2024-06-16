@@ -5,75 +5,87 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
 
-<div>
-    <h4>Company</h4>
+<div class="mt-3">
+    <h3>Details Company</h3>
     <hr />
     <dl class="row">
+
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Company.CompanyId)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Company.CompanyId)
         </dd>
+
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Company.CompanyName)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Company.CompanyName)
         </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Company.CompanyAddress)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Company.CompanyAddress)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Company.CompanyDescription)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Company.CompanyDescription)
-        </dd>
+
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Company.CompanyPhone)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Company.CompanyPhone)
         </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Company.CompanyAddress)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Company.CompanyAddress)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Company.CompanyDescription)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Company.CompanyDescription)
+        </dd>
+
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Company.Website)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Company.Website)
         </dd>
+
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Company.FoundationDate)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Company.FoundationDate)
         </dd>
+
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Company.Email)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Company.Email)
         </dd>
+
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Company.IsActive)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Company.IsActive)
         </dd>
+
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Company.Notes)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Company.Notes)
         </dd>
+
     </dl>
+
+
 </div>
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.Company.CompanyId">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
+    <a class="btn btn-success" asp-page="./Edit" asp-route-id="@Model.Company.CompanyId">Edit</a> |
+    <a style="text-decoration: none;" class="btn btn-secondary text-white" asp-page="./Index">Back</a>
 </div>

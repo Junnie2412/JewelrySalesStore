@@ -63,7 +63,7 @@ namespace JewelrySalesStoreWPFApp.UI
                         TotalPrice = double.Parse(txtTotalPrice.Text.Trim()),
                         DiscountPrice = double.Parse(txtDiscountPrice.Text.Trim()),
                         FinalPrice = double.Parse(txtFinalPrice.Text.Trim()),
-                        IsActive = chkIsActive.IsChecked,
+                        IsActive = chkIsActive.IsChecked ?? false,
                         Notes = txtNotes.Text.Trim(),
                     };
 
@@ -81,7 +81,7 @@ namespace JewelrySalesStoreWPFApp.UI
                     orderDetail.TotalPrice = double.Parse(txtTotalPrice.Text.Trim());
                     orderDetail.DiscountPrice = double.Parse(txtDiscountPrice.Text.Trim());
                     orderDetail.FinalPrice = double.Parse(txtFinalPrice.Text.Trim());
-                    orderDetail.IsActive = chkIsActive.IsChecked;
+                    orderDetail.IsActive = chkIsActive.IsChecked ?? false;
                     orderDetail.Notes = txtNotes.Text.Trim();
 
                     var result = await _business.Update(orderDetail);
