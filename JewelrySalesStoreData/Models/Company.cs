@@ -43,7 +43,7 @@ public partial class Company
     public string Email { get; set; }
 
     [Display(Name = "Is Active")]
-    public bool? IsActive { get; set; }
+    public bool IsActive { get; set; }
 
     [StringLength(500, ErrorMessage = "Notes must not exceed 500 characters.")]
     public string Notes { get; set; }

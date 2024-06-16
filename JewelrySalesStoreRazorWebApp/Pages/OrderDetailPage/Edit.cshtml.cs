@@ -49,7 +49,6 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderDetailPage
                 return Page();
             }
 
-
             try
             {
                 await _business.Update(OrderDetail);

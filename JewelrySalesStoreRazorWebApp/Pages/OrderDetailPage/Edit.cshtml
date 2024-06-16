@@ -14,6 +14,7 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="OrderDetail.OrderDetailId" />
+
             <div class="form-group">
                 <label asp-for="OrderDetail.OrderId" class="control-label"></label>
                 <select asp-for="OrderDetail.OrderId" class="form-control" asp-items="ViewBag.OrderId"></select>
@@ -50,17 +51,20 @@
                 <span asp-validation-for="OrderDetail.FinalPrice" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="OrderDetail.IsActive" class="control-label"></label>
-                <input asp-for="OrderDetail.IsActive" class="form-control" />
-                <span asp-validation-for="OrderDetail.IsActive" class="text-danger"></span>
+                <div class="form-check">
+                    <label class="form-check-label" for="flexCheckDefault">Is Active</label>
+                    <input class="form-check-input" type="checkbox" id="flexCheckDefault" asp-for="OrderDetail.IsActive">
+                </div>
             </div>
             <div class="form-group">
                 <label asp-for="OrderDetail.Notes" class="control-label"></label>
                 <input asp-for="OrderDetail.Notes" class="form-control" />
                 <span asp-validation-for="OrderDetail.Notes" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            
+            <div class="form-group mt-2">
                 <input type="submit" value="Save" class="btn btn-primary" />
+                <a style="text-decoration: none;" class="btn btn-secondary text-white" asp-page="./Index">Back</a>
             </div>
         </form>
     </div>

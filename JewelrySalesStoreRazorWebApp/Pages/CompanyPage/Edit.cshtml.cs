@@ -31,6 +31,7 @@ namespace JewelrySalesStoreRazorWebApp.Pages.CompanyPage
             }
 
             var company = await _business.GetById(id);
+
             if (company == null)
             {
                 return NotFound();
@@ -40,8 +41,7 @@ namespace JewelrySalesStoreRazorWebApp.Pages.CompanyPage
             return Page();
         }
 
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see https://aka.ms/RazorPagesCRUD.
+
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
@@ -49,21 +49,16 @@ namespace JewelrySalesStoreRazorWebApp.Pages.CompanyPage
                 return Page();
             }
 
-
             try
             {
                 await _business.Update(Company);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
+
             }
 
             return RedirectToPage("./Index");
         }
-
-        //private bool CompanyExists(Guid id)
-        //{
-        //    return _context.Companies.Any(e => e.CompanyId == id);
-        //}
     }
 }
