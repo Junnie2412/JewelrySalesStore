@@ -57,13 +57,13 @@
             @Html.DisplayNameFor(model => model.Category.Gender)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Category.Gender)
+            @((Model.Category.Gender??false) ? "Nam" : "Nữ")
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Category.IsActive)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Category.IsActive)
+            @((Model.Category.IsActive ?? false) ? "Đã Có" : "Chưa Có")
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Category.Notes)

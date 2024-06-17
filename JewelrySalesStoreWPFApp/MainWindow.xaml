@@ -27,6 +27,9 @@
                 <MenuItem Header="Customer" IsCheckable="False" FontSize="12" Click="Open_wCustomer_Click">
 
                 </MenuItem>
+                <MenuItem Header="Promotion" IsCheckable="False" FontSize="12" Click="Open_wPromotion_Click">
+
+                </MenuItem>
             </MenuItem>
             
 

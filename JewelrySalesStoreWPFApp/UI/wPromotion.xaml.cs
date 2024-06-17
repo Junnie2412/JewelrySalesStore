@@ -156,15 +156,15 @@ namespace JewelrySalesStoreWPFApp
                         {
                             item = Result.Data as Promotion;
                             txtPromotionId.Text = item.PromotionId.ToString();
-                            txtPromotionName.Text = item.PromotionName;
-                            txtPromotionCode.Text = item.PromotionCode;
+                            txtPromotionName.Text = item.PromotionName.ToString();
+                            txtPromotionCode.Text = item.PromotionCode.ToString();
                             txtPromotionStartDate.Text = item.StartDate?.ToString();
                             txtPromotionEndDate.Text = item.EndDate?.ToString();
-                            txtPromotionDescription.Text = item.Description;
-                            txtPromotionCondition.Text = item.Condition;
+                            txtPromotionDescription.Text = item.Description.ToString();
+                            txtPromotionCondition.Text = item.Condition.ToString();
                             txtDiscountPercentage.Text = item.DiscountPercentage.ToString();
                             txtIsActive.IsChecked = item.IsActive;
-                            txtPromotionNotes.Text = item.Notes;
+                            txtPromotionNotes.Text = item.Notes.ToString();
                         }
                     }
                 }

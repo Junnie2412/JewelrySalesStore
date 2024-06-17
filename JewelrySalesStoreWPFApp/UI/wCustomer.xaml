@@ -82,7 +82,7 @@
             </StackPanel>
 
             <StackPanel Height="210">
-                <DataGrid SelectionChanged="gridCustomer_SelectionChanged" x:Name="gridCustomer" AutoGenerateColumns="False" ItemsSource="{Binding Customer}" CanUserAddRows="False" Height="200" Margin="10" MouseDoubleClick="grdCustomer_MouseDouble_Click" SelectionMode="Single" SelectionUnit="FullRow">
+                <DataGrid x:Name="gridCustomer" AutoGenerateColumns="False" ItemsSource="{Binding Customer}" CanUserAddRows="False" Height="200" Margin="10" MouseDoubleClick="grdCustomer_MouseDouble_Click" SelectionMode="Single" SelectionUnit="FullRow">
                     <DataGrid.Columns>
                         <!--<DataGridTextColumn Header="Code" Binding="{Binding Path=Id}" Visibility="Hidden"/>-->
                         <DataGridTextColumn Header="Id" Binding="{Binding Path=CustomerId}" Width="150" Visibility="Visible"/>
