@@ -11,7 +11,24 @@
     <a asp-page="Create">Create New</a>
 </p>
 <form>
-    Search By CustomerAddress: <input type="text" asp-for="SearchString" />
+    Search By CustomerAddress: <input type="text" asp-for="SearchCustomerAddress" />
+    <input type="submit" value="Filter" />
+</form>
+<div class="form-check col-md-2 pt-1">
+    <input class="form-check-input" type="checkbox" id="isActiveCheckbox" asp-for="IsActive" />
+    <label class="form-check-label" for="isActiveCheckbox">
+        Filter Active
+    </label>
+</div>
+
+<div class="form-check col-md-4 pt-1">
+    <input class="form-check-input" type="checkbox" id="isInactiveCheckbox" asp-for="IsInactive" />
+    <label class="form-check-label" for="isInactiveCheckbox">
+        Filter Inactive
+    </label>
+</div>
+<form>
+    Search By Shipping Method: <input type="text" asp-for="SearchShippingMethod" />
     <input type="submit" value="Filter" />
 </form>
 <table class="table">
