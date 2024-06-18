@@ -39,13 +39,13 @@
         <tr>
             <th scope="col">Name</th>
             <th scope="col">Phone</th>
-            <th scope="col">Email</th>
             <th scope="col">Address</th>
             <th scope="col">Description</th>
             <th scope="col">Website</th>
             <th scope="col">Foundation</th>
+            <th scope="col">Email</th>
             <th scope="col">Active</th>
-            <td scope="col">Notes</td>
+            @* <td scope="col">Notes</td> *@
             <th scope="col">Action</th>
         </tr>
     </thead>
@@ -79,9 +79,9 @@
                     <td scope="row">
                         @Html.DisplayFor(modelItem => item.IsActive)
                     </td>
-                    <td scope="row">
+                    @* <td scope="row">
                         @Html.DisplayFor(modelItem => item.Notes)
-                    </td>
+                    </td> *@
                     <td scope="row">
                         <a class="btn btn-success text-white" style="text-decoration: none;" asp-page="./Edit" asp-route-id="@item.CompanyId">Edit</a> |
                         <a class="btn btn-secondary text-white" style="text-decoration: none;" asp-page="./Details" asp-route-id="@item.CompanyId">Details</a> |
