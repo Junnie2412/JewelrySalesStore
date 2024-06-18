@@ -11,7 +11,24 @@
     <a asp-page="Create">Create New</a>
 </p>
 <form>
-    Search By CustomerAddress: <input type="text" asp-for="SearchString" />
+    Search By CustomerAddress: <input type="text" asp-for="SearchCustomerAddress" />
+    <input type="submit" value="Filter" />
+</form>
+<div class="form-check col-md-2 pt-1">
+    <input class="form-check-input" type="checkbox" id="isActiveCheckbox" asp-for="IsActive" />
+    <label class="form-check-label" for="isActiveCheckbox">
+        Filter Active
+    </label>
+</div>
+
+<div class="form-check col-md-4 pt-1">
+    <input class="form-check-input" type="checkbox" id="isInactiveCheckbox" asp-for="IsInactive" />
+    <label class="form-check-label" for="isInactiveCheckbox">
+        Filter Inactive
+    </label>
+</div>
+<form>
+    Search By Shipping Method: <input type="text" asp-for="SearchShippingMethod" />
     <input type="submit" value="Filter" />
 </form>
 <table class="table">
@@ -51,26 +68,24 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Order) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TotalPrice)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PaymentMethod)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CompanyId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CustomerAddress)
-            </td>
+        @foreach (var item in Model.Order)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaymentMethod)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CompanyId)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.CustomerId)
                 </td>
@@ -83,12 +98,15 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.ShippingMethod)
                 </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.OrderId">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.OrderId">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.OrderId">Delete</a>
-            </td>
-        </tr>
-}
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerAddress)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.OrderId">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.OrderId">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.OrderId">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

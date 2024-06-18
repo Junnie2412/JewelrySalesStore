@@ -11,61 +11,61 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-    <form method="post">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="form-group">
-            <label asp-for="OrderDetail.OrderId" class="control-label"></label>
-            <input asp-for="OrderDetail.OrderId" class="form-control" />
-            <span asp-validation-for="OrderDetail.OrderId" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="OrderDetail.ProductId" class="control-label"></label>
-            <input asp-for="OrderDetail.ProductId" class="form-control" />
-            <span asp-validation-for="OrderDetail.ProductId" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="OrderDetail.Quantity" class="control-label"></label>
-            <input asp-for="OrderDetail.Quantity" class="form-control" />
-            <span asp-validation-for="OrderDetail.Quantity" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="OrderDetail.UnitPrice" class="control-label"></label>
-            <input asp-for="OrderDetail.UnitPrice" class="form-control" />
-            <span asp-validation-for="OrderDetail.UnitPrice" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="OrderDetail.TotalPrice" class="control-label"></label>
-            <input asp-for="OrderDetail.TotalPrice" class="form-control" />
-            <span asp-validation-for="OrderDetail.TotalPrice" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="OrderDetail.DiscountPrice" class="control-label"></label>
-            <input asp-for="OrderDetail.DiscountPrice" class="form-control" />
-            <span asp-validation-for="OrderDetail.DiscountPrice" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="OrderDetail.FinalPrice" class="control-label"></label>
-            <input asp-for="OrderDetail.FinalPrice" class="form-control" />
-            <span asp-validation-for="OrderDetail.FinalPrice" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="OrderDetail.IsActive" class="control-label"></label>
-            <select id="OrderDetailIsActive" class="form-control" asp-for="OrderDetail.IsActive">
-                <option value="true">True</option>
-                <option value="false">False</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label asp-for="OrderDetail.Notes" class="control-label"></label>
-            <input asp-for="OrderDetail.Notes" class="form-control" />
-            <span asp-validation-for="OrderDetail.Notes" class="text-danger"></span>
-        </div>
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="OrderDetail.OrderId" class="control-label"></label>
+                <input asp-for="OrderDetail.OrderId" class="form-control" />
+                <span asp-validation-for="OrderDetail.OrderId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrderDetail.ProductId" class="control-label"></label>
+                <input asp-for="OrderDetail.ProductId" class="form-control" />
+                <span asp-validation-for="OrderDetail.ProductId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrderDetail.Quantity" class="control-label"></label>
+                <input asp-for="OrderDetail.Quantity" class="form-control" />
+                <span asp-validation-for="OrderDetail.Quantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrderDetail.UnitPrice" class="control-label"></label>
+                <input asp-for="OrderDetail.UnitPrice" class="form-control" />
+                <span asp-validation-for="OrderDetail.UnitPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrderDetail.TotalPrice" class="control-label"></label>
+                <input asp-for="OrderDetail.TotalPrice" class="form-control" />
+                <span asp-validation-for="OrderDetail.TotalPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrderDetail.DiscountPrice" class="control-label"></label>
+                <input asp-for="OrderDetail.DiscountPrice" class="form-control" />
+                <span asp-validation-for="OrderDetail.DiscountPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrderDetail.FinalPrice" class="control-label"></label>
+                <input asp-for="OrderDetail.FinalPrice" class="form-control" />
+                <span asp-validation-for="OrderDetail.FinalPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrderDetail.IsActive" class="control-label"></label>
+                <select id="OrderDetailIsActive" class="form-control" asp-for="OrderDetail.IsActive">
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrderDetail.Notes" class="control-label"></label>
+                <input asp-for="OrderDetail.Notes" class="form-control" />
+                <span asp-validation-for="OrderDetail.Notes" class="text-danger"></span>
+            </div>
 
-        <div class="form-group mt-2">
-            <input type="submit" value="Create" class="btn btn-success" />
-            <a style="text-decoration: none;" class="btn btn-secondary text-white" asp-page="Index">Back</a>
-        </div>
-    </form>
+            <div class="form-group mt-2">
+                <input type="submit" value="Create" class="btn btn-success" />
+                <a style="text-decoration: none;" class="btn btn-secondary text-white" asp-page="Index">Back</a>
+            </div>
+        </form>
     </div>
 </div>
 

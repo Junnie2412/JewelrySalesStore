@@ -13,7 +13,16 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderDetailPage
     public class IndexModel : PageModel
     {
         [BindProperty(SupportsGet = true)]
-        public string? SearchString { get; set; }
+        public int? MinQuantity { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public int? MaxQuantity { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public decimal? MinFinalPrice { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public decimal? MaxFinalPrice { get; set; }
 
         [BindProperty(SupportsGet = true)]
         public bool IsActive { get; set; }
@@ -25,7 +34,7 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderDetailPage
         public int PageIndex { get; set; } = 1;
 
         public int TotalPages { get; set; }
-        private readonly int PageSize = 4;
+        private readonly int PageSize = 5;
 
         private readonly IOrderDetailBusiness _business;
 
@@ -42,13 +51,24 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderDetailPage
             if (result != null && result.Status > 0 && result.Data != null)
             {
                 var orderDetails = result.Data as List<OrderDetail>;
-                //if (!string.IsNullOrEmpty(SearchString))
-                //{
-                //    orderDetails = orderDetails.Where(o =>
-                //        (o.OrderId != null && o.OrderId.Contains(SearchString, StringComparison.OrdinalIgnoreCase))
-                //    ).ToList();
-                //}
 
+                // Filter by Quantity Range
+                if (MinQuantity.HasValue && MaxQuantity.HasValue)
+                {
+                    orderDetails = orderDetails.Where(od =>
+                        (od.Quantity >= MinQuantity && od.Quantity <= MaxQuantity)
+                    ).ToList();
+                }
+
+                // Filter by FinalPrice Range
+                if (MinFinalPrice.HasValue && MaxFinalPrice.HasValue)
+                {
+                    orderDetails = orderDetails.Where(od =>
+                        (od.FinalPrice >= (double)MinFinalPrice && od.FinalPrice <= (double)MaxFinalPrice)
+                    ).ToList();
+                }
+
+                // Filter by Active/Inactive
                 if (IsActive)
                 {
                     orderDetails = orderDetails.Where(c => c.IsActive).ToList();
@@ -59,10 +79,13 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderDetailPage
                     orderDetails = orderDetails.Where(c => !c.IsActive).ToList();
                 }
 
-                // Phân trang
+                // Pagination
                 TotalPages = (int)Math.Ceiling(orderDetails.Count / (double)PageSize);
                 OrderDetail = orderDetails.Skip((PageIndex - 1) * PageSize).Take(PageSize).ToList();
-
+            }
+            else
+            {
+                OrderDetail = new List<OrderDetail>(); // Initialize an empty list if there is no data
             }
 
         }
