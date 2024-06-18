@@ -54,7 +54,6 @@
     </div>
 </form>
 
-
 <table class="table">
     <thead class="table-dark">
         <tr>
@@ -101,8 +100,8 @@
                         @Html.DisplayFor(modelItem => item.IsActive)
                     </td>
                     @* <td scope="row">
-                        @Html.DisplayFor(modelItem => item.Notes)
-                    </td> *@
+            @Html.DisplayFor(modelItem => item.Notes)
+            </td> *@
                     <td>
                         <a class="btn btn-success text-white" style="text-decoration:none;" asp-page="./Edit" asp-route-id="@item.CompanyId">Edit</a> |
                         <a class="btn btn-secondary text-white" style="text-decoration:none;" asp-page="./Details" asp-route-id="@item.CompanyId">Details</a> |
@@ -120,7 +119,7 @@
             <a class="page-link" asp-page="./Index" asp-route-PageIndex="@(Model.PageIndex - 1)"
                asp-route-SearchName="@Model.SearchName" asp-route-SearchPhone="@Model.SearchPhone"
                asp-route-StartDate="@Model.StartDate" asp-route-EndDate="@Model.EndDate"
-               asp-route-CompanyVipStatus="@Model.IsActive" asp-route-CompanyNonVipStatus="@Model.IsInactive"
+               asp-route-IsActive="@Model.IsActive" asp-route-IsInactive="@Model.IsInactive"
                aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
             </a>
@@ -131,14 +130,14 @@
                 <a class="page-link" asp-page="./Index" asp-route-PageIndex="@i"
                    asp-route-SearchName="@Model.SearchName" asp-route-SearchPhone="@Model.SearchPhone"
                    asp-route-StartDate="@Model.StartDate" asp-route-EndDate="@Model.EndDate"
-                   asp-route-CompanyVipStatus="@Model.IsActive" asp-route-CompanyNonVipStatus="@Model.IsInactive">@i</a>
+                   asp-route-IsActive="@Model.IsActive" asp-route-IsInactive="@Model.IsInactive">@i</a>
             </li>
         }
         <li class="page-item @(Model.PageIndex == Model.TotalPages ? "disabled" : "")">
             <a class="page-link" asp-page="./Index" asp-route-PageIndex="@(Model.PageIndex + 1)"
                asp-route-SearchName="@Model.SearchName" asp-route-SearchPhone="@Model.SearchPhone"
                asp-route-StartDate="@Model.StartDate" asp-route-EndDate="@Model.EndDate"
-               asp-route-CompanyVipStatus="@Model.IsActive" asp-route-CompanyNonVipStatus="@Model.IsInactive"
+               asp-route-IsActive="@Model.IsActive" asp-route-IsInactive="@Model.IsInactive"
                aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
             </a>
