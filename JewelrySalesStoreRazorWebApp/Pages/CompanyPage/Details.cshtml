@@ -71,7 +71,7 @@
             @Html.DisplayNameFor(model => model.Company.IsActive)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Company.IsActive)
+            @((Model.Company.IsActive) ? "True" : "False")
         </dd>
 
         <dt class="col-sm-2">
@@ -80,9 +80,7 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Company.Notes)
         </dd>
-
     </dl>
-
 
 </div>
 <div>

@@ -45,7 +45,7 @@
             <th scope="col">Discount Price</th>
             <th scope="col">Final Price</th>
             <th scope="col">Active</th>
-            <td scope="col">Notes</td>
+            @* <td scope="col">Notes</td> *@
             <th scope="col">Action</th>
         </tr>
     </thead>
@@ -77,9 +77,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.IsActive)
                 </td>
-                <td>
+               @*  <td>
                     @Html.DisplayFor(modelItem => item.Notes)
-                </td>
+                </td> *@
                 <td>
                     <a class="btn btn-success text-white" style="text-decoration: none;" asp-page="./Edit" asp-route-id="@item.OrderDetailId">Edit</a> |
                     <a class="btn btn-secondary text-white" style="text-decoration: none;" asp-page="./Details" asp-route-id="@item.OrderDetailId">Details</a> |
