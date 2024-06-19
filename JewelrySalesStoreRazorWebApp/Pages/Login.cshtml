@@ -1,0 +1,32 @@
+﻿@page "/"
+@model JewelrySalesStoreRazorWebApp.Pages.LoginModel
+@{
+    Layout = null;
+}
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+
+    <h3>Login Form</h3>
+    @Model.Msg
+    <form method="post" >
+        <table>
+            <tr>
+                <td>Username</td>
+                <td><input type="text" asp-for="@Model.Username" /></td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input type="password" asp-for="@Model.Password" /></td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td><input type="submit" value="Login" /></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
