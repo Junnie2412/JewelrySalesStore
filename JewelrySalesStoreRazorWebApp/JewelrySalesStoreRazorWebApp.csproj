@@ -25,11 +25,4 @@
     <None Include="wwwroot\img\slider-4.jpg" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Content Update="Pages\Shared\_LayoutView.cshtml">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-  </ItemGroup>
-
 </Project>

@@ -3,6 +3,12 @@
 
 @{
     ViewData["Title"] = "Company";
+    Layout = "_Layout";
+
+    if (ViewData["ShowNavBar"] == null)
+    {
+        ViewData["ShowNavBar"] = true;
+    }
 }
 
 <h1>Company</h1>

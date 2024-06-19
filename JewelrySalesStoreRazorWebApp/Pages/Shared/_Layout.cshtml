@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/JewelrySalesStoreRazorWebApp.styles.css" asp-append-version="true" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-McsjtIEj0H+hnd8lvc3xgBOYtCZPzzm0lvfFQ0HYoh+60+pPa7b6eZ+0K4mNYW9g" crossorigin="anonymous" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&display=swap" rel="stylesheet">
@@ -22,9 +22,9 @@
 
         .modal-header.bg-image {
             background-image: url('/img/sign-in.jpg');
-            background-size: cover; 
-            background-position: center; 
-            height: 200px; 
+            background-size: cover;
+            background-position: center;
+            height: 200px;
             position: relative;
         }
 
@@ -33,22 +33,22 @@
             top: 10px;
             right: 10px;
             z-index: 1;
-            background-color: white; 
-            border: 2px solid #ccc; 
-            border-radius: 50%; 
+            background-color: white;
+            border: 2px solid #ccc;
+            border-radius: 50%;
         }
 
         .password-container {
             position: relative;
         }
 
-        .password-container .eye-icons {
-            position: absolute;
-            right: 40px;
-            top: 50%;
-            transform: translateY(-50%);
-            cursor: pointer;
-        }
+            .password-container .eye-icons {
+                position: absolute;
+                right: 40px;
+                top: 50%;
+                transform: translateY(-50%);
+                cursor: pointer;
+            }
 
     </style>
 </head>
@@ -59,39 +59,45 @@
                 <div class="col-md-4  col-9">
                     <img src="~/img/logo.svg" width="68"
                          height="36" />
-                    <a class="navbar-brand" asp-area="" asp-page="/Index">JewelrySalesStore</a>
-                </div>
-              
-                <div class="col-md-7 navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/CategoryPage/Index">Category</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/ProductPage/Index">Product</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/CompanyPage/Index">Company</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/OrderPage/Index">Order</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/OrderDetailPage/Index">Order Detail</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/PromotionPage/Index">Promotion</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/CustomerPage/Index">Customer</a>
-                        </li>
-                    </ul>
+                    <a class="navbar-brand" asp-route-ShowNavBar="@(ViewData["ShowNavBar"] as bool?)" asp-page="/Index">JewelrySalesStore</a>
                 </div>
 
+                @if (ViewData["ShowNavbar"] as bool? == true)
+                {
+                    <div class="col-md-7 navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/CategoryPage/Index">Category</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/ProductPage/Index">Product</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/CompanyPage/Index">Company</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/OrderPage/Index">Order</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/OrderDetailPage/Index">Order Detail</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/PromotionPage/Index">Promotion</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/CustomerPage/Index">Customer</a>
+                            </li>
+                        </ul>
+                    </div>
+                }
+                
+               
+   
+                @* Login *@
                 <div class="col-md-1 col-3 d-xs-flex">
                     <!-- Login Icon -->
                     <a data-bs-toggle="modal" data-bs-target="#exampleModal" style="cursor:pointer"><i class="fa-regular fa-user" style="font-size: 20px;"></i></a>
-
+                  
                     <!-- Modal -->
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
@@ -101,30 +107,30 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body" style="padding: 30px 30px 30px 50px;">
-                                    <form id="loginForm">
+                                    <form id="loginForm" method="post" asp-page-handler="login">
                                         <div class="mb-3">
                                             <div>
-                                                <input style="padding: 15px 25px 15px 25px; width: 398px;" placeholder="Name*" type="text" class="form-control" id="inputUsername">
+                                                <input style="padding: 15px 25px 15px 25px; width: 398px;" placeholder="Name*" type="text" class="form-control" id="username" name="Username">
                                             </div>
                                         </div>
                                         <div class="mb-3">
                                             <div class="password-container">
-                                                <input style="padding: 15px 25px 15px 25px; width: 398px;" placeholder="Password*" type="password" class="form-control" id="password">
+                                                <input style="padding: 15px 25px 15px 25px; width: 398px;" placeholder="Password*" type="password" class="form-control" id="password" name="Password">
                                                 <span class="eye-icons" onclick="password_show_hide();">
                                                     <i class=" fa-regular fa-eye-slash" id="show_eye"></i>
                                                     <i class="fa-regular fa-eye d-none" id="hide_eye"></i>
                                                 </span>
                                             </div>
                                         </div>
-                                    </form>
 
-                                    <button style="padding: 15px 25px 15px 25px; width: 398px; font-size: 13px" type="button" class="btn btn-dark" onclick="login()">SIGN IN</button>
+                                        <button style="padding: 15px 25px 15px 25px; width: 398px; font-size: 13px" type="submit" class="btn btn-dark">SIGN IN</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
+
                     </div>
-                </div>
-            </div>
+              </div>
         </nav>
     </header>
 
@@ -157,11 +163,11 @@
     @* Cac Page khac *@
     <div class="container">
         <main role="main" class="pb-3">
-           @RenderBody()
-        </main>  
+            @RenderBody()
+        </main>
     </div>
 
-     @if (ViewData["ShowFooter"] as bool? == true)
+    @if (ViewData["ShowFooter"] as bool? == true)
     {
         <footer style="background-color: #f6f6f6; height: 300px;" class="justify-content-between d-flex border-top text-muted row">
             <div class="pt-5 col-md-3" style="padding-left: 50px;">
@@ -169,7 +175,7 @@
                      height="36" />
                 <p class="mb-1 fs-6" style="padding-right: 60px;">
                     Lô E2a-7, Đường D1, Long Thạnh Mỹ,
-                Thành Phố Thủ Đức, Hồ Chí Minh
+                    Thành Phố Thủ Đức, Hồ Chí Minh
                 </p>
                 <p class="mb-1 fs-6">
                     jewelryshop@gmail.com
@@ -179,15 +185,15 @@
                 </p>
 
                 <div class="d-flex fs-6 mt-4">
-                    <i class="fa-brands fa-tiktok"      style="padding:0px 16px 0px 0px"></i>
-                    <i class="fa-brands fa-facebook-f"  style="padding:0px 16px 0px 16px"></i>
-                    <i class="fa-brands fa-x-twitter"   style="padding:0px 16px 0px 16px"></i>
-                    <i class="fa-brands fa-instagram"   style="padding:0px 16px 0px 16px"></i>
+                    <i class="fa-brands fa-tiktok" style="padding:0px 16px 0px 0px"></i>
+                    <i class="fa-brands fa-facebook-f" style="padding:0px 16px 0px 16px"></i>
+                    <i class="fa-brands fa-x-twitter" style="padding:0px 16px 0px 16px"></i>
+                    <i class="fa-brands fa-instagram" style="padding:0px 16px 0px 16px"></i>
                 </div>
 
             </div>
 
-        <div class="pt-5 col-md-3 d-none d-md-block">
+            <div class="pt-5 col-md-3 d-none d-md-block">
                 <p class="mb-4 fs-6">
                     HELP
                 </p>
@@ -209,7 +215,7 @@
 
             </div>
 
-        <div class="pt-5 col-md-3 d-none d-md-block">
+            <div class="pt-5 col-md-3 d-none d-md-block">
                 <p class="mb-4 fs-6">
                     ABOUT US
                 </p>
@@ -230,14 +236,14 @@
                 </p>
             </div>
 
-        <div class="pt-5 col-md-3 d-none d-md-block" style="padding-right:50px;">
+            <div class="pt-5 col-md-3 d-none d-md-block" style="padding-right:50px;">
                 <p class="mb-4 fs-6">
                     SIGN UP FOR 10% OFF
                 </p>
 
                 <p class="mb-1 fs-6">
                     Be the first to know about new releases, exclusive
-                 promotions, events and styling tips!   
+                    promotions, events and styling tips!
                 </p>
 
                 <div class="input-group mt-2" style="padding-right: 50px;">
@@ -247,17 +253,19 @@
                         <button class="btn btn btn-dark" style="height: 50px; font-size: 12px;" type="button">SUBSCRIBE</button>
                     </div>
                 </div>
-        </div>
+            </div>
 
-        <p class="mt-4" style="padding-left: 50px; font-size: 12px;">Copyright © 2024. All Rights Reserved.</p>
-    </footer>
+            <p class="mt-4" style="padding-left: 50px; font-size: 12px;">Copyright © 2024. All Rights Reserved.</p>
+        </footer>
+
+
     }
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 
-    
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
