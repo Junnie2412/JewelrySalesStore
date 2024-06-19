@@ -38,6 +38,18 @@
             border-radius: 50%; 
         }
 
+        .password-container {
+            position: relative;
+        }
+
+        .password-container .eye-icons {
+            position: absolute;
+            right: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+
     </style>
 </head>
 <body>
@@ -93,12 +105,16 @@
                                     <form>
                                         <div class="mb-3">
                                             <div>
-                                                <input style="padding: 15px 25px 15px 25px; width: 398px;" placeholder="Name*" type="email" class="form-control" id="inputEmail">
+                                                <input style="padding: 15px 25px 15px 25px; width: 398px;" placeholder="Name*" type="email" class="form-control" id="email">
                                             </div>
                                         </div>
                                         <div class="mb-3">
-                                            <div>
-                                                <input style="padding: 15px 25px 15px 25px; width: 398px;" placeholder="Password*" type="password" class="form-control" id="inputPassword">
+                                            <div class="password-container">
+                                                <input style="padding: 15px 25px 15px 25px; width: 398px;" placeholder="Password*" type="password" class="form-control" id="password">
+                                                <span  class="eye-icons" onclick="password_show_hide();">
+                                                    <i class=" fa-regular fa-eye-slash" id="show_eye"></i>
+                                                    <i class="fa-regular fa-eye d-none" id="hide_eye"></i>
+                                                </span>
                                             </div>
                                         </div>
                                     </form>
