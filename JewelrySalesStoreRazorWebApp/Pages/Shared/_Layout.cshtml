@@ -9,17 +9,29 @@
     <link rel="stylesheet" href="~/JewelrySalesStoreRazorWebApp.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-McsjtIEj0H+hnd8lvc3xgBOYtCZPzzm0lvfFQ0HYoh+60+pPa7b6eZ+0K4mNYW9g" crossorigin="anonymous" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/22c7ec7d54.js" crossorigin="anonymous"></script>
+
+    <style>
+        html, body {
+            height: 100%; 
+        }
+
+    </style>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">JewelrySalesStoreRazorWebApp</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white pt-4 pb-4">
+            <div class="container row align-items-center justify-content-between" style="margin-left: 50px; display:flex">
+                <div class="col-md-4  col-9">
+                    <img src="~/img/logo.svg" width="68"
+                         height="36" />
+                    <a class="navbar-brand" asp-area="" asp-page="/Index">JewelrySalesStore</a>
+                </div>
+               
+              
+                <div class="col-md-7 navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/CategoryPage/Index">Category</a>
@@ -44,20 +56,138 @@
                         </li>
                     </ul>
                 </div>
+
+                <div class="col-md-1 col-3 d-xs-flex">
+                    <a><i class="fa-regular fa-user" style="font-size: 20px;"></i></a>
+                </div>
             </div>
         </nav>
     </header>
+
+    @if (ViewData["ShowBanner"] as bool? == true)
+    {
+        <div class="row pb-3" style="padding-left: 0px;">
+            <div class="d-flex">
+                <div class="col-md-6">
+                    <img src="~/img/slider-4.jpg" class="img-fluid" alt="Banner" />
+                </div>
+                <div class="col-md-6" style="padding-left: 5vw;">
+                    <div class="d-flex align-items-center h-100">
+                        <div>
+                            <div style="font-family: 'Roboto', sans-serif;">
+                                <span style="font-size: 5vw;">modern</span><br />
+                                <span style="font-size: 5vw;">Design youthful</span>
+                            </div>
+                            <div style="font-family: 'Jost', sans-serif;">
+                                <p>
+                                    With diversity in design and motifs,..
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    @* Cac Page khac *@
     <div class="container">
         <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+           @RenderBody()
+        </main>  
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - JewelrySalesStoreRazorWebApp - <a asp-area="" asp-page="/Privacy">Privacy</a>
+    <footer style="background-color: #f6f6f6; height: 300px;" class="justify-content-between d-flex mb-3 border-top text-muted row">
+
+
+        <div class="pt-5 col-md-3" style="padding-left: 50px;">
+                <img class="mb-4" src="~/img/logo.svg" width="68"
+                     height="36" />
+                <p class="mb-1 fs-6" style="padding-right: 60px;">
+                    Lô E2a-7, Đường D1, Long Thạnh Mỹ,
+                Thành Phố Thủ Đức, Hồ Chí Minh
+                </p>
+                <p class="mb-1 fs-6">
+                    jewelryshop@gmail.com
+                </p>
+                <p class="mb-1 fs-6">
+                    1800-123-4567
+                </p>
+
+                <div class="d-flex fs-6 mt-4">
+                    <i class="fa-brands fa-tiktok"      style="padding:0px 16px 0px 0px"></i>
+                    <i class="fa-brands fa-facebook-f"  style="padding:0px 16px 0px 16px"></i>
+                    <i class="fa-brands fa-x-twitter"   style="padding:0px 16px 0px 16px"></i>
+                    <i class="fa-brands fa-instagram"   style="padding:0px 16px 0px 16px"></i>
+                </div>
+
+            </div>
+
+        <div class="pt-5 col-md-3 d-none d-md-block">
+                <p class="mb-4 fs-6">
+                    HELP
+                </p>
+                <p class="mb-1 fs-6">
+                    FAQs
+                </p>
+                <p class="mb-1 fs-6">
+                    Shipping
+                </p>
+                <p class="mb-1 fs-6">
+                    Size Guides
+                </p>
+                <p class="mb-1 fs-6">
+                    Materials & Care
+                </p>
+                <p class="mb-1 fs-6">
+                    Contact Us
+                </p>
+
+            </div>
+
+        <div class="pt-5 col-md-3 d-none d-md-block">
+                <p class="mb-4 fs-6">
+                    ABOUT US
+                </p>
+                <p class="mb-1 fs-6">
+                    About Us
+                </p>
+                <p class="mb-1 fs-6">
+                    The Rewards Stack
+                </p>
+                <p class="mb-1 fs-6">
+                    Sustainability
+                </p>
+                <p class="mb-1 fs-6">
+                    Careers
+                </p>
+                <p class="mb-1 fs-6">
+                    Blog
+                </p>
+            </div>
+
+        <div class="pt-5 col-md-3 d-none d-md-block" style="padding-right:50px;">
+                <p class="mb-4 fs-6">
+                    SIGN UP FOR 10% OFF
+                </p>
+
+                <p class="mb-1 fs-6">
+                    Be the first to know about new releases, exclusive
+                 promotions, events and styling tips!   
+                </p>
+
+                <div class="input-group mt-2" style="padding-right: 50px;">
+                    <input type="text" class="form-control" placeholder="Email address..." aria-label="Recipient's username" aria-describedby="basic-addon2"
+                           style="font-size: 12px; padding-left: 20px; height: 50px;">
+                    <div class="input-group-append">
+                        <button class="btn btn btn-dark" style="height: 50px; font-size: 12px;" type="button">SUBSCRIBE</button>
+                    </div>
+                </div>
         </div>
+
+        <p class="mt-4" style="padding-left: 50px; font-size: 12px;">Copyright © 2024. All Rights Reserved.</p>
     </footer>
+    
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

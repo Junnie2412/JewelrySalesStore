@@ -21,4 +21,8 @@
     <PackageReference Include="X.PagedList.Mvc.Core" Version="9.1.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\img\slider-4.jpg" />
+  </ItemGroup>
+
 </Project>
