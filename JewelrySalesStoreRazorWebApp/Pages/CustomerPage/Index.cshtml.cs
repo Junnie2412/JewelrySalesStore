@@ -16,6 +16,9 @@ namespace JewelrySalesStoreRazorWebApp.Pages.CustomerPage
         public string? SearchString { get; set; }
 
         [BindProperty(SupportsGet = true)]
+        public string? SearchPhone { get; set; }
+
+        [BindProperty(SupportsGet = true)]
         public bool CustomerVipStatus { get; set; }
 
         [BindProperty(SupportsGet = true)]
@@ -53,6 +56,12 @@ namespace JewelrySalesStoreRazorWebApp.Pages.CustomerPage
                         (c.CustomerLastName != null && c.CustomerLastName.Contains(SearchString, StringComparison.OrdinalIgnoreCase)) ||
                         (c.CustomerFirstName != null && c.CustomerFirstName.Contains(SearchString, StringComparison.OrdinalIgnoreCase))
                     ).ToList();
+                }
+
+                if (!string.IsNullOrEmpty(SearchPhone))
+                {
+                    customers = customers.Where(c =>
+                     c.CustomerPhone != null && c.CustomerPhone.Contains(SearchPhone)).ToList();
                 }
 
                 if (CustomerVipStatus)

@@ -18,17 +18,27 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
 
         [BindProperty(SupportsGet = true)]
         public string? SearchCustomerAddress { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public string? SearchShippingMethod { get; set; }
+
         [BindProperty(SupportsGet = true)]
         public bool IsActive { get; set; }
 
         [BindProperty(SupportsGet = true)]
         public bool IsInactive { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public int PageIndex { get; set; } = 1;
+
+        public int TotalPages { get; set; }
+        private readonly int PageSize = 5;
+
         public IndexModel()
         {
             _business ??= new OrderBusiness();
         }
-        [BindProperty(SupportsGet = true)]
-        public string? SearchShippingMethod { get; set; }
+        
 
         public IList<Order> Order { get; set; } = default!;
 
@@ -57,7 +67,10 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
                     newOrders = newOrders.Where(c => !c.Status).ToList();
                 }
 
-                Order = newOrders;
+                TotalPages = (int)Math.Ceiling(newOrders.Count / (double)PageSize);
+                Order = newOrders.Skip((PageIndex - 1) * PageSize).Take(PageSize).ToList();
+
+                //Order = newOrders;
             }
         }
     }

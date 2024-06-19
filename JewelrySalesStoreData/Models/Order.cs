@@ -9,6 +9,11 @@ public partial class Order
 {
     public Guid OrderId { get; set; }
 
+    public Order()
+    {
+        OrderId = Guid.NewGuid();
+    }
+
     public Guid? CustomerId { get; set; }
 
     public Guid? CompanyId { get; set; }
