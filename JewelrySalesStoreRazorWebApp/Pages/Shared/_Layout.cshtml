@@ -12,11 +12,30 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/22c7ec7d54.js" crossorigin="anonymous"></script>
+    <script src="~/js/site.js"></script>
 
     <style>
         html, body {
             height: 100%;
             overflow-x: hidden;
+        }
+
+        .modal-header.bg-image {
+            background-image: url('/img/sign-in.jpg');
+            background-size: cover; 
+            background-position: center; 
+            height: 200px; 
+            position: relative;
+        }
+
+        .modal-header .btn-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 1;
+            background-color: white; 
+            border: 2px solid #ccc; 
+            border-radius: 50%; 
         }
 
     </style>
@@ -59,7 +78,36 @@
                 </div>
 
                 <div class="col-md-1 col-3 d-xs-flex">
-                    <a><i class="fa-regular fa-user" style="font-size: 20px;"></i></a>
+                    <!-- Login Icon -->
+                    <a data-bs-toggle="modal" data-bs-target="#exampleModal" style="cursor:pointer"><i class="fa-regular fa-user" style="font-size: 20px;"></i></a>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header bg-image">
+                                    <span style="padding-left: 20px; padding-top: 110px; font-size: 22px; font-family:'Times New Roman', Times, serif">Sign in</span>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body" style="padding: 30px 30px 30px 50px;">
+                                    <form>
+                                        <div class="mb-3">
+                                            <div>
+                                                <input style="padding: 15px 25px 15px 25px; width: 398px;" placeholder="Name*" type="email" class="form-control" id="inputEmail">
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <div>
+                                                <input style="padding: 15px 25px 15px 25px; width: 398px;" placeholder="Password*" type="password" class="form-control" id="inputPassword">
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                    <button style="padding: 15px 25px 15px 25px; width: 398px; font-size: 13px" type="button" class="btn btn-dark" data-bs-dismiss="modal">SIGN IN</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -98,8 +146,10 @@
         </main>  
     </div>
 
-    <footer style="background-color: #f6f6f6; height: 300px;" class="justify-content-between d-flex border-top text-muted row">
-        <div class="pt-5 col-md-3" style="padding-left: 50px;">
+     @if (ViewData["ShowFooter"] as bool? == true)
+    {
+        <footer style="background-color: #f6f6f6; height: 300px;" class="justify-content-between d-flex border-top text-muted row">
+            <div class="pt-5 col-md-3" style="padding-left: 50px;">
                 <img class="mb-4" src="~/img/logo.svg" width="68"
                      height="36" />
                 <p class="mb-1 fs-6" style="padding-right: 60px;">
@@ -186,12 +236,13 @@
 
         <p class="mt-4" style="padding-left: 50px; font-size: 12px;">Copyright © 2024. All Rights Reserved.</p>
     </footer>
-    
+    }
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 
+    
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

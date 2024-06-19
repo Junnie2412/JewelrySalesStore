@@ -15,6 +15,7 @@ namespace JewelrySalesStoreRazorWebApp.Pages
         public void OnGet()
         {
             ViewData["ShowBanner"] = true;
+            ViewData["ShowFooter"] = true;
         }
     }
 }
