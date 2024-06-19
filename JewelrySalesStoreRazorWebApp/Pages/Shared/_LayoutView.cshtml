@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/JewelrySalesStoreRazorWebApp.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-McsjtIEj0H+hnd8lvc3xgBOYtCZPzzm0lvfFQ0HYoh+60+pPa7b6eZ+0K4mNYW9g" crossorigin="anonymous" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/22c7ec7d54.js" crossorigin="anonymous"></script>
@@ -22,9 +21,9 @@
 
         .modal-header.bg-image {
             background-image: url('/img/sign-in.jpg');
-            background-size: cover; 
-            background-position: center; 
-            height: 200px; 
+            background-size: cover;
+            background-position: center;
+            height: 200px;
             position: relative;
         }
 
@@ -33,21 +32,9 @@
             top: 10px;
             right: 10px;
             z-index: 1;
-            background-color: white; 
-            border: 2px solid #ccc; 
-            border-radius: 50%; 
-        }
-
-        .password-container {
-            position: relative;
-        }
-
-        .password-container .eye-icons {
-            position: absolute;
-            right: 40px;
-            top: 50%;
-            transform: translateY(-50%);
-            cursor: pointer;
+            background-color: white;
+            border: 2px solid #ccc;
+            border-radius: 50%;
         }
 
     </style>
@@ -60,32 +47,6 @@
                     <img src="~/img/logo.svg" width="68"
                          height="36" />
                     <a class="navbar-brand" asp-area="" asp-page="/Index">JewelrySalesStore</a>
-                </div>
-              
-                <div class="col-md-7 navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/CategoryPage/Index">Category</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/ProductPage/Index">Product</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/CompanyPage/Index">Company</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/OrderPage/Index">Order</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/OrderDetailPage/Index">Order Detail</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/PromotionPage/Index">Promotion</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/CustomerPage/Index">Customer</a>
-                        </li>
-                    </ul>
                 </div>
 
                 <div class="col-md-1 col-3 d-xs-flex">
@@ -109,7 +70,7 @@
                                         </div>
                                         <div class="mb-3">
                                             <div class="password-container">
-                                                <input style="padding: 15px 25px 15px 25px; width: 398px;" placeholder="Password*" type="password" class="form-control" id="password">
+                                                <input style="padding: 15px 25px 15px 25px; width: 398px;" placeholder="Password*" type="password" class="form-control" id="inputPassword">
                                                 <span class="eye-icons" onclick="password_show_hide();">
                                                     <i class=" fa-regular fa-eye-slash" id="show_eye"></i>
                                                     <i class="fa-regular fa-eye d-none" id="hide_eye"></i>
@@ -128,40 +89,37 @@
         </nav>
     </header>
 
-    @if (ViewData["ShowBanner"] as bool? == true)
-    {
-        <div class="row pb-3" style="padding-left: 0px;">
-            <div class="d-flex">
-                <div class="col-md-6">
-                    <img src="~/img/slider-4.jpg" class="img-fluid" alt="Banner" />
-                </div>
-                <div class="col-md-6" style="padding-left: 5vw;">
-                    <div class="d-flex align-items-center h-100">
-                        <div>
-                            <div style="font-family: 'Roboto', sans-serif;">
-                                <span style="font-size: 5vw;">modern</span><br />
-                                <span style="font-size: 5vw;">Design youthful</span>
-                            </div>
-                            <div style="font-family: 'Jost', sans-serif;">
-                                <p>
-                                    With diversity in design and motifs,..
-                                </p>
-                            </div>
+    <div class="row pb-3" style="padding-left: 0px;">
+        <div class="d-flex">
+            <div class="col-md-6">
+                <img src="~/img/slider-4.jpg" class="img-fluid" alt="Banner" />
+            </div>
+            <div class="col-md-6" style="padding-left: 5vw;">
+                <div class="d-flex align-items-center h-100">
+                    <div>
+                        <div style="font-family: 'Roboto', sans-serif;">
+                            <span style="font-size: 5vw;">modern</span><br />
+                            <span style="font-size: 5vw;">Design youthful</span>
+                        </div>
+                        <div style="font-family: 'Jost', sans-serif;">
+                            <p>
+                                With diversity in design and motifs,..
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    }
-
-    @* Cac Page khac *@
-    <div class="container">
-        <main role="main" class="pb-3">
-           @RenderBody()
-        </main>  
     </div>
 
-     @if (ViewData["ShowFooter"] as bool? == true)
+    @* Các Page khác *@
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    @if (ViewData["ShowFooter"] as bool? == true)
     {
         <footer style="background-color: #f6f6f6; height: 300px;" class="justify-content-between d-flex border-top text-muted row">
             <div class="pt-5 col-md-3" style="padding-left: 50px;">
@@ -169,7 +127,7 @@
                      height="36" />
                 <p class="mb-1 fs-6" style="padding-right: 60px;">
                     Lô E2a-7, Đường D1, Long Thạnh Mỹ,
-                Thành Phố Thủ Đức, Hồ Chí Minh
+                    Thành Phố Thủ Đức, Hồ Chí Minh
                 </p>
                 <p class="mb-1 fs-6">
                     jewelryshop@gmail.com
@@ -179,15 +137,15 @@
                 </p>
 
                 <div class="d-flex fs-6 mt-4">
-                    <i class="fa-brands fa-tiktok"      style="padding:0px 16px 0px 0px"></i>
-                    <i class="fa-brands fa-facebook-f"  style="padding:0px 16px 0px 16px"></i>
-                    <i class="fa-brands fa-x-twitter"   style="padding:0px 16px 0px 16px"></i>
-                    <i class="fa-brands fa-instagram"   style="padding:0px 16px 0px 16px"></i>
+                    <i class="fa-brands fa-tiktok" style="padding:0px 16px 0px 0px"></i>
+                    <i class="fa-brands fa-facebook-f" style="padding:0px 16px 0px 16px"></i>
+                    <i class="fa-brands fa-x-twitter" style="padding:0px 16px 0px 16px"></i>
+                    <i class="fa-brands fa-instagram" style="padding:0px 16px 0px 16px"></i>
                 </div>
 
             </div>
 
-        <div class="pt-5 col-md-3 d-none d-md-block">
+            <div class="pt-5 col-md-3 d-none d-md-block">
                 <p class="mb-4 fs-6">
                     HELP
                 </p>
@@ -209,7 +167,7 @@
 
             </div>
 
-        <div class="pt-5 col-md-3 d-none d-md-block">
+            <div class="pt-5 col-md-3 d-none d-md-block">
                 <p class="mb-4 fs-6">
                     ABOUT US
                 </p>
@@ -230,14 +188,14 @@
                 </p>
             </div>
 
-        <div class="pt-5 col-md-3 d-none d-md-block" style="padding-right:50px;">
+            <div class="pt-5 col-md-3 d-none d-md-block" style="padding-right:50px;">
                 <p class="mb-4 fs-6">
                     SIGN UP FOR 10% OFF
                 </p>
 
                 <p class="mb-1 fs-6">
                     Be the first to know about new releases, exclusive
-                 promotions, events and styling tips!   
+                    promotions, events and styling tips!
                 </p>
 
                 <div class="input-group mt-2" style="padding-right: 50px;">
@@ -247,17 +205,47 @@
                         <button class="btn btn btn-dark" style="height: 50px; font-size: 12px;" type="button">SUBSCRIBE</button>
                     </div>
                 </div>
-        </div>
+            </div>
 
-        <p class="mt-4" style="padding-left: 50px; font-size: 12px;">Copyright © 2024. All Rights Reserved.</p>
-    </footer>
+            <p class="mt-4" style="padding-left: 50px; font-size: 12px;">Copyright © 2024. All Rights Reserved.</p>
+        </footer>
     }
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 
-    
+    <script>
+        function login() {
+            var username = document.getElementById('inputUsername').value;
+            var password = document.getElementById('inputPassword').value;
+
+            fetch('/Login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username: username, password: password }),
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.success) {
+                        window.location.href = '/_Layout';
+                    } else {
+                        alert('Invalid username or password');
+                    }
+                })
+                .catch(error => {
+                    console.error('There was an error!', error);
+                });
+        }
+    </script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

@@ -158,6 +158,16 @@ namespace JewelrySalesStoreBusiness.BusinessOrder
             }
         }
 
+        public async Task<List<Customer>> GetCustomers()
+        {
+            return await _unitOfWork.CustomerRepository.GetAllAsync();
+        }
+
+        public async Task<List<Company>> GetCompanies()
+        {
+            return await _unitOfWork.CompanyRepository.GetAllAsync();
+        }
+
     }
 
 }
