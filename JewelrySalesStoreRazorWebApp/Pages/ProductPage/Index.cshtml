@@ -13,9 +13,14 @@
 
 <h1>Product</h1>
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
+<div class="row mt-5">
+    <div class="col-md-2">
+        <p>
+            <a class="btn btn-primary text-white" style="text-decoration:none;" asp-page="Create">Create New</a>
+        </p>
+    </div>
+</div>
+
 <form>
     Search By Name: <input type="text" asp-for="SearchString" />
     <input type="submit" value="Filter"/>
@@ -92,9 +97,9 @@
                     @Html.DisplayFor(modelItem => item.Promotion.PromotionName)
                 </td>
                 <td>
-                    <a asp-page="./Edit" asp-route-id="@item.ProductId">Edit</a> |
-                    <a asp-page="./Details" asp-route-id="@item.ProductId">Details</a> |
-                    <a asp-page="./Delete" asp-route-id="@item.ProductId">Delete</a>
+                    <a class="btn btn-success text-white" style="text-decoration:none;" asp-page="./Edit" asp-route-id="@item.ProductId">Edit</a> |
+                    <a class="btn btn-secondary text-white" style="text-decoration:none;" asp-page="./Details" asp-route-id="@item.ProductId">Details</a> |
+                    <a class="btn btn-danger text-white" style="text-decoration:none;" asp-page="./Delete" asp-route-id="@item.ProductId">Delete</a> 
                 </td>
             </tr>
         }

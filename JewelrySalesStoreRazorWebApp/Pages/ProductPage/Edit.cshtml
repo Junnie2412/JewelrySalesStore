@@ -63,16 +63,15 @@
                 <span asp-validation-for="Product.Notes" class="text-danger"></span>
             </div>
             <br />
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+            <div class="form-group mt-2">
+                <input type="submit" value="Save" class="btn btn-success" />
+                <a style="text-decoration: none;" class="btn btn-secondary text-white" asp-page="./Index">Back</a>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-page="./Index">Back to List</a>
-</div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
