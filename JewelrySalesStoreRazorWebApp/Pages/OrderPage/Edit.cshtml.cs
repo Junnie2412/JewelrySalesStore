@@ -17,39 +17,43 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
     {
         //private readonly JewelrySalesStoreData.Models.Net1702_221_4_JewelrySalesStoreContext _context;
         private readonly OrderBusiness business;
-        //private readonly ProductBusiness _product;
-        //private readonly CompanyBusiness _company;
-        //private readonly CustomerBusiness _customer;
-        //private readonly OrderDetailBusiness _detail;
+        private readonly ProductBusiness _product;
+        private readonly CompanyBusiness _company;
+        private readonly CustomerBusiness _customer;
+        private readonly OrderDetailBusiness _detail;
 
         public EditModel()
         {
             business ??= new OrderBusiness();
-            //_product ??= new ProductBusiness();
-            //_company ??= new CompanyBusiness();
-            //_customer ??= new CustomerBusiness();
-            //_detail ??= new OrderDetailBusiness();
+            _product ??= new ProductBusiness();
+            _company ??= new CompanyBusiness();
+            _customer ??= new CustomerBusiness();
+            _detail ??= new OrderDetailBusiness();
         }
 
         [BindProperty]
         public Order Order { get; set; } = default!;
 
-        //[BindProperty]
-        //public Product Product { get; set; } = default!;
+        [BindProperty]
+        public Product Product { get; set; } = default!;
 
-        //[BindProperty]
-        //public Guid ProductId { get; set; }
+        [BindProperty]
+        public Guid ProductId { get; set; }
 
-        //[BindProperty]
-        //public int Quantity { get; set; }
+        [BindProperty]
+        public int Quantity { get; set; }
 
-        //public SelectList ProductsSelectList { get; set; }
-        //public SelectList CompaniesSelectList { get; set; }
-        //public SelectList CustomersNameSelectList { get; set; }
-        //public SelectList CustomersAddressSelectList { get; set; }
+        public SelectList ProductsSelectList { get; set; }
+        public SelectList CompaniesSelectList { get; set; }
+        public SelectList CustomersNameSelectList { get; set; }
+        public SelectList CustomersAddressSelectList { get; set; }
 
         public async Task<IActionResult> OnGetAsync(Guid id)
         {
+            //Order = GetOrderById(idd);
+
+            //// Lấy thông tin Customer dựa trên CustomerId trong Order
+            //Order.Customer = GetCustomerById(Order.CustomerId);
             if (id == null)
             {
                 return NotFound();
@@ -229,6 +233,21 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
         //        CustomersAddressSelectList = new SelectList(new List<Customer>(), "CustomerId", "CustomerAddress");
         //    }
         //    ViewData["CustomersAddressSelectList"] = CustomersAddressSelectList;
+        //}
+        //private Order GetOrderById(Guid orderId)
+        //{
+        //    // Lấy thông tin Order từ cơ sở dữ liệu hoặc nguồn dữ liệu khác
+        //    // Đây là dữ liệu giả cho ví dụ
+        //    return new Order { CustomerId = orderId };
+        //}
+        //private Customer GetCustomerById(Guid customerId)
+        //{
+        //    // Giả sử bạn có phương thức để lấy thông tin khách hàng từ ID
+        //    // Dưới đây là dữ liệu giả
+        
+
+        //    customers.TryGetValue(customerId, out var customer);
+        //    return customer ?? new Customer { Id = customerId, CustomerName = "Unknown Customer" };
         //}
     }
 }
