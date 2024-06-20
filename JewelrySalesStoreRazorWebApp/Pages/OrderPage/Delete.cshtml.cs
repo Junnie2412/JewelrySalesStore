@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
 using JewelrySalesStoreData.Models;
 using JewelrySalesStoreBusiness.BusinessOrder;
 
@@ -12,16 +9,18 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
 {
     public class DeleteModel : PageModel
     {
-        //private readonly JewelrySalesStoreData.Models.Net1702_221_4_JewelrySalesStoreContext _context;
-        private readonly OrderBusiness business;
+        private readonly OrderBusiness _business;
 
         public DeleteModel()
         {
-            business ??= new OrderBusiness();
+            _business ??= new OrderBusiness();
         }
 
         [BindProperty]
         public Order Order { get; set; } = default!;
+
+        [BindProperty]
+        public Product Product { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(Guid id)
         {
@@ -30,16 +29,14 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
                 return NotFound();
             }
 
-            var order = await business.GetById(id);
+            var result = await _business.GetById(id);
 
-            if (order == null)
+            if (result.Data == null)
             {
                 return NotFound();
             }
-            else
-            {
-                Order = order.Data as Order;
-            }
+
+            Order = result.Data as Order;
             return Page();
         }
 
@@ -50,7 +47,13 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
                 return NotFound();
             }
 
-            var order = await business.DeleteById(id);
+            var result = await _business.DeleteById(id);
+
+            if (result.Status <= 0)
+            {
+                ModelState.AddModelError(string.Empty, "Failed to delete the order.");
+                return Page();
+            }
 
             return RedirectToPage("./Index");
         }

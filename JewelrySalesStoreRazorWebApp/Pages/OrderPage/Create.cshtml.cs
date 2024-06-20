@@ -33,6 +33,7 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
         public SelectList CustomersNameSelectList { get; set; }
         public SelectList CustomersAddressSelectList { get; set; }
 
+
         public async Task<IActionResult> OnGetAsync()
         {
             await PopulateProductsSelectListAsync();
@@ -43,9 +44,13 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
         }
 
         [BindProperty]
-        public Order Order { get; set; } = default!;
+        public Order Order { get; set; } = new Order();
 
         [BindProperty]
+        public Product Product { get; set; } = new Product();
+
+        [BindProperty]
+
         public Guid ProductId { get; set; }
 
         [BindProperty]
@@ -55,10 +60,7 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
         {
             if (!ModelState.IsValid)
             {
-                await PopulateProductsSelectListAsync();
-                await PopulateCompaniesSelectListAsync();
-                await PopulateCustomersNameSelectListAsync();
-                await PopulateCustomersAddressSelectListAsync();
+                await PopulateDropdownListsAsync();
                 return Page();
             }
 
@@ -70,26 +72,21 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
                 if (product == null)
                 {
                     ModelState.AddModelError(string.Empty, "Failed to retrieve Product details.");
-                    await PopulateProductsSelectListAsync();
-                    await PopulateCompaniesSelectListAsync();
-                    await PopulateCustomersNameSelectListAsync();
-                    await PopulateCustomersAddressSelectListAsync();
+                    await PopulateDropdownListsAsync();
                     return Page();
                 }
 
-                double discountPrice = 0;
+                double discountPrice = 0.0;
                 var finalPrice = Quantity * product.Price - discountPrice;
 
                 Order.TotalPrice = finalPrice;
+                Order.Status = true;
 
                 var saveResult = await _business.Save(Order);
                 if (saveResult.Status <= 0)
                 {
                     ModelState.AddModelError(string.Empty, "Failed to save Order.");
-                    await PopulateProductsSelectListAsync();
-                    await PopulateCompaniesSelectListAsync();
-                    await PopulateCustomersNameSelectListAsync();
-                    await PopulateCustomersAddressSelectListAsync();
+                    await PopulateDropdownListsAsync();
                     return Page();
                 }
 
@@ -99,17 +96,17 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
                     ProductId = ProductId,
                     Quantity = Quantity,
                     UnitPrice = product.Price,
-                    FinalPrice = finalPrice
+                    TotalPrice = Quantity * product.Price,
+                    DiscountPrice = discountPrice,
+                    FinalPrice = finalPrice,
+                    IsActive = Order.Status,
                 };
 
                 var orderDetailSaveResult = await _detail.Save(orderDetail);
                 if (orderDetailSaveResult.Status <= 0)
                 {
                     ModelState.AddModelError(string.Empty, "Failed to save OrderDetail.");
-                    await PopulateProductsSelectListAsync();
-                    await PopulateCompaniesSelectListAsync();
-                    await PopulateCustomersNameSelectListAsync();
-                    await PopulateCustomersAddressSelectListAsync();
+                    await PopulateDropdownListsAsync();
                     return Page();
                 }
 
@@ -118,12 +115,17 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
             catch (Exception ex)
             {
                 ModelState.AddModelError(string.Empty, $"An error occurred: {ex.Message}");
-                await PopulateProductsSelectListAsync();
-                await PopulateCompaniesSelectListAsync();
-                await PopulateCustomersNameSelectListAsync();
-                await PopulateCustomersAddressSelectListAsync();
+                await PopulateDropdownListsAsync();
                 return Page();
             }
+        }
+
+        private async Task PopulateDropdownListsAsync()
+        {
+            await PopulateProductsSelectListAsync();
+            await PopulateCompaniesSelectListAsync();
+            await PopulateCustomersNameSelectListAsync();
+            await PopulateCustomersAddressSelectListAsync();
         }
 
         private async Task PopulateProductsSelectListAsync()

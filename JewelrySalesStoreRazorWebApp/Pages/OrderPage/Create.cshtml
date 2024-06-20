@@ -19,7 +19,7 @@
             <span asp-validation-for="Order.OrderId" class="text-danger"></span>
             </div> *@
             <div class="form-group">
-                <label asp-for="Order.CustomerId" class="control-label"></label>
+                <label asp-for="Order.Customer" class="control-label"></label>
                 <select asp-for="Order.CustomerId" class="form-control" asp-items="@Model.CustomersNameSelectList"></select>
                 <span asp-validation-for="Order.CustomerId" class="text-danger"></span>
             </div>
@@ -36,18 +36,18 @@
             </div>
 
             <div class="form-group">
-                <label asp-for="Order.CompanyId" class="control-label"></label>
+                <label asp-for="Order.Company" class="control-label"></label>
                 <select asp-for="Order.CompanyId" class="form-control" asp-items="@Model.CompaniesSelectList"></select>
                 <span asp-validation-for="Order.CompanyId" class="text-danger"></span>
             </div>
 
-            <div class="form-group">
+            @* <div class="form-group">
                 <label asp-for="Order.Status" class="control-label"></label>
                 <select id="OrderIsActive" class="form-control" asp-for="Order.Status">
                     <option value="true">True</option>
                     <option value="false">False</option>
                 </select>
-            </div>
+            </div> *@
             <div class="form-group">
                 <label asp-for="Order.PaymentMethod" class="control-label"></label>
                 <select asp-for="Order.PaymentMethod" class="form-control">
@@ -81,7 +81,7 @@
                 <span asp-validation-for="Order.CustomerBankAccount" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ProductId" class="control-label"></label>
+                <label asp-for="Product" class="control-label"></label>
                 <select asp-for="ProductId" class="form-control" asp-items="@Model.ProductsSelectList"></select>
                 <span asp-validation-for="ProductId" class="text-danger"></span>
             </div>
@@ -89,6 +89,11 @@
                 <label asp-for="Quantity" class="control-label"></label>
                 <input asp-for="Quantity" class="form-control" />
                 <span asp-validation-for="Quantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Order.Notes" class="control-label"></label>
+                <input asp-for="Order.Notes" class="form-control" />
+                <span asp-validation-for="Order.Notes" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
