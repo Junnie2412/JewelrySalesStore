@@ -7,10 +7,6 @@ namespace JewelrySalesStoreData.Models;
 
 public partial class Category
 {
-    public Category()
-    {
-        CategoryId = Guid.NewGuid();
-    }
     public Guid CategoryId { get; set; }
 
     public string Name { get; set; }

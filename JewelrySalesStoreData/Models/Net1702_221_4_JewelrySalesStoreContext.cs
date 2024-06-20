@@ -10,7 +10,7 @@ namespace JewelrySalesStoreData.Models;
 public partial class Net1702_221_4_JewelrySalesStoreContext : DbContext
 {
     public Net1702_221_4_JewelrySalesStoreContext(DbContextOptions<Net1702_221_4_JewelrySalesStoreContext> options)
-        : base(options)
+       : base(options)
     {
     }
 
@@ -38,6 +38,7 @@ public partial class Net1702_221_4_JewelrySalesStoreContext : DbContext
     }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlServer(GetConnectionString("DefaultConnection"));
+
 
     public virtual DbSet<Category> Categories { get; set; }
 

@@ -50,8 +50,8 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
         public Product Product { get; set; } = new Product();
 
         [BindProperty]
-
         public Guid ProductId { get; set; }
+
 
         [BindProperty]
         public int Quantity { get; set; }
@@ -68,7 +68,8 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
             {
                 var productResult = await _product.GetById(ProductId);
                 var product = productResult.Data as Product;
-
+                var customerResult = await _customer.GetById(Order.CustomerId);
+                var customer = customerResult.Data as Customer;
                 if (product == null)
                 {
                     ModelState.AddModelError(string.Empty, "Failed to retrieve Product details.");
@@ -81,7 +82,7 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
 
                 Order.TotalPrice = finalPrice;
                 Order.Status = true;
-
+                Order.CustomerAddress = customer.CustomerAddress;
                 var saveResult = await _business.Save(Order);
                 if (saveResult.Status <= 0)
                 {
