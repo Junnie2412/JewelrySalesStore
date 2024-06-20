@@ -3,6 +3,12 @@
 
 @{
     ViewData["Title"] = "Index";
+    Layout = "_Layout";
+
+    if (ViewData["ShowNavBar"] == null)
+    {
+        ViewData["ShowNavBar"] = true;
+    }
 }
 
 <h1>Index</h1>

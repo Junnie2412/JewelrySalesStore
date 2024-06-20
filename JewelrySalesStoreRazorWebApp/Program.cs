@@ -5,10 +5,8 @@ namespace JewelrySalesStoreRazorWebApp
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
-            // Add services to the container.
+   
             builder.Services.AddRazorPages();
-
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -19,13 +17,12 @@ namespace JewelrySalesStoreRazorWebApp
                 app.UseHsts();
             }
 
+            // Config session
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
-
-            //app.UseAuthorization();
-            //app.UseAuthorization();
 
             app.MapRazorPages();
 

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using JewelrySalesStoreData.Models;
 using JewelrySalesStoreBusiness;
+using Microsoft.AspNetCore.Http;
 
 namespace JewelrySalesStoreRazorWebApp.Pages.CustomerPage
 {
@@ -31,11 +32,7 @@ namespace JewelrySalesStoreRazorWebApp.Pages.CustomerPage
         private readonly int PageSize = 4;     //Số object trên một trang
 
         private readonly ICustomerBusiness business;
-        //private readonly JewelrySalesStoreData.Models.Net1702_221_4_JewelrySalesStoreContext _context;
-        //public IndexModel(JewelrySalesStoreData.Models.Net1702_221_4_JewelrySalesStoreContext context)
-        //{
-        //    _context = context;
-        //}
+      
 
         public IndexModel()
         {
@@ -79,7 +76,7 @@ namespace JewelrySalesStoreRazorWebApp.Pages.CustomerPage
                 Customer = customers.Skip((PageIndex - 1) * PageSize).Take(PageSize).ToList();
 
             }
-   
+
         }
     }
 }

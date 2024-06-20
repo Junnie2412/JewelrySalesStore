@@ -15,5 +15,6 @@ function password_show_hide() {
         x.type = "password";
         show_eye.style.display = "block";
         hide_eye.style.display = "none";
-    }
+    }  
 }
+
