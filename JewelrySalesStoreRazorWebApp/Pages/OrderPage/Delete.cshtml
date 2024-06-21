@@ -37,19 +37,19 @@
             @Html.DisplayFor(model => model.Order.PaymentMethod)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Order.Company)
+            @Html.DisplayNameFor(model => model.Order.Company.CompanyName)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Order.Company.CompanyId)
+            @Html.DisplayFor(model => model.Order.Company.CompanyName)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Order.Customer)
+            @Html.DisplayNameFor(model => model.Order.Customer.CustomerAddress)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Order.Customer.CustomerAddress)
         </dd>
     </dl>
-    
+
     <form method="post">
         <input type="hidden" asp-for="Order.OrderId" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
