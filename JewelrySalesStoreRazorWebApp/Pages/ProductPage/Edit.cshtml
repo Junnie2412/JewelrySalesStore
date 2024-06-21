@@ -1,4 +1,5 @@
-﻿@page
+﻿
+@page
 @model JewelrySalesStoreRazorWebApp.Pages.ProductPage.EditModel
 
 @{
@@ -16,14 +17,10 @@
             <input type="hidden" asp-for="Product.ProductId" />
             <input type="hidden" asp-for="HasImage" />
             <div class="form-group col-md-3">
-                @if (Model.Product.Image != null && Model.Product.Image.Length > 0)
+                @if (Model.HasImage)
                 {
                     <div class="mt-2">
                         <img src="data:image;base64,@Convert.ToBase64String(Model.Product.Image)" alt="Current Image" class="img-thumbnail" />
-                    </div>
-                    <div class="form-check mt-2">
-                        <input class="form-check-input" asp-for="RemoveImage" type="checkbox" />
-                        <label class="form-check-label" asp-for="RemoveImage">Remove current image</label>
                     </div>
                 }
             </div>

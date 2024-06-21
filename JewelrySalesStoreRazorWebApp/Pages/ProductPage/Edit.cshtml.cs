@@ -14,14 +14,12 @@ namespace JewelrySalesStoreRazorWebApp.Pages.ProductPage
 {
     public class EditModel : PageModel
     {
-        private readonly IWebHostEnvironment _environment;
         private readonly ProductBusiness _business;
         private readonly CategoryBusiness _category;
         private readonly PromotionBusiness _promotion;
 
-        public EditModel(IWebHostEnvironment environment)
+        public EditModel()
         {
-            _environment = environment;
             _business ??= new ProductBusiness();
             _category ??= new CategoryBusiness();
             _promotion ??= new PromotionBusiness();
@@ -35,8 +33,6 @@ namespace JewelrySalesStoreRazorWebApp.Pages.ProductPage
         public IFormFile ImageFile { get; set; } = default!;
         [BindProperty]
         public bool HasImage { get; set; }
-        [BindProperty]
-        public bool RemoveImage { get; set; }
 
         public async Task<IActionResult> OnGetAsync(Guid id)
         {
@@ -84,33 +80,18 @@ namespace JewelrySalesStoreRazorWebApp.Pages.ProductPage
 
             try
             {
-                if (RemoveImage)
+                if (ImageFile != null && ImageFile.Length > 0)
                 {
-                    // Handle case where user wants to remove current image
-                    Product.Image = null;
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        await ImageFile.CopyToAsync(memoryStream);
+                        Product.Image = memoryStream.ToArray();
+                    }
                 }
-                else if (ImageFile != null && ImageFile.Length > 0)
+                else if (!HasImage)
                 {
-                    // Handle case where user uploads a new image
-                    // Example: Save the new image file to a location
-                    var uploadDir = Path.Combine(_environment.WebRootPath, "uploads");
-
-                    // Ensure the directory exists
-                    if (!Directory.Exists(uploadDir))
-                    {
-                        Directory.CreateDirectory(uploadDir);
-                    }
-
-                    var fileName = Guid.NewGuid().ToString() + Path.GetExtension(ImageFile.FileName);
-                    var filePath = Path.Combine(uploadDir, fileName);
-
-                    using (var stream = new FileStream(filePath, FileMode.Create))
-                    {
-                        await ImageFile.CopyToAsync(stream);
-                    }
-
-                    // Update Product.Image with the new file path or byte array as needed
-                    // Example: Product.Image = await ReadFileAsync(filePath);
+                    // Handle scenario where no new image is uploaded and no existing image is present
+                    Product.Image = null; // Ensure no residual image data if necessary
                 }
 
                 await _business.Update(Product);
