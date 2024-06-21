@@ -59,7 +59,7 @@
                 <div class="col-md-4  col-9">
                     <img src="~/img/logo.svg" width="68"
                          height="36" />
-                    <a class="navbar-brand" asp-route-ShowNavBar="@(ViewData["ShowNavBar"] as bool?)" asp-page="/Index">JewelrySalesStore</a>
+                    <a class="navbar-brand" asp-page="/Index">JewelrySalesStore</a>
                 </div>
 
                 @if (ViewData["ShowNavbar"] as bool? == true)
@@ -92,46 +92,50 @@
                 }
                 
                
-   
-                @* Login *@
-                <div class="col-md-1 col-3 d-xs-flex">
-                    <!-- Login Icon -->
-                    <a data-bs-toggle="modal" data-bs-target="#exampleModal" style="cursor:pointer"><i class="fa-regular fa-user" style="font-size: 20px;"></i></a>
-                  
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header bg-image">
-                                    <span style="padding-left: 20px; padding-top: 110px; font-size: 22px; font-family:'Times New Roman', Times, serif">Sign in</span>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body" style="padding: 30px 30px 30px 50px;">
-                                    <form id="loginForm" method="post" asp-page-handler="login">
-                                        <div class="mb-3">
-                                            <div>
-                                                <input style="padding: 15px 25px 15px 25px; width: 398px;" placeholder="Name*" type="text" class="form-control" id="username" name="Username">
-                                            </div>
-                                        </div>
-                                        <div class="mb-3">
-                                            <div class="password-container">
-                                                <input style="padding: 15px 25px 15px 25px; width: 398px;" placeholder="Password*" type="password" class="form-control" id="password" name="Password">
-                                                <span class="eye-icons" onclick="password_show_hide();">
-                                                    <i class=" fa-regular fa-eye-slash" id="show_eye"></i>
-                                                    <i class="fa-regular fa-eye d-none" id="hide_eye"></i>
-                                                </span>
-                                            </div>
-                                        </div>
+                @if (ViewData["ShowLogin"] as bool? == true)
+                {
+                    @* Login *@
+                    <div class="col-md-1 col-3 d-xs-flex">
+                        <!-- Login Icon -->
+                        <a data-bs-toggle="modal" data-bs-target="#exampleModal" style="cursor:pointer"><i class="fa-regular fa-user" style="font-size: 20px;"></i></a>
 
-                                        <button style="padding: 15px 25px 15px 25px; width: 398px; font-size: 13px" type="submit" class="btn btn-dark">SIGN IN</button>
-                                    </form>
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header bg-image">
+                                        <span style="padding-left: 20px; padding-top: 110px; font-size: 22px; font-family:'Times New Roman', Times, serif">Sign in</span>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body" style="padding: 30px 30px 30px 50px;">
+                                        <form id="loginForm" method="post" asp-page-handler="login">
+                                            <div class="mb-3">
+                                                <div>
+                                                    <input style="padding: 15px 25px 15px 25px; width: 398px;" placeholder="Name*" type="text" class="form-control" id="username" name="Username">
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <div class="password-container">
+                                                    <input style="padding: 15px 25px 15px 25px; width: 398px;" placeholder="Password*" type="password" class="form-control" id="password" name="Password">
+                                                    <span class="eye-icons" onclick="password_show_hide();">
+                                                        <i class=" fa-regular fa-eye-slash" id="show_eye"></i>
+                                                        <i class="fa-regular fa-eye d-none" id="hide_eye"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                            <button style="padding: 15px 25px 15px 25px; width: 398px; font-size: 13px" type="submit" class="btn btn-dark">SIGN IN</button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
+                        </div>
                     </div>
-              </div>
-        </nav>
+                }
+       
+            </div>
+            </nav>
     </header>
 
     @if (ViewData["ShowBanner"] as bool? == true)
