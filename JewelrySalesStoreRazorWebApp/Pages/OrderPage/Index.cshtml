@@ -119,11 +119,11 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.CustomerAddress)
                 </td>
-                <td>
-                    <a asp-page="./Edit" asp-route-id="@item.OrderId">Edit</a> |
-                    <a asp-page="./Details" asp-route-id="@item.OrderId">Details</a> |
-                    <a asp-page="./Delete" asp-route-id="@item.OrderId">Delete</a>
-                </td>
+                    <td scope="row">
+                        <a class="btn btn-success text-white" style="text-decoration: none;" asp-page="./Edit" asp-route-id="@item.OrderId">Edit</a> |
+                        <a class="btn btn-secondary text-white" style="text-decoration: none;" asp-page="./Details" asp-route-id="@item.OrderId">Details</a> |
+                        <a class="btn btn-danger text-white" style="text-decoration: none;" asp-page="./Delete" asp-route-id="@item.OrderId">Delete</a>
+                    </td>
             </tr>
         }
         }
