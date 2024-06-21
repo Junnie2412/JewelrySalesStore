@@ -58,7 +58,8 @@ namespace JewelrySalesStoreRazorWebApp.Pages.CustomerPage
                 if (!string.IsNullOrEmpty(SearchPhone))
                 {
                     customers = customers.Where(c =>
-                     c.CustomerPhone != null && c.CustomerPhone.Contains(SearchPhone)).ToList();
+                        c.CustomerPhone != null && c.CustomerPhone.Contains(SearchPhone)
+                    ).ToList();
                 }
 
                 if (CustomerVipStatus)

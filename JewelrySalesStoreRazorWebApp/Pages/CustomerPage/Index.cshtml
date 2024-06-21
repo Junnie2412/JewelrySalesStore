@@ -19,15 +19,11 @@
         <a class="btn btn-primary text-white" style="text-decoration:none;" asp-page="Create">Create New</a>
     </p>
 
-
-    <p class="col-md-4">
+    <p class="col-md-6">
         Search by Name: <input type="text" asp-for="SearchString" />
+        Phone: <input type="text" asp-for="SearchPhone" />
         <input type="submit" value="Filter" />
-    </p>
-
-    <p class="col-md-4">
-    Search by Phone: <input type="text" asp-for="SearchPhone" />
-    <input type="submit" value="Filter" />
+       
     </p>
 
     <div class="form-check col-md-1 pt-1">
@@ -37,7 +33,7 @@
         </label>
     </div>
 
-    <div class="form-check col-md-1 pt-1">
+    <div class="form-check col-md-2 pt-1">
         <input class="form-check-input" type="checkbox" id="isNonVipCheckbox" asp-for="CustomerNonVipStatus" />
         <label class="form-check-label" for="isNonVipCheckbox">
             Filter Non-VIP
