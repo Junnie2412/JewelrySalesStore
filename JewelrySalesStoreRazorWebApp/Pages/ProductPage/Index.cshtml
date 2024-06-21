@@ -22,7 +22,7 @@
 </div>
 
 <form>
-    Search By Name: <input type="text" asp-for="SearchString" />
+    Search By Name: <input type="text" asp-for="SearchName" />
     <input type="submit" value="Filter"/>
 </form>
 <br />
@@ -105,3 +105,29 @@
         }
     </tbody>
 </table>
+
+<nav aria-label="Page navigation example" class="d-flex justify-content-end">
+    <ul class="pagination">
+        <li class="page-item @(Model.PageIndex == 1 ? "disabled" : "")">
+            <a class="page-link" asp-page="./Index" asp-route-PageIndex="@(Model.PageIndex - 1)"
+               asp-route-SearchName="@Model.SearchName" asp-route-SearchPhone="@Model.SearchName"
+               aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        @for (int i = 1; i <= Model.TotalPages; i++)
+        {
+            <li class="page-item @(Model.PageIndex == i ? "active" : "")">
+                <a class="page-link" asp-page="./Index" asp-route-PageIndex="@i"
+                   asp-route-SearchName="@Model.SearchName" asp-route-SearchPhone="@Model.SearchName">@i</a>
+            </li>
+        }
+        <li class="page-item @(Model.PageIndex == Model.TotalPages ? "disabled" : "")">
+            <a class="page-link" asp-page="./Index" asp-route-PageIndex="@(Model.PageIndex + 1)"
+               asp-route-SearchName="@Model.SearchName" asp-route-SearchPhone="@Model.SearchName"
+               aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>
