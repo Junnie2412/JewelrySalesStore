@@ -8,8 +8,12 @@ namespace JewelrySalesStoreData.Models;
 public partial class Order
 {
     public Guid OrderId { get; set; }
+    public Order()
+    {
+        OrderId = Guid.NewGuid();
+    }
 
-    public Guid? CustomerId { get; set; }
+    public Guid CustomerId { get; set; }
 
     public Guid? CompanyId { get; set; }
 
@@ -25,7 +29,7 @@ public partial class Order
 
     public string CustomerBankAccount { get; set; }
 
-    public bool? Status { get; set; }
+    public bool Status { get; set; }
 
     public string Notes { get; set; }
 

@@ -79,7 +79,7 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
 
                 double discountPrice = 0.0;
                 var finalPrice = Quantity * product.Price - discountPrice;
-
+                Order.Date = DateTime.Now;
                 Order.TotalPrice = finalPrice;
                 Order.Status = true;
                 Order.CustomerAddress = customer.CustomerAddress;
