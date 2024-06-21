@@ -20,11 +20,13 @@
             </div> *@
             <div class="form-group">
                 <label asp-for="Order.Customer" class="control-label"></label>
-                <select asp-for="Order.CustomerId" class="form-control" asp-items="@Model.CustomersNameSelectList"></select>
+                <select asp-for="Order.CustomerId" class="form-control" asp-items="@Model.CustomersNameSelectList">
+                    <option value="">-- Select Customer --</option>
+                </select>
                 <span asp-validation-for="Order.CustomerId" class="text-danger"></span>
             </div>
 
-        @*     <div class="form-group">
+            @* <div class="form-group">
                 <label asp-for="Order.Date" class="control-label"></label>
                 <input asp-for="Order.Date" class="form-control" />
                 <span asp-validation-for="Order.Date" class="text-danger"></span>
@@ -37,7 +39,9 @@
 
             <div class="form-group">
                 <label asp-for="Order.Company" class="control-label"></label>
-                <select asp-for="Order.CompanyId" class="form-control" asp-items="@Model.CompaniesSelectList"></select>
+                <select asp-for="Order.CompanyId" class="form-control" asp-items="@Model.CompaniesSelectList">
+                    <option value="">-- Select Company --</option>
+                </select>
                 <span asp-validation-for="Order.CompanyId" class="text-danger"></span>
             </div>
 
@@ -51,6 +55,7 @@
             <div class="form-group">
                 <label asp-for="Order.PaymentMethod" class="control-label"></label>
                 <select asp-for="Order.PaymentMethod" class="form-control">
+                    <option value="">-- Select Payment Method --</option>
                     <option value="PayPal">PayPal</option>
                     <option value="Bank Transfer">Bank Transfer</option>
                     <option value="Credit Card">Credit Card</option>
@@ -60,6 +65,7 @@
             <div class="form-group">
                 <label asp-for="Order.ShippingMethod" class="control-label"></label>
                 <select asp-for="Order.ShippingMethod" class="form-control">
+                    <option value="">-- Select Shipping Method --</option>
                     <option value="Standard Shipping">Standard Shipping</option>
                     <option value="Express Shipping">Express Shipping</option>
                     <option value="Expedited Shipping">Expedited Shipping</option>
@@ -84,8 +90,17 @@
             </div>
             <div class="form-group">
                 <label asp-for="Product" class="control-label"></label>
-                <select asp-for="ProductId" class="form-control" asp-items="@Model.ProductsSelectList"></select>
+                <select asp-for="ProductId" class="form-control" asp-items="@Model.ProductsSelectList">
+                    <option value="">-- Select Product--</option>
+                </select>
                 <span asp-validation-for="ProductId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PromotionCode" class="control-label"></label>
+                <select asp-for="PromotionId" class="form-control" asp-items="@Model.PromotionsSelectList">
+                    <option value="">-- Select Promotion--</option>
+                </select>
+                <span asp-validation-for="PromotionId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Quantity" class="control-label"></label>

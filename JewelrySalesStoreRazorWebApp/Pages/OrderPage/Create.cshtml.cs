@@ -18,6 +18,7 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
         private readonly CompanyBusiness _company;
         private readonly CustomerBusiness _customer;
         private readonly OrderDetailBusiness _detail;
+        private readonly PromotionBusiness _promotion;
 
         public CreateModel()
         {
@@ -26,17 +27,19 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
             _company ??= new CompanyBusiness();
             _customer ??= new CustomerBusiness();
             _detail ??= new OrderDetailBusiness();
+            _promotion ??= new PromotionBusiness();
         }
 
         public SelectList ProductsSelectList { get; set; }
+        public SelectList PromotionsSelectList { get; set; }
         public SelectList CompaniesSelectList { get; set; }
         public SelectList CustomersNameSelectList { get; set; }
         public SelectList CustomersAddressSelectList { get; set; }
 
-
         public async Task<IActionResult> OnGetAsync()
         {
             await PopulateProductsSelectListAsync();
+            await PopulatePromotionsSelectListAsync();
             await PopulateCompaniesSelectListAsync();
             await PopulateCustomersNameSelectListAsync();
             await PopulateCustomersAddressSelectListAsync();
@@ -56,6 +59,12 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
         [BindProperty]
         public int Quantity { get; set; }
 
+        [BindProperty]
+        public Guid? PromotionId { get; set; }
+
+        [BindProperty]
+        public string PromotionCode { get; set; }
+
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
@@ -68,7 +77,7 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
             {
                 var productResult = await _product.GetById(ProductId);
                 var product = productResult.Data as Product;
-                var customerResult = await _customer.GetById(Order.CustomerId);
+                var customerResult = await _customer.GetById((Guid)Order.CustomerId);
                 var customer = customerResult.Data as Customer;
                 if (product == null)
                 {
@@ -78,9 +87,20 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
                 }
 
                 double discountPrice = 0.0;
-                var finalPrice = Quantity * product.Price - discountPrice;
-                Order.Date = DateTime.Now;
+                if (PromotionId.HasValue)
+                {
+                    var promotionResult = await _promotion.GetById(PromotionId.Value);
+                    var promotion = promotionResult.Data as Promotion;
+                    if (promotion != null && promotion.DiscountPercentage.HasValue && promotion.IsActive == true)
+                    {
+                        discountPrice = (double)((product.Price * Quantity) * (promotion.DiscountPercentage.Value / 100));
+                    }
+                }
+
+                var finalPrice = (Quantity * product.Price) - discountPrice;
+
                 Order.TotalPrice = finalPrice;
+                Order.Date = DateTime.Now;
                 Order.Status = true;
                 Order.CustomerAddress = customer.CustomerAddress;
                 var saveResult = await _business.Save(Order);
@@ -124,6 +144,7 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
         private async Task PopulateDropdownListsAsync()
         {
             await PopulateProductsSelectListAsync();
+            await PopulatePromotionsSelectListAsync();
             await PopulateCompaniesSelectListAsync();
             await PopulateCustomersNameSelectListAsync();
             await PopulateCustomersAddressSelectListAsync();
@@ -142,6 +163,21 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
                 ProductsSelectList = new SelectList(new List<Product>(), "ProductId", "Name");
             }
             ViewData["ProductsSelectList"] = ProductsSelectList;
+        }
+
+        private async Task PopulatePromotionsSelectListAsync()
+        {
+            var promotionsResult = await _promotion.GetAll();
+            if (promotionsResult.Status > 0 && promotionsResult.Data != null)
+            {
+                var promotionList = (IEnumerable<Promotion>)promotionsResult.Data;
+                PromotionsSelectList = new SelectList(promotionList, "PromotionId", "PromotionCode");
+            }
+            else
+            {
+                PromotionsSelectList = new SelectList(new List<Promotion>(), "PromotionId", "PromotionCode");
+            }
+            ViewData["PromotionsSelectList"] = PromotionsSelectList;
         }
 
         private async Task PopulateCompaniesSelectListAsync()
