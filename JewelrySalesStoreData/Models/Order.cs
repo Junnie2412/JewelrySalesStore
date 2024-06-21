@@ -22,8 +22,8 @@ public partial class Order
     [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = false)]
     public DateTime? Date { get; set; }
 
-    [Required(ErrorMessage = "Total price is required")]
-    [Range(0.01, double.MaxValue, ErrorMessage = "Total price must be greater than zero")]
+    //[Required(ErrorMessage = "Total price is required")]
+    //[Range(0.01, double.MaxValue, ErrorMessage = "Total price must be greater than zero")]
     public double? TotalPrice { get; set; }
 
     public string PaymentMethod { get; set; }
