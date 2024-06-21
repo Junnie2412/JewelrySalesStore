@@ -27,11 +27,7 @@
                 <div class="form-group col-md-5">
                     <div class="form-group">
                         <label asp-for="ImageFile" class="control-label"></label>
-<<<<<<< Updated upstream
-                        <input asp-for="ImageFile" type="file" class="form-control" />
-=======
                         <input asp-for="ImageFile" type="file" class="form-control" onchange="updateFileName(this)" />
->>>>>>> Stashed changes
                         <span asp-validation-for="ImageFile" class="text-danger"></span>
                     </div>
                     <div class="form-group">
@@ -91,21 +87,21 @@
     </div>
 </div>
 
-
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
-<<<<<<< Updated upstream
 
-=======
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             var imageFileInput = document.querySelector('input[type="file"]');
             var fileNameDisplay = document.getElementById('FileNameDisplay');
+            var existingImageFileName = document.getElementById('ExistingImageFileName').value;
 
             if (imageFileInput && fileNameDisplay) {
-                if (imageFileInput.files.length > 0) {
+                if (existingImageFileName) {
+                    fileNameDisplay.textContent = existingImageFileName;
+                } else if (imageFileInput.files.length > 0) {
                     fileNameDisplay.textContent = imageFileInput.files[0].name;
                 } else {
                     fileNameDisplay.textContent = "No file chosen";
@@ -121,5 +117,5 @@
             }
         }
     </script>
->>>>>>> Stashed changes
 }
+
