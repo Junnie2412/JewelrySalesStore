@@ -26,16 +26,16 @@
                 <span asp-validation-for="Order.CustomerId" class="text-danger"></span>
             </div>
 
-            @* <div class="form-group">
-                <label asp-for="Order.Date" class="control-label"></label>
-                <input asp-for="Order.Date" class="form-control" />
-                <span asp-validation-for="Order.Date" class="text-danger"></span>
-            </div> *@
             <div class="form-group">
+                <label asp-for="Order.Date" class="control-label"></label>
+                <input asp-for="Order.Date" class="form-control"  value="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")"  readonly/>
+                <span asp-validation-for="Order.Date" class="text-danger"></span>
+            </div>
+      @*       <div class="form-group">
                 <label asp-for="Order.TotalPrice" class="control-label"></label>
                 <input asp-for="Order.TotalPrice" class="form-control" readonly="readonly" />
                 <span asp-validation-for="Order.TotalPrice" class="text-danger"></span>
-            </div>
+            </div> *@
 
             <div class="form-group">
                 <label asp-for="Order.Company" class="control-label"></label>
@@ -95,16 +95,16 @@
                 </select>
                 <span asp-validation-for="ProductId" class="text-danger"></span>
             </div>
-            <div class="form-group">
+      @*       <div class="form-group">
                 <label asp-for="PromotionCode" class="control-label"></label>
                 <select asp-for="PromotionId" class="form-control" asp-items="@Model.PromotionsSelectList">
                     <option value="">-- Select Promotion--</option>
                 </select>
                 <span asp-validation-for="PromotionId" class="text-danger"></span>
-            </div>
+            </div> *@
             <div class="form-group">
                 <label asp-for="Quantity" class="control-label"></label>
-                <input asp-for="Quantity" class="form-control" min="0" />
+                <input asp-for="Quantity" class="form-control" min="1" />
                 <span asp-validation-for="Quantity" class="text-danger"></span>
             </div>
             <div class="form-group">
