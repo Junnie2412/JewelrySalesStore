@@ -77,7 +77,7 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
             {
                 var productResult = await _product.GetById(ProductId);
                 var product = productResult.Data as Product;
-                var customerResult = await _customer.GetById(Order.CustomerId);
+                var customerResult = await _customer.GetById((Guid)Order.CustomerId);
                 var customer = customerResult.Data as Customer;
                 if (product == null)
                 {
