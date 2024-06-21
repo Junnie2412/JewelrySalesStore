@@ -12,6 +12,12 @@ namespace JewelrySalesStoreRazorWebApp.Pages.ProductPage
 {
     public class IndexModel : PageModel
     {
+        [BindProperty(SupportsGet = true)]
+        public int PageIndex { get; set; } = 1;
+
+        public int TotalPages { get; set; }
+        private readonly int PageSize = 5;     //Số object trên một trang
+
         private readonly IProductBusiness _business;
 
         public IndexModel()
@@ -23,7 +29,7 @@ namespace JewelrySalesStoreRazorWebApp.Pages.ProductPage
         [BindProperty]
         public Product Product { get; set; } = default!;
         [BindProperty(SupportsGet = true)]
-        public string? SearchString { get; set; }
+        public string? SearchName { get; set; }
 
         public async Task OnGetAsync()
         {
@@ -31,12 +37,16 @@ namespace JewelrySalesStoreRazorWebApp.Pages.ProductPage
             if (resultl != null && resultl.Status > 0 && resultl.Data != null)
             {
                 var newProductList = resultl.Data as List<Product>;
-                if (!string.IsNullOrEmpty(SearchString))
+                if (!string.IsNullOrEmpty(SearchName))
                 {
-                    newProductList = newProductList.Where(c => c.Name != null && c.Name.Contains(SearchString, StringComparison.OrdinalIgnoreCase)).ToList();
+                    newProductList = newProductList.Where(c => c.Name != null && c.Name.Contains(SearchName, StringComparison.OrdinalIgnoreCase)).ToList();
                 }
 
                 ProductList = newProductList;
+
+                // Phân trang
+                TotalPages = (int)Math.Ceiling(ProductList.Count / (double)PageSize);
+                ProductList = newProductList.Skip((PageIndex - 1) * PageSize).Take(PageSize).ToList();
             }
         }
 
