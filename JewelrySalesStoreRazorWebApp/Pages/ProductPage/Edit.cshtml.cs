@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using JewelrySalesStoreData.Models;
 using JewelrySalesStoreBusiness;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace JewelrySalesStoreRazorWebApp.Pages.ProductPage
 {
@@ -30,6 +31,8 @@ namespace JewelrySalesStoreRazorWebApp.Pages.ProductPage
         public IList<Promotion> Promotion { get; set; } = default!;
         [BindProperty]
         public IFormFile ImageFile { get; set; } = default!;
+        [BindProperty]
+        public bool HasImage { get; set; }
 
         public async Task<IActionResult> OnGetAsync(Guid id)
         {
@@ -61,6 +64,8 @@ namespace JewelrySalesStoreRazorWebApp.Pages.ProductPage
             ViewData["PromotionId"] = new SelectList(Promotion, "PromotionId", "PromotionId");
 
             Product = product.Data as Product;
+            HasImage = Product.Image != null && Product.Image.Length > 0;
+
             return Page();
         }
 
@@ -83,6 +88,11 @@ namespace JewelrySalesStoreRazorWebApp.Pages.ProductPage
                         await ImageFile.CopyToAsync(memoryStream);
                         Product.Image = memoryStream.ToArray();
                     }
+                }
+                else if (!HasImage)
+                {
+                    // Handle scenario where no new image is uploaded and no existing image is present
+                    Product.Image = null; // Ensure no residual image data if necessary
                 }
 
                 await _business.Update(Product);
