@@ -9,15 +9,16 @@
 
 <h4>Order</h4>
 <hr />
+
 <div class="row">
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            @* <div class="form-group">
+            <div class="form-group">
             <label asp-for="Order.OrderId" class="control-label"></label>
             <input asp-for="Order.OrderId" class="form-control" />
             <span asp-validation-for="Order.OrderId" class="text-danger"></span>
-            </div> *@
+            </div>
             <div class="form-group">
                 <label asp-for="Order.Customer" class="control-label"></label>
                 <input asp-for="Order.CustomerId" class="form-control" readonly ></input>
@@ -26,7 +27,7 @@
 
             <div class="form-group">
                 <label asp-for="Order.Date" class="control-label"></label>
-                <input asp-for="Order.Date" class="form-control" />
+                <input asp-for="Order.Date" class="form-control" readonly />
                 <span asp-validation-for="Order.Date" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -77,7 +78,9 @@
             </div>
             <div class="form-group">
                 <label asp-for="Order.CustomerBankAccount" class="control-label"></label>
-                <input asp-for="Order.CustomerBankAccount" class="form-control" />
+                <input asp-for="Order.CustomerBankAccount" class="form-control"
+                       pattern="\d{12}" maxlength="12" minlength="12"
+                       title="Customer Bank Account must be exactly 12 digits." />
                 <span asp-validation-for="Order.CustomerBankAccount" class="text-danger"></span>
             </div>
       @*       <div class="form-group">

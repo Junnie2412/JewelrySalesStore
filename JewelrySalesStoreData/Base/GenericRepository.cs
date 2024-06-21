@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace JewelrySalesStoreData.Base
@@ -54,6 +55,7 @@ namespace JewelrySalesStoreData.Base
         {
             return _dbSet.ToList();
         }
+
         public async Task<List<T>> GetAllAsync(params string[] includeProperties)
         {
             IQueryable<T> query = _dbSet;
@@ -138,6 +140,25 @@ namespace JewelrySalesStoreData.Base
         public async Task<T> GetByIdAsync(string code)
         {
             return await _dbSet.FindAsync(code);
+        }
+        public async Task<List<T>> GetListAsync(Expression<Func<T, bool>> filter = null,
+                                            params string[] includeProperties)
+        {
+            IQueryable<T> query = _context.Set<T>();
+
+            // Bao gồm các thuộc tính điều hướng nếu có
+            foreach (var includeProperty in includeProperties)
+            {
+                query = query.Include(includeProperty);
+            }
+
+            // Áp dụng bộ lọc nếu có
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
+
+            return await query.ToListAsync();
         }
     }
 }

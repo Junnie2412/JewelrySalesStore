@@ -44,6 +44,7 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
             //var test = Order.OrderDetails;
             //var orderResult = await _detail.GetById(Order.OrderDetails.FirstOrDefault().OrderDetailId);
             //OrderDetail = orderResult.Data as OrderDetail;
+            var demoDetail = _detail.GetOrderDetailsByOrderIdAsync(id);
             var resultOrderDetail = getOrderDetailByOrder(Order.OrderId) ;
             OrderDetail = resultOrderDetail.Result as OrderDetail;
             return Page();
@@ -52,12 +53,16 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
         {
             var allOrderDetail = await _detail.GetAll();
             var listOrderDetail = allOrderDetail.Data as List<OrderDetail>;
-            foreach (var item in listOrderDetail)
+            if(listOrderDetail != null)
             {
-                if(item.OrderId == Order.OrderId)
+                foreach (var item in listOrderDetail)
                 {
-                    return item;
+                    if (item.OrderId == Order.OrderId)
+                    {
+                        return item;
+                    }
                 }
+                return null;
             }
             return null;
         }

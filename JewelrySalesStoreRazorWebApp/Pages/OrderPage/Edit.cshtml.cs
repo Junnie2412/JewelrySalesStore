@@ -10,6 +10,7 @@ using JewelrySalesStoreData.Models;
 using JewelrySalesStoreBusiness.BusinessOrder;
 using JewelrySalesStoreBusiness;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor;
+using Newtonsoft.Json;
 
 namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
 {
@@ -34,19 +35,24 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
         [BindProperty]
         public Order Order { get; set; } = default!;
 
-        [BindProperty]
-        public Product Product { get; set; } = default!;
+  
+        public Order OrderOriginal { get; set; }
+   
+        public OrderDetail OrderDetail { get; set; } = default!;
 
-        [BindProperty]
-        public Guid ProductId { get; set; }
+        //[BindProperty]
+        //public Product Product { get; set; } = default!;
+
+        //[BindProperty]
+        //public Guid ProductId { get; set; }
 
         [BindProperty]
         public int Quantity { get; set; }
 
-        public SelectList ProductsSelectList { get; set; }
-        public SelectList CompaniesSelectList { get; set; }
-        public SelectList CustomersNameSelectList { get; set; }
-        public SelectList CustomersAddressSelectList { get; set; }
+        //public SelectList ProductsSelectList { get; set; }
+        //public SelectList CompaniesSelectList { get; set; }
+        //public SelectList CustomersNameSelectList { get; set; }
+        //public SelectList CustomersAddressSelectList { get; set; }
 
         public async Task<IActionResult> OnGetAsync(Guid id)
         {
@@ -68,7 +74,26 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
             //ViewData["CompanyId"] = new SelectList(_context.Companies, "CompanyId", "CompanyId");
             //ViewData["CustomerId"] = new SelectList(_context.Customers, "CustomerId", "CustomerAddress");
             Order = order.Data as Order;
+            OrderOriginal = Order;
+            TempData["OrderOriginal"] = JsonConvert.SerializeObject(OrderOriginal);
             return Page();
+        }
+        public async Task<OrderDetail> getOrderDetailByOrder(Guid orderId)
+        {
+            var allOrderDetail = await _detail.GetAll();
+            var listOrderDetail = allOrderDetail.Data as List<OrderDetail>;
+            if (listOrderDetail != null)
+            {
+                foreach (var item in listOrderDetail)
+                {
+                    if (item.OrderId == orderId)
+                    {
+                        return item;
+                    }
+                }
+                return null;
+            }
+            return null;
         }
 
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -79,11 +104,22 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
             {
                 return Page();
             }
-
-            //_context.Attach(Order).State = EntityState.Modified;
-
             try
             {
+                var orderOriginalJson = TempData["OrderOriginal"] as string;
+                if (orderOriginalJson != null)
+                {
+                    OrderOriginal = JsonConvert.DeserializeObject<Order>(orderOriginalJson);
+                }
+
+                var resultOrderDetail = getOrderDetailByOrder(Order.OrderId);
+                OrderDetail = resultOrderDetail.Result as OrderDetail;
+                if (OrderOriginal.Status != Order.Status)
+                {
+                    OrderDetail.IsActive = Order.Status;
+                    await _detail.Update(OrderDetail);
+                }
+
                 await business.Update(Order);
             }
             catch (DbUpdateConcurrencyException)

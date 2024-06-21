@@ -83,7 +83,9 @@
             </div>
             <div class="form-group">
                 <label asp-for="Order.CustomerBankAccount" class="control-label"></label>
-                <input asp-for="Order.CustomerBankAccount" class="form-control" />
+                <input asp-for="Order.CustomerBankAccount" class="form-control"
+                       pattern="\d{12}" maxlength="12" minlength="12"
+                       title="Customer Bank Account must be exactly 12 digits." />
                 <span asp-validation-for="Order.CustomerBankAccount" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -102,7 +104,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Quantity" class="control-label"></label>
-                <input asp-for="Quantity" class="form-control" />
+                <input asp-for="Quantity" class="form-control" min="0" />
                 <span asp-validation-for="Quantity" class="text-danger"></span>
             </div>
             <div class="form-group">

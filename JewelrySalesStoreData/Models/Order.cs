@@ -9,8 +9,12 @@ namespace JewelrySalesStoreData.Models;
 public partial class Order
 {
     public Guid OrderId { get; set; }
+    public Order()
+    {
+        OrderId = Guid.NewGuid();
+    }
 
-    public Guid? CustomerId { get; set; }
+    public Guid CustomerId { get; set; }
 
     public Guid? CompanyId { get; set; }
 
@@ -18,8 +22,8 @@ public partial class Order
     [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = false)]
     public DateTime? Date { get; set; }
 
-    [Required(ErrorMessage = "Total price is required")]
-    [Range(0.01, double.MaxValue, ErrorMessage = "Total price must be greater than zero")]
+    //[Required(ErrorMessage = "Total price is required")]
+    //[Range(0.01, double.MaxValue, ErrorMessage = "Total price must be greater than zero")]
     public double? TotalPrice { get; set; }
 
     public string PaymentMethod { get; set; }
