@@ -34,7 +34,7 @@ public partial class Order
     [Display(Name = "Customer Bank Account")]
     public string CustomerBankAccount { get; set; }
 
-    public bool? Status { get; set; }
+    public bool Status { get; set; }
 
     public string Notes { get; set; }
 
