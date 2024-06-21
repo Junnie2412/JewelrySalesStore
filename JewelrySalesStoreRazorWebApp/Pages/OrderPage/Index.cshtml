@@ -11,7 +11,7 @@
     }
 }
 
-<h1>Index</h1>
+<h1>Order</h1>
 
 <p>
     <a asp-page="Create">Create New</a>
@@ -84,6 +84,8 @@
         </tr>
     </thead>
     <tbody>
+        @if(Model.Order != null)
+        {
         @foreach (var item in Model.Order)
         {
             <tr>
@@ -123,6 +125,7 @@
                     <a asp-page="./Delete" asp-route-id="@item.OrderId">Delete</a>
                 </td>
             </tr>
+        }
         }
     </tbody>
 </table>

@@ -18,6 +18,7 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
         private readonly CompanyBusiness _company;
         private readonly CustomerBusiness _customer;
         private readonly OrderDetailBusiness _detail;
+        private readonly PromotionBusiness _promotion;
 
         public CreateModel()
         {
@@ -26,9 +27,11 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
             _company ??= new CompanyBusiness();
             _customer ??= new CustomerBusiness();
             _detail ??= new OrderDetailBusiness();
+            _promotion ??= new PromotionBusiness();
         }
 
         public SelectList ProductsSelectList { get; set; }
+        public SelectList PromotionsSelectList { get; set; }
         public SelectList CompaniesSelectList { get; set; }
         public SelectList CustomersNameSelectList { get; set; }
         public SelectList CustomersAddressSelectList { get; set; }
@@ -36,6 +39,7 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
         public async Task<IActionResult> OnGetAsync()
         {
             await PopulateProductsSelectListAsync();
+            await PopulatePromotionsSelectListAsync();
             await PopulateCompaniesSelectListAsync();
             await PopulateCustomersNameSelectListAsync();
             await PopulateCustomersAddressSelectListAsync();
@@ -43,22 +47,29 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
         }
 
         [BindProperty]
-        public Order Order { get; set; } = default!;
+        public Order Order { get; set; } = new Order();
+
+        [BindProperty]
+        public Product Product { get; set; } = new Product();
 
         [BindProperty]
         public Guid ProductId { get; set; }
 
+
         [BindProperty]
         public int Quantity { get; set; }
+
+        [BindProperty]
+        public Guid? PromotionId { get; set; }
+
+        [BindProperty]
+        public string PromotionCode { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
-                await PopulateProductsSelectListAsync();
-                await PopulateCompaniesSelectListAsync();
-                await PopulateCustomersNameSelectListAsync();
-                await PopulateCustomersAddressSelectListAsync();
+                await PopulateDropdownListsAsync();
                 return Page();
             }
 
@@ -66,30 +77,37 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
             {
                 var productResult = await _product.GetById(ProductId);
                 var product = productResult.Data as Product;
-
+                var customerResult = await _customer.GetById(Order.CustomerId);
+                var customer = customerResult.Data as Customer;
                 if (product == null)
                 {
                     ModelState.AddModelError(string.Empty, "Failed to retrieve Product details.");
-                    await PopulateProductsSelectListAsync();
-                    await PopulateCompaniesSelectListAsync();
-                    await PopulateCustomersNameSelectListAsync();
-                    await PopulateCustomersAddressSelectListAsync();
+                    await PopulateDropdownListsAsync();
                     return Page();
                 }
 
-                double discountPrice = 0;
-                var finalPrice = Quantity * product.Price - discountPrice;
+                double discountPrice = 0.0;
+                if (PromotionId.HasValue)
+                {
+                    var promotionResult = await _promotion.GetById(PromotionId.Value);
+                    var promotion = promotionResult.Data as Promotion;
+                    if (promotion != null && promotion.DiscountPercentage.HasValue && promotion.IsActive == true)
+                    {
+                        discountPrice = (double)((product.Price * Quantity) * (promotion.DiscountPercentage.Value / 100));
+                    }
+                }
+
+                var finalPrice = (Quantity * product.Price) - discountPrice;
 
                 Order.TotalPrice = finalPrice;
-
+                Order.Date = DateTime.Now;
+                Order.Status = true;
+                Order.CustomerAddress = customer.CustomerAddress;
                 var saveResult = await _business.Save(Order);
                 if (saveResult.Status <= 0)
                 {
                     ModelState.AddModelError(string.Empty, "Failed to save Order.");
-                    await PopulateProductsSelectListAsync();
-                    await PopulateCompaniesSelectListAsync();
-                    await PopulateCustomersNameSelectListAsync();
-                    await PopulateCustomersAddressSelectListAsync();
+                    await PopulateDropdownListsAsync();
                     return Page();
                 }
 
@@ -99,17 +117,17 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
                     ProductId = ProductId,
                     Quantity = Quantity,
                     UnitPrice = product.Price,
-                    FinalPrice = finalPrice
+                    TotalPrice = Quantity * product.Price,
+                    DiscountPrice = discountPrice,
+                    FinalPrice = finalPrice,
+                    IsActive = Order.Status,
                 };
 
                 var orderDetailSaveResult = await _detail.Save(orderDetail);
                 if (orderDetailSaveResult.Status <= 0)
                 {
                     ModelState.AddModelError(string.Empty, "Failed to save OrderDetail.");
-                    await PopulateProductsSelectListAsync();
-                    await PopulateCompaniesSelectListAsync();
-                    await PopulateCustomersNameSelectListAsync();
-                    await PopulateCustomersAddressSelectListAsync();
+                    await PopulateDropdownListsAsync();
                     return Page();
                 }
 
@@ -118,12 +136,18 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
             catch (Exception ex)
             {
                 ModelState.AddModelError(string.Empty, $"An error occurred: {ex.Message}");
-                await PopulateProductsSelectListAsync();
-                await PopulateCompaniesSelectListAsync();
-                await PopulateCustomersNameSelectListAsync();
-                await PopulateCustomersAddressSelectListAsync();
+                await PopulateDropdownListsAsync();
                 return Page();
             }
+        }
+
+        private async Task PopulateDropdownListsAsync()
+        {
+            await PopulateProductsSelectListAsync();
+            await PopulatePromotionsSelectListAsync();
+            await PopulateCompaniesSelectListAsync();
+            await PopulateCustomersNameSelectListAsync();
+            await PopulateCustomersAddressSelectListAsync();
         }
 
         private async Task PopulateProductsSelectListAsync()
@@ -139,6 +163,21 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
                 ProductsSelectList = new SelectList(new List<Product>(), "ProductId", "Name");
             }
             ViewData["ProductsSelectList"] = ProductsSelectList;
+        }
+
+        private async Task PopulatePromotionsSelectListAsync()
+        {
+            var promotionsResult = await _promotion.GetAll();
+            if (promotionsResult.Status > 0 && promotionsResult.Data != null)
+            {
+                var promotionList = (IEnumerable<Promotion>)promotionsResult.Data;
+                PromotionsSelectList = new SelectList(promotionList, "PromotionId", "PromotionCode");
+            }
+            else
+            {
+                PromotionsSelectList = new SelectList(new List<Promotion>(), "PromotionId", "PromotionCode");
+            }
+            ViewData["PromotionsSelectList"] = PromotionsSelectList;
         }
 
         private async Task PopulateCompaniesSelectListAsync()
