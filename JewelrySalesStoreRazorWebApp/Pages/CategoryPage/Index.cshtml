@@ -21,9 +21,35 @@
     </div>
 </div>
 
-<form>
-    Search By Name: <input type="text" asp-for="SearchName" />
-    <input type="submit" value="Filter" />
+<form class="row mt-5">
+    <div class="form-check col-md-1 pt-1">
+        <label>Search By Name:</label>
+        <input type="text" asp-for="SearchName" />
+    </div>
+
+    <div class="form-check col-md-2 pt-1">
+        <label>Search By Purpose:</label>
+        <select asp-for="SearchPurpose" asp-items="Model.PurposeOptions" class="form-control"></select>
+    </div>
+
+    <div class="form-check col-md-3 pt-1">
+        <label class="form-check-label" for="isActiveCheckbox">
+            IsActive
+        </label>
+        <input class="form-check-input" type="checkbox" id="isActiveCheckbox" asp-for="IsActive" />
+    </div>
+
+    <div class="form-check col-md-4 pt-1">
+        <label class="form-check-label" for="isNotActiveCheckbox">
+            IsNotActive
+        </label>
+        <input class="form-check-input" type="checkbox" id="isNotActiveCheckbox" asp-for="IsNotActive" />
+    </div>
+
+    <div class="form-check col-md-3 pt-1">
+        <input type="submit" value="Filter" />
+    </div>
+
 </form>
 
 <br />
@@ -136,3 +162,18 @@
         </li>
     </ul>
 </nav>
+
+
+<script>
+    $(document).ready(function () {
+        $('#isVipCheckbox').change(function () {
+            $('form').submit();
+        });
+    });
+
+    $(document).ready(function () {
+        $('#isActiveCheckbox').change(function () {
+            $('form').submit();
+        });
+    });
+</script>
