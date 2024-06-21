@@ -28,7 +28,7 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderDetailPage
         public OrderDetail OrderDetail { get; set; }
 
         [BindProperty]
-        public Guid? PromotionId { get; set; }
+        public Guid PromotionId { get; set; }
 
         [BindProperty]
         public string PromotionCode { get; set; }
@@ -65,11 +65,11 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderDetailPage
 
             try
             {
-                var promotionsResult = await _promotion.GetById((Guid)PromotionId);
+                var promotionsResult = await _promotion.GetById(PromotionId);
                 if (promotionsResult.Status > 0 && promotionsResult.Data != null)
                 {
-                    var promotion = (Promotion)promotionsResult.Data;
-                    OrderDetail.DiscountPrice = OrderDetail.Quantity * OrderDetail.UnitPrice * (promotion.DiscountPercentage ?? 0) / 100;
+                    var promotion = promotionsResult.Data as Promotion;
+                    OrderDetail.DiscountPrice = OrderDetail.Quantity * OrderDetail.UnitPrice * (promotion.DiscountPercentage / 100);
                 }
                 else
                 {

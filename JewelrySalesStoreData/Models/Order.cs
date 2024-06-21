@@ -18,19 +18,18 @@ public partial class Order
 
     public Guid? CompanyId { get; set; }
 
-    [Required(ErrorMessage = "Date is required")]
     [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = false)]
     public DateTime? Date { get; set; }
 
-    //[Required(ErrorMessage = "Total price is required")]
-    //[Range(0.01, double.MaxValue, ErrorMessage = "Total price must be greater than zero")]
+    [Range(0.01, double.MaxValue, ErrorMessage = "Total price must be greater than zero")]
     public double? TotalPrice { get; set; }
 
+    [Display(Name = "Payment Method")]
     public string PaymentMethod { get; set; }
 
+    [Display(Name = "Shipping Method")]
     public string ShippingMethod { get; set; }
 
-    [Required]
     [Display(Name = "Customer Address")]
     public string CustomerAddress { get; set; }
 

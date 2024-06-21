@@ -32,10 +32,14 @@
                         <ColumnDefinition Width="220"/>
                         <ColumnDefinition Width="80"/>
                         <ColumnDefinition Width="220"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="220"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="220"/>
                     </Grid.ColumnDefinitions>
                     <!--CustomerId -->
                     <Label Grid.Column="0" Grid.Row="0" Content="Customer ID" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
-                    <TextBox Grid.Column="1" Grid.Row="0" x:Name="txtCustomerId" Height="25" Text="{Binding Path=Order.CustomerId, Mode=TwoWay}" Margin="5" Width="200" HorizontalAlignment="Left"/>
+                    <TextBox Grid.Column="1" Grid.Row="0" x:Name="txtCustomerId" Height="25" Text="{Binding Path=Order.CustomerId, Mode=TwoWay}" Margin="5" Width="200" HorizontalAlignment="Left" />
 
                     <!-- Date -->
                     <Label Grid.Column="2" Grid.Row="0" Content="Id" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
@@ -43,7 +47,12 @@
 
                     <!-- Payment Method -->
                     <Label Grid.Column="4" Grid.Row="0" Content="Payment Method" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
-                    <TextBox Grid.Column="5" Grid.Row="0" x:Name="txtPaymentMethod" Height="25" Text="{Binding Path=Order.PaymentMethod, Mode=TwoWay}" Margin="5" Width="200" HorizontalAlignment="Left"/>
+                    <ComboBox Grid.Column="5" Grid.Row="0" x:Name="txtPaymentMethod" Height="25" Width="200" HorizontalAlignment="Left" Margin="5"
+                         SelectedValuePath="Tag" SelectedValue="{Binding Path=Order.PaymentMethod, Mode=TwoWay}">
+                        <ComboBoxItem Content="PayPal" />
+                        <ComboBoxItem Content="Bank Transfer" />
+                        <ComboBoxItem Content="Credit Card" />
+                    </ComboBox>
 
                     <!-- Company Id -->
                     <Label Grid.Column="0" Grid.Row="1" Content="Company ID " HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
@@ -51,21 +60,38 @@
 
                     <!-- Status-->
                     <Label Grid.Column="2" Grid.Row="1" Content="Status" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
-                    <TextBox Grid.Column="3" Grid.Row="1" x:Name="txtStatus" Height="25" Text="{Binding Path=Order.Status, Mode=TwoWay}" Margin="5" Width="200" HorizontalAlignment="Left"/>
-
+                    <ComboBox Grid.Column="3" Grid.Row="1" x:Name="txtStatus" Height="25" Width="200" HorizontalAlignment="Left" Margin="5"
+                        SelectedValuePath="Tag" SelectedValue="{Binding Path=Order.Status, Mode=TwoWay}">
+                        <ComboBoxItem Content="True" Tag="true"/>
+                        <ComboBoxItem Content="False" Tag="false"/>
+                    </ComboBox>
                     <!-- Total Price-->
                     <Label Grid.Column="4" Grid.Row="1" Content="Total Price" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
-                    <TextBox Grid.Column="5" Grid.Row="1" x:Name="txtTotalPrice" Height="25" Text="{Binding Path=Order.RotalPrice, Mode=TwoWay}" Margin="5" Width="200" HorizontalAlignment="Left"/>
+                    <TextBox Grid.Column="5" Grid.Row="1" x:Name="txtTotalPrice" Height="25" Text="{Binding Path=Order.totalPrice, Mode=TwoWay}" Margin="5" Width="200" HorizontalAlignment="Left" IsReadOnly="True" />
                     <!-- ProductId-->
                     <Label Grid.Column="2" Grid.Row="2" Content="Product Id" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
                     <TextBox Grid.Column="3" Grid.Row="2" x:Name="txtProduct" Height="25" Text="{Binding Path=OrderDetail.ProductId, Mode=TwoWay}" Margin="5" Width="200" HorizontalAlignment="Left"/>
                     <Label Grid.Column="2" Grid.Row="3" Content="Quantity" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
                     <TextBox Grid.Column="3" Grid.Row="3" x:Name="txtQuantity" Height="25" Text="{Binding Path=OrderDetail.Quantity, Mode=TwoWay}" Margin="5" Width="200" HorizontalAlignment="Left"/>
+                    
+                    <Label Grid.Column="4" Grid.Row="3" Content="Address" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
+                    <TextBox Grid.Column="5" Grid.Row="3" x:Name="txtCustomerAddress" Height="25" Text="{Binding Path=OrderDetail.CustomerAddress, Mode=TwoWay}" Margin="5" Width="200" HorizontalAlignment="Left"/>
+                    <Label Grid.Column="4" Grid.Row="2" Content="Note" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
+                    <TextBox Grid.Column="5" Grid.Row="2" x:Name="txtNote" Height="25" Text="{Binding Path=Order.Notes, Mode=TwoWay}" Margin="5" Width="200" HorizontalAlignment="Left"/>
+
 
                     <Label Grid.Column="0" Grid.Row="2" Content="Customer Bank Account" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
                     <TextBox Grid.Column="1" Grid.Row="2" x:Name="txtCustomerBankAccount" Height="25" Text="{Binding Path=OrderDetail.CustomerBankAccount, Mode=TwoWay}" Margin="5" Width="200" HorizontalAlignment="Left"/>
                     <Label Grid.Column="0" Grid.Row="3" Content="Shipping Method" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
-                    <TextBox Grid.Column="1" Grid.Row="3" x:Name="txtShippingMethod" Height="25" Text="{Binding Path=OrderDetail.ShippingMethod, Mode=TwoWay}" Margin="5" Width="200" HorizontalAlignment="Left"/>
+                    <ComboBox Grid.Column="1" Grid.Row="3" x:Name="txtShippingMethod" Height="25" Width="200" HorizontalAlignment="Left" Margin="5"
+                                 SelectedValuePath="Tag" SelectedValue="{Binding Path=Order.ShippingMethod, Mode=TwoWay}">
+                        <ComboBoxItem Content="Standard Shipping" />
+                        <ComboBoxItem Content="Express Shipping" />
+                        <ComboBoxItem Content="Expedited Shipping" />
+                        <ComboBoxItem Content="Freight Shipping" />
+                        <ComboBoxItem Content="Rail Shipping" />
+                        <ComboBoxItem Content="Local Delivery" />
+                    </ComboBox> 
 
                 </Grid>
             </GroupBox>

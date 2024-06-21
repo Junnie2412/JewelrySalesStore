@@ -83,11 +83,6 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderDetailPage
                 TotalPages = (int)Math.Ceiling(orderDetails.Count / (double)PageSize);
                 OrderDetail = orderDetails.Skip((PageIndex - 1) * PageSize).Take(PageSize).ToList();
             }
-            else
-            {
-                OrderDetail = new List<OrderDetail>(); // Initialize an empty list if there is no data
-            }
-
         }
     }
 }

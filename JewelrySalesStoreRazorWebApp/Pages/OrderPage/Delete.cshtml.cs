@@ -73,6 +73,14 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
             {
                 return NotFound();
             }
+            var resultOrder = await _business.GetById(id);
+            var Order = resultOrder.Data as Order;
+
+            if(Order.Status == true)
+            {
+                ModelState.AddModelError(string.Empty, "Can't delete this order. You can only delete the orders whose status is false");
+                return Page();
+            }
             var resultOrderDetail = getOrderDetailByOrder(id);
             OrderDetail = resultOrderDetail.Result as OrderDetail;
             var result1 = await _detail.DeleteById(OrderDetail.OrderDetailId);

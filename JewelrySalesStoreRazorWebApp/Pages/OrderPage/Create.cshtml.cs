@@ -55,18 +55,18 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
         [BindProperty]
         public Guid ProductId { get; set; }
 
-
         [BindProperty]
         public int Quantity { get; set; }
 
         [BindProperty]
-        public Guid? PromotionId { get; set; }
+        public Guid PromotionId { get; set; }
 
-        [BindProperty]
-        public string PromotionCode { get; set; }
+        //[BindProperty]
+        //public string PromotionCode { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {
+     
             if (!ModelState.IsValid)
             {
                 await PopulateDropdownListsAsync();
@@ -77,8 +77,6 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
             {
                 var productResult = await _product.GetById(ProductId);
                 var product = productResult.Data as Product;
-                var customerResult = await _customer.GetById((Guid)Order.CustomerId);
-                var customer = customerResult.Data as Customer;
                 if (product == null)
                 {
                     ModelState.AddModelError(string.Empty, "Failed to retrieve Product details.");
@@ -86,23 +84,49 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
                     return Page();
                 }
 
+<<<<<<< Updated upstream
                 double discountPrice = 0.0;
-                if (PromotionId.HasValue)
+                //if (PromotionId.HasValue)
+                //{
+                //    var promotionResult = await _promotion.GetById(PromotionId.Value);
+                //    var promotion = promotionResult.Data as Promotion;
+                //    if (promotion != null && promotion.DiscountPercentage.HasValue && promotion.IsActive == true)
+                //    {
+                //        discountPrice = (double)((product.Price * Quantity) * (promotion.DiscountPercentage.Value / 100));
+                //    }
+                //}
+=======
+                var customerResult = await _customer.GetById((Guid)Order.CustomerId);
+                var customer = customerResult.Data as Customer;
+                if (customer == null)
                 {
-                    var promotionResult = await _promotion.GetById(PromotionId.Value);
-                    var promotion = promotionResult.Data as Promotion;
-                    if (promotion != null && promotion.DiscountPercentage.HasValue && promotion.IsActive == true)
-                    {
-                        discountPrice = (double)((product.Price * Quantity) * (promotion.DiscountPercentage.Value / 100));
-                    }
+                    ModelState.AddModelError(string.Empty, "Failed to retrieve Customer details.");
+                    await PopulateDropdownListsAsync();
+                    return Page();
                 }
+
+                double discountPrice = 0.0;
+                if (PromotionId != Guid.Empty)
+                {
+                    var promotionResult = await _promotion.GetById(PromotionId);
+                    var promotion = promotionResult.Data as Promotion;
+                    if (promotion == null || !promotion.IsActive == true || !promotion.PromotionCode.Equals(PromotionCode, StringComparison.OrdinalIgnoreCase))
+                    {
+                        ModelState.AddModelError("PromotionCode", "Invalid or inactive promotion code.");
+                        await PopulateDropdownListsAsync();
+                        return Page();
+                    }
+                    discountPrice = (double)((product.Price * Quantity) * (promotion.DiscountPercentage / 100));
+                }
+>>>>>>> Stashed changes
 
                 var finalPrice = (Quantity * product.Price) - discountPrice;
 
                 Order.TotalPrice = finalPrice;
-                Order.Date = DateTime.Now;
+                Order.Date = DateTime.Today;
                 Order.Status = true;
                 Order.CustomerAddress = customer.CustomerAddress;
+
                 var saveResult = await _business.Save(Order);
                 if (saveResult.Status <= 0)
                 {
@@ -223,6 +247,41 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
                 CustomersAddressSelectList = new SelectList(new List<Customer>(), "CustomerId", "CustomerAddress");
             }
             ViewData["CustomersAddressSelectList"] = CustomersAddressSelectList;
+        }
+
+        public async Task<IActionResult> OnGetCustomerAddressAsync(Guid customerId)
+        {
+            var customerResult = await _customer.GetById(customerId);
+            if (customerResult.Status > 0 && customerResult.Data != null)
+            {
+                var customer = customerResult.Data as Customer;
+                return new JsonResult(new { customerAddress = customer.CustomerAddress });
+            }
+            return new JsonResult(new { customerAddress = string.Empty });
+        }
+
+        public async Task<IActionResult> OnGetCalculateTotalPriceAsync(Guid productId, int quantity, Guid? promotionId)
+        {
+            var productResult = await _product.GetById(productId);
+            var product = productResult.Data as Product;
+            if (product == null)
+            {
+                return new JsonResult(new { totalPrice = 0.0 });
+            }
+
+            double discountPrice = 0.0;
+            if (promotionId.HasValue)
+            {
+                var promotionResult = await _promotion.GetById(promotionId.Value);
+                var promotion = promotionResult.Data as Promotion;
+                if (promotion != null && promotion.IsActive == true)
+                {
+                    discountPrice = (double)((product.Price * quantity) * (promotion.DiscountPercentage / 100));
+                }
+            }
+
+            var finalPrice = (quantity * product.Price) - discountPrice;
+            return new JsonResult(new { totalPrice = finalPrice });
         }
     }
 }
