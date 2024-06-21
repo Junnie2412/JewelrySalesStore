@@ -53,6 +53,8 @@ namespace JewelrySalesStoreRazorWebApp.Pages.CategoryPage
                 .Select(p => new SelectListItem { Value = p, Text = p })
                 .ToList();
 
+                PurposeOptions.Insert(0, new SelectListItem { Value = "", Text = "All" });
+
                 if (!string.IsNullOrEmpty(SearchName))
                 {
                     newCategories = newCategories.Where(c => c.Name != null && c.Name.Contains(SearchName, StringComparison.OrdinalIgnoreCase)).ToList();

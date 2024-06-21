@@ -21,33 +21,33 @@
     </div>
 </div>
 
-<form class="row mt-5">
-    <div class="form-check col-md-1 pt-1">
-        <label>Search By Name:</label>
-        <input type="text" asp-for="SearchName" />
+<form class="row mt-2">
+    <div class="form-check col-md-4 pt-1 d-flex align-items-center">
+        <label class="col-md-4">Search By Name: </label>
+        <input class="col-md-7"  type="text" asp-for="SearchName" />
     </div>
 
-    <div class="form-check col-md-2 pt-1">
-        <label>Search By Purpose:</label>
-        <select asp-for="SearchPurpose" asp-items="Model.PurposeOptions" class="form-control"></select>
+    <div class="form-check col-md-4 pt-1 d-flex align-items-center">
+        <label class="col-md-4" style="margin-right: 10px">Search By Purpose: </label>
+        <select class="col-md-7" asp-for="SearchPurpose" asp-items="Model.PurposeOptions" class="form-control"></select>
     </div>
 
-    <div class="form-check col-md-3 pt-1">
+    <div class="form-check col-md-1 pt-2">
         <label class="form-check-label" for="isActiveCheckbox">
-            IsActive
+           Active
         </label>
-        <input class="form-check-input" type="checkbox" id="isActiveCheckbox" asp-for="IsActive" />
+        <input class="form-check-input" type="checkbox" asp-for="IsActive" />
     </div>
 
-    <div class="form-check col-md-4 pt-1">
+    <div class="form-check col-md-1 pt-2">
         <label class="form-check-label" for="isNotActiveCheckbox">
-            IsNotActive
+            NotActive
         </label>
-        <input class="form-check-input" type="checkbox" id="isNotActiveCheckbox" asp-for="IsNotActive" />
+        <input class="form-check-input" type="checkbox" asp-for="IsNotActive" />
     </div>
 
-    <div class="form-check col-md-3 pt-1">
-        <input type="submit" value="Filter" />
+    <div class="form-check col-md-1 pt-1">
+        <input class="btn btn-primary text-white" type="submit" value="Filter" />
     </div>
 
 </form>
@@ -164,16 +164,3 @@
 </nav>
 
 
-<script>
-    $(document).ready(function () {
-        $('#isVipCheckbox').change(function () {
-            $('form').submit();
-        });
-    });
-
-    $(document).ready(function () {
-        $('#isActiveCheckbox').change(function () {
-            $('form').submit();
-        });
-    });
-</script>
