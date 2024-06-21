@@ -30,6 +30,16 @@ namespace JewelrySalesStoreRazorWebApp.Pages.ProductPage
         public Product Product { get; set; } = default!;
         [BindProperty(SupportsGet = true)]
         public string? SearchName { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public float? PriceFrom { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public float? PriceTo { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public bool IsActive { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public bool IsNotActive { get; set; }
 
         public async Task OnGetAsync()
         {
@@ -40,6 +50,19 @@ namespace JewelrySalesStoreRazorWebApp.Pages.ProductPage
                 if (!string.IsNullOrEmpty(SearchName))
                 {
                     newProductList = newProductList.Where(c => c.Name != null && c.Name.Contains(SearchName, StringComparison.OrdinalIgnoreCase)).ToList();
+                }
+                if(PriceFrom != null && PriceTo != null)
+                {
+                    newProductList = newProductList.Where(c => c.Price != null && c.Price >= PriceFrom && c.Price <= PriceTo).ToList();
+                }
+                if (IsActive)
+                {
+                    newProductList = newProductList.Where(c => (bool)c.IsActive).ToList();
+                }
+
+                if (IsNotActive)
+                {
+                    newProductList = newProductList.Where(c => (bool)!c.IsActive).ToList();
                 }
 
                 ProductList = newProductList;
