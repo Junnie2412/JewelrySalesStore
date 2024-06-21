@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using JewelrySalesStoreData.Models;
 using JewelrySalesStoreBusiness;
 using JewelrySalesStoreBusiness.BusinessOrder;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace JewelrySalesStoreRazorWebApp.Pages.OrderDetailPage
 {
@@ -26,6 +25,8 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderDetailPage
 
         [BindProperty]
         public OrderDetail OrderDetail { get; set; }
+
+        public Order OrderOriginal { get; set; }
 
         [BindProperty]
         public Guid PromotionId { get; set; }
@@ -49,6 +50,18 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderDetailPage
             }
 
             OrderDetail = orderDetailResult.Data as OrderDetail;
+            if (OrderDetail == null)
+            {
+                return NotFound();
+            }
+
+            var orderResult = await _order.GetById(OrderDetail.OrderId ?? Guid.Empty);
+            if (orderResult.Status <= 0 || orderResult.Data == null)
+            {
+                return NotFound();
+            }
+
+            OrderOriginal = orderResult.Data as Order;
 
             await PopulatePromotionsSelectListAsync();
 
@@ -79,6 +92,7 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderDetailPage
                 }
 
                 OrderDetail.FinalPrice = (OrderDetail.Quantity * OrderDetail.UnitPrice) - OrderDetail.DiscountPrice;
+                OrderDetail.IsActive = OrderOriginal.Status; 
 
                 var updateDetailResult = await _business.Update(OrderDetail);
                 if (updateDetailResult.Status <= 0)
@@ -88,16 +102,12 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderDetailPage
                     return Page();
                 }
 
-                var orderResult = await _order.GetById(OrderDetail.OrderId ?? Guid.Empty);
-                var order = orderResult.Data as Order;
-                if (order != null)
+                await CalculateOrderTotalPrice(OrderDetail.OrderId.Value);
+
+                var updateOrderResult = await _order.Update(OrderOriginal);
+                if (updateOrderResult.Status <= 0)
                 {
-                    order.TotalPrice = OrderDetail.FinalPrice;
-                    await _order.Update(order);
-                }
-                else
-                {
-                    ModelState.AddModelError(string.Empty, "Failed to update Order TotalPrice.");
+                    ModelState.AddModelError(string.Empty, "Failed to update Order.");
                     await PopulatePromotionsSelectListAsync();
                     return Page();
                 }
@@ -125,6 +135,23 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderDetailPage
                 PromotionsSelectList = new SelectList(new List<Promotion>(), "PromotionId", "PromotionCode");
             }
             ViewData["PromotionsSelectList"] = PromotionsSelectList;
+        }
+
+        private async Task CalculateOrderTotalPrice(Guid orderId)
+        {
+            var ordersResult = await _order.GetById(orderId);
+            if (ordersResult.Status <= 0 || ordersResult.Data == null)
+            {
+                ModelState.AddModelError(string.Empty, "Failed to update Order.");
+                return;
+            }
+
+            var order = ordersResult.Data as Order;
+            if (order != null)
+            {
+                order.TotalPrice = OrderDetail.FinalPrice;
+                await _order.Update(order);
+            }
         }
     }
 }

@@ -15,13 +15,13 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-            <label asp-for="Order.OrderId" class="control-label"></label>
-            <input asp-for="Order.OrderId" class="form-control" />
-            <span asp-validation-for="Order.OrderId" class="text-danger"></span>
+                <label asp-for="Order.OrderId" class="control-label"></label>
+                <input asp-for="Order.OrderId" class="form-control" />
+                <span asp-validation-for="Order.OrderId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Order.Customer" class="control-label"></label>
-                <input asp-for="Order.CustomerId" class="form-control" readonly ></input>
+                <input asp-for="Order.CustomerId" class="form-control" readonly></input>
                 <span asp-validation-for="Order.CustomerId" class="text-danger"></span>
             </div>
 
@@ -38,16 +38,16 @@
 
             <div class="form-group">
                 <label asp-for="Order.Company" class="control-label"></label>
-                <input asp-for="Order.CompanyId" class="form-control" ></input>
+                <input asp-for="Order.CompanyId" class="form-control"></input>
                 <span asp-validation-for="Order.CompanyId" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-            <label asp-for="Order.Status" class="control-label"></label>
-            <select id="OrderIsActive" class="form-control" asp-for="Order.Status">
-            <option value="true">True</option>
-            <option value="false">False</option>
-            </select>
+                <label asp-for="Order.Status" class="control-label"></label>
+                <select id="OrderIsActive" class="form-control" asp-for="Order.Status">
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                </select>
             </div>
             <div class="form-group">
                 <label asp-for="Order.PaymentMethod" class="control-label"></label>
@@ -73,7 +73,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Order.CustomerAddress" class="control-label"></label>
-                <input asp-for="Order.CustomerAddress" class="form-control" ></input>
+                <input asp-for="Order.CustomerAddress" class="form-control"></input>
                 <span asp-validation-for="Order.CustomerAddress" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -83,15 +83,15 @@
                        title="Customer Bank Account must be exactly 12 digits." />
                 <span asp-validation-for="Order.CustomerBankAccount" class="text-danger"></span>
             </div>
-      @*       <div class="form-group">
-                <label asp-for="Product" class="control-label"></label>
-                <select asp-for="ProductId" class="form-control" asp-items="@Model.ProductsSelectList"></select>
-                <span asp-validation-for="ProductId" class="text-danger"></span>
+            @*       <div class="form-group">
+            <label asp-for="Product" class="control-label"></label>
+            <select asp-for="ProductId" class="form-control" asp-items="@Model.ProductsSelectList"></select>
+            <span asp-validation-for="ProductId" class="text-danger"></span>
             </div> *@
-        @*     <div class="form-group">
-                <label asp-for="Quantity" class="control-label"></label>
-                <input asp-for="Quantity" class="form-control" />
-                <span asp-validation-for="Quantity" class="text-danger"></span>
+            @*     <div class="form-group">
+            <label asp-for="Quantity" class="control-label"></label>
+            <input asp-for="Quantity" class="form-control" />
+            <span asp-validation-for="Quantity" class="text-danger"></span>
             </div> *@
             <div class="form-group">
                 <label asp-for="Order.Notes" class="control-label"></label>
@@ -111,5 +111,7 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

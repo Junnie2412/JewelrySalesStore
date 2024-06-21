@@ -61,8 +61,8 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
         [BindProperty]
         public Guid PromotionId { get; set; }
 
-        //[BindProperty]
-        //public string PromotionCode { get; set; }
+        [BindProperty]
+        public string PromotionCode { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {
@@ -84,18 +84,6 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
                     return Page();
                 }
 
-<<<<<<< Updated upstream
-                double discountPrice = 0.0;
-                //if (PromotionId.HasValue)
-                //{
-                //    var promotionResult = await _promotion.GetById(PromotionId.Value);
-                //    var promotion = promotionResult.Data as Promotion;
-                //    if (promotion != null && promotion.DiscountPercentage.HasValue && promotion.IsActive == true)
-                //    {
-                //        discountPrice = (double)((product.Price * Quantity) * (promotion.DiscountPercentage.Value / 100));
-                //    }
-                //}
-=======
                 var customerResult = await _customer.GetById((Guid)Order.CustomerId);
                 var customer = customerResult.Data as Customer;
                 if (customer == null)
@@ -118,7 +106,6 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
                     }
                     discountPrice = (double)((product.Price * Quantity) * (promotion.DiscountPercentage / 100));
                 }
->>>>>>> Stashed changes
 
                 var finalPrice = (Quantity * product.Price) - discountPrice;
 

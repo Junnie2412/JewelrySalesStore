@@ -20,23 +20,14 @@ namespace JewelrySalesStoreData.Models
 
         public Guid? ProductId { get; set; }
 
-        [Required(ErrorMessage = "Quantity is required")]
-        [Range(1, int.MaxValue, ErrorMessage = "Quantity must be greater than zero")]
         public int? Quantity { get; set; }
 
-        [Required(ErrorMessage = "Unit price is required")]
-        [Range(0.01, double.MaxValue, ErrorMessage = "Unit price must be greater than zero")]
         public double? UnitPrice { get; set; }
 
-        [Required(ErrorMessage = "Total price is required")]
-        [Range(0.01, double.MaxValue, ErrorMessage = "Total price must be greater than zero")]
         public double? TotalPrice { get; set; }
 
-        [Range(0, double.MaxValue, ErrorMessage = "Discount price cannot be negative")]
         public double? DiscountPrice { get; set; }
 
-        [Required(ErrorMessage = "Final price is required")]
-        [Range(0.01, double.MaxValue, ErrorMessage = "Final price must be greater than zero")]
         public double? FinalPrice { get; set; }
 
         public bool IsActive { get; set; }
