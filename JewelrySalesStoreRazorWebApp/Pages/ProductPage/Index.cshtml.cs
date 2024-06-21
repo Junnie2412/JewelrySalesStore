@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
 using JewelrySalesStoreData.Models;
 using JewelrySalesStoreBusiness;
 
@@ -16,7 +15,7 @@ namespace JewelrySalesStoreRazorWebApp.Pages.ProductPage
         public int PageIndex { get; set; } = 1;
 
         public int TotalPages { get; set; }
-        private readonly int PageSize = 5;     //Số object trên một trang
+        private readonly int PageSize = 5;     // Số object trên một trang
 
         private readonly IProductBusiness _business;
 
@@ -25,9 +24,9 @@ namespace JewelrySalesStoreRazorWebApp.Pages.ProductPage
             _business ??= new ProductBusiness();
         }
 
-        public IList<Product> ProductList { get; set; } = default!;
+        public IList<Product> ProductList { get; set; } = new List<Product>();
         [BindProperty]
-        public Product Product { get; set; } = default!;
+        public Product Product { get; set; } = new Product();
         [BindProperty(SupportsGet = true)]
         public string? SearchName { get; set; }
         [BindProperty(SupportsGet = true)]
@@ -43,17 +42,21 @@ namespace JewelrySalesStoreRazorWebApp.Pages.ProductPage
 
         public async Task OnGetAsync()
         {
-            var resultl = await _business.GetAll();
-            if (resultl != null && resultl.Status > 0 && resultl.Data != null)
+            var result = await _business.GetAll();
+            if (result != null && result.Status > 0 && result.Data != null)
             {
-                var newProductList = resultl.Data as List<Product>;
+                var newProductList = result.Data as List<Product>;
                 if (!string.IsNullOrEmpty(SearchName))
                 {
-                    newProductList = newProductList.Where(c => c.Name != null && c.Name.Contains(SearchName, StringComparison.OrdinalIgnoreCase)).ToList();
+                    newProductList = newProductList
+                        .Where(c => c.Name != null && c.Name.Contains(SearchName, StringComparison.OrdinalIgnoreCase))
+                        .ToList();
                 }
-                if(PriceFrom != null && PriceTo != null)
+                if (PriceFrom != null && PriceTo != null)
                 {
-                    newProductList = newProductList.Where(c => c.Price != null && c.Price >= PriceFrom && c.Price <= PriceTo).ToList();
+                    newProductList = newProductList
+                        .Where(c => c.Price != null && c.Price >= PriceFrom && c.Price <= PriceTo)
+                        .ToList();
                 }
                 if (IsActive)
                 {
@@ -62,7 +65,7 @@ namespace JewelrySalesStoreRazorWebApp.Pages.ProductPage
 
                 if (IsNotActive)
                 {
-                    newProductList = newProductList.Where(c => (bool)!c.IsActive).ToList();
+                    newProductList = newProductList.Where(c => !(bool)c.IsActive).ToList();
                 }
 
                 ProductList = newProductList;
@@ -81,7 +84,14 @@ namespace JewelrySalesStoreRazorWebApp.Pages.ProductPage
                 Product = product.Data as Product;
             }
 
-            return File(Product.Image, "image/jpeg");
+            if (Product.Image != null && Product.Image.Length > 0)
+            {
+                return File(Product.Image, "image/jpeg");
+            }
+            else
+            {
+                return NotFound(); 
+            }
         }
     }
 }

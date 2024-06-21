@@ -36,7 +36,6 @@ namespace JewelrySalesStoreRazorWebApp.Pages.ProductPage
 
         public async Task<IActionResult> OnGetAsync(Guid id)
         {
-
             if (id == null)
             {
                 return NotFound();

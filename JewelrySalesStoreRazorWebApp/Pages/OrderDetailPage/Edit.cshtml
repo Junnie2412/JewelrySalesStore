@@ -42,11 +42,10 @@
             </div>
             <div class="form-group">
                 <label asp-for="PromotionCode" class="control-label"></label>
-                <select asp-for="PromotionId" class="form-control" asp-items="@Model.PromotionsSelectList">
+                <select id="PromotionSelect" class="form-control" asp-for="PromotionId" asp-items="@Model.PromotionsSelectList">
                     <option value="">-- Select Promotion--</option>
                 </select>
                 <span asp-validation-for="PromotionId" class="text-danger"></span>
-
             </div>
             <div class="form-group">
                 <label asp-for="OrderDetail.DiscountPrice" class="control-label"></label>
@@ -55,18 +54,15 @@
             </div>
             <div class="form-group">
                 <label asp-for="OrderDetail.FinalPrice" class="control-label"></label>
-                <input asp-for="OrderDetail.FinalPrice" class="form-control" asp-trim="true" readonly />
+                <input id="FinalPrice" asp-for="OrderDetail.FinalPrice" class="form-control" asp-trim="true" readonly />
                 <span asp-validation-for="OrderDetail.FinalPrice" class="text-danger"></span>
             </div>
-           @*  <div class="form-group">
-                <div class="form-check">
-                    <label class="form-check-label" for="flexCheckDefault">Is Active</label>
-                    <input class="form-check-input" type="checkbox" id="flexCheckDefault" asp-for="OrderDetail.IsActive" readonly="readonly">
-                </div>
-            </div> *@
             <div class="form-group">
                 <label asp-for="OrderDetail.IsActive" class="control-label"></label>
-                <div class="form-control" readonly="readonly">@Model.OrderDetail.IsActive</div>
+                <select id="OrderIsActive" class="form-control" asp-for="OrderDetail.IsActive">
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                </select>
             </div>
             <div class="form-group">
                 <label asp-for="OrderDetail.Notes" class="control-label"></label>
@@ -86,4 +82,33 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#PromotionSelect').change(function () {
+                var promotionCode = $('#PromotionSelect option:selected').text();
+                $('#PromotionCode').val(promotionCode);
+                calculateFinalPrice();
+            });
+
+            function calculateFinalPrice() {
+                var promotionId = $('#PromotionSelect').val();
+
+                $.ajax({
+                    url: '@Url.Page("/OrderDetailPage/CalculateFinalPrice")',
+                    type: 'GET',
+                    data: {
+                        promotionId: promotionId
+                    },
+                    success: function (data) {
+                        $('#FinalPrice').val(data.finalPrice);
+                    },
+                    error: function () {
+                        alert('Error calculating final price.');
+                    }
+                });
+            }
+        });
+    </script>
 }
