@@ -60,7 +60,8 @@ namespace JewelrySalesStoreWPFApp.UI
                         Status = bool.Parse(txtStatus.Text),
                         ShippingMethod = txtShippingMethod.Text,
                         CustomerBankAccount = txtCustomerBankAccount.Text,
-
+                        CustomerAddress = txtCustomerAddress.Text,
+                        Notes = txtNote.Text,
                     };
 
 
@@ -93,6 +94,8 @@ namespace JewelrySalesStoreWPFApp.UI
                     currency.Date = DateTime.Now;
                     currency.ShippingMethod = txtShippingMethod.Text;
                     currency.CustomerBankAccount = txtCustomerBankAccount.Text;
+                    currency.Notes = txtNote.Text;
+                    currency.CustomerAddress = txtCustomerAddress.Text;
                     var result = await _business.Update(currency);
                     MessageBox.Show(result.Message, "Update");
                 }
@@ -105,6 +108,8 @@ namespace JewelrySalesStoreWPFApp.UI
                 txtOrderId.Text = string.Empty;
                 txtShippingMethod.Text= string.Empty;
                 txtCustomerBankAccount.Text = string.Empty;
+                txtNote.Text = string.Empty;
+                txtCustomerAddress.Text = string.Empty;
 
                 this.LoadGridOrders();
             }
@@ -113,6 +118,23 @@ namespace JewelrySalesStoreWPFApp.UI
                 MessageBox.Show(ex.ToString(), "Error");
             }
         }
+        //public async Task<OrderDetail> getOrderDetailByOrder(Guid orderId)
+        //{
+        //    var allOrderDetail = await _detail.GetAll();
+        //    var listOrderDetail = allOrderDetail.Data as List<OrderDetail>;
+        //    if (listOrderDetail != null)
+        //    {
+        //        foreach (var item in listOrderDetail)
+        //        {
+        //            if (item.OrderId == orderId)
+        //            {
+        //                return item;
+        //            }
+        //        }
+        //        return null;
+        //    }
+        //    return null;
+        //} 
 
         private void ButtonCancel_Click(object sender, RoutedEventArgs e)
         {
@@ -122,6 +144,23 @@ namespace JewelrySalesStoreWPFApp.UI
             Button btn = (Button)sender;
 
             string currencyCode = btn.CommandParameter.ToString();
+            //var result2 =getOrderDetailByOrder(Guid.Parse(currencyCode));
+            //var resultDetail = result2.Result as OrderDetail;
+            //var Order = await _business.GetById(Guid.Parse(currencyCode));
+            //var test = Order.Data as Order;
+            var OrderDetailResult = await _detail.GetAll();
+            var OrderDetail = new OrderDetail();
+            var OrderDetailList = OrderDetailResult.Data as List<OrderDetail>;
+            if(OrderDetailList != null)
+            {
+                foreach (var item in OrderDetailList)
+                {
+                    if(item.OrderId == Guid.Parse(currencyCode))
+                    {
+                        OrderDetail.OrderDetailId = item.OrderDetailId;
+                    }
+                }
+            }
 
             //MessageBox.Show(currencyCode);
 
@@ -129,7 +168,10 @@ namespace JewelrySalesStoreWPFApp.UI
             {
                 if (MessageBox.Show("Do you want to delete this item?", "Delete", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
+                    //await _detail.DeleteById(resultDetail.OrderDetailId);
+                    await _detail.DeleteById(OrderDetail.OrderDetailId);
                     var result = await _business.DeleteById(Guid.Parse(currencyCode));
+                    
                     MessageBox.Show($"{result.Message}", "Delete");
                     this.LoadGridOrders();
                 }
@@ -161,6 +203,8 @@ namespace JewelrySalesStoreWPFApp.UI
                             txtOrderId.Text = item.OrderId.ToString();
                             txtCustomerBankAccount.Text = item.CustomerBankAccount;
                             txtShippingMethod.Text = item.ShippingMethod;
+                            txtCustomerAddress.Text = item.CustomerAddress.ToString();
+                            txtNote.Text = item.Notes;
                         }
                     }
                 }
