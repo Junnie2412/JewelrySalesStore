@@ -62,11 +62,12 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
         [BindProperty]
         public Guid? PromotionId { get; set; }
 
-        [BindProperty]
-        public string PromotionCode { get; set; }
+        //[BindProperty]
+        //public string PromotionCode { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {
+     
             if (!ModelState.IsValid)
             {
                 await PopulateDropdownListsAsync();
@@ -87,15 +88,15 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
                 }
 
                 double discountPrice = 0.0;
-                if (PromotionId.HasValue)
-                {
-                    var promotionResult = await _promotion.GetById(PromotionId.Value);
-                    var promotion = promotionResult.Data as Promotion;
-                    if (promotion != null && promotion.DiscountPercentage.HasValue && promotion.IsActive == true)
-                    {
-                        discountPrice = (double)((product.Price * Quantity) * (promotion.DiscountPercentage.Value / 100));
-                    }
-                }
+                //if (PromotionId.HasValue)
+                //{
+                //    var promotionResult = await _promotion.GetById(PromotionId.Value);
+                //    var promotion = promotionResult.Data as Promotion;
+                //    if (promotion != null && promotion.DiscountPercentage.HasValue && promotion.IsActive == true)
+                //    {
+                //        discountPrice = (double)((product.Price * Quantity) * (promotion.DiscountPercentage.Value / 100));
+                //    }
+                //}
 
                 var finalPrice = (Quantity * product.Price) - discountPrice;
 
