@@ -31,17 +31,17 @@
             </div>
             <div class="form-group">
                 <label asp-for="Promotion.StartDate" class="control-label"></label>
-                <input asp-for="Promotion.StartDate" class="form-control" />
+                <input asp-for="Promotion.StartDate" class="form-control" type="date" />
                 <span asp-validation-for="Promotion.StartDate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Promotion.EndDate" class="control-label"></label>
-                <input asp-for="Promotion.EndDate" class="form-control" />
+                <input asp-for="Promotion.EndDate" class="form-control" type="date" min="@DateTime.Now.ToString("yyyy-MM-dd")" />
                 <span asp-validation-for="Promotion.EndDate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Promotion.Condition" class="control-label"></label>
-                <input asp-for="Promotion.Condition" class="form-control" />
+                <input asp-for="Promotion.Condition" class="form-control"/>
                 <span asp-validation-for="Promotion.Condition" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -64,15 +64,15 @@
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
+                <a style="text-decoration: none;" class="btn btn-secondary text-white" asp-page="Index">Back</a>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-page="./Index">Back to List</a>
-</div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
 }

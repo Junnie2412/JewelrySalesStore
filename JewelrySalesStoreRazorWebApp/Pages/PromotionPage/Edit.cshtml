@@ -37,7 +37,7 @@
             <div class="form-group">
                 <label asp-for="Promotion.EndDate" class="control-label"></label>
                 <input asp-for="Promotion.EndDate" class="form-control" />
-                <span asp-validation-for="Promotion.EndDate" class="text-danger"></span>
+                <span asp-validation-for="Promotion.EndDate" class="text-danger" ></span>
             </div>
             <div class="form-group">
                 <label asp-for="Promotion.Condition" class="control-label"></label>
@@ -62,16 +62,15 @@
                 <input asp-for="Promotion.Notes" class="form-control" />
                 <span asp-validation-for="Promotion.Notes" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
+                <a style="text-decoration: none;" class="btn btn-secondary text-white" asp-page="Index">Back</a>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-page="./Index">Back to List</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
