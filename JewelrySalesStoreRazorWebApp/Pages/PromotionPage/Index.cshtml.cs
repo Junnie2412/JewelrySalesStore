@@ -7,8 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using JewelrySalesStoreData.Models;
+
 using JewelrySalesStoreBusiness;
-using JewelrySalesStoreBusines;
 
 namespace JewelrySalesStoreRazorWebApp.Pages.PromotionPage
 {
