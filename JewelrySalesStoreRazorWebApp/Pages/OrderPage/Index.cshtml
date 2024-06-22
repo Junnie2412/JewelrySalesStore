@@ -29,7 +29,16 @@
 
     <div class="form-check col-md-4 pt-1 d-flex align-items-center">
         <label class="col-md-4">Search By Shipping Method: </label>
-        <input class="col-md-7" type="text" asp-for="SearchShippingMethod" />
+        <select asp-for="SearchShippingMethod" class="form-control">
+            <option value="">-- Select Shipping Method --</option>
+            <option value="Standard Shipping">Standard Shipping</option>
+            <option value="Express Shipping">Express Shipping</option>
+            <option value="Expedited Shipping">Expedited Shipping</option>
+            <option value="Freight Shipping">Freight Shipping</option>
+            <option value="Rail Shipping">Rail Shipping</option>
+            <option value="International Shipping">International Shipping</option>
+            <option value="Local Delivery">Local Delivery</option>
+        </select>
     </div>
 
     <div class="form-check col-md-1 pt-2">
