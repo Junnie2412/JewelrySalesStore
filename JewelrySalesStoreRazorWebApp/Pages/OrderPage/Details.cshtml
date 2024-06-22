@@ -76,5 +76,6 @@
     </dl>
 </div>
 <div>
-    <a asp-page="Index">Back to List</a>
+    <a class="btn btn-success" asp-page="./Edit" asp-route-id="@Model.Order.OrderId">Edit</a> |
+    <a style="text-decoration: none;" class="btn btn-secondary text-white" asp-page="./Index">Back</a>
 </div>

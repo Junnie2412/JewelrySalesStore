@@ -14,8 +14,6 @@ public partial class Promotion
     }
     public Guid PromotionId { get; set; }
     [Required]
-    public string PromotionName { get; set; }
-    [Required]
     public string PromotionCode { get; set; }
     [Required]
     [Display(Name = "Discount Percentage")]

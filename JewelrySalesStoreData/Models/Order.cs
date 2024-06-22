@@ -39,6 +39,7 @@ public partial class Order
 
     public bool Status { get; set; }
 
+    [Required]
     public string Notes { get; set; }
 
     public virtual Company Company { get; set; }

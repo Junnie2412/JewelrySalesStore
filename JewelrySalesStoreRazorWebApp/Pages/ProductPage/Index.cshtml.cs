@@ -90,7 +90,7 @@ namespace JewelrySalesStoreRazorWebApp.Pages.ProductPage
             }
             else
             {
-                return NotFound(); 
+                return NotFound();
             }
         }
     }

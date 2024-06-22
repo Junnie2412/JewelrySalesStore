@@ -32,6 +32,7 @@ namespace JewelrySalesStoreData.Models
 
         public bool IsActive { get; set; }
 
+        //[Required]
         public string Notes { get; set; }
 
         public virtual Order Order { get; set; }

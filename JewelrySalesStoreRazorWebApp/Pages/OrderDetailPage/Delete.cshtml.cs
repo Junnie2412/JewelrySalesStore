@@ -1,21 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
 using JewelrySalesStoreData.Models;
-using JewelrySalesStoreBusiness;
-using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor;
 using JewelrySalesStoreBusiness.BusinessOrder;
+using JewelrySalesStoreBusiness;
 
 namespace JewelrySalesStoreRazorWebApp.Pages.OrderDetailPage
 {
     public class DeleteModel : PageModel
     {
         private readonly OrderDetailBusiness _business;
-        private readonly OrderBusiness _order ;
+        private readonly OrderBusiness _order;
 
         public DeleteModel()
         {
@@ -24,64 +20,53 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderDetailPage
         }
 
         [BindProperty]
-        public OrderDetail OrderDetail { get; set; } = default!;
+        public OrderDetail OrderDetail { get; set; }
 
         public async Task<IActionResult> OnGetAsync(Guid id)
         {
-            if (id == null)
+            if (id == Guid.Empty)
             {
                 return NotFound();
             }
 
-            var orderDetail = await _business.GetById(id);
+            var detailResult = await _business.GetById(id);
 
-            if (orderDetail == null)
+            if (detailResult.Data == null)
             {
                 return NotFound();
             }
-            else
-            {
-                OrderDetail = orderDetail.Data as OrderDetail;
-            }
+
+            OrderDetail = detailResult.Data as OrderDetail;
+
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync(Guid id)
         {
-            if (id == null)
+            if (id == Guid.Empty)
             {
                 return NotFound();
             }
 
-
             var detailResult = await _business.GetById(id);
-            var detail = detailResult.Data as OrderDetail;
+            var orderDetail = detailResult.Data as OrderDetail;
 
-            if (OrderDetail.IsActive == true)
+            if (orderDetail.IsActive == true)
             {
-                ModelState.AddModelError(string.Empty, "Can't delete this order. You can only delete the orders whose status is false");
+                ModelState.AddModelError(string.Empty, "Can't delete this order detail. You can only delete when status is false.");
                 return Page();
             }
 
-            var result = await _business.DeleteById(id);
-
-            if (result.Status <= 0)
+            var deleteDetailResult = await _business.DeleteById(id);
+            if (deleteDetailResult.Status <= 0)
             {
-                ModelState.AddModelError(string.Empty, "Failed to delete the Order detail.");
+                ModelState.AddModelError(string.Empty, "Failed to delete the order detail.");
                 return Page();
             }
 
-            var orderResult = await _order.GetById(OrderDetail.OrderId ?? Guid.Empty);
-            var order = orderResult.Data as Order;
-            if (order != null)
+            if (orderDetail.OrderId != null)
             {
-                order.TotalPrice = OrderDetail.FinalPrice;
-                await _order.DeleteById(order.OrderId);
-            }
-            else
-            {
-                ModelState.AddModelError(string.Empty, "Failed to delete Order.");
-                return Page();
+                await _order.DeleteById((Guid)orderDetail.OrderId);
             }
 
             return RedirectToPage("./Index");

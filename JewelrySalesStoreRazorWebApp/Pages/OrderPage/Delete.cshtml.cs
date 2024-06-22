@@ -66,6 +66,7 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
             }
             return null;
         }
+
         public async Task<IActionResult> OnPostAsync(Guid id)
         {
            
@@ -85,7 +86,6 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
             OrderDetail = resultOrderDetail.Result as OrderDetail;
             var result1 = await _detail.DeleteById(OrderDetail.OrderDetailId);
             var result = await _business.DeleteById(id);
-            
 
             if (result.Status <= 0)
             {

@@ -23,19 +23,6 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderDetailPage
             _promotion = new PromotionBusiness();
         }
 
-        [BindProperty]
-        public OrderDetail OrderDetail { get; set; }
-
-        public Order OrderOriginal { get; set; }
-
-        [BindProperty]
-        public Guid PromotionId { get; set; }
-
-        [BindProperty]
-        public string PromotionCode { get; set; }
-
-        public SelectList PromotionsSelectList { get; set; }
-
         public async Task<IActionResult> OnGetAsync(Guid id)
         {
             if (id == Guid.Empty)
@@ -65,8 +52,27 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderDetailPage
 
             await PopulatePromotionsSelectListAsync();
 
+            if (PromotionId != Guid.Empty)
+            {
+                PromotionId = PromotionId;
+                PromotionCode = PromotionCode;
+            }
+
             return Page();
         }
+
+        public SelectList PromotionsSelectList { get; set; }
+
+        [BindProperty]
+        public OrderDetail OrderDetail { get; set; }
+
+        public Order OrderOriginal { get; set; }
+
+        [BindProperty]
+        public Guid PromotionId { get; set; }
+
+        [BindProperty]
+        public string PromotionCode { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {
@@ -78,21 +84,25 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderDetailPage
 
             try
             {
-                var promotionsResult = await _promotion.GetById(PromotionId);
-                if (promotionsResult.Status > 0 && promotionsResult.Data != null)
+                if (PromotionId != Guid.Empty)
                 {
-                    var promotion = promotionsResult.Data as Promotion;
+                    var promotionResult = await _promotion.GetById(PromotionId);
+                    var promotion = promotionResult.Data as Promotion;
+                    if (promotion == null || !promotion.IsActive == true || !promotion.PromotionCode.Equals(PromotionCode, StringComparison.OrdinalIgnoreCase))
+                    {
+                        ModelState.AddModelError("PromotionCode", "Invalid or inactive promotion code.");
+                        await PopulatePromotionsSelectListAsync();
+                        return Page();
+                    }
+
                     OrderDetail.DiscountPrice = OrderDetail.Quantity * OrderDetail.UnitPrice * (promotion.DiscountPercentage / 100);
+                    OrderDetail.FinalPrice = (OrderDetail.Quantity * OrderDetail.UnitPrice) - OrderDetail.DiscountPrice;
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid promotion selection.");
-                    await PopulatePromotionsSelectListAsync();
-                    return Page();
+                    OrderDetail.DiscountPrice = 0;
+                    OrderDetail.FinalPrice = OrderDetail.Quantity * OrderDetail.UnitPrice;
                 }
-
-                OrderDetail.FinalPrice = (OrderDetail.Quantity * OrderDetail.UnitPrice) - OrderDetail.DiscountPrice;
-                OrderDetail.IsActive = OrderOriginal.Status; 
 
                 var updateDetailResult = await _business.Update(OrderDetail);
                 if (updateDetailResult.Status <= 0)
@@ -102,15 +112,7 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderDetailPage
                     return Page();
                 }
 
-                await CalculateOrderTotalPrice(OrderDetail.OrderId.Value);
-
-                var updateOrderResult = await _order.Update(OrderOriginal);
-                if (updateOrderResult.Status <= 0)
-                {
-                    ModelState.AddModelError(string.Empty, "Failed to update Order.");
-                    await PopulatePromotionsSelectListAsync();
-                    return Page();
-                }
+                await UpdateOrderAsync(OrderDetail.OrderId.Value);
 
                 return RedirectToPage("./Index");
             }
@@ -137,21 +139,50 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderDetailPage
             ViewData["PromotionsSelectList"] = PromotionsSelectList;
         }
 
-        private async Task CalculateOrderTotalPrice(Guid orderId)
+        private async Task UpdateOrderAsync(Guid orderId)
         {
-            var ordersResult = await _order.GetById(orderId);
-            if (ordersResult.Status <= 0 || ordersResult.Data == null)
+            var orderResult = await _order.GetById(orderId);
+            if (orderResult.Status <= 0 || orderResult.Data == null)
             {
-                ModelState.AddModelError(string.Empty, "Failed to update Order.");
+                ModelState.AddModelError(string.Empty, "Failed to retrieve Order.");
                 return;
             }
 
-            var order = ordersResult.Data as Order;
+            var order = orderResult.Data as Order;
             if (order != null)
             {
                 order.TotalPrice = OrderDetail.FinalPrice;
-                await _order.Update(order);
+                order.Status = OrderDetail.IsActive;
+                var updateResult = await _order.Update(order);
+                if (updateResult.Status <= 0)
+                {
+                    ModelState.AddModelError(string.Empty, "Failed to update Order.");
+                }
             }
+        }
+
+        public async Task<JsonResult> OnGetCalculateFinalPrice(Guid promotionId, int quantity, double unitPrice)
+        {
+            double finalPrice = quantity * unitPrice;
+            double discountPrice = 0;
+            double finalDiscountPrice = finalPrice;
+
+            if (promotionId != Guid.Empty)
+            {
+                var promotionResult = await _promotion.GetById(promotionId);
+                var promotion = promotionResult.Data as Promotion;
+                if (promotion != null && promotion.IsActive == true)
+                {
+                    discountPrice = finalPrice * (promotion.DiscountPercentage / 100);
+                    finalDiscountPrice = finalPrice - discountPrice;
+                }
+            }
+
+            return new JsonResult(new
+            {
+                discountPrice = discountPrice,
+                finalPrice = finalDiscountPrice
+            });
         }
     }
 }
