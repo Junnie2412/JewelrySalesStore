@@ -22,32 +22,32 @@
 </div>
 
 <form asp-page="./Index" method="get" class="row mt-3">
-    <div class="col-md-6 text-right">
-        <p>
-            Search by CustomerAddress: <input type="text" asp-for="SearchCustomerAddress" />
-            <input type="submit" value="Filter" />
-        </p>
+    <div class="form-check col-md-4 pt-1 d-flex align-items-center">
+        <label class="col-md-4">Search By Customer Address: </label>
+        <input class="col-md-7" type="text" asp-for="SearchCustomerAddress" />
     </div>
 
-    <div class="col-md-6 text-right">
-        <p>
-            Search by Shipping Method: <input type="text" asp-for="SearchShippingMethod" />
-            <input type="submit" value="Filter" />
-        </p>
+    <div class="form-check col-md-4 pt-1 d-flex align-items-center">
+        <label class="col-md-4">Search By Shipping Method: </label>
+        <input class="col-md-7" type="text" asp-for="SearchShippingMethod" />
     </div>
 
-    <div class="form-check col-md-2 pt-1">
-        <input class="form-check-input" type="checkbox" id="isActiveCheckbox" asp-for="IsActive" />
+    <div class="form-check col-md-1 pt-2">
         <label class="form-check-label" for="isActiveCheckbox">
-            Filter Active
+            Active
         </label>
+        <input class="form-check-input" type="checkbox" asp-for="IsActive" />
     </div>
 
-    <div class="form-check col-md-4 pt-1">
-        <input class="form-check-input" type="checkbox" id="isInactiveCheckbox" asp-for="IsInactive" />
+    <div class="form-check col-md-1 pt-2">
         <label class="form-check-label" for="isInactiveCheckbox">
-            Filter Inactive
+            Inactive
         </label>
+        <input class="form-check-input" type="checkbox" asp-for="IsInactive" />
+    </div>
+
+    <div class="form-check col-md-1 pt-1">
+        <input class="btn btn-primary text-white" type="submit" value="Filter" />
     </div>
 </form>
 

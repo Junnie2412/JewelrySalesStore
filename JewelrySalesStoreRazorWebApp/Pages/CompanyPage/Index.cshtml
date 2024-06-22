@@ -22,41 +22,32 @@
 </div>
 
 <form asp-page="./Index" method="get" class="row mt-3">
-    <div class="col-md-6 text-right">
-        <p>
-            Search by Name: <input type="text" asp-for="SearchName" />
-            <input type="submit" value="Filter" />
-        </p>
+    <div class="form-check col-md-4 pt-1 d-flex align-items-center">
+        <label class="col-md-4">Search By Name: </label>
+        <input class="col-md-7" type="text" asp-for="SearchName" />
     </div>
 
-    <div class="col-md-6 text-right">
-        <p>
-            Search by Phone: <input type="text" asp-for="SearchPhone" />
-            <input type="submit" value="Filter" />
-        </p>
+    <div class="form-check col-md-4 pt-1 d-flex align-items-center">
+        <label class="col-md-4">Search By Phone: </label>
+        <input class="col-md-7" type="text" asp-for="SearchPhone" />
     </div>
 
-    <div class="col-md-6 text-right">
-        <p>
-            Search by Date:
-            From: <input type="date" asp-for="StartDate" />
-            To: <input type="date" asp-for="EndDate" />
-            <input type="submit" value="Filter" />
-        </p>
-    </div>
-
-    <div class="form-check col-md-2 pt-1">
-        <input class="form-check-input" type="checkbox" id="isActiveCheckbox" asp-for="IsActive" />
+    <div class="form-check col-md-1 pt-2">
         <label class="form-check-label" for="isActiveCheckbox">
-            Filter Active
+            Active
         </label>
+        <input class="form-check-input" type="checkbox" asp-for="IsActive" />
     </div>
 
-    <div class="form-check col-md-4 pt-1">
-        <input class="form-check-input" type="checkbox" id="isInactiveCheckbox" asp-for="IsInactive" />
+    <div class="form-check col-md-1 pt-2">
         <label class="form-check-label" for="isInactiveCheckbox">
-            Filter Inactive
+            Inactive
         </label>
+        <input class="form-check-input" type="checkbox" asp-for="IsInactive" />
+    </div>
+
+    <div class="form-check col-md-1 pt-1">
+        <input class="btn btn-primary text-white" type="submit" value="Filter" />
     </div>
 </form>
 
@@ -124,7 +115,6 @@
         <li class="page-item @(Model.PageIndex == 1 ? "disabled" : "")">
             <a class="page-link" asp-page="./Index" asp-route-PageIndex="@(Model.PageIndex - 1)"
                asp-route-SearchName="@Model.SearchName" asp-route-SearchPhone="@Model.SearchPhone"
-               asp-route-StartDate="@Model.StartDate" asp-route-EndDate="@Model.EndDate"
                asp-route-IsActive="@Model.IsActive" asp-route-IsInactive="@Model.IsInactive"
                aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
@@ -135,14 +125,12 @@
             <li class="page-item @(Model.PageIndex == i ? "active" : "")">
                 <a class="page-link" asp-page="./Index" asp-route-PageIndex="@i"
                    asp-route-SearchName="@Model.SearchName" asp-route-SearchPhone="@Model.SearchPhone"
-                   asp-route-StartDate="@Model.StartDate" asp-route-EndDate="@Model.EndDate"
                    asp-route-IsActive="@Model.IsActive" asp-route-IsInactive="@Model.IsInactive">@i</a>
             </li>
         }
         <li class="page-item @(Model.PageIndex == Model.TotalPages ? "disabled" : "")">
             <a class="page-link" asp-page="./Index" asp-route-PageIndex="@(Model.PageIndex + 1)"
                asp-route-SearchName="@Model.SearchName" asp-route-SearchPhone="@Model.SearchPhone"
-               asp-route-StartDate="@Model.StartDate" asp-route-EndDate="@Model.EndDate"
                asp-route-IsActive="@Model.IsActive" asp-route-IsInactive="@Model.IsInactive"
                aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>

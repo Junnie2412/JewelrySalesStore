@@ -22,36 +22,50 @@
 </div>
 
 <form asp-page="./Index" method="get" class="row mt-3">
-    <div class="col-md-7 text-right">
-        <p>
-            Search by Quantity
-            From: <input type="number" asp-for="MinQuantity" />
-            To: <input type="number" asp-for="MaxQuantity" />
-            <input type="submit" value="Filter" />
-        </p>
+    <div class="form-check col-md-7 pt-2">
+        <label style="margin-right: 19px">
+            Search By Quantity:
+        </label>
+        <label>
+            From
+        </label>
+        <input type="number" step="any" min=0 asp-for="MinQuantity" placeholder="0" />
+        <label style="margin-left: 45px">
+            To
+        </label>
+        <input type="number" step="any" min=0 asp-for="MaxQuantity" placeholder="0" />
     </div>
 
-    <div class="col-md-7 text-right">
-        <p>
-            Search by Final Price
-            From: <input type="number" asp-for="MinFinalPrice" />
-            To: <input type="number" asp-for="MaxFinalPrice" />
-            <input type="submit" value="Filter" />
-        </p>
+    <div class="form-check col-md-7 pt-2">
+        <label style="margin-right: 19px">
+            Search By Final Price:
+        </label>
+        <label>
+            From
+        </label>
+        <input type="number" step="any" min=0 asp-for="MinFinalPrice" placeholder="0" />
+        <label style="margin-left: 45px">
+            To
+        </label>
+        <input type="number" step="any" min=0 asp-for="MaxFinalPrice" placeholder="0" />
     </div>
 
-    <div class="form-check col-md-2 pt-1">
-        <input class="form-check-input" type="checkbox" id="isActiveCheckbox" asp-for="IsActive" />
+    <div class="form-check col-md-1 pt-2">
         <label class="form-check-label" for="isActiveCheckbox">
-            Filter Active
+            Active
         </label>
+        <input class="form-check-input" type="checkbox" asp-for="IsActive" />
     </div>
 
-    <div class="form-check col-md-3 pt-1">
-        <input class="form-check-input" type="checkbox" id="isInactiveCheckbox" asp-for="IsInactive" />
+    <div class="form-check col-md-1 pt-2">
         <label class="form-check-label" for="isInactiveCheckbox">
-            Filter Inactive
+            Inactive
         </label>
+        <input class="form-check-input" type="checkbox" asp-for="IsInactive" />
+    </div>
+
+    <div class="form-check col-md-1 pt-1">
+        <input class="btn btn-primary text-white" type="submit" value="Filter" />
     </div>
 </form>
 

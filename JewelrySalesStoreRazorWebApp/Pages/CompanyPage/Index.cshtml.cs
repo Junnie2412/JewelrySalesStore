@@ -19,12 +19,6 @@ namespace JewelrySalesStoreRazorWebApp.Pages.CompanyPage
         public string? SearchPhone { get; set; }
 
         [BindProperty(SupportsGet = true)]
-        public DateTime? StartDate { get; set; }
-
-        [BindProperty(SupportsGet = true)]
-        public DateTime? EndDate { get; set; }
-
-        [BindProperty(SupportsGet = true)]
         public bool IsActive { get; set; }
 
         [BindProperty(SupportsGet = true)]
@@ -37,11 +31,6 @@ namespace JewelrySalesStoreRazorWebApp.Pages.CompanyPage
         private readonly int PageSize = 5;
 
         private readonly ICompanyBusiness _business;
-        //private readonly JewelrySalesStoreData.Models.Net1702_221_4_JewelrySalesStoreContext _context;
-        //public IndexModel(JewelrySalesStoreData.Models.Net1702_221_4_JewelrySalesStoreContext context)
-        //{
-        //    _context = context;
-        //}
 
         public IndexModel()
         {
@@ -70,14 +59,6 @@ namespace JewelrySalesStoreRazorWebApp.Pages.CompanyPage
                 {
                     companies = companies.Where(c =>
                         (c.CompanyPhone != null && c.CompanyPhone.Contains(SearchPhone, StringComparison.OrdinalIgnoreCase))
-                    ).ToList();
-                }
-
-                // Filter by Date Range
-                if (StartDate.HasValue && EndDate.HasValue)
-                {
-                    companies = companies.Where(c =>
-                        (c.FoundationDate >= StartDate && c.FoundationDate <= EndDate)
                     ).ToList();
                 }
 

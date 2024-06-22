@@ -56,7 +56,7 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderDetailPage
                 if (MinQuantity.HasValue && MaxQuantity.HasValue)
                 {
                     orderDetails = orderDetails.Where(od =>
-                        (od.Quantity >= MinQuantity && od.Quantity <= MaxQuantity)
+                        (od.Quantity != null && od.Quantity >= MinQuantity && od.Quantity <= MaxQuantity)
                     ).ToList();
                 }
 
@@ -64,7 +64,7 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderDetailPage
                 if (MinFinalPrice.HasValue && MaxFinalPrice.HasValue)
                 {
                     orderDetails = orderDetails.Where(od =>
-                        (od.FinalPrice >= (double)MinFinalPrice && od.FinalPrice <= (double)MaxFinalPrice)
+                        (od.FinalPrice != null && od.FinalPrice >= (double)MinFinalPrice && od.FinalPrice <= (double)MaxFinalPrice)
                     ).ToList();
                 }
 

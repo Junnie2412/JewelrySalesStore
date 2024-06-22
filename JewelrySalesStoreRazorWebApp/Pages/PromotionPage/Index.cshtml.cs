@@ -13,16 +13,25 @@ namespace JewelrySalesStoreRazorWebApp.Pages.PromotionPage
     public class IndexModel : PageModel
     {
         [BindProperty(SupportsGet = true)]
-        public string? SearchString { get; set; }
+        public string? SearchName { get; set; }
 
         [BindProperty(SupportsGet = true)]
-        public bool Promotionisative { get; set; }
+        public DateTime? SearchStartDate { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public DateTime? SearchEndDate { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public bool IsActive { get; set; }
+        
+        [BindProperty(SupportsGet = true)]
+        public bool IsInactive { get; set; }
 
         [BindProperty(SupportsGet = true)]
         public int PageIndex { get; set; } = 1;
 
         public int TotalPages { get; set; }
-        private readonly int PageSize = 4;
+        private readonly int PageSize = 5;
 
         private readonly IPromotionBusiness business;
 
@@ -41,25 +50,31 @@ namespace JewelrySalesStoreRazorWebApp.Pages.PromotionPage
             if (result != null && result.Status > 0 && result.Data != null)
             {
                 var promotion = result.Data as List<Promotion>;
-                if (!string.IsNullOrEmpty(SearchString))
+                if (!string.IsNullOrEmpty(SearchName))
                 {
                     promotion = promotion.Where(c =>
-                        (c.PromotionName != null && c.PromotionName.Contains(SearchString, StringComparison.OrdinalIgnoreCase)) 
+                        (c.PromotionName != null && c.PromotionName.Contains(SearchName, StringComparison.OrdinalIgnoreCase)) 
                     ).ToList();
                 }
 
-                if (Promotionisative )
+                if (SearchStartDate.HasValue && SearchEndDate.HasValue)
+                {
+                    promotion = (List<Promotion>?)promotion.Where(c => c.StartDate >= SearchStartDate && c.EndDate <= SearchEndDate);
+                }
+
+                if (IsActive && !IsInactive)
                 {
                     promotion = promotion.Where(c => (bool)c.IsActive).ToList();
                 }
-
+                else if (!IsActive && IsInactive)
+                {
+                    promotion = promotion.Where(c => (bool)!c.IsActive).ToList();
+                }
 
                 // Phân trang
                 TotalPages = (int)Math.Ceiling(promotion.Count / (double)PageSize);
                 Promotion = promotion.Skip((PageIndex - 1) * PageSize).Take(PageSize).ToList();
-
             }
-
         }
     }
 }
