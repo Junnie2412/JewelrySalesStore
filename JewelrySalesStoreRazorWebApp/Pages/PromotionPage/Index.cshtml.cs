@@ -6,7 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using JewelrySalesStoreData.Models;
-using JewelrySalesStoreBusiness;
+using JewelrySalesStoreBusines;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations;
 
 namespace JewelrySalesStoreRazorWebApp.Pages.PromotionPage
 {
@@ -14,6 +16,24 @@ namespace JewelrySalesStoreRazorWebApp.Pages.PromotionPage
     {
         [BindProperty(SupportsGet = true)]
         public string? SearchString { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public string? SearchCode { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public string? SearchCondition { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public int? Up { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public int? Down { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public DateTime ? StartDate { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public DateTime? EndDate { get; set; }
 
         [BindProperty(SupportsGet = true)]
         public bool Promotionisative { get; set; }
@@ -34,17 +54,48 @@ namespace JewelrySalesStoreRazorWebApp.Pages.PromotionPage
         }
 
         public IList<Promotion> Promotion { get;set; } = default!;
-
         public async Task OnGetAsync()
         {
             var result = await business.GetAll();
             if (result != null && result.Status > 0 && result.Data != null)
             {
                 var promotion = result.Data as List<Promotion>;
+
                 if (!string.IsNullOrEmpty(SearchString))
                 {
                     promotion = promotion.Where(c =>
                         (c.PromotionName != null && c.PromotionName.Contains(SearchString, StringComparison.OrdinalIgnoreCase)) 
+                    ).ToList();
+                }
+                if (!string.IsNullOrEmpty(SearchCode))
+                {
+                    promotion = promotion.Where(c =>
+                        (c.PromotionCode != null && c.PromotionCode.Contains(SearchCode, StringComparison.OrdinalIgnoreCase))
+                    ).ToList();
+                }
+                if (!string.IsNullOrEmpty(SearchCondition))
+                {
+                    promotion = promotion.Where(c =>
+                        (c.Condition != null && c.Condition.Contains(SearchCondition, StringComparison.OrdinalIgnoreCase))
+                    ).ToList();
+                }
+                if(Up != null && Down != null)
+                {
+                    promotion = promotion.Where(c => c.DiscountPercentage != null 
+                    && c.DiscountPercentage>=Up 
+                    && c.DiscountPercentage <= Down
+                    ).ToList();
+                }
+                if (StartDate != null)
+                {
+                    promotion = promotion.Where(c => c.StartDate != null
+                    && c.StartDate.Equals(StartDate)
+                    ).ToList();
+                }
+                if (EndDate != null)
+                {
+                    promotion = promotion.Where(c => c.EndDate != null
+                    && c.EndDate.Equals(EndDate)
                     ).ToList();
                 }
 

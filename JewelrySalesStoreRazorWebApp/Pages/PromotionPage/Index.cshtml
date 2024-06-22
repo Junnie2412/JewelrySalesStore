@@ -3,38 +3,63 @@
 
 @{
     ViewData["Title"] = "Index";
-    Layout = "_Layout";
-
-    if (ViewData["ShowNavBar"] == null)
-    {
-        ViewData["ShowNavBar"] = true;
-    }
-    if (ViewData["ShowLogin"] == null)
-    {
-        ViewData["ShowLogin"] = false;
-    }
 }
 
-<form class="row mt-5">
+<form class="row mt-8">
     <p class="col-md-2">
         <a class="btn btn-primary text-white" style="text-decoration:none;" asp-page="Create">Create New</a>
     </p>
-
-
     <p class="col-md-4">
         Search by Name: <input type="text" asp-for="SearchString" />
         <input type="submit" value="Filter" />
-
-
     </p>
-
-    <div class="form-check col-md-1 pt-1">
+    <p class="col-md-4">
+        Search by Code: <input type="text" asp-for="SearchCode" />
+        <input type="submit" value="Filter" />
+    </p>
+    <div class="form-check col-md-1 pt-2">
         <input class="form-check-input" type="checkbox" id="isVipCheckbox" asp-for="Promotionisative" />
         <label class="form-check-label" for="isVipCheckbox">
             Filter active
         </label>
+        <input type="submit" value="Filter" />
+    </div>
+    <p class="col-md-4">
+        Search by Condition: <input type="text" asp-for="SearchCondition" />
+        <input type="submit" value="Filter" />
+    </p>
+    <div class="form-check col-md-8 pt-2">
+        <label style="margin-right: 19px">
+            Search By DiscountPercentage:
+        </label>
+        <label>
+            From
+        </label>
+        <input type="number" step="any" min=0 asp-for="Up" placeholder="0" />
+        <label style="margin-left: 45px">
+            To
+        </label>
+        <input type="number" step="any" min=0 asp-for="Down" placeholder="0" />
+        <input type="submit" value="Filter" />
     </div>
 
+
+
+    <div class="col-md-6 text-right">
+        <p>
+            Search by StartDate:
+            <input type="date" asp-for="StartDate" />
+            <input type="submit" value="Filter" />
+        </p>
+    </div>
+
+    <div class="col-md-6 text-right">
+        <p>
+            Search by EndDate:
+            <input type="date" asp-for="EndDate" />
+            <input type="submit" value="Filter" />
+        </p>
+    </div>
 </form>
 
 <table class="table">
