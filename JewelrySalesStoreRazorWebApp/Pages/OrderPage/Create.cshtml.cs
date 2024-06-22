@@ -132,6 +132,7 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
                     DiscountPrice = discountPrice,
                     FinalPrice = finalPrice,
                     IsActive = Order.Status,
+                    Notes = Order.Notes
                 };
 
                 var orderDetailSaveResult = await _detail.Save(orderDetail);
