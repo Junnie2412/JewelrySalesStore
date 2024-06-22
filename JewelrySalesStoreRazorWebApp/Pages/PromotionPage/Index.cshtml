@@ -1,19 +1,11 @@
-﻿@page
+﻿
+@page
 @model JewelrySalesStoreRazorWebApp.Pages.PromotionPage.IndexModel
 
 @{
     ViewData["Title"] = "Index";
-    Layout = "_Layout";
-
-    if (ViewData["ShowNavBar"] == null)
-    {
-        ViewData["ShowNavBar"] = true;
-    }
-    if (ViewData["ShowLogin"] == null)
-    {
-        ViewData["ShowLogin"] = false;
-    }
 }
+
 
 <h1>Promotion</h1>
 
@@ -26,23 +18,23 @@
 </div>
 
 <form asp-page="./Index" method="get" class="row mt-3">
-    <div class="form-check col-md-7 pt-2 d-flex align-items-center">
-        <label class="col-md-4">Search By Name: </label>
-        <input class="col-md-7" type="text" asp-for="SearchName" />
+    <div class="form-check col-md-9 pt-2 d-flex align-items-center">
+        <label class="col-md-2">Search By Name: </label>
+        <input class="col-md-6" type="text" asp-for="SearchName" />
     </div>
 
     <div class="form-check col-md-7 pt-2">
         <label style="margin-right: 19px">
-            Search By Date:
+            Search By Discount:
         </label>
         <label>
             From
         </label>
-        <input type="date" step="any" asp-for="SearchStartDate" />
-        <label style="margin-left: 45px">
+        <input type="text" min=0 step="any" asp-for="DiscountFrom" placeholder="0" />
+        <label style="margin-left: 22px">
             To
         </label>
-        <input type="date" step="any" asp-for="SearchStartDate" />
+        <input type="text" min=0 step="any" asp-for="DiscountTo" placeholder="0" />
     </div>
 
     <div class="form-check col-md-1 pt-2">
@@ -61,6 +53,7 @@
 
     <div class="form-check col-md-1 pt-1">
         <input class="btn btn-primary text-white" type="submit" value="Filter" />
+
     </div>
 </form>
 
@@ -144,7 +137,7 @@
         <li class="page-item @(Model.PageIndex == 1 ? "disabled" : "")">
             <a class="page-link" asp-page="./Index" asp-route-PageIndex="@(Model.PageIndex - 1)"
                asp-route-SearchName="@Model.SearchName"
-               asp-route-SearchStartDate="@Model.SearchStartDate" asp-route-SearchEndDate="@Model.SearchEndDate"
+               asp-route-DiscountFrom="@Model.DiscountFrom" asp-route-DiscountTo="@Model.DiscountTo"
                asp-route-IsActive="@Model.IsActive" asp-route-IsInactive="@Model.IsInactive"
                aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
@@ -155,14 +148,14 @@
             <li class="page-item @(Model.PageIndex == i ? "active" : "")">
                 <a class="page-link" asp-page="./Index" asp-route-PageIndex="@i"
                    asp-route-SearchName="@Model.SearchName"
-                   asp-route-SearchStartDate="@Model.SearchStartDate" asp-route-SearchEndDate="@Model.SearchEndDate"
+                   asp-route-DiscountFrom="@Model.DiscountFrom" asp-route-DiscountTo="@Model.DiscountTo"
                    asp-route-IsActive="@Model.IsActive" asp-route-IsInactive="@Model.IsInactive">@i</a>
             </li>
         }
         <li class="page-item @(Model.PageIndex == Model.TotalPages ? "disabled" : "")">
             <a class="page-link" asp-page="./Index" asp-route-PageIndex="@(Model.PageIndex + 1)"
-               asp-route-SearchName="@Model.SearchName" 
-               asp-route-SearchStartDate="@Model.SearchStartDate" asp-route-SearchEndDate="@Model.SearchEndDate"
+               asp-route-SearchName="@Model.SearchName"
+               asp-route-DiscountFrom="@Model.DiscountFrom" asp-route-DiscountTo="@Model.DiscountTo"
                asp-route-IsActive="@Model.IsActive" asp-route-IsInactive="@Model.IsInactive"
                aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>

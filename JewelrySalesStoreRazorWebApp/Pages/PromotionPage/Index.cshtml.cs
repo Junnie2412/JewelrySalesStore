@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using JewelrySalesStoreData.Models;
 using JewelrySalesStoreBusiness;
+using JewelrySalesStoreBusines;
 
 namespace JewelrySalesStoreRazorWebApp.Pages.PromotionPage
 {
@@ -16,14 +18,14 @@ namespace JewelrySalesStoreRazorWebApp.Pages.PromotionPage
         public string? SearchName { get; set; }
 
         [BindProperty(SupportsGet = true)]
-        public DateTime? SearchStartDate { get; set; }
+        public float? DiscountFrom { get; set; }
 
         [BindProperty(SupportsGet = true)]
-        public DateTime? SearchEndDate { get; set; }
+        public float?DiscountTo { get; set; }
 
         [BindProperty(SupportsGet = true)]
         public bool IsActive { get; set; }
-        
+
         [BindProperty(SupportsGet = true)]
         public bool IsInactive { get; set; }
 
@@ -39,10 +41,10 @@ namespace JewelrySalesStoreRazorWebApp.Pages.PromotionPage
         public IndexModel()
         {
             business ??= new PromotionBusiness();
-          
+
         }
 
-        public IList<Promotion> Promotion { get;set; } = default!;
+        public IList<Promotion> Promotion { get; set; } = default!;
 
         public async Task OnGetAsync()
         {
@@ -53,13 +55,18 @@ namespace JewelrySalesStoreRazorWebApp.Pages.PromotionPage
                 if (!string.IsNullOrEmpty(SearchName))
                 {
                     promotion = promotion.Where(c =>
-                        (c.PromotionName != null && c.PromotionName.Contains(SearchName, StringComparison.OrdinalIgnoreCase)) 
+                        (c.PromotionName != null && c.PromotionName.Contains(SearchName, StringComparison.OrdinalIgnoreCase))
                     ).ToList();
                 }
 
-                if (SearchStartDate.HasValue && SearchEndDate.HasValue)
+                if (DiscountFrom != null && DiscountTo != null)
                 {
-                    promotion = (List<Promotion>?)promotion.Where(c => c.StartDate >= SearchStartDate && c.EndDate <= SearchEndDate);
+                    promotion = promotion
+                        .Where(c => c.DiscountPercentage != null 
+                        && c.DiscountPercentage >= DiscountFrom 
+                        && c.DiscountPercentage <= DiscountTo)
+         
+                        .ToList();
                 }
 
                 if (IsActive && !IsInactive)
