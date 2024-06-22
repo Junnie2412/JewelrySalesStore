@@ -59,8 +59,9 @@
                         <!--<DataGridTextColumn Header="Code" Binding="{Binding Path=Id}" Visibility="Hidden"/>-->
                         <DataGridTextColumn Header="Id" Binding="{Binding Path=PromotionId}" Visibility="Visible"/>
                         <DataGridTextColumn Header="Name" Binding="{Binding Path=PromotionName}" Width="100"  IsReadOnly="True"/>
-                        <DataGridTextColumn Header="Code" Binding="{Binding Path=PromotionCode}" Width="100"  IsReadOnly="True"/>
+
                         <DataGridTextColumn Header="Discount" Binding="{Binding Path=DiscountPercentage}" Width="100"  IsReadOnly="True"/>
+
                         <DataGridTextColumn Header="StartDate" Binding="{Binding Path=StartDate}" Width="100"  IsReadOnly="True"/>
                         <DataGridTextColumn Header="EndDate" Binding="{Binding Path=EndDate}" Width="100"  IsReadOnly="True"/>
                         <DataGridTextColumn Header="Condition" Binding="{Binding Path=Condition}" Width="100"  IsReadOnly="True"/>

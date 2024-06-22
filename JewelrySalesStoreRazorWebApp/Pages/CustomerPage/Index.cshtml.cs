@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using JewelrySalesStoreData.Models;
 using JewelrySalesStoreBusiness;
+using Microsoft.AspNetCore.Http;
 
 namespace JewelrySalesStoreRazorWebApp.Pages.CustomerPage
 {
@@ -14,6 +15,9 @@ namespace JewelrySalesStoreRazorWebApp.Pages.CustomerPage
     {
         [BindProperty(SupportsGet = true)]
         public string? SearchString { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public string? SearchPhone { get; set; }
 
         [BindProperty(SupportsGet = true)]
         public bool CustomerVipStatus { get; set; }
@@ -28,11 +32,7 @@ namespace JewelrySalesStoreRazorWebApp.Pages.CustomerPage
         private readonly int PageSize = 4;     //Số object trên một trang
 
         private readonly ICustomerBusiness business;
-        //private readonly JewelrySalesStoreData.Models.Net1702_221_4_JewelrySalesStoreContext _context;
-        //public IndexModel(JewelrySalesStoreData.Models.Net1702_221_4_JewelrySalesStoreContext context)
-        //{
-        //    _context = context;
-        //}
+      
 
         public IndexModel()
         {
@@ -55,6 +55,13 @@ namespace JewelrySalesStoreRazorWebApp.Pages.CustomerPage
                     ).ToList();
                 }
 
+                if (!string.IsNullOrEmpty(SearchPhone))
+                {
+                    customers = customers.Where(c =>
+                        c.CustomerPhone != null && c.CustomerPhone.Contains(SearchPhone)
+                    ).ToList();
+                }
+
                 if (CustomerVipStatus)
                 {
                     customers = customers.Where(c => c.CustomerVipStatus).ToList();
@@ -70,7 +77,7 @@ namespace JewelrySalesStoreRazorWebApp.Pages.CustomerPage
                 Customer = customers.Skip((PageIndex - 1) * PageSize).Take(PageSize).ToList();
 
             }
-   
+
         }
     }
 }

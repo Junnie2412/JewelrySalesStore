@@ -3,17 +3,55 @@
 
 @{
     ViewData["Title"] = "Index";
+    Layout = "_Layout";
+
+    if (ViewData["ShowNavBar"] == null)
+    {
+        ViewData["ShowNavBar"] = true;
+    }
 }
 
 <h1>Category</h1>
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
-<form>
-    Search By Name: <input type="text" asp-for="SearchString" />
-    <input type="submit" value="Filter"/>
+<div class="row mt-5">
+    <div class="col-md-2">
+        <p>
+            <a class="btn btn-primary text-white" style="text-decoration:none;" asp-page="Create">Create New</a>
+        </p>
+    </div>
+</div>
+
+<form class="row mt-2">
+    <div class="form-check col-md-4 pt-1 d-flex align-items-center">
+        <label class="col-md-4">Search By Name: </label>
+        <input class="col-md-7"  type="text" asp-for="SearchName" />
+    </div>
+
+    <div class="form-check col-md-4 pt-1 d-flex align-items-center">
+        <label class="col-md-4" style="margin-right: 10px">Search By Purpose: </label>
+        <select class="col-md-7" asp-for="SearchPurpose" asp-items="Model.PurposeOptions" class="form-control"></select>
+    </div>
+
+    <div class="form-check col-md-1 pt-2">
+        <label class="form-check-label" for="isActiveCheckbox">
+           Active
+        </label>
+        <input class="form-check-input" type="checkbox" asp-for="IsActive" />
+    </div>
+
+    <div class="form-check col-md-1 pt-2">
+        <label class="form-check-label" for="isNotActiveCheckbox">
+            NotActive
+        </label>
+        <input class="form-check-input" type="checkbox" asp-for="IsNotActive" />
+    </div>
+
+    <div class="form-check col-md-1 pt-1">
+        <input class="btn btn-primary text-white" type="submit" value="Filter" />
+    </div>
+
 </form>
+
 <br />
 <table class="table">
     <thead>
@@ -47,33 +85,38 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Category) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Material)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductLine)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Collection)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FengShui)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Purpose)
-            </td>
-            <td>
+        @foreach (var item in Model.Category)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Material)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductLine)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Collection)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FengShui)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Purpose)
+                </td>
+                <td>
                     @if (item.Gender == true)
                     {
                         @Html.Raw("Male")
-                    }else{ @Html.Raw("Female") }
-            </td>
-            <td>
+                    }
+                    else
+                    {
+                        @Html.Raw("Female")
+                    }
+                </td>
+                <td>
                     @if (item.IsActive == true)
                     {
                         @Html.Raw("Đã Có")
@@ -82,14 +125,42 @@
                     {
                         @Html.Raw("Chưa Có")
                     }
-            </td>
+                </td>
 
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.CategoryId">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.CategoryId">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.CategoryId">Delete</a>
-            </td>
-        </tr>
-}
+                <td>
+                    <a class="btn btn-success text-white" style="text-decoration:none;" asp-page="./Edit" asp-route-id="@item.CategoryId">Edit</a> |
+                    <a class="btn btn-secondary text-white" style="text-decoration:none;" asp-page="./Details" asp-route-id="@item.CategoryId">Details</a> |
+                    <a class="btn btn-danger text-white" style="text-decoration:none;" asp-page="./Delete" asp-route-id="@item.CategoryId">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+<nav aria-label="Page navigation example" class="d-flex justify-content-end">
+    <ul class="pagination">
+        <li class="page-item @(Model.PageIndex == 1 ? "disabled" : "")">
+            <a class="page-link" asp-page="./Index" asp-route-PageIndex="@(Model.PageIndex - 1)"
+               asp-route-SearchName="@Model.SearchName" asp-route-SearchPhone="@Model.SearchName"
+               aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        @for (int i = 1; i <= Model.TotalPages; i++)
+        {
+            <li class="page-item @(Model.PageIndex == i ? "active" : "")">
+                <a class="page-link" asp-page="./Index" asp-route-PageIndex="@i"
+                   asp-route-SearchName="@Model.SearchName" asp-route-SearchPhone="@Model.SearchName">@i</a>
+            </li>
+        }
+        <li class="page-item @(Model.PageIndex == Model.TotalPages ? "disabled" : "")">
+            <a class="page-link" asp-page="./Index" asp-route-PageIndex="@(Model.PageIndex + 1)"
+               asp-route-SearchName="@Model.SearchName" asp-route-SearchPhone="@Model.SearchName"
+               aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+

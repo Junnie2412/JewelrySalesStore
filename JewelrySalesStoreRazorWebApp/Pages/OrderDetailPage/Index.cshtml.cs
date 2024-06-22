@@ -12,6 +12,30 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderDetailPage
 {
     public class IndexModel : PageModel
     {
+        [BindProperty(SupportsGet = true)]
+        public int? MinQuantity { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public int? MaxQuantity { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public decimal? MinFinalPrice { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public decimal? MaxFinalPrice { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public bool IsActive { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public bool IsInactive { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public int PageIndex { get; set; } = 1;
+
+        public int TotalPages { get; set; }
+        private readonly int PageSize = 5;
+
         private readonly IOrderDetailBusiness _business;
 
         public IndexModel()
@@ -21,91 +45,43 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderDetailPage
 
         public IList<OrderDetail> OrderDetail { get; set; } = new List<OrderDetail>()!;
 
-        public string CurrentFilter { get; set; }
-        public string CurrentSort { get; set; }
-        public int CurrentPage { get; set; } = 5;
-        public int PageSize { get; set; } = 7;
-        public int TotalPages { get; set; }
-        public int TotalRecords { get; set; }
-
-        public async Task OnGetAsync(string sortOrder, string currentFilter, int? page)
+        public async Task OnGetAsync()
         {
-            CurrentSort = sortOrder;
-            CurrentPage = page ?? 1;
-
-            if (sortOrder == null)
-            {
-                sortOrder = CurrentSort;
-            }
-
-            ViewData["CurrentSort"] = sortOrder;
-
-            if (!string.IsNullOrWhiteSpace(currentFilter))
-            {
-                CurrentFilter = currentFilter.Trim();
-            }
-
-            ViewData["CurrentFilter"] = CurrentFilter;
-
             var result = await _business.GetAll();
-
             if (result != null && result.Status > 0 && result.Data != null)
             {
-                var details = result.Data as List<OrderDetail>;
+                var orderDetails = result.Data as List<OrderDetail>;
 
-                if (!string.IsNullOrEmpty(CurrentFilter))
+                // Filter by Quantity Range
+                if (MinQuantity.HasValue && MaxQuantity.HasValue)
                 {
-                    details = details.Where(c =>
-                        (c.OrderId.HasValue && c.OrderId.ToString().Contains(CurrentFilter, StringComparison.OrdinalIgnoreCase)) ||
-                        (c.ProductId.HasValue && c.ProductId.ToString().Contains(CurrentFilter, StringComparison.OrdinalIgnoreCase)) ||
-                        (c.Quantity.HasValue && c.Quantity.ToString().Contains(CurrentFilter, StringComparison.OrdinalIgnoreCase)) ||
-                        (c.UnitPrice.HasValue && c.UnitPrice.ToString().Contains(CurrentFilter, StringComparison.OrdinalIgnoreCase)) ||
-                        (c.TotalPrice.HasValue && c.TotalPrice.ToString().Contains(CurrentFilter, StringComparison.OrdinalIgnoreCase)) ||
-                        (c.DiscountPrice.HasValue && c.DiscountPrice.ToString().Contains(CurrentFilter, StringComparison.OrdinalIgnoreCase)) ||
-                        (c.FinalPrice.HasValue && c.FinalPrice.ToString().Contains(CurrentFilter, StringComparison.OrdinalIgnoreCase)) ||
-                        (c.IsActive.HasValue && c.IsActive.ToString().Contains(CurrentFilter, StringComparison.OrdinalIgnoreCase)) ||
-                        (!string.IsNullOrEmpty(c.Notes) && c.Notes.Contains(CurrentFilter, StringComparison.OrdinalIgnoreCase))
+                    orderDetails = orderDetails.Where(od =>
+                        (od.Quantity >= MinQuantity && od.Quantity <= MaxQuantity)
                     ).ToList();
-
                 }
 
-                TotalRecords = details.Count;
-                TotalPages = (int)Math.Ceiling(TotalRecords / (double)PageSize);
-
-                switch (sortOrder)
+                // Filter by FinalPrice Range
+                if (MinFinalPrice.HasValue && MaxFinalPrice.HasValue)
                 {
-                    case "Order ID":
-                        details = details.OrderBy(c => c.OrderId).ToList();
-                        break;
-                    case "Product ID":
-                        details = details.OrderBy(c => c.ProductId).ToList();
-                        break;
-                    case "Quantity":
-                        details = details.OrderBy(c => c.Quantity).ToList();
-                        break;
-                    case "Unit Price":
-                        details = details.OrderBy(c => c.UnitPrice).ToList();
-                        break;
-                    case "Total Price":
-                        details = details.OrderBy(c => c.TotalPrice).ToList();
-                        break;
-                    case "Discount Price":
-                        details = details.OrderBy(c => c.DiscountPrice).ToList();
-                        break;
-                    case "Final Price":
-                        details = details.OrderBy(c => c.FinalPrice).ToList();
-                        break;
-                    case "IsActive":
-                        details = details.OrderBy(c => c.IsActive).ToList();
-                        break;
-                    case "Notes":
-                        details = details.OrderBy(c => c.Notes).ToList();
-                        break;
-                    default:
-                        break;
+                    orderDetails = orderDetails.Where(od =>
+                        (od.FinalPrice >= (double)MinFinalPrice && od.FinalPrice <= (double)MaxFinalPrice)
+                    ).ToList();
                 }
 
-                OrderDetail = details.Skip((CurrentPage - 1) * PageSize).Take(PageSize).ToList();
+                // Filter by Active/Inactive
+                if (IsActive)
+                {
+                    orderDetails = orderDetails.Where(c => c.IsActive).ToList();
+                }
+
+                if (IsInactive)
+                {
+                    orderDetails = orderDetails.Where(c => !c.IsActive).ToList();
+                }
+
+                // Pagination
+                TotalPages = (int)Math.Ceiling(orderDetails.Count / (double)PageSize);
+                OrderDetail = orderDetails.Skip((PageIndex - 1) * PageSize).Take(PageSize).ToList();
             }
         }
     }

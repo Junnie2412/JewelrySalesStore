@@ -12,13 +12,14 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderDetailPage
 {
     public class DetailsModel : PageModel
     {
-        private readonly OrderDetailBusiness _business;
+        private readonly IOrderDetailBusiness _business;
 
         public DetailsModel()
         {
             _business ??= new OrderDetailBusiness();
         }
 
+        [BindProperty]
         public OrderDetail OrderDetail { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(Guid id)

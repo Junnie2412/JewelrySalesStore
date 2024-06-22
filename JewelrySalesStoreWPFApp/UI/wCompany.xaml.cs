@@ -55,7 +55,7 @@ namespace JewelrySalesStoreWPFApp.UI
                         Website = txtCompanyWebsite.Text.Trim(),
                         FoundationDate = DateTime.Now,
                         Email = txtCompanyEmail.Text.Trim(),
-                        IsActive = chkIsActive.IsChecked,
+                        IsActive = chkIsActive.IsChecked??false,
                         Notes = txtCompanyNotes.Text.Trim(),
                     };
 
@@ -74,7 +74,7 @@ namespace JewelrySalesStoreWPFApp.UI
                     company.Website = txtCompanyWebsite.Text.Trim();
                     company.FoundationDate = DateTime.Now;
                     company.Email = txtCompanyEmail.Text.Trim();
-                    company.IsActive = chkIsActive.IsChecked;
+                    company.IsActive = chkIsActive.IsChecked ?? false;
                     company.Notes = txtCompanyNotes.Text.Trim();
 
                     var result = await _business.Update(company);

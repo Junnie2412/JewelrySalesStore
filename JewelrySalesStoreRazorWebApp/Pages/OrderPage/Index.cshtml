@@ -3,17 +3,54 @@
 
 @{
     ViewData["Title"] = "Index";
+    Layout = "_Layout";
+
+    if (ViewData["ShowNavBar"] == null)
+    {
+        ViewData["ShowNavBar"] = true;
+    }
 }
 
-<h1>Index</h1>
+<h1>Order</h1>
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
-<form>
-    Search By CustomerAddress: <input type="text" asp-for="SearchString" />
-    <input type="submit" value="Filter" />
+<div class="row mt-5">
+    <div class="col-md-2">
+        <p>
+            <a class="btn btn-primary text-white" style="text-decoration:none;" asp-page="Create">Create New</a>
+        </p>
+    </div>
+</div>
+
+<form asp-page="./Index" method="get" class="row mt-3">
+    <div class="col-md-6 text-right">
+        <p>
+            Search by CustomerAddress: <input type="text" asp-for="SearchCustomerAddress" />
+            <input type="submit" value="Filter" />
+        </p>
+    </div>
+
+    <div class="col-md-6 text-right">
+        <p>
+            Search by Shipping Method: <input type="text" asp-for="SearchShippingMethod" />
+            <input type="submit" value="Filter" />
+        </p>
+    </div>
+
+    <div class="form-check col-md-2 pt-1">
+        <input class="form-check-input" type="checkbox" id="isActiveCheckbox" asp-for="IsActive" />
+        <label class="form-check-label" for="isActiveCheckbox">
+            Filter Active
+        </label>
+    </div>
+
+    <div class="form-check col-md-4 pt-1">
+        <input class="form-check-input" type="checkbox" id="isInactiveCheckbox" asp-for="IsInactive" />
+        <label class="form-check-label" for="isInactiveCheckbox">
+            Filter Inactive
+        </label>
+    </div>
 </form>
+
 <table class="table">
     <thead>
         <tr>
@@ -51,26 +88,26 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Order) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TotalPrice)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PaymentMethod)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CompanyId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CustomerAddress)
-            </td>
+        @if(Model.Order != null)
+        {
+        @foreach (var item in Model.Order)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaymentMethod)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CompanyId)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.CustomerId)
                 </td>
@@ -83,12 +120,60 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.ShippingMethod)
                 </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.OrderId">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.OrderId">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.OrderId">Delete</a>
-            </td>
-        </tr>
-}
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerAddress)
+                </td>
+                    <td scope="row">
+                        <a class="btn btn-success text-white" style="text-decoration: none;" asp-page="./Edit" asp-route-id="@item.OrderId">Edit</a> |
+                        <a class="btn btn-secondary text-white" style="text-decoration: none;" asp-page="./Details" asp-route-id="@item.OrderId">Details</a> |
+                        <a class="btn btn-danger text-white" style="text-decoration: none;" asp-page="./Delete" asp-route-id="@item.OrderId">Delete</a>
+                    </td>
+            </tr>
+        }
+        }
     </tbody>
 </table>
+
+<nav aria-label="Page navigation example" class="d-flex justify-content-end">
+    <ul class="pagination">
+        <li class="page-item @(Model.PageIndex == 1 ? "disabled" : "")">
+            <a class="page-link" asp-page="./Index" asp-route-PageIndex="@(Model.PageIndex - 1)"
+               asp-route-SearchCustomerAddress="@Model.SearchCustomerAddress" asp-route-SearchShippingMethod="@Model.SearchShippingMethod"
+               asp-route-IsActive="@Model.IsActive" asp-route-IsInactive="@Model.IsInactive"
+               aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        @for (int i = 1; i <= Model.TotalPages; i++)
+        {
+            <li class="page-item @(Model.PageIndex == i ? "active" : "")">
+                <a class="page-link" asp-page="./Index" asp-route-PageIndex="@i"
+                   asp-route-SearchCustomerAddress="@Model.SearchCustomerAddress" asp-route-SearchShippingMethod="@Model.SearchShippingMethod"
+                   asp-route-IsActive="@Model.IsActive" asp-route-IsInactive="@Model.IsInactive">@i</a>
+            </li>
+        }
+        <li class="page-item @(Model.PageIndex == Model.TotalPages ? "disabled" : "")">
+            <a class="page-link" asp-page="./Index" asp-route-PageIndex="@(Model.PageIndex + 1)"
+               asp-route-SearchCustomerAddress="@Model.SearchCustomerAddress" asp-route-SearchShippingMethod="@Model.SearchShippingMethod"
+               asp-route-IsActive="@Model.IsActive" asp-route-IsInactive="@Model.IsInactive"
+               aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#isActiveCheckbox').change(function () {
+                $('form').submit();
+            });
+
+            $('#isInactiveCheckbox').change(function () {
+                $('form').submit();
+            });
+        });
+
+    </script>
+}

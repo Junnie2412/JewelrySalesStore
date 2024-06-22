@@ -51,6 +51,7 @@ namespace JewelrySalesStoreRazorWebApp.Pages.CompanyPage
 
             var company = await _business.DeleteById(id);
 
+
             return RedirectToPage("./Index");
         }
     }

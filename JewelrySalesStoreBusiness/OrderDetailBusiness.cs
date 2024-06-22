@@ -18,6 +18,7 @@ namespace JewelrySalesStoreBusiness
         Task<IBusinessResult> Save(OrderDetail orderDetail);
         Task<IBusinessResult> Update(OrderDetail orderDetail);
         Task<IBusinessResult> DeleteById(Guid code);
+        Task<List<OrderDetail>> GetOrderDetailsByOrderIdAsync(Guid orderId);
     }
 
     public class OrderDetailBusiness : IOrderDetailBusiness
@@ -138,6 +139,10 @@ namespace JewelrySalesStoreBusiness
             {
                 return new BusinessResult(Const.ERROR_EXCEPTION, ex.ToString());
             }
+        }
+        public async Task<List<OrderDetail>> GetOrderDetailsByOrderIdAsync(Guid orderId)
+        {
+            return await _unitOfWork.OrderDetailRepository.GetListAsync(od => od.OrderId == orderId);
         }
     }
 }

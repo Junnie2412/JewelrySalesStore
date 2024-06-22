@@ -11,65 +11,104 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="OrderDetail.OrderDetailId" />
+
             <div class="form-group">
                 <label asp-for="OrderDetail.OrderId" class="control-label"></label>
-                <select asp-for="OrderDetail.OrderId" class="form-control" asp-items="ViewBag.OrderId"></select>
+                <input asp-for="OrderDetail.OrderId" class="form-control" asp-items="ViewBag.OrderId" readonly />
                 <span asp-validation-for="OrderDetail.OrderId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="OrderDetail.ProductId" class="control-label"></label>
-                <select asp-for="OrderDetail.ProductId" class="form-control" asp-items="ViewBag.ProductId"></select>
+                <input asp-for="OrderDetail.ProductId" class="form-control" asp-items="ViewBag.ProductId" readonly />
                 <span asp-validation-for="OrderDetail.ProductId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="OrderDetail.Quantity" class="control-label"></label>
-                <input asp-for="OrderDetail.Quantity" class="form-control" />
+                <input asp-for="OrderDetail.Quantity" class="form-control" asp-trim="true" readonly />
                 <span asp-validation-for="OrderDetail.Quantity" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="OrderDetail.UnitPrice" class="control-label"></label>
-                <input asp-for="OrderDetail.UnitPrice" class="form-control" />
+                <input asp-for="OrderDetail.UnitPrice" class="form-control" asp-trim="true" readonly />
                 <span asp-validation-for="OrderDetail.UnitPrice" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="OrderDetail.TotalPrice" class="control-label"></label>
-                <input asp-for="OrderDetail.TotalPrice" class="form-control" />
+                <input asp-for="OrderDetail.TotalPrice" class="form-control" asp-trim="true" readonly />
                 <span asp-validation-for="OrderDetail.TotalPrice" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="PromotionCode" class="control-label"></label>
+                <select id="PromotionSelect" class="form-control" asp-for="PromotionId" asp-items="@Model.PromotionsSelectList">
+                    <option value="">-- Select Promotion--</option>
+                </select>
+                <span asp-validation-for="PromotionId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="OrderDetail.DiscountPrice" class="control-label"></label>
-                <input asp-for="OrderDetail.DiscountPrice" class="form-control" />
+                <input asp-for="OrderDetail.DiscountPrice" class="form-control" readonly />
                 <span asp-validation-for="OrderDetail.DiscountPrice" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="OrderDetail.FinalPrice" class="control-label"></label>
-                <input asp-for="OrderDetail.FinalPrice" class="form-control" />
+                <input id="FinalPrice" asp-for="OrderDetail.FinalPrice" class="form-control" asp-trim="true" readonly />
                 <span asp-validation-for="OrderDetail.FinalPrice" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="OrderDetail.IsActive" class="control-label"></label>
-                <input asp-for="OrderDetail.IsActive" class="form-control" />
-                <span asp-validation-for="OrderDetail.IsActive" class="text-danger"></span>
+                <select id="OrderIsActive" class="form-control" asp-for="OrderDetail.IsActive">
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                </select>
             </div>
             <div class="form-group">
                 <label asp-for="OrderDetail.Notes" class="control-label"></label>
-                <input asp-for="OrderDetail.Notes" class="form-control" />
+                <input asp-for="OrderDetail.Notes" class="form-control" asp-trim="true" />
                 <span asp-validation-for="OrderDetail.Notes" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <br />
+            <div class="form-group mt-2">
                 <input type="submit" value="Save" class="btn btn-primary" />
+                <a style="text-decoration: none;" class="btn btn-secondary text-white" asp-page="./Index">Back</a>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-page="./Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#PromotionSelect').change(function () {
+                var promotionCode = $('#PromotionSelect option:selected').text();
+                $('#PromotionCode').val(promotionCode);
+                calculateFinalPrice();
+            });
+
+            function calculateFinalPrice() {
+                var promotionId = $('#PromotionSelect').val();
+
+                $.ajax({
+                    url: '@Url.Page("/OrderDetailPage/CalculateFinalPrice")',
+                    type: 'GET',
+                    data: {
+                        promotionId: promotionId
+                    },
+                    success: function (data) {
+                        $('#FinalPrice').val(data.finalPrice);
+                    },
+                    error: function () {
+                        alert('Error calculating final price.');
+                    }
+                });
+            }
+        });
+    </script>
 }

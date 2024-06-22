@@ -1,4 +1,5 @@
-﻿@page
+﻿
+@page
 @model JewelrySalesStoreRazorWebApp.Pages.ProductPage.EditModel
 
 @{
@@ -10,70 +11,112 @@
 <h4>Product</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
-        <form method="post" enctype="multipart/form-data">
+    <div class="col-md-12">
+        <form method="post" enctype="multipart/form-data" class="d-flex">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Product.ProductId" />
-            <div class="form-group">
-                <label asp-for="ImageFile" class="control-label"></label>
-                <input asp-for="ImageFile" type="file" class="form-control" />
-                <span asp-validation-for="ImageFile" class="text-danger"></span>
+            <input type="hidden" asp-for="HasImage" />
+            <div class="form-group col-md-3">
+                @if (Model.HasImage)
+                {
+                    <div class="mt-2">
+                        <img src="data:image;base64,@Convert.ToBase64String(Model.Product.Image)" alt="Current Image" class="img-thumbnail" />
+                    </div>
+                }
             </div>
-            <div class="form-group">
-                <label asp-for="Product.Name" class="control-label"></label>
-                <input asp-for="Product.Name" class="form-control" />
-                <span asp-validation-for="Product.Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Product.Color" class="control-label"></label>
-                <input asp-for="Product.Color" class="form-control" />
-                <span asp-validation-for="Product.Color" class="text-danger"></span>
-            </div>
-            
-            <div class="form-group">
-                <label asp-for="Product.Weight" class="control-label"></label>
-                <input asp-for="Product.Weight" class="form-control" />
-                <span asp-validation-for="Product.Weight" class="text-danger"></span>
-            </div>
-            
+            <div class="form-group col-md-8 d-flex" style="justify-content: space-around">
+                <div class="form-group col-md-5">
+                    <div class="form-group">
+                        <label asp-for="ImageFile" class="control-label"></label>
+                        <input asp-for="ImageFile" type="file" class="form-control" onchange="updateFileName(this)" />
+                        <span asp-validation-for="ImageFile" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <span id="FileNameDisplay"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Product.Name" class="control-label"></label>
+                        <input asp-for="Product.Name" class="form-control" />
+                        <span asp-validation-for="Product.Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Product.Color" class="control-label"></label>
+                        <input asp-for="Product.Color" class="form-control" />
+                        <span asp-validation-for="Product.Color" class="text-danger"></span>
+                    </div>
 
-            <div class="form-group">
-                <label asp-for="Product.Price" class="control-label"></label>
-                <input asp-for="Product.Price" class="form-control" />
-                <span asp-validation-for="Product.Price" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Product.CategoryId" class="control-label"></label>
-                <select asp-for="Product.CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
-                <span asp-validation-for="Product.CategoryId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Product.PromotionId" class="control-label"></label>
-                <select asp-for="Product.PromotionId" class="form-control" asp-items="ViewBag.PromotionId"></select>
-                <span asp-validation-for="Product.PromotionId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Product.IsActive" class="control-label"></label>
-                <input asp-for="Product.IsActive" class="form-control" />
-                <span asp-validation-for="Product.IsActive" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Product.Notes" class="control-label"></label>
-                <input asp-for="Product.Notes" class="form-control" />
-                <span asp-validation-for="Product.Notes" class="text-danger"></span>
+                    <div class="form-group">
+                        <label asp-for="Product.Weight" class="control-label"></label>
+                        <input asp-for="Product.Weight" class="form-control" />
+                        <span asp-validation-for="Product.Weight" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Product.Price" class="control-label"></label>
+                        <input asp-for="Product.Price" class="form-control" />
+                        <span asp-validation-for="Product.Price" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group col-md-5">
+                    <div class="form-group">
+                        <label asp-for="Product.CategoryId" class="control-label"></label>
+                        <select asp-for="Product.CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
+                        <span asp-validation-for="Product.CategoryId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Product.PromotionId" class="control-label"></label>
+                        <select asp-for="Product.PromotionId" class="form-control" asp-items="ViewBag.PromotionId"></select>
+                        <span asp-validation-for="Product.PromotionId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Product.IsActive" class="control-label"></label>
+                        <input asp-for="Product.IsActive" class="form-control" />
+                        <span asp-validation-for="Product.IsActive" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Product.Notes" class="control-label"></label>
+                        <input asp-for="Product.Notes" class="form-control" />
+                        <span asp-validation-for="Product.Notes" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mt-4" style="text-align: right">
+                        <input type="submit" value="Save" class="btn btn-success" />
+                        <a style="text-decoration: none;" class="btn btn-secondary text-white" asp-page="./Index">Back</a>
+                    </div>
+                </div>
             </div>
             <br />
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-page="./Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var imageFileInput = document.querySelector('input[type="file"]');
+            var fileNameDisplay = document.getElementById('FileNameDisplay');
+            var existingImageFileName = document.getElementById('ExistingImageFileName').value;
+
+            if (imageFileInput && fileNameDisplay) {
+                if (existingImageFileName) {
+                    fileNameDisplay.textContent = existingImageFileName;
+                } else if (imageFileInput.files.length > 0) {
+                    fileNameDisplay.textContent = imageFileInput.files[0].name;
+                } else {
+                    fileNameDisplay.textContent = "No file chosen";
+                }
+            }
+        });
+
+        function updateFileName(input) {
+            if (input.files.length > 0) {
+                document.getElementById('FileNameDisplay').textContent = input.files[0].name;
+            } else {
+                document.getElementById('FileNameDisplay').textContent = "No file chosen";
+            }
+        }
+    </script>
 }
+

@@ -2,30 +2,42 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace JewelrySalesStoreData.Models;
 
 public partial class Order
 {
     public Guid OrderId { get; set; }
+    public Order()
+    {
+        OrderId = Guid.NewGuid();
+    }
 
-    public Guid? CustomerId { get; set; }
+    public Guid CustomerId { get; set; }
 
     public Guid? CompanyId { get; set; }
 
+    [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = false)]
     public DateTime? Date { get; set; }
 
+    [Range(0.01, double.MaxValue, ErrorMessage = "Total price must be greater than zero")]
     public double? TotalPrice { get; set; }
 
+    [Display(Name = "Payment Method")]
     public string PaymentMethod { get; set; }
 
+    [Display(Name = "Shipping Method")]
     public string ShippingMethod { get; set; }
 
+    [Display(Name = "Customer Address")]
     public string CustomerAddress { get; set; }
 
+    [Required]
+    [Display(Name = "Customer Bank Account")]
     public string CustomerBankAccount { get; set; }
 
-    public bool? Status { get; set; }
+    public bool Status { get; set; }
 
     public string Notes { get; set; }
 

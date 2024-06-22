@@ -17,63 +17,72 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.OrderDetail.OrderDetailId)
         </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.OrderDetail.OrderId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.OrderDetail.OrderId)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.OrderDetail.ProductId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.OrderDetail.ProductId)                                               
+        </dd>
+
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.OrderDetail.Quantity)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.OrderDetail.Quantity)
         </dd>
+
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.OrderDetail.UnitPrice)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.OrderDetail.UnitPrice)
         </dd>
+
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.OrderDetail.TotalPrice)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.OrderDetail.TotalPrice)
         </dd>
+
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.OrderDetail.DiscountPrice)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.OrderDetail.DiscountPrice)
         </dd>
+
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.OrderDetail.FinalPrice)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.OrderDetail.FinalPrice)
         </dd>
+
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.OrderDetail.IsActive)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.OrderDetail.IsActive)
+            @((Model.OrderDetail.IsActive) ? "True" : "False")
         </dd>
+
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.OrderDetail.Notes)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.OrderDetail.Notes)
         </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.OrderDetail.Order)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.OrderDetail.Order.OrderId)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.OrderDetail.Product)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.OrderDetail.Product.ProductId)
-        </dd>
     </dl>
 </div>
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.OrderDetail.OrderDetailId">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
+    <a class="btn btn-success" asp-page="./Edit" asp-route-id="@Model.OrderDetail.OrderDetailId">Edit</a> |
+    <a style="text-decoration: none;" class="btn btn-secondary text-white" asp-page="./Index">Back</a>
 </div>

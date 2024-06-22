@@ -2,8 +2,9 @@
 using System.Collections.ObjectModel;
 using JewelrySalesStoreData.Models;
 using System.Windows.Input;
-using JewelrySalesStoreBusines;
-using System.Windows.Controls; // Replace with the actual namespace of your Promotion class
+
+using System.Windows.Controls;
+using JewelrySalesStoreBusiness; // Replace with the actual namespace of your Promotion class
 
 namespace JewelrySalesStoreWPFApp
 {

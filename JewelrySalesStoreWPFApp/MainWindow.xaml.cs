@@ -56,5 +56,19 @@ namespace JewelrySalesStoreWPFApp
             p.Owner = this;
             p.Show();
         }
+
+        private void Open_wCustomer_Click(object sender, RoutedEventArgs e)
+        {
+            var p = new wCustomer();
+            p.Owner = this;
+            p.Show();
+        }
+
+        private void Open_wPromotion_Click(object sender, RoutedEventArgs e)
+        {
+            var p = new wPromotion();
+            p.Owner = this;
+            p.Show();
+        }
     }
 }

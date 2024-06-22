@@ -12,7 +12,7 @@ namespace JewelrySalesStoreRazorWebApp.Pages.CompanyPage
 {
     public class DetailsModel : PageModel
     {
-        private readonly CompanyBusiness _business;
+        private readonly ICompanyBusiness _business;
 
         public DetailsModel()
         {
