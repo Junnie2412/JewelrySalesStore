@@ -14,7 +14,6 @@ public partial class Promotion
     [Display(Name = "Promotion Name")]
     public string PromotionName { get; set; }
 
-    [Required]
     public string PromotionCode { get; set; }
 
     [Required]

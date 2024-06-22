@@ -18,6 +18,7 @@ namespace JewelrySalesStoreBusiness
         Task<IBusinessResult> Save(OrderDetail orderDetail);
         Task<IBusinessResult> Update(OrderDetail orderDetail);
         Task<IBusinessResult> DeleteById(Guid code);
+        Task<IBusinessResult> GetAllActiveDetailsForOrder(Guid orderId);
         Task<List<OrderDetail>> GetOrderDetailsByOrderIdAsync(Guid orderId);
     }
 
@@ -140,6 +141,29 @@ namespace JewelrySalesStoreBusiness
                 return new BusinessResult(Const.ERROR_EXCEPTION, ex.ToString());
             }
         }
+
+        public async Task<IBusinessResult> GetAllActiveDetailsForOrder(Guid orderId)
+        {
+            try
+            {
+                var activeDetails = await _unitOfWork.OrderDetailRepository
+                .GetListAsync(od => od.OrderId == orderId && od.IsActive);
+
+                if (activeDetails == null || !activeDetails.Any())
+                {
+                    return new BusinessResult(Const.WARNING_NO_DATA_CODE, "No active details found for this order.");
+                }
+                else
+                {
+                    return new BusinessResult(Const.SUCCESS_READ_CODE, Const.SUCCESS_READ_MSG, activeDetails);
+                }
+            }
+            catch (Exception ex)
+            {
+                return new BusinessResult(Const.ERROR_EXCEPTION, ex.Message);
+            }
+        }
+
         public async Task<List<OrderDetail>> GetOrderDetailsByOrderIdAsync(Guid orderId)
         {
             return await _unitOfWork.OrderDetailRepository.GetListAsync(od => od.OrderId == orderId);

@@ -17,34 +17,32 @@
 
             <div class="form-group">
                 <label asp-for="OrderDetail.OrderId" class="control-label"></label>
-                <input asp-for="OrderDetail.OrderId" class="form-control" asp-items="ViewBag.OrderId" readonly />
+                <input asp-for="OrderDetail.OrderId" class="form-control" readonly />
                 <span asp-validation-for="OrderDetail.OrderId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="OrderDetail.ProductId" class="control-label"></label>
-                <input asp-for="OrderDetail.ProductId" class="form-control" asp-items="ViewBag.ProductId" readonly />
+                <input asp-for="OrderDetail.ProductId" class="form-control" readonly />
                 <span asp-validation-for="OrderDetail.ProductId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="OrderDetail.Quantity" class="control-label"></label>
-                <input asp-for="OrderDetail.Quantity" class="form-control" asp-trim="true" readonly />
+                <input asp-for="OrderDetail.Quantity" class="form-control" readonly />
                 <span asp-validation-for="OrderDetail.Quantity" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="OrderDetail.UnitPrice" class="control-label"></label>
-                <input asp-for="OrderDetail.UnitPrice" class="form-control" asp-trim="true" readonly />
+                <input asp-for="OrderDetail.UnitPrice" class="form-control" readonly />
                 <span asp-validation-for="OrderDetail.UnitPrice" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="OrderDetail.TotalPrice" class="control-label"></label>
-                <input asp-for="OrderDetail.TotalPrice" class="form-control" asp-trim="true" readonly />
+                <input asp-for="OrderDetail.TotalPrice" class="form-control" readonly />
                 <span asp-validation-for="OrderDetail.TotalPrice" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="PromotionCode" class="control-label"></label>
-                <select id="PromotionSelect" class="form-control" asp-for="PromotionId" asp-items="@Model.PromotionsSelectList">
-                    <option value="">-- Select Promotion--</option>
-                </select>
+                <select asp-for="PromotionId" class="form-control" asp-items="@Model.PromotionsSelectList" id="PromotionSelect"></select>
                 <span asp-validation-for="PromotionId" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -54,24 +52,26 @@
             </div>
             <div class="form-group">
                 <label asp-for="OrderDetail.FinalPrice" class="control-label"></label>
-                <input id="FinalPrice" asp-for="OrderDetail.FinalPrice" class="form-control" asp-trim="true" readonly />
+                <input asp-for="OrderDetail.FinalPrice" class="form-control" readonly />
                 <span asp-validation-for="OrderDetail.FinalPrice" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="OrderDetail.IsActive" class="control-label"></label>
-                <select id="OrderIsActive" class="form-control" asp-for="OrderDetail.IsActive">
+                <select asp-for="OrderDetail.IsActive" class="form-control">
                     <option value="true">True</option>
                     <option value="false">False</option>
                 </select>
             </div>
             <div class="form-group">
                 <label asp-for="OrderDetail.Notes" class="control-label"></label>
-                <input asp-for="OrderDetail.Notes" class="form-control" asp-trim="true" />
+                <input asp-for="OrderDetail.Notes" class="form-control" />
                 <span asp-validation-for="OrderDetail.Notes" class="text-danger"></span>
             </div>
-            <br />
+
+            <input type="hidden" asp-for="PromotionCode" id="PromotionCode" />
+
             <div class="form-group mt-2">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-success" />
                 <a style="text-decoration: none;" class="btn btn-secondary text-white" asp-page="./Index">Back</a>
             </div>
         </form>
@@ -79,10 +79,7 @@
 </div>
 
 @section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
-
+    <partial name="_ValidationScriptsPartial" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function () {
@@ -94,15 +91,20 @@
 
             function calculateFinalPrice() {
                 var promotionId = $('#PromotionSelect').val();
+                var quantity = $('#OrderDetail_Quantity').val();
+                var unitPrice = $('#OrderDetail_UnitPrice').val();
 
                 $.ajax({
                     url: '@Url.Page("/OrderDetailPage/CalculateFinalPrice")',
                     type: 'GET',
                     data: {
-                        promotionId: promotionId
+                        promotionId: promotionId,
+                        quantity: quantity,
+                        unitPrice: unitPrice
                     },
                     success: function (data) {
-                        $('#FinalPrice').val(data.finalPrice);
+                        $('#OrderDetail_DiscountPrice').val(data.discountPrice);
+                        $('#OrderDetail_FinalPrice').val(data.finalPrice);
                     },
                     error: function () {
                         alert('Error calculating final price.');
