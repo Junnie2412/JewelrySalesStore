@@ -25,16 +25,16 @@
 
     <div class="form-check col-md-7 pt-2">
         <label style="margin-right: 19px">
-            Search By Date:
+            Search By Discount:
         </label>
         <label>
             From
         </label>
-        <input type="date" step="any" asp-for="SearchStartDate" />
+        <input type="text" min=0 step="any" asp-for="DiscountFrom" placeholder="0" />
         <label style="margin-left: 45px">
             To
         </label>
-        <input type="date" step="any" asp-for="SearchStartDate" />
+        <input type="text" min=0 step="any" asp-for="DiscountTo" placeholder="0" />
     </div>
 
     <div class="form-check col-md-1 pt-2">
@@ -137,7 +137,7 @@
         <li class="page-item @(Model.PageIndex == 1 ? "disabled" : "")">
             <a class="page-link" asp-page="./Index" asp-route-PageIndex="@(Model.PageIndex - 1)"
                asp-route-SearchName="@Model.SearchName"
-               asp-route-SearchStartDate="@Model.SearchStartDate" asp-route-SearchEndDate="@Model.SearchEndDate"
+               asp-route-DiscountFrom="@Model.DiscountFrom" asp-route-DiscountTo="@Model.DiscountTo"
                asp-route-IsActive="@Model.IsActive" asp-route-IsInactive="@Model.IsInactive"
                aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
@@ -148,14 +148,14 @@
             <li class="page-item @(Model.PageIndex == i ? "active" : "")">
                 <a class="page-link" asp-page="./Index" asp-route-PageIndex="@i"
                    asp-route-SearchName="@Model.SearchName"
-                   asp-route-SearchStartDate="@Model.SearchStartDate" asp-route-SearchEndDate="@Model.SearchEndDate"
+                   asp-route-DiscountFrom="@Model.DiscountFrom" asp-route-DiscountTo="@Model.DiscountTo"
                    asp-route-IsActive="@Model.IsActive" asp-route-IsInactive="@Model.IsInactive">@i</a>
             </li>
         }
         <li class="page-item @(Model.PageIndex == Model.TotalPages ? "disabled" : "")">
             <a class="page-link" asp-page="./Index" asp-route-PageIndex="@(Model.PageIndex + 1)"
-               asp-route-SearchName="@Model.SearchName" 
-               asp-route-SearchStartDate="@Model.SearchStartDate" asp-route-SearchEndDate="@Model.SearchEndDate"
+               asp-route-SearchName="@Model.SearchName"
+               asp-route-DiscountFrom="@Model.DiscountFrom" asp-route-DiscountTo="@Model.DiscountTo"
                asp-route-IsActive="@Model.IsActive" asp-route-IsInactive="@Model.IsInactive"
                aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
