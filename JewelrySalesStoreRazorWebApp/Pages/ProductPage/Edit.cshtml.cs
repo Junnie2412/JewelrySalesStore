@@ -80,15 +80,7 @@ namespace JewelrySalesStoreRazorWebApp.Pages.ProductPage
 
             try
             {
-                if (ImageFile != null && ImageFile.Length > 0)
-                {
-                    using (var memoryStream = new MemoryStream())
-                    {
-                        await ImageFile.CopyToAsync(memoryStream);
-                        Product.Image = memoryStream.ToArray();
-                    }
-                }
-                else if (HasImage)
+                if (HasImage)
                 {
                     var existingProductResponse = await _business.GetById(Product.ProductId);
                     if (existingProductResponse != null && existingProductResponse.Data != null)
@@ -100,11 +92,30 @@ namespace JewelrySalesStoreRazorWebApp.Pages.ProductPage
                         }
                     }
                 }
+                if (ImageFile != null && ImageFile.Length > 0)
+                {
+                    var fileName = Path.GetFileName(ImageFile.FileName);
+                    var extension = Path.GetExtension(ImageFile.FileName).ToLowerInvariant();
+
+                    if (extension != ".png" && extension != ".jpg" && extension != ".jpeg")
+                    {
+                        ModelState.AddModelError("ImageFile", "Please upload an image file with a valid extension (png, jpg, jpeg).");
+                        await PopulateDropdownsAsync();
+                        return Page();
+                    }
+
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        await ImageFile.CopyToAsync(memoryStream);
+                        Product.Image = memoryStream.ToArray();
+                    }
+                }
 
                 var updateResponse = await _business.Update(Product);
                 if (updateResponse.Status <= 0)
                 {
                     ModelState.AddModelError(string.Empty, "An error occurred while updating the product.");
+                    await PopulateDropdownsAsync();
                     return Page();
                 }
             }
@@ -114,6 +125,24 @@ namespace JewelrySalesStoreRazorWebApp.Pages.ProductPage
             }
 
             return RedirectToPage("./Index");
+        }
+
+        private async Task PopulateDropdownsAsync()
+        {
+            var listCategory = await _category.GetAll();
+            if (listCategory != null && listCategory.Status > 0 && listCategory.Data != null)
+            {
+                Category = listCategory.Data as List<Category>;
+            }
+
+            var promotionList = await _promotion.GetAll();
+            if (promotionList != null && promotionList.Status > 0 && promotionList.Data != null)
+            {
+                Promotion = promotionList.Data as List<Promotion>;
+            }
+
+            ViewData["CategoryId"] = new SelectList(Category, "CategoryId", "CategoryId");
+            ViewData["PromotionId"] = new SelectList(Promotion, "PromotionId", "PromotionId");
         }
     }
 }
