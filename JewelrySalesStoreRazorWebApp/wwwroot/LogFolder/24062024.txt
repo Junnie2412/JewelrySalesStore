@@ -1,0 +1,42 @@
+Log Entry
+Monday, June 24, 2024 2:40:04 AM
+Message Title: Create Product
+Log Message: Create product Successfully
+-----------------------------------------
+
+Log Entry
+Monday, June 24, 2024 2:50:56 AM
+Message Title: Create Product
+Log Message: Create product Successfully
+-----------------------------------------
+
+Log Entry
+Monday, June 24, 2024 2:53:43 AM
+Message Title: Create Product
+Log Message: Create product Successfully
+-----------------------------------------
+
+Log Entry
+Monday, June 24, 2024 2:57:41 AM
+Message Title: Create Product
+Log Message: Create product Successfully
+-----------------------------------------
+
+Log Entry
+Monday, June 24, 2024 2:58:53 AM
+Message Title: Create Product
+Log Message: Create product Successfully
+-----------------------------------------
+
+Log Entry
+Monday, June 24, 2024 3:01:03 AM
+Message Title: Create Product
+Log Message: Create product Successfully
+-----------------------------------------
+
+Log Entry
+Monday, June 24, 2024 3:02:29 AM
+Message Title: Update Product
+Log Message: Update product Successfully
+-----------------------------------------
+

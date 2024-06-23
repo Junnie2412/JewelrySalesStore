@@ -17,12 +17,14 @@ namespace JewelrySalesStoreRazorWebApp.Pages.ProductPage
         private readonly ProductBusiness _business;
         private readonly CategoryBusiness _category;
         private readonly PromotionBusiness _promotion;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public CreateModel()
+        public CreateModel(IWebHostEnvironment webHostEnvironment)
         {
             _business ??= new ProductBusiness();
             _category ??= new CategoryBusiness();
             _promotion ??= new PromotionBusiness();
+            _webHostEnvironment = webHostEnvironment;
         }
 
         public async Task<IActionResult> OnGetAsync()
@@ -95,6 +97,11 @@ namespace JewelrySalesStoreRazorWebApp.Pages.ProductPage
                 {
                     ModelState.AddModelError(string.Empty, "An error occurred while saving the product.");
                     return Page();
+                }
+                else
+                {
+                    TempData["AlertMessage"] = "Create Product Successfully";
+                    LogEvents.LogToFile("Create Product", "Create product Successfully", _webHostEnvironment);
                 }
 
                 return RedirectToPage("./Index");

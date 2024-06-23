@@ -11,6 +11,13 @@
     }
 }
 
+@if (TempData["AlertMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["AlertMessage"]
+    </div>
+}
+
 <h1>Product</h1>
 
 <div class="row mt-5">
