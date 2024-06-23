@@ -39,6 +39,9 @@ namespace JewelrySalesStoreRazorWebApp.Pages.ProductPage
 
         [BindProperty(SupportsGet = true)]
         public bool IsNotActive { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public string SortBy { get; set; } = "price_asc";
+
 
         public async Task OnGetAsync()
         {
@@ -68,7 +71,22 @@ namespace JewelrySalesStoreRazorWebApp.Pages.ProductPage
                     newProductList = newProductList.Where(c => !(bool)c.IsActive).ToList();
                 }
 
+                switch (SortBy)
+                {
+                    case "price_asc":
+                        newProductList = newProductList.OrderBy(p => p.Price).ToList();
+                        break;
+                    case "price_desc":
+                        newProductList = newProductList.OrderByDescending(p => p.Price).ToList();
+                        break;
+                    default:
+                        newProductList = newProductList.OrderBy(p => p.Name).ToList(); // Default sorting by name ascending
+                        break;
+                }
+
                 ProductList = newProductList;
+
+                SortBy = ToggleSortOrder(SortBy);
 
                 // Phân trang
                 TotalPages = (int)Math.Ceiling(ProductList.Count / (double)PageSize);
@@ -91,6 +109,22 @@ namespace JewelrySalesStoreRazorWebApp.Pages.ProductPage
             else
             {
                 return NotFound();
+            }
+        }
+
+        private string ToggleSortOrder(string currentSort)
+        {
+            if (currentSort.EndsWith("_asc"))
+            {
+                return currentSort.Replace("_asc", "_desc");
+            }
+            else if (currentSort.EndsWith("_desc"))
+            {
+                return currentSort.Replace("_desc", "_asc");
+            }
+            else
+            {
+                return currentSort + "_asc"; // Default to ascending if no suffix
             }
         }
     }
