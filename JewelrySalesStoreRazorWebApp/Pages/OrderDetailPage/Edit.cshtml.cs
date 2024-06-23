@@ -174,7 +174,7 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderDetailPage
                 var promotion = promotionResult.Data as Promotion;
                 if (promotion != null && promotion.IsActive == true)
                 {
-                    discountPrice = finalPrice * (promotion.DiscountPercentage / 100);
+                    discountPrice = (double)(finalPrice * (promotion.DiscountPercentage / 100));
                     finalDiscountPrice = finalPrice - discountPrice;
                 }
             }
