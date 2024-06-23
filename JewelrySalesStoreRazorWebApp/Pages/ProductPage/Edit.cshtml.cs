@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using JewelrySalesStoreData.Models;
 using JewelrySalesStoreBusiness;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using Microsoft.AspNetCore.Hosting;
 
 namespace JewelrySalesStoreRazorWebApp.Pages.ProductPage
 {
@@ -17,12 +18,14 @@ namespace JewelrySalesStoreRazorWebApp.Pages.ProductPage
         private readonly ProductBusiness _business;
         private readonly CategoryBusiness _category;
         private readonly PromotionBusiness _promotion;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public EditModel()
+        public EditModel(IWebHostEnvironment webHostEnvironment)
         {
             _business ??= new ProductBusiness();
             _category ??= new CategoryBusiness();
             _promotion ??= new PromotionBusiness();
+            _webHostEnvironment = webHostEnvironment;
         }
 
         [BindProperty]
@@ -117,6 +120,11 @@ namespace JewelrySalesStoreRazorWebApp.Pages.ProductPage
                     ModelState.AddModelError(string.Empty, "An error occurred while updating the product.");
                     await PopulateDropdownsAsync();
                     return Page();
+                }
+                else
+                {
+                    TempData["AlertMessage"] = "Edit Product Successfully";
+                    LogEvents.LogToFile("Update Product", "Update product Successfully", _webHostEnvironment);
                 }
             }
             catch (Exception e)
