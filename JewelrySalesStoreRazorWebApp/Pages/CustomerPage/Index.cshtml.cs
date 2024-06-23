@@ -29,7 +29,7 @@ namespace JewelrySalesStoreRazorWebApp.Pages.CustomerPage
         public int PageIndex { get; set; } = 1;
 
         public int TotalPages { get; set; }
-        private readonly int PageSize = 4;     //Số object trên một trang
+        private readonly int PageSize = 5;     //Số object trên một trang
 
         private readonly ICustomerBusiness business;
       

@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using JewelrySalesStoreData.Models;
 using JewelrySalesStoreBusiness;
 
@@ -21,7 +17,7 @@ namespace JewelrySalesStoreRazorWebApp.Pages.CompanyPage
         }
 
         [BindProperty]
-        public Company Company { get; set; } = default!;
+        public Company Company { get; set; }
 
         public async Task<IActionResult> OnGetAsync(Guid id)
         {
@@ -30,17 +26,16 @@ namespace JewelrySalesStoreRazorWebApp.Pages.CompanyPage
                 return NotFound();
             }
 
-            var company = await _business.GetById(id);
+            var result = await _business.GetById(id);
 
-            if (company == null)
+            if (result.Data == null)
             {
                 return NotFound();
             }
 
-            Company = company.Data as Company;
+            Company = result.Data as Company;
             return Page();
         }
-
 
         public async Task<IActionResult> OnPostAsync()
         {
@@ -49,14 +44,7 @@ namespace JewelrySalesStoreRazorWebApp.Pages.CompanyPage
                 return Page();
             }
 
-            try
-            {
-                await _business.Update(Company);
-            }
-            catch (Exception ex)
-            {
-
-            }
+            await _business.Update(Company);
 
             return RedirectToPage("./Index");
         }

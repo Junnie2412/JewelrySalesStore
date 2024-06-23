@@ -5,6 +5,7 @@
     ViewData["Title"] = "Edit";
 }
 
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 <h1>Edit</h1>
 
 <h4>OrderDetail</h4>
@@ -13,6 +14,7 @@
     <div class="col-md-4">
         <form method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
             <input type="hidden" asp-for="OrderDetail.OrderDetailId" />
 
             <div class="form-group">
@@ -42,7 +44,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="PromotionCode" class="control-label"></label>
-                <select asp-for="PromotionId" class="form-control" asp-items="@Model.PromotionsSelectList" id="PromotionSelect"></select>
+                <select asp-for="PromotionId" class="form-control" asp-items="@ViewBag.PromotionCode" id="PromotionSelect"></select>
                 <span asp-validation-for="PromotionId" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -68,8 +70,6 @@
                 <span asp-validation-for="OrderDetail.Notes" class="text-danger"></span>
             </div>
 
-            <input type="hidden" asp-for="PromotionCode" id="PromotionCode" />
-
             <div class="form-group mt-2">
                 <input type="submit" value="Save" class="btn btn-success" />
                 <a style="text-decoration: none;" class="btn btn-secondary text-white" asp-page="./Index">Back</a>
@@ -84,8 +84,8 @@
     <script>
         $(document).ready(function () {
             $('#PromotionSelect').change(function () {
-                var promotionCode = $('#PromotionSelect option:selected').text();
-                $('#PromotionCode').val(promotionCode);
+                //var promotionCode = $('#PromotionSelect').text();
+                //$('#PromotionCode').val(promotionCode);
                 calculateFinalPrice();
             });
 
