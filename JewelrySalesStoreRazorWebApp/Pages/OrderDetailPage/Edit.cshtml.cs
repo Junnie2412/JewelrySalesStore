@@ -23,6 +23,19 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderDetailPage
             _promotion = new PromotionBusiness();
         }
 
+        public IList<Promotion> Promotion { get; set; } = default!;
+
+        [BindProperty]
+        public OrderDetail OrderDetail { get; set; }
+
+        public Order OrderOriginal { get; set; }
+
+        [BindProperty]
+        public Guid PromotionId { get; set; }
+
+        //[BindProperty]
+        public string PromotionCode { get; set; }
+
         public async Task<IActionResult> OnGetAsync(Guid id)
         {
             if (id == Guid.Empty)
@@ -42,43 +55,31 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderDetailPage
                 return NotFound();
             }
 
+            var promotionList = await _promotion.GetAll();
+            if (promotionList != null && promotionList.Status > 0 && promotionList.Data != null)
+            {
+                Promotion = promotionList.Data as List<Promotion>;
+                ViewData["PromotionCode"] = new SelectList(Promotion, "PromotionId", "PromotionCode");
+            }
+
             var orderResult = await _order.GetById(OrderDetail.OrderId ?? Guid.Empty);
             if (orderResult.Status <= 0 || orderResult.Data == null)
             {
                 return NotFound();
             }
-
             OrderOriginal = orderResult.Data as Order;
-
-            await PopulatePromotionsSelectListAsync();
-
-            if (PromotionId != Guid.Empty)
-            {
-                PromotionId = PromotionId;
-                PromotionCode = PromotionCode;
-            }
 
             return Page();
         }
 
-        public SelectList PromotionsSelectList { get; set; }
 
-        [BindProperty]
-        public OrderDetail OrderDetail { get; set; }
-
-        public Order OrderOriginal { get; set; }
-
-        [BindProperty]
-        public Guid PromotionId { get; set; }
-
-        [BindProperty]
-        public string PromotionCode { get; set; }
+        //public SelectList PromotionsSelectList { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
-                await PopulatePromotionsSelectListAsync();
+                //await PopulatePromotionsSelectListAsync();
                 return Page();
             }
 
@@ -88,10 +89,10 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderDetailPage
                 {
                     var promotionResult = await _promotion.GetById(PromotionId);
                     var promotion = promotionResult.Data as Promotion;
-                    if (promotion == null || !promotion.IsActive == true || !promotion.PromotionCode.Equals(PromotionCode, StringComparison.OrdinalIgnoreCase))
+                    if (promotion == null || !promotion.IsActive == true)
                     {
                         ModelState.AddModelError("PromotionCode", "Invalid or inactive promotion code.");
-                        await PopulatePromotionsSelectListAsync();
+                        //await PopulatePromotionsSelectListAsync();
                         return Page();
                     }
 
@@ -108,7 +109,7 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderDetailPage
                 if (updateDetailResult.Status <= 0)
                 {
                     ModelState.AddModelError(string.Empty, "Failed to update OrderDetail.");
-                    await PopulatePromotionsSelectListAsync();
+                    //await PopulatePromotionsSelectListAsync();
                     return Page();
                 }
 
@@ -119,25 +120,25 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderDetailPage
             catch (Exception ex)
             {
                 ModelState.AddModelError(string.Empty, $"An error occurred: {ex.Message}");
-                await PopulatePromotionsSelectListAsync();
+                //await PopulatePromotionsSelectListAsync();
                 return Page();
             }
         }
 
-        private async Task PopulatePromotionsSelectListAsync()
-        {
-            var promotionsResult = await _promotion.GetAll();
-            if (promotionsResult.Status > 0 && promotionsResult.Data != null)
-            {
-                var promotionList = (IEnumerable<Promotion>)promotionsResult.Data;
-                PromotionsSelectList = new SelectList(promotionList, "PromotionId", "PromotionCode");
-            }
-            else
-            {
-                PromotionsSelectList = new SelectList(new List<Promotion>(), "PromotionId", "PromotionCode");
-            }
-            ViewData["PromotionsSelectList"] = PromotionsSelectList;
-        }
+        //private async Task PopulatePromotionsSelectListAsync()
+        //{
+        //    var promotionsResult = await _promotion.GetAll();
+        //    if (promotionsResult.Status > 0 && promotionsResult.Data != null)
+        //    {
+        //        var promotionList = (IEnumerable<Promotion>)promotionsResult.Data;
+        //        PromotionsSelectList = new SelectList(promotionList, "PromotionId", "PromotionCode");
+        //    }
+        //    else
+        //    {
+        //        PromotionsSelectList = new SelectList(new List<Promotion>(), "PromotionId", "PromotionCode");
+        //    }
+        //    ViewData["PromotionsSelectList"] = PromotionsSelectList;
+        //}
 
         private async Task UpdateOrderAsync(Guid orderId)
         {

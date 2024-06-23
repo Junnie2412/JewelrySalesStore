@@ -7,58 +7,61 @@
 
 <h3>Create Company</h3>
 
-
 <div class="row">
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            @* <div class="form-group">
-            <label asp-for="Company.CompanyId" class="control-label"></label>
-            <input asp-for="Company.CompanyId" class="form-control" readonly />
-            <span asp-validation-for="Company.CompanyId" class="text-danger"></span>
-            </div> *@
+
             <div class="form-group">
                 <label asp-for="Company.CompanyName" class="control-label"></label>
                 <input asp-for="Company.CompanyName" class="form-control" />
                 <span asp-validation-for="Company.CompanyName" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="Company.CompanyPhone" class="control-label"></label>
                 <input asp-for="Company.CompanyPhone" class="form-control" />
                 <span asp-validation-for="Company.CompanyPhone" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="Company.CompanyAddress" class="control-label"></label>
                 <input asp-for="Company.CompanyAddress" class="form-control" />
                 <span asp-validation-for="Company.CompanyAddress" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="Company.CompanyDescription" class="control-label"></label>
                 <input asp-for="Company.CompanyDescription" class="form-control" />
                 <span asp-validation-for="Company.CompanyDescription" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="Company.Website" class="control-label"></label>
                 <input asp-for="Company.Website" class="form-control" />
                 <span asp-validation-for="Company.Website" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="Company.FoundationDate" class="control-label"></label>
                 <input asp-for="Company.FoundationDate" class="form-control" />
                 <span asp-validation-for="Company.FoundationDate" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="Company.Email" class="control-label"></label>
                 <input asp-for="Company.Email" class="form-control" />
                 <span asp-validation-for="Company.Email" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="Company.IsActive" class="control-label"></label>
-                <select id="CompanyIsActive" class="form-control" asp-for="Company.IsActive">
+                <select asp-for="Company.IsActive" class="form-control">
                     <option value="true">True</option>
                     <option value="false">False</option>
                 </select>
             </div>
+
             <div class="form-group">
                 <label asp-for="Company.Notes" class="control-label"></label>
                 <input asp-for="Company.Notes" class="form-control" />
@@ -67,15 +70,12 @@
 
             <div class="form-group mt-2">
                 <input type="submit" value="Create" class="btn btn-success" />
-                <a style="text-decoration: none;" class="btn btn-secondary text-white" asp-page="Index">Back</a>
+                <a asp-page="Index" class="btn btn-secondary text-white">Back</a>
             </div>
         </form>
     </div>
 </div>
 
-
 @section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
 }
