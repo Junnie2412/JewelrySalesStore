@@ -36,7 +36,6 @@ namespace JewelrySalesStoreRazorWebApp.Pages.CategoryPage
         }
 
         public IList<Category> Category { get; set; } = default!;
-        public List<SelectListItem> PurposeOptions { get; set; } = new List<SelectListItem>();
 
         public async Task OnGetAsync()
         {
@@ -45,15 +44,6 @@ namespace JewelrySalesStoreRazorWebApp.Pages.CategoryPage
             if (resultl != null && resultl.Status > 0 && resultl.Data != null)
             {
                 var newCategories = resultl.Data as List<Category>;
-
-                PurposeOptions = newCategories
-                .Select(c => c.Purpose)
-                .Distinct()
-                .Where(p => !string.IsNullOrEmpty(p))
-                .Select(p => new SelectListItem { Value = p, Text = p })
-                .ToList();
-
-                PurposeOptions.Insert(0, new SelectListItem { Value = "", Text = "All" });
 
                 if (!string.IsNullOrEmpty(SearchName))
                 {

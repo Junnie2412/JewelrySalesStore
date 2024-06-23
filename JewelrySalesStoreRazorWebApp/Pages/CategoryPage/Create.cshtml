@@ -35,12 +35,22 @@
             </div>
             <div class="form-group">
                 <label asp-for="Category.FengShui" class="control-label"></label>
-                <input asp-for="Category.FengShui" class="form-control" />
+                <select asp-for="Category.FengShui" class="form-select" aria-label="Default select example">
+                    <option value="Mệnh Kim">Mệnh Kim</option>
+                    <option value="Mệnh Mộc">Mệnh Mộc</option>
+                    <option value="Mệnh Thủy">Mệnh Thủy</option>
+                    <option value="Mệnh Hỏa">Mệnh Hỏa</option>
+                    <option value="Mệnh Thổ">Mệnh Thổ</option>
+                </select>
                 <span asp-validation-for="Category.FengShui" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Category.Purpose" class="control-label"></label>
-                <input asp-for="Category.Purpose" class="form-control" />
+                <select asp-for="Category.Purpose" class="form-select" aria-label="Default select example">
+                    <option value="Kỉ Niệm">Kỉ Niệm</option>
+                    <option value="Cầu Hôn">Cầu Hôn</option>
+                    <option value="Kết Hôn">Kết Hôn</option>
+                </select>
                 <span asp-validation-for="Category.Purpose" class="text-danger"></span>
             </div>
             <div class="form-group">

@@ -2,6 +2,7 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace JewelrySalesStoreData.Models;
 
@@ -13,10 +14,11 @@ public partial class Category
     }
     public Guid CategoryId { get; set; }
 
+    [Required]
     public string Name { get; set; }
 
     public string Material { get; set; }
-
+    [Required]
     public string ProductLine { get; set; }
 
     public string Collection { get; set; }
