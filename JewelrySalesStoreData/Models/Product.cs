@@ -2,6 +2,7 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace JewelrySalesStoreData.Models;
 
@@ -15,12 +16,15 @@ public partial class Product
 
     public string Color { get; set; }
 
+    [Required]
     public string Name { get; set; }
 
+    [Range(0.01, double.MaxValue, ErrorMessage = "Weight must be greater than zero")]
     public double? Weight { get; set; }
 
     public byte[] Image { get; set; }
-
+    [Required]
+    [Range(0.01, double.MaxValue, ErrorMessage = "Price must be greater than zero")]
     public double? Price { get; set; }
 
     public Guid? CategoryId { get; set; }
