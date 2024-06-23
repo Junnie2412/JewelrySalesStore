@@ -30,7 +30,7 @@ namespace JewelrySalesStoreRazorWebApp.Pages.ProductPage
         public IList<Category> Category { get; set; } = default!;
         public IList<Promotion> Promotion { get; set; } = default!;
         [BindProperty]
-        public IFormFile ImageFile { get; set; } = default!;
+        public IFormFile? ImageFile { get; set; } = default!;
         [BindProperty]
         public bool HasImage { get; set; }
 
@@ -88,13 +88,25 @@ namespace JewelrySalesStoreRazorWebApp.Pages.ProductPage
                         Product.Image = memoryStream.ToArray();
                     }
                 }
-                else if (!HasImage)
+                else if (HasImage)
                 {
-                    // Handle scenario where no new image is uploaded and no existing image is present
-                    Product.Image = null; // Ensure no residual image data if necessary
+                    var existingProductResponse = await _business.GetById(Product.ProductId);
+                    if (existingProductResponse != null && existingProductResponse.Data != null)
+                    {
+                        var existingProduct = existingProductResponse.Data as Product;
+                        if (existingProduct != null && existingProduct.Image != null)
+                        {
+                            Product.Image = existingProduct.Image;
+                        }
+                    }
                 }
 
-                await _business.Update(Product);
+                var updateResponse = await _business.Update(Product);
+                if (updateResponse.Status <= 0)
+                {
+                    ModelState.AddModelError(string.Empty, "An error occurred while updating the product.");
+                    return Page();
+                }
             }
             catch (Exception e)
             {
@@ -103,10 +115,5 @@ namespace JewelrySalesStoreRazorWebApp.Pages.ProductPage
 
             return RedirectToPage("./Index");
         }
-
-        //private bool CategoryExists(Guid id)
-        //{
-        //    return _context.Categories.Any(e => e.CategoryId == id);
-        //}
     }
 }

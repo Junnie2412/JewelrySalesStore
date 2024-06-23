@@ -69,8 +69,10 @@
                     </div>
                     <div class="form-group">
                         <label asp-for="Product.IsActive" class="control-label"></label>
-                        <input asp-for="Product.IsActive" class="form-control" />
-                        <span asp-validation-for="Product.IsActive" class="text-danger"></span>
+                        <select id="ProductIsActive" class="form-control" asp-for="Product.IsActive">
+                            <option value="true">Còn Hàng</option>
+                            <option value="false">Hết Hàng</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label asp-for="Product.Notes" class="control-label"></label>
