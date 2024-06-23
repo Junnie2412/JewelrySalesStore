@@ -36,6 +36,7 @@ namespace JewelrySalesStoreData.Models
 
         [Display(Name = "Foundation Date")]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = false)]
+        [Range(typeof(DateTime), "1/1/1900", "24/6/2024")]
         public DateTime? FoundationDate { get; set; }
 
         [Required(ErrorMessage = "Company email is required.")]
