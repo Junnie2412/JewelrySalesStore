@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using JewelrySalesStoreData.Models;
 using JewelrySalesStoreBusiness;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using Microsoft.AspNetCore.Hosting;
 
 namespace JewelrySalesStoreRazorWebApp.Pages.ProductPage
 {
@@ -17,12 +18,14 @@ namespace JewelrySalesStoreRazorWebApp.Pages.ProductPage
         private readonly ProductBusiness _business;
         private readonly CategoryBusiness _category;
         private readonly PromotionBusiness _promotion;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public EditModel()
+        public EditModel(IWebHostEnvironment webHostEnvironment)
         {
             _business ??= new ProductBusiness();
             _category ??= new CategoryBusiness();
             _promotion ??= new PromotionBusiness();
+            _webHostEnvironment = webHostEnvironment;
         }
 
         [BindProperty]
@@ -30,7 +33,7 @@ namespace JewelrySalesStoreRazorWebApp.Pages.ProductPage
         public IList<Category> Category { get; set; } = default!;
         public IList<Promotion> Promotion { get; set; } = default!;
         [BindProperty]
-        public IFormFile ImageFile { get; set; } = default!;
+        public IFormFile? ImageFile { get; set; } = default!;
         [BindProperty]
         public bool HasImage { get; set; }
 
@@ -80,21 +83,49 @@ namespace JewelrySalesStoreRazorWebApp.Pages.ProductPage
 
             try
             {
+                if (HasImage)
+                {
+                    var existingProductResponse = await _business.GetById(Product.ProductId);
+                    if (existingProductResponse != null && existingProductResponse.Data != null)
+                    {
+                        var existingProduct = existingProductResponse.Data as Product;
+                        if (existingProduct != null && existingProduct.Image != null)
+                        {
+                            Product.Image = existingProduct.Image;
+                        }
+                    }
+                }
                 if (ImageFile != null && ImageFile.Length > 0)
                 {
+                    var fileName = Path.GetFileName(ImageFile.FileName);
+                    var extension = Path.GetExtension(ImageFile.FileName).ToLowerInvariant();
+
+                    if (extension != ".png" && extension != ".jpg" && extension != ".jpeg")
+                    {
+                        ModelState.AddModelError("ImageFile", "Please upload an image file with a valid extension (png, jpg, jpeg).");
+                        await PopulateDropdownsAsync();
+                        return Page();
+                    }
+
                     using (var memoryStream = new MemoryStream())
                     {
                         await ImageFile.CopyToAsync(memoryStream);
                         Product.Image = memoryStream.ToArray();
                     }
                 }
-                else if (!HasImage)
-                {
-                    // Handle scenario where no new image is uploaded and no existing image is present
-                    Product.Image = null; // Ensure no residual image data if necessary
-                }
 
-                await _business.Update(Product);
+                var updateResponse = await _business.Update(Product);
+                if (updateResponse.Status <= 0)
+                {
+                    ModelState.AddModelError(string.Empty, "An error occurred while updating the product.");
+                    await PopulateDropdownsAsync();
+                    return Page();
+                }
+                else
+                {
+                    TempData["AlertMessage"] = "Edit Product Successfully";
+                    LogEvents.LogToFile("Update Product", "Update product Successfully", _webHostEnvironment);
+                }
             }
             catch (Exception e)
             {
@@ -104,9 +135,22 @@ namespace JewelrySalesStoreRazorWebApp.Pages.ProductPage
             return RedirectToPage("./Index");
         }
 
-        //private bool CategoryExists(Guid id)
-        //{
-        //    return _context.Categories.Any(e => e.CategoryId == id);
-        //}
+        private async Task PopulateDropdownsAsync()
+        {
+            var listCategory = await _category.GetAll();
+            if (listCategory != null && listCategory.Status > 0 && listCategory.Data != null)
+            {
+                Category = listCategory.Data as List<Category>;
+            }
+
+            var promotionList = await _promotion.GetAll();
+            if (promotionList != null && promotionList.Status > 0 && promotionList.Data != null)
+            {
+                Promotion = promotionList.Data as List<Promotion>;
+            }
+
+            ViewData["CategoryId"] = new SelectList(Category, "CategoryId", "CategoryId");
+            ViewData["PromotionId"] = new SelectList(Promotion, "PromotionId", "PromotionId");
+        }
     }
 }

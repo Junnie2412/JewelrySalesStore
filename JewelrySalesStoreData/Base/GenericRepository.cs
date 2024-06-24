@@ -129,7 +129,7 @@ namespace JewelrySalesStoreData.Base
                 query = query.Include(includeProperty);
             }
 
-            return await query.FirstOrDefaultAsync(e => (e as Product).ProductId == id);
+            return await query.AsNoTracking().FirstOrDefaultAsync(e => (e as Product).ProductId == id);
         }
 
         public T GetById(string code)

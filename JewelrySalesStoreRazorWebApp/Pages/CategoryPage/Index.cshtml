@@ -29,7 +29,12 @@
 
     <div class="form-check col-md-4 pt-1 d-flex align-items-center">
         <label class="col-md-4" style="margin-right: 10px">Search By Purpose: </label>
-        <select class="col-md-7" asp-for="SearchPurpose" asp-items="Model.PurposeOptions" class="form-control"></select>
+        <select asp-for="SearchPurpose" class="form-control">
+            <option value="">All</option>
+            <option value="Kỷ Niệm">Kỷ Niệm</option>
+            <option value="Kết Hôn">Kết Hôn</option>
+            <option value="Cầu Hôn">Cầu Hôn</option>
+        </select>
     </div>
 
     <div class="form-check col-md-1 pt-2">

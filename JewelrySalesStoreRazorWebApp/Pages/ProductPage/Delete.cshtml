@@ -13,10 +13,16 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Product.Color)
+            @Html.DisplayNameFor(model => model.Product.Image)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Product.Color)
+            <img src="@Url.Page("/ProductPage/Index", "Image", new { id = Model.Product.ProductId })" alt="Product Image" style="width:100px;height:auto;" />
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Product.ProductId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Product.ProductId)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Product.Name)
@@ -25,17 +31,19 @@
             @Html.DisplayFor(model => model.Product.Name)
         </dd>
         <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Product.Color)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Product.Color)
+        </dd>
+
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Product.Weight)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Product.Weight)
         </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Product.Image)
-        </dt>
-        <dd class="col-sm-10">
-            <img src="@Url.Page("/ProductPage/Index", "Image", new { id = Model.Product.ProductId })" alt="Product Image" style="width:100px;height:auto;" />
-        </dd>
+
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Product.Price)
         </dt>
@@ -46,7 +54,7 @@
             @Html.DisplayNameFor(model => model.Product.IsActive)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Product.IsActive)
+            @((Model.Product.IsActive ?? false) ? "Còn Hàng" : "Hết Hàng")
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Product.Notes)
@@ -55,13 +63,13 @@
             @Html.DisplayFor(model => model.Product.Notes)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Product.Category)
+            @Html.DisplayNameFor(model => model.Product.CategoryId)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Product.Category.CategoryId)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Product.Promotion)
+            @Html.DisplayNameFor(model => model.Product.ProductId)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Product.Promotion.PromotionId)

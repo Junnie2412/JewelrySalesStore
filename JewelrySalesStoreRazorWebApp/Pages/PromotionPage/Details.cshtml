@@ -67,7 +67,8 @@
         </dd>
     </dl>
 </div>
-<div>
-    <a asp-page="./Edit" asp-route-id="@Model.Promotion.PromotionId">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
+
+<div class="form-group">
+    <a asp-page="Edit" asp-route-id="@Model.Promotion.PromotionId" class="btn btn-success text-white">Edit</a> |
+    <a style="text-decoration: none;" class="btn btn-secondary text-white" asp-page="Index">Back</a>
 </div>

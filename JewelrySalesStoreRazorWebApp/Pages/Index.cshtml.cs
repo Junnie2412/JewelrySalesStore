@@ -22,15 +22,14 @@ namespace JewelrySalesStoreRazorWebApp.Pages
 
         public void OnGet()
         {
-            // Luôn hiển thị banner và footer
+
             ViewData["ShowBanner"] = true;
             ViewData["ShowFooter"] = true;
 
-            // Kiểm tra và thiết lập giá trị mặc định cho ShowNavBar
+            //  ShowNavBar
             int? showNavBar = HttpContext.Session.GetInt32("ShowNavBar");
             if (showNavBar == null)
             {
-                HttpContext.Session.SetInt32("ShowNavBar", 0); // 0 = false
                 ViewData["ShowNavBar"] = false;
             }
             else
@@ -38,11 +37,10 @@ namespace JewelrySalesStoreRazorWebApp.Pages
                 ViewData["ShowNavBar"] = showNavBar == 1;
             }
 
-            // Kiểm tra và thiết lập giá trị mặc định cho ShowLogin
+            // ShowLogin
             int? showLogin = HttpContext.Session.GetInt32("ShowLogin");
             if (showLogin == null)
             {
-                HttpContext.Session.SetInt32("ShowLogin", 1); // 1 = true
                 ViewData["ShowLogin"] = true;
             }
             else
@@ -55,13 +53,29 @@ namespace JewelrySalesStoreRazorWebApp.Pages
         {
             if (Username == "admin" && Password == "123")
             {
-                HttpContext.Session.SetInt32("ShowNavBar", 1); // 1 = true
-                HttpContext.Session.SetInt32("ShowLogin", 0); // 0 = false
+                /*
+                  if (Account.AccountRole == 1 || Account.AccountRole == 2)
+                    {
+                        HttpContext.Session.SetInt32("User", (int)Account.AccountRole);
+                    }  
+
+                   //Check role
+                    var role = HttpContext.Session.GetInt32("User");
+                    if (role != 1 || role == null)
+                    {
+                        HttpContext.Session.Clear();
+                        return RedirectToPage("/Login");
+                    }
+                */
+
+
+                HttpContext.Session.SetInt32("ShowNavBar", 1);
+                HttpContext.Session.SetInt32("ShowLogin", 0);
             }
             else
             {
-                HttpContext.Session.SetInt32("ShowNavBar", 0); // 0 = false
-                HttpContext.Session.SetInt32("ShowLogin", 1); // 1 = true
+                HttpContext.Session.SetInt32("ShowNavBar", 0);
+                HttpContext.Session.SetInt32("ShowLogin", 1);
             }
 
             return RedirectToPage("/Index");

@@ -2,30 +2,53 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
-namespace JewelrySalesStoreData.Models;
-
-public partial class Company
+namespace JewelrySalesStoreData.Models
 {
-    public Guid CompanyId { get; set; }
+    public partial class Company
+    {
+        public Guid CompanyId { get; set; }
 
-    public string CompanyName { get; set; }
+        public Company()
+        {
+            CompanyId = Guid.NewGuid();
+        }
 
-    public string CompanyAddress { get; set; }
+        [Required(ErrorMessage = "Company name is required.")]
+        [Display(Name = "Company Name")]
+        public string CompanyName { get; set; }
 
-    public string CompanyDescription { get; set; }
+        [Required(ErrorMessage = "Company address is required.")]
+        [Display(Name = "Company Address")]
+        public string CompanyAddress { get; set; }
 
-    public string CompanyPhone { get; set; }
+        [Display(Name = "Description")]
+        public string CompanyDescription { get; set; }
 
-    public string Website { get; set; }
+        [Required(ErrorMessage = "Company phone number is required.")]
+        [Display(Name = "Company Phone")]
+        [RegularExpression(@"^\d{10}$", ErrorMessage = "Phone number must be 10 digits.")]
+        public string CompanyPhone { get; set; }
 
-    public DateTime? FoundationDate { get; set; }
+        [Display(Name = "Website")]
+        public string Website { get; set; }
 
-    public string Email { get; set; }
+        [Display(Name = "Foundation Date")]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = false)]
+        public DateTime? FoundationDate { get; set; }
 
-    public bool IsActive { get; set; }
+        [Required(ErrorMessage = "Company email is required.")]
+        [Display(Name = "Company Email")]
+        [EmailAddress(ErrorMessage = "Invalid email address.")]
+        public string Email { get; set; }
 
-    public string Notes { get; set; }
+        [Display(Name = "Is Active")]
+        public bool IsActive { get; set; }
 
-    public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
+        [Display(Name = "Notes")]
+        public string Notes { get; set; }
+
+        public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
+    }
 }
