@@ -78,7 +78,7 @@ namespace JewelrySalesStoreRazorWebApp.Pages.CompanyPage
             }
             else
             {
-                Company = new List<Company>(); // Initialize an empty list if there is no data
+                Company = new List<Company>();
             }
         }
     }

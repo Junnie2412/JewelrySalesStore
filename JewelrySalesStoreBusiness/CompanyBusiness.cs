@@ -66,15 +66,15 @@ namespace JewelrySalesStoreBusiness
                 #endregion
 
                 //var  Category = await _ CategoryRepository.GetByIdAsync(code);
-                var Category = await _unitOfWork.CompanyRepository.GetByIdAsync(code);
+                var company = await _unitOfWork.CompanyRepository.GetByIdAsync(code);
 
-                if (Category == null)
+                if (company == null)
                 {
                     return new BusinessResult(Const.WARNING_NO_DATA_CODE, Const.WARNING_NO_DATA__MSG);
                 }
                 else
                 {
-                    return new BusinessResult(Const.SUCCESS_READ_CODE, Const.SUCCESS_READ_MSG, Category);
+                    return new BusinessResult(Const.SUCCESS_READ_CODE, Const.SUCCESS_READ_MSG, company);
                 }
             }
             catch (Exception ex)
