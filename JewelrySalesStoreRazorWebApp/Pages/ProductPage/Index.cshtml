@@ -152,7 +152,7 @@
     <ul class="pagination">
         <li class="page-item @(Model.PageIndex == 1 ? "disabled" : "")">
             <a class="page-link" asp-page="./Index" asp-route-PageIndex="@(Model.PageIndex - 1)"
-               asp-route-SearchName="@Model.SearchName" asp-route-SortBy="@Model.SortBy"
+               asp-route-SearchName="@Model.SearchName"
                aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
             </a>

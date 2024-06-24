@@ -4,6 +4,10 @@
 
 @{
     ViewData["Title"] = "Index";
+    if (ViewData["ShowNavBar"] == null)
+    {
+        ViewData["ShowNavBar"] = true;
+    }
 }
 
 
