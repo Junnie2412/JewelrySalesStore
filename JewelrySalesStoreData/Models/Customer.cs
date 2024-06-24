@@ -27,11 +27,33 @@ public partial class Customer
     [Display(Name = "Gender")]
     public bool CustomerGender { get; set; }
 
+    private DateTime? _birthDate;
+
     [Required]
     [Display(Name = "Birth Date")]
     [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = false)]
-    public DateTime CustomerBirthDate { get; set; }
+    [DataType(DataType.Date)]
+    public DateTime? CustomerBirthDate
+    { get; set; }
+    //get => _birthDate;
+    //set
+    //{
+    //    if (value.HasValue && value > DateTime.Now)
+    //    {
+    //        throw new ArgumentException("Birth Date cannot be in the future.");
+    //    }
+    //    _birthDate = value;
+    //}
 
+    public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+    {
+        if (CustomerBirthDate > DateTime.Today)
+        {
+            yield return new ValidationResult(
+                "Birth Date cannot be in the future.",
+                new[] { nameof(CustomerBirthDate) });
+        }
+    }
     [Required]
     [Display(Name = "Phone")]
     [RegularExpression(@"^\d{10}$", ErrorMessage = "Phone number must be 10 digits.")]

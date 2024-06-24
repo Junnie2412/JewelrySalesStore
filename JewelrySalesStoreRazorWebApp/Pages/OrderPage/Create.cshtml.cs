@@ -43,13 +43,14 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
             await PopulateCompaniesSelectListAsync();
             await PopulateCustomersNameSelectListAsync();
             await PopulateCustomersAddressSelectListAsync();
+            
             return Page();
         }
 
         [BindProperty]
         public Order Order { get; set; } = new Order();
 
-        [BindProperty]
+        //[BindProperty]
         public Product Product { get; set; } = new Product();
 
         [BindProperty]
@@ -272,4 +273,5 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
             return new JsonResult(new { totalPrice = finalPrice });
         }
     }
+
 }

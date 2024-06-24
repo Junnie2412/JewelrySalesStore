@@ -31,12 +31,25 @@ namespace JewelrySalesStoreData.Models
         [RegularExpression(@"^\d{10}$", ErrorMessage = "Phone number must be 10 digits.")]
         public string CompanyPhone { get; set; }
 
-        [Display(Name = "Website")]
+        [Url(ErrorMessage = "Invalid URL format.")]
         public string Website { get; set; }
+
+        private DateTime? _foundationDate;
 
         [Display(Name = "Foundation Date")]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = false)]
-        public DateTime? FoundationDate { get; set; }
+        public DateTime? FoundationDate
+        {
+            get => _foundationDate;
+            set
+            {
+                if (value.HasValue && value > DateTime.Now)
+                {
+                    throw new ArgumentException("Foundation date cannot be in the future.");
+                }
+                _foundationDate = value;
+            }
+        }
 
         [Required(ErrorMessage = "Company email is required.")]
         [Display(Name = "Company Email")]

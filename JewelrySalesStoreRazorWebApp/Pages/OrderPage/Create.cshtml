@@ -22,22 +22,11 @@
                 <span asp-validation-for="Order.CustomerId" class="text-danger"></span>
             </div>
 
-            <div class="form-group" hidden>
-                <label asp-for="Order.Date" class="control-label"></label>
-                <input asp-for="Order.Date" class="form-control" />
-                <span asp-validation-for="Order.Date" class="text-danger"></span>
-            </div>
-
             <div class="form-group">
                 <label asp-for="Order.Date" class="control-label"></label>
                 <input asp-for="Order.Date" class="form-control"  value="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")"  readonly/>
                 <span asp-validation-for="Order.Date" class="text-danger"></span>
             </div>
-      @*       <div class="form-group">
-                <label asp-for="Order.TotalPrice" class="control-label"></label>
-                <input asp-for="Order.TotalPrice" class="form-control" readonly="readonly" />
-                <span asp-validation-for="Order.TotalPrice" class="text-danger"></span>
-            </div> *@
 
             <div class="form-group">
                 <label asp-for="Order.Company" class="control-label"></label>
@@ -73,7 +62,7 @@
                 <span asp-validation-for="Order.ShippingMethod" class="text-danger"></span>
             </div>
 
-            <div class="form-group">
+            <div class="form-group" hidden>
                 <label asp-for="Order.CustomerAddress" class="control-label"></label>
                 <input asp-for="Order.CustomerAddress" class="form-control" id="CustomerAddress" readonly="readonly" />
                 <span asp-validation-for="Order.CustomerAddress" class="text-danger"></span>

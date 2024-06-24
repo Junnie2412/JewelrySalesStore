@@ -81,5 +81,21 @@
 </div>
 
 @section Scripts {
-    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const foundationDateInput = document.querySelector('input[name="Company.FoundationDate"]');
+            foundationDateInput.addEventListener('change', function () {
+                const foundationDate = new Date(foundationDateInput.value);
+                const today = new Date();
+
+                if (foundationDate > today) {
+                    alert('Foundation Date cannot be in the future.');
+                    foundationDateInput.value = '';
+                }
+            });
+        });
+    </script>
 }

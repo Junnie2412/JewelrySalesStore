@@ -19,7 +19,7 @@ public partial class Promotion
     public string PromotionCode { get; set; }
     [Required]
     [Display(Name = "Discount Percentage")]
-    [Range(0, double.MaxValue)]
+    [Range(0, 100, ErrorMessage = "Percentage must be between 0 and 100")]
     public double? DiscountPercentage { get; set; }
 
     [Required]
@@ -27,7 +27,6 @@ public partial class Promotion
     public DateTime? StartDate { get; set; }
 
     [Required]
- 
     [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = false),]
     [DateRange("StartDate", ErrorMessage = "EndDate must be greater than StartDate.")]
     public DateTime? EndDate { get; set; }

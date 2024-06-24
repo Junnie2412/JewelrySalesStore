@@ -88,3 +88,15 @@ Message Title: Create Product
 Log Message: Create product Successfully
 -----------------------------------------
 
+Log Entry
+Monday, June 24, 2024 6:45:06 PM
+Message Title: Create Product
+Log Message: Create product Successfully
+-----------------------------------------
+
+Log Entry
+Monday, June 24, 2024 8:41:26 PM
+Message Title: Create Product
+Log Message: Create product Successfully
+-----------------------------------------
+
