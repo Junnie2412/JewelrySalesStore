@@ -26,4 +26,8 @@
     <None Include="wwwroot\img\slider-4.jpg" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Model\" />
+  </ItemGroup>
+
 </Project>
