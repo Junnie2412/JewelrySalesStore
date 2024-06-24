@@ -80,7 +80,7 @@ namespace JewelrySalesStoreRazorWebApp.Pages.ProductPage
                         newProductList = newProductList.OrderByDescending(p => p.Price).ToList();
                         break;
                     default:
-                        newProductList = newProductList.OrderBy(p => p.Name).ToList(); // Default sorting by name ascending
+                        newProductList = newProductList.OrderBy(p => p.Price).ToList(); // Default sorting by name ascending
                         break;
                 }
 
