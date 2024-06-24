@@ -99,10 +99,10 @@
                     @* <td scope="row">
             @Html.DisplayFor(modelItem => item.Notes)
             </td> *@
-                    <td>
-                        <a class="btn btn-success text-white" style="text-decoration:none;" asp-page="./Edit" asp-route-id="@item.CompanyId">Edit</a> |
-                        <a class="btn btn-secondary text-white" style="text-decoration:none;" asp-page="./Details" asp-route-id="@item.CompanyId">Details</a> |
-                        <a class="btn btn-danger text-white" style="text-decoration:none;" asp-page="./Delete" asp-route-id="@item.CompanyId">Delete</a> |
+                    <td scope="row">
+                        <a class="btn btn-success text-white" style="text-decoration: none;" asp-page="./Edit" asp-route-id="@item.CompanyId">Edit</a> |
+                        <a class="btn btn-secondary text-white" style="text-decoration: none;" asp-page="./Details" asp-route-id="@item.CompanyId">Details</a> |
+                        <a class="btn btn-danger text-white" style="text-decoration: none;" asp-page="./Delete" asp-route-id="@item.CompanyId">Delete</a>
                     </td>
                 </tr>
             }
