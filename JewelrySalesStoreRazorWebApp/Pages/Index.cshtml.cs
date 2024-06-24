@@ -53,7 +53,20 @@ namespace JewelrySalesStoreRazorWebApp.Pages
         {
             if (Username == "admin" && Password == "123")
             {
-                /*
+                HttpContext.Session.SetInt32("ShowNavBar", 1);
+                HttpContext.Session.SetInt32("ShowLogin", 0);
+            }
+            else
+            {
+                HttpContext.Session.SetInt32("ShowNavBar", 0);
+                HttpContext.Session.SetInt32("ShowLogin", 1);
+            }
+
+            return RedirectToPage("/Index");
+
+
+
+            /*
                   if (Account.AccountRole == 1 || Account.AccountRole == 2)
                     {
                         HttpContext.Session.SetInt32("User", (int)Account.AccountRole);
@@ -67,18 +80,6 @@ namespace JewelrySalesStoreRazorWebApp.Pages
                         return RedirectToPage("/Login");
                     }
                 */
-
-
-                HttpContext.Session.SetInt32("ShowNavBar", 1);
-                HttpContext.Session.SetInt32("ShowLogin", 0);
-            }
-            else
-            {
-                HttpContext.Session.SetInt32("ShowNavBar", 0);
-                HttpContext.Session.SetInt32("ShowLogin", 1);
-            }
-
-            return RedirectToPage("/Index");
         }
     }
 }
