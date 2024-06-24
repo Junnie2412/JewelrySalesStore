@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using JewelrySalesStoreData.Models;
 using JewelrySalesStoreBusiness.BusinessOrder;
 using JewelrySalesStoreBusiness;
+using Microsoft.CodeAnalysis.Elfie.Model.Strings;
 
 namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
 {
@@ -38,16 +39,22 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
 
         public async Task<IActionResult> OnGetAsync()
         {
+            
             await PopulateProductsSelectListAsync();
             await PopulatePromotionsSelectListAsync();
             await PopulateCompaniesSelectListAsync();
             await PopulateCustomersNameSelectListAsync();
             await PopulateCustomersAddressSelectListAsync();
+            //var CustomerAddressResult = GetCustomerAddressAsync(Order.OrderId);
+            //CustomerAddress = CustomerAddressResult.Result as string;
             return Page();
         }
 
         [BindProperty]
         public Order Order { get; set; } = new Order();
+        //[BindProperty]
+        //public string CustomerAddress { get; set; }
+
 
         [BindProperty]
         public Product Product { get; set; } = new Product();
@@ -176,7 +183,47 @@ namespace JewelrySalesStoreRazorWebApp.Pages.OrderPage
             }
             ViewData["ProductsSelectList"] = ProductsSelectList;
         }
+        //public async Task<IActionResult> GetCustomerAddress(Guid id)
+        //{
+        //    // Giả sử _customer là dịch vụ lấy thông tin khách hàng
+        //    var customerResult = await _customer.GetById(id);
 
+        //    // Kiểm tra xem kết quả trả về có thành công hay không
+        //    if (customerResult == null || customerResult.Data == null)
+        //    {
+        //        // Nếu không tìm thấy khách hàng, trả về NotFound (404)
+        //        return NotFound();
+        //    }
+
+        //    var customer = customerResult.Data as Customer;
+
+        //    // Kiểm tra nếu việc ép kiểu không thành công
+        //    if (customer == null)
+        //    {
+        //        return BadRequest("Customer data is invalid.");
+        //    }
+
+        //    // Trả về địa chỉ khách hàng dưới dạng JSON
+        //    return new JsonResult(new { address = customer.CustomerAddress });
+        //}
+        //public async Task<string> GetCustomerAddressAsync(Guid id)
+        //{
+        //    var customerResult = await _customer.GetById(id);
+
+        //    if (customerResult == null || customerResult.Data == null)
+        //    {
+        //        return null; // Không tìm thấy khách hàng
+        //    }
+
+        //    var customer = customerResult.Data as Customer;
+
+        //    if (customer == null)
+        //    {
+        //        return null; // Dữ liệu khách hàng không hợp lệ
+        //    }
+
+        //    return customer.CustomerAddress; // Trả về địa chỉ khách hàng
+        //}
         private async Task PopulatePromotionsSelectListAsync()
         {
             var promotionsResult = await _promotion.GetAll();

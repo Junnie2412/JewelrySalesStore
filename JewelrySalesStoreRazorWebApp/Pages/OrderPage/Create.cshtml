@@ -182,4 +182,21 @@
             }
         });
     </script>
+@*      <script>
+        // Tạo một đối tượng để chứa các địa chỉ khách hàng
+        var customerAddresses = @Html.Raw(Json.Serialize(Model.CustomerAddress));
+
+        document.getElementById('CustomerSelect').addEventListener('change', function() {
+            var selectedCustomerId = this.value;
+
+            // Kiểm tra nếu có ID khách hàng được chọn
+            if (selectedCustomerId) {
+                var address = customerAddresses[selectedCustomerId] || '';
+                document.getElementById('CustomerAddress').value = address;
+            } else {
+                // Nếu không có khách hàng được chọn, đặt lại giá trị
+                document.getElementById('CustomerAddress').value = '';
+            }
+        });
+    </script> *@
 }
