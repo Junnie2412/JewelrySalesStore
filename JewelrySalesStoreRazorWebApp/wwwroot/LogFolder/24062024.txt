@@ -46,3 +46,15 @@ Message Title: Update Product
 Log Message: Update product Successfully
 -----------------------------------------
 
+Log Entry
+Monday, June 24, 2024 8:34:58 AM
+Message Title: Create Product
+Log Message: Create product Successfully
+-----------------------------------------
+
+Log Entry
+Monday, June 24, 2024 8:35:30 AM
+Message Title: Update Product
+Log Message: Update product Successfully
+-----------------------------------------
+

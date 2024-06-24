@@ -72,8 +72,8 @@ namespace JewelrySalesStoreRazorWebApp.Pages.ProductPage
                     var fileName = Path.GetFileName(ImageFile.FileName);
                     var extension = Path.GetExtension(ImageFile.FileName).ToLowerInvariant();
 
-                    // For debugging purposes: Log to console or add a breakpoint here
-                    Console.WriteLine($"FileName: {fileName}, Extension: {extension}");
+                    //// For debugging purposes: Log to console or add a breakpoint here
+                    //Console.WriteLine($"FileName: {fileName}, Extension: {extension}");
 
                     if (extension != ".png" && extension != ".jpg" && extension != ".jpeg")
                     {
@@ -87,10 +87,7 @@ namespace JewelrySalesStoreRazorWebApp.Pages.ProductPage
                         Product.Image = memoryStream.ToArray();
                     }
                 }
-                else
-                {
-                    Product.Image = null;
-                }
+
 
                 var result = await _business.Save(Product);
                 if (result.Status <= 0)
